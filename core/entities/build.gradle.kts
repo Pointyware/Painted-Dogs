@@ -1,10 +1,14 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
 }
 
 kotlin {
+    jvm {
+        jvmToolchain(17)
+    }
     androidTarget {
         compilations.all {
             kotlinOptions {
@@ -12,27 +16,51 @@ kotlin {
             }
         }
     }
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
-
-    cocoapods {
-        summary = "Some description for the Shared Module"
-        homepage = "Link to the Shared Module homepage"
-        version = "1.0"
-        ios.deploymentTarget = "16.0"
-        framework {
-            baseName = "entities"
+    val framework = XCFramework()
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64(),
+    ).forEach {
+        it.binaries.framework {
+            baseName = "core_entities"
             isStatic = true
+            framework.add(this)
         }
     }
-    
+
+    applyDefaultHierarchyTemplate()
     sourceSets {
-        commonMain.dependencies {
-            //put your multiplatform dependencies here
+        val commonMain by getting {
+            dependencies {
+
+            }
         }
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
+        val commonTest by getting {
+            dependencies {
+                implementation(libs.kotlin.test)
+            }
+        }
+
+        val jvmSharedMain by creating {
+            dependsOn(commonMain)
+        }
+        val jvmSharedTest by creating {
+            dependsOn(commonTest)
+        }
+
+        val jvmMain by getting {
+            dependsOn(jvmSharedMain)
+        }
+        val jvmTest by getting {
+            dependsOn(jvmSharedTest)
+        }
+
+        val androidMain by getting {
+            dependsOn(jvmSharedMain)
+        }
+        val androidUnitTest by getting {
+            dependsOn(jvmSharedTest)
         }
     }
 }
