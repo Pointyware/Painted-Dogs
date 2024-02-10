@@ -18,5 +18,5 @@ rootProject.name = "painted-dogs"
 include(":core:entities")
 include(":feature:login")
 include(":app-android")
-include(":app-ios")
+//include(":app-ios")
 include(":app-desktop")
