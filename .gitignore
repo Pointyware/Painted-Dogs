@@ -8,8 +8,3 @@ captures
 .cxx
 local.properties
 xcuserdata
-
-## Release Information
-/release.keystore
-/app-android/debug/app-android-debug.aab
-/app-android/release/app-android-release.aab
