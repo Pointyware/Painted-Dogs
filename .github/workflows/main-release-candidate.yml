@@ -26,7 +26,7 @@ jobs:
       - name: "Setup Gradle"
         uses: gradle/actions/setup-gradle@v3
 
-      - name: "Decode Keystore"
+      - name: "Decode Keystore into Project Root"
         env:
           RELEASE_KEYSTORE: ${{ secrets.RELEASE_KEYSTORE }}
         run: |
@@ -34,5 +34,11 @@ jobs:
 
       - name: "Build Release"
         env:
+          ALIAS_PASS: ${{ secrets.ALIAS_PASS }}
+          KEYSTORE_PASS: ${{ secrets.KEYSTORE_PASS }}
           BUILD_SUFFIX: "-rc-${{ github.sha }}"
-        run: ./gradlew buildRelease
+        run: |
+          ./gradlew buildRelease \
+            -DkeystoreReleasePass="$KEYSTORE_PASS" \
+            -DkeystoreReleasePaintedDogsPass="$ALIAS_PASS" \
+            -DbuildSuffix="$BUILD_SUFFIX"
