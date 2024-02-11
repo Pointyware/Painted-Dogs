@@ -34,7 +34,10 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:entities"))
+
     implementation(libs.androidx.activityCompose)
+    implementation(compose.preview)
     implementation(compose.ui)
     implementation(compose.material3)
 }
