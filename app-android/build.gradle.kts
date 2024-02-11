@@ -1,16 +1,7 @@
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
-}
-
-kotlin {
-    androidTarget()
-    sourceSets {
-        androidMain.dependencies {
-
-        }
-    }
 }
 
 android {
@@ -37,4 +28,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+}
+
+dependencies {
+
 }
