@@ -14,14 +14,20 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+    signingConfigs {
+        val keystoreReleasePass: String? by project
+        val keystoreReleasePaintedDogsPass: String? by project
+        create("release") {
+            storeFile = file("release.keystore")
+            storePassword = keystoreReleasePass
+            keyAlias = "painteddogs"
+            keyPassword = keystoreReleasePaintedDogsPass
         }
     }
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
@@ -30,6 +36,12 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }
 

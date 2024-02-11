@@ -1,0 +1,38 @@
+name: "Build and Tag Release Candidate"
+on:
+  push:
+    branches:
+      - main
+    paths-ignore: # Only run checks on changes to code
+      - "**/docs/*"
+      - "*/README.md"
+
+jobs:
+  build:
+    name: "Create Release Candidate"
+    runs-on: [ubuntu-22.04]
+#    env:
+#
+#    outputs:
+#
+    steps:
+      - name: "Checkout Project"
+        uses: actions/checkout@v4
+      - name: "Setup Java 17"
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '17'
+      - name: "Setup Gradle"
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: "Decode Keystore"
+        env:
+          RELEASE_KEYSTORE: ${{ secrets.RELEASE_KEYSTORE }}
+        run: |
+          echo "$RELEASE_KEYSTORE" | base64 --decode > release.keystore
+
+      - name: "Build Release"
+        env:
+          BUILD_SUFFIX: "-rc-${{ github.sha }}"
+        run: ./gradlew buildRelease
