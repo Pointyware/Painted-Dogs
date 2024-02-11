@@ -6,11 +6,11 @@ plugins {
 
 kotlin {
     androidTarget()
-//    sourcesSets {
-//        androidMain.dependencies {
-//
-//        }
-//    }
+    sourceSets {
+        androidMain.dependencies {
+
+        }
+    }
 }
 
 android {
