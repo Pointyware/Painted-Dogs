@@ -17,6 +17,8 @@ android {
     signingConfigs {
         val keystoreReleasePass: String? by project
         val keystoreReleasePaintedDogsPass: String? by project
+        keystoreReleasePass ?: throw IllegalStateException("Please set keystoreReleasePass as a gradle property")
+        keystoreReleasePaintedDogsPass ?: throw IllegalStateException("Please set keystoreReleasePaintedDogsPass as a gradle property")
         create("release") {
             storeFile = file("release.keystore")
             storePassword = keystoreReleasePass
