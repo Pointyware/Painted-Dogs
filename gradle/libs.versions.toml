@@ -2,11 +2,9 @@
 agp = "8.2.2"
 kotlin = "1.9.21"
 compose = "1.5.12"
-androidx-activityCompose = "1.8.2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
