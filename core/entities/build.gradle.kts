@@ -7,7 +7,11 @@ plugins {
 
 kotlin {
     jvm {
-        jvmToolchain(17)
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "1.8"
+            }
+        }
     }
     androidTarget {
         compilations.all {
