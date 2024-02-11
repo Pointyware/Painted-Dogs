@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
 }
 
@@ -13,12 +13,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.get()
     }
     packaging {
         resources {
@@ -40,5 +34,10 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:entities"))
 
+    implementation(libs.androidx.activityCompose)
+    implementation(compose.preview)
+    implementation(compose.ui)
+    implementation(compose.material3)
 }

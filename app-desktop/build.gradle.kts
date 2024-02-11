@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.org.jetbrains.kotlin.jvm)
+    alias(libs.plugins.kotlinJvm)
     alias(libs.plugins.composeMultiplatform)
 }
 
