@@ -12,9 +12,10 @@ on:
       - "*/README.md"
 
 jobs:
-  setup:
-    name: "Setup Environment"
+  build:
+    name: "Setup and Build Project"
     runs-on: [ubuntu-22.04]
+    if: github.event.pull_request.draft == false # ignore draft pull requests
 #    env:
 #
 #    outputs:

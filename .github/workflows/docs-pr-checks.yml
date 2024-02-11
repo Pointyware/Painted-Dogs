@@ -12,8 +12,8 @@ on:
       - "*/README.md"
 
 jobs:
-  setup:
-    name: "Setup Environment"
+  build:
+    name: "Generate Latest Documentation"
     runs-on: [ubuntu-22.04]
     if: github.event.pull_request.draft == false # ignore draft pull requests
 #    env:
