@@ -61,12 +61,25 @@ jobs:
           && \
             echo "BUNDLE_PATH=$FINAL_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
 
+      - name: "Setup - Google Cloud Auth"
+        id: gcloud-auth
+        uses: google-github-actions/auth@v2
+        with:
+          project_id: $PROJECT_ID
+          service-account: github-action-service-account@painted-dogs-prod
+          token-format: access_token
+
       - name: "Distribute - Google Play"
+        env:
+          TOKEN: ${{ steps.gcloud-auth.outputs.access_token }}
         run: |
           BINARY="$FINAL_OUTPUT_PATH/$FINAL_OUTPUT_NAME"
-          TOKEN="$(gcloud auth application-default print-access-token)"
           
           # Call Edits:Insert
+          curl -X POST \
+            -H "X-Goog-User-Project: $PROJECT_ID" \
+            -H "Authorization: Bearer $TOKEN" \
+            https://androidpublisher.googleapis.com/upload/androidpublisher/v3/applications/$BUNDLE_ID/edits:insert
           
           # Call Edits.bundles:Upload
           # Call Edits.tracks:Update
@@ -77,5 +90,4 @@ jobs:
           curl -X POST \
             -H "X-Goog-User-Project: $PROJECT_ID" \
             -H "Authorization: Bearer $TOKEN" \
-            
             https://androidpublisher.googleapis.com/upload/androidpublisher/v3/applications/$BUNDLE_ID/edits/{editId}/bundles
