@@ -50,11 +50,12 @@ jobs:
           ./gradlew buildRelease \
             -DkeystoreReleasePass="$KEYSTORE_PASS" \
             -DkeystoreReleasePaintedDogsPass="$ALIAS_PASS" \
-            -DbuildSuffix="$BUILD_SUFFIX"
-          
-          mkdir -p "$FINAL_OUTPUT_PATH"
-          mv "$GENERATED_OUTPUT_PATH/$GENERATED_OUTPUT_NAME" \
-            "$FINAL_OUTPUT_PATH/$FINAL_OUTPUT_NAME" \
+            -DbuildSuffix="$BUILD_SUFFIX" \
+          && \
+            mkdir -p "$FINAL_OUTPUT_PATH"
+          && \
+            mv "$GENERATED_OUTPUT_PATH/$GENERATED_OUTPUT_NAME" \
+              "$FINAL_OUTPUT_PATH/$FINAL_OUTPUT_NAME" \
           && \
             echo "BUNDLE_NAME=$FINAL_OUTPUT_NAME" >> "$GITHUB_OUTPUT" \
           && \
