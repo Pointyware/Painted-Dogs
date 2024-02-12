@@ -20,7 +20,7 @@ android {
         keystoreReleasePass ?: throw IllegalStateException("Please set keystoreReleasePass as a gradle property")
         keystoreReleasePaintedDogsPass ?: throw IllegalStateException("Please set keystoreReleasePaintedDogsPass as a gradle property")
         create("release") {
-            storeFile = file("release.keystore")
+            storeFile = rootProject.file("release.keystore")
             storePassword = keystoreReleasePass
             keyAlias = "painteddogs"
             keyPassword = keystoreReleasePaintedDogsPass
