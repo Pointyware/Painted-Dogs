@@ -68,6 +68,7 @@ jobs:
           project_id: $PROJECT_ID
           service-account: github-action-service-account@painted-dogs-prod
           token-format: access_token
+          access_token_scopes: "https://www.googleapis.com/auth/cloud-platform"
 
       - name: "Distribute - Google Play"
         env:
