@@ -1,6 +1,6 @@
 
 plugins {
-    `kotlin-dsl`
+    kotlin("jvm")
 }
 
 group = "org.pointyware.painteddogs.buildlogic.distribution"
