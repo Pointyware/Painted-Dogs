@@ -35,7 +35,7 @@ jobs:
         env:
           RELEASE_KEYSTORE: ${{ secrets.RELEASE_KEYSTORE }}
         run: |
-          echo "$RELEASE_KEYSTORE" | base64 --decode > app-android/release.keystore
+          echo "$RELEASE_KEYSTORE" | base64 --decode > release.keystore
 
       - name: "Build - Release"
         id: build
