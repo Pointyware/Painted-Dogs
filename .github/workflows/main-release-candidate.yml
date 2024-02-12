@@ -59,3 +59,22 @@ jobs:
             echo "BUNDLE_NAME=$FINAL_OUTPUT_NAME" >> "$GITHUB_OUTPUT" \
           && \
             echo "BUNDLE_PATH=$FINAL_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
+
+      - name: "Distribute - Google Play"
+        run: |
+          BINARY="$FINAL_OUTPUT_PATH/$FINAL_OUTPUT_NAME"
+          TOKEN="$(gcloud auth application-default print-access-token)"
+          
+          # Call Edits:Insert
+          
+          # Call Edits.bundles:Upload
+          # Call Edits.tracks:Update
+          # Call Edits.listings:Update/Patch
+          
+          # Call Edits:Commit
+          
+          curl -X POST \
+            -H "X-Goog-User-Project: $PROJECT_ID" \
+            -H "Authorization: Bearer $TOKEN" \
+            
+            https://androidpublisher.googleapis.com/upload/androidpublisher/v3/applications/$BUNDLE_ID/edits/{editId}/bundles
