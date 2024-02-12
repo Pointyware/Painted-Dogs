@@ -16,6 +16,9 @@ jobs:
       APP_ID: "org.pointyware.painteddogs"
       BUNDLE_ID: "org.pointyware.painteddogs"
       PROJECT_ID: "painted-dogs-prod"
+    outputs:
+      BUNDLE_NAME: ${{ steps.build.outputs.bundle_name }}
+      BUNDLE_PATH: ${{ steps.build.outputs.bundle_path }}
 
     steps:
       - name: "Setup - Checkout Project"
@@ -35,12 +38,24 @@ jobs:
           echo "$RELEASE_KEYSTORE" | base64 --decode > app-android/release.keystore
 
       - name: "Build - Release"
+        id: build
         env:
           ALIAS_PASS: ${{ secrets.ALIAS_PASS }}
           KEYSTORE_PASS: ${{ secrets.KEYSTORE_PASS }}
-          BUILD_SUFFIX: "-rc-${{ github.sha }}"
+          GENERATED_OUTPUT_NAME: app-android-release.aab
+          GENERATED_OUTPUT_PATH: app-android/build/outputs/bundle/release
+          FINAL_OUTPUT_NAME: "app-android-rc-${{ github.sha }}"
+          FINAL_OUTPUT_PATH: outputs
         run: |
           ./gradlew buildRelease \
             -DkeystoreReleasePass="$KEYSTORE_PASS" \
             -DkeystoreReleasePaintedDogsPass="$ALIAS_PASS" \
             -DbuildSuffix="$BUILD_SUFFIX"
+          
+          mkdir -p "$FINAL_OUTPUT_PATH"
+          mv "$GENERATED_OUTPUT_PATH/$GENERATED_OUTPUT_NAME" \
+            "$FINAL_OUTPUT_PATH/$FINAL_OUTPUT_NAME" \
+          && \
+            echo "BUNDLE_NAME=$FINAL_OUTPUT_NAME" >> "$GITHUB_OUTPUT" \
+          && \
+            echo "BUNDLE_PATH=$FINAL_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
