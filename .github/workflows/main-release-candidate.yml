@@ -11,10 +11,12 @@ jobs:
   build:
     name: "Create Release Candidate"
     runs-on: [ubuntu-22.04]
-#    env:
-#
-#    outputs:
-#
+    env:
+      ACCOUNT_ID: "TSampley@gmail.com" # TODO: create/use service account
+      APP_ID: "org.pointyware.painteddogs"
+      BUNDLE_ID: "org.pointyware.painteddogs"
+      PROJECT_ID: "painted-dogs-prod"
+
     steps:
       - name: "Setup - Checkout Project"
         uses: actions/checkout@v4
