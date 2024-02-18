@@ -1,11 +1,10 @@
-package org.pointyware.painteddogs.buildlogic.distribution
+package org.pointyware.painteddogs.buildlogic.distribution.google
 
 import com.google.api.services.androidpublisher.AndroidPublisher
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import org.pointyware.painteddogs.buildlogic.distribution.GoogleDistribution.Progress
-import org.pointyware.painteddogs.buildlogic.distribution.google.PlayAccount
+import org.pointyware.painteddogs.buildlogic.distribution.google.GoogleDistribution.Progress
 import java.io.File
 
 /**

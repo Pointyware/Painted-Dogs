@@ -5,6 +5,8 @@ import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.androidpublisher.AndroidPublisher
 import com.google.auth.http.HttpCredentialsAdapter
 import com.google.auth.oauth2.ServiceAccountCredentials
+import org.pointyware.painteddogs.buildlogic.distribution.google.GoogleDistribution
+import org.pointyware.painteddogs.buildlogic.distribution.google.GoogleDistributionImpl
 import org.pointyware.painteddogs.buildlogic.distribution.google.PlayAccount
 import java.io.File
 import java.io.FileInputStream
