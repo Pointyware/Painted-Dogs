@@ -11,6 +11,7 @@ kotlin {
 }
 
 dependencies {
+    implementation(libs.kotlin.coroutinesCore)
     implementation("com.google.apis:google-api-services-androidpublisher:v3-rev20240207-2.0.0")
 }
 
