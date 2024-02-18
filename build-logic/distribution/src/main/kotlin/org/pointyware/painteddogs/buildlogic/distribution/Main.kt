@@ -29,7 +29,12 @@ const val ERROR_UPLOAD_FAILED = 3
 
 
 private fun printHelp() {
-    println("Usage: upload_bundle --bundle=<bundle-path> --package=<package-name> --account=<service_account_email> --key=<service_account_key_file> --track=<track>")
+    println("Usage: upload_bundle " +
+            "--bundle=<bundle-path> " +
+            "--package=<package-name> " +
+            "--account=<service_account_email> " +
+            "--key=<service_account_key_file> " +
+            "--track=<track>")
 }
 
 /**
@@ -98,7 +103,7 @@ fun main(vararg args: String) {
     val account = PlayAccount(serviceAccountEmail, serviceAccountKeyFile)
     val dist: GoogleDistribution = GoogleDistributionImpl(publisher, account)
 
-    val edit = dist.createEdit("org.pointyware.painteddogs")
+    val edit = dist.createEdit(packageName)
     edit.bundle = File("app-release.aab")
     edit.updateTracks(emptyList()) // set track
     edit.updateListing(GoogleDistribution.ListingsDetails("nothing")) // set listing details
