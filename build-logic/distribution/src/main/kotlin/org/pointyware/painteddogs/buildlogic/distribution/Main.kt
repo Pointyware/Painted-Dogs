@@ -77,7 +77,7 @@ fun main(vararg args: String) {
         printHelp()
         return
     }
-// Assuming the JSON key is at some secure file path within your project's context
+
     val serviceAccountKeyPath = "service-account.json"
     val credentials = ServiceAccountCredentials.fromStream(FileInputStream(serviceAccountKeyPath))
         .createScoped("https://www.googleapis.com/auth/androidpublisher")
