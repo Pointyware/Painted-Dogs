@@ -29,6 +29,7 @@ private fun printHelp() {
  *
  */
 fun main(vararg args: String) {
+    println("Working directory: ${System.getProperty("user.dir")}")
 
     var appBundlePath: String? = null
     var packageName: String? = null
