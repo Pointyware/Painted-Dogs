@@ -21,7 +21,7 @@ interface GoogleDistribution {
         fun updateListing(details: ListingsDetails)
         fun executeUpdate(): Flow<Result<Progress>>
     }
-    fun createEdit(): Edit
+    fun createEdit(packageName: String): Edit
 
     sealed class Progress {
         data class InProgress(val progress: Float): Progress()
