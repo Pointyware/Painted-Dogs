@@ -18,3 +18,18 @@ application {
     mainClass = "org.pointyware.painteddogs.buildlogic.distribution.MainKt"
     applicationDefaultJvmArgs = listOf()
 }
+
+distributions {
+    main {
+        distributionBaseName = "painted-dogs"
+        contents {
+            // Contain output of jar task by default
+        }
+    }
+}
+
+tasks.jar {
+    manifest {
+        attributes("Main-Class" to "org.pointyware.painteddogs.buildlogic.distribution.MainKt")
+    }
+}
