@@ -1,11 +1,14 @@
 [versions]
 agp = "8.2.2"
 androidx-compose = "1.8.2"
-kotlin = "1.9.21"
+kotlin = "1.9.22"
+kotlin-coroutines = "1.8.0"
 compose = "1.5.12"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin-coroutinesCore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
+kotlin-coroutinesAndroid = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin-coroutines" }
 androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-compose" }
 
 [plugins]
