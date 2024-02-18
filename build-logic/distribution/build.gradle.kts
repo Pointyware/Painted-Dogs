@@ -15,6 +15,8 @@ dependencies {
     implementation("com.google.apis:google-api-services-androidpublisher:v3-rev20240207-2.0.0")
     implementation("com.google.api-client:google-api-client:2.2.0")
     implementation("com.google.auth:google-auth-library-oauth2-http:1.10.0")
+
+    testImplementation(libs.kotlin.test)
 }
 
 application {
