@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.buildlogic.distribution
+package org.pointyware.painteddogs.buildlogic.distribution.google
 
 import kotlinx.coroutines.flow.Flow
 import java.io.File
