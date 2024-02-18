@@ -1,9 +1,11 @@
 package org.pointyware.painteddogs.buildlogic.distribution
 
+import com.google.api.services.androidpublisher.AndroidPublisher
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import org.pointyware.painteddogs.buildlogic.distribution.GoogleDistribution.Progress
+import org.pointyware.painteddogs.buildlogic.distribution.google.PlayAccount
 import java.io.File
 
 /**
@@ -13,7 +15,8 @@ import java.io.File
  * https://googleapis.dev/java/google-api-services-androidpublisher/latest/com/google/api/services/androidpublisher/AndroidPublisher.Builder.html
  */
 class GoogleDistributionImpl(
-
+    private val androidPublisher: AndroidPublisher,
+    private val account: PlayAccount
 ): GoogleDistribution {
     override fun createEdit(): GoogleDistribution.Edit {
         return object : GoogleDistribution.Edit {
