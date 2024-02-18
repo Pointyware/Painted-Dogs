@@ -91,7 +91,7 @@ fun main(vararg args: String) {
     val account = PlayAccount(serviceAccountEmail, serviceAccountKeyFile)
     val dist: GoogleDistribution = GoogleDistributionImpl(publisher, account)
 
-    val edit = dist.createEdit()
+    val edit = dist.createEdit("org.pointyware.painteddogs")
     edit.bundle = File("app-release.aab")
 //    edit.updateTracks() // set track
 //    edit.updateListing() // set listing details
