@@ -12,6 +12,7 @@ import org.pointyware.painteddogs.buildlogic.distribution.google.PlayAccount
 import java.io.File
 import java.io.FileInputStream
 import java.util.Locale
+import kotlin.system.exitProcess
 
 enum class Token {
     HELP,
@@ -21,6 +22,11 @@ enum class Token {
     KEY,
     TRACK
 }
+
+const val ERROR_MISSING_ARGUMENTS = 1
+const val ERROR_INVALID_ARGUMENTS = 2
+const val ERROR_UPLOAD_FAILED = 3
+
 
 private fun printHelp() {
     println("Usage: upload_bundle --bundle=<bundle-path> --package=<package-name> --account=<service_account_email> --key=<service_account_key_file> --track=<track>")
@@ -77,7 +83,7 @@ fun main(vararg args: String) {
         || track == null
         ) {
         printHelp()
-        return
+        exitProcess(ERROR_MISSING_ARGUMENTS)
     }
 
     val credentials = ServiceAccountCredentials.fromStream(FileInputStream(serviceAccountKeyFile))
@@ -109,7 +115,9 @@ fun main(vararg args: String) {
                     }
                 }
             } ?: run {
-                println("Upload failed: ${it.exceptionOrNull()}")
+                println("Upload failed")
+                it.exceptionOrNull()?.printStackTrace()
+                exitProcess(ERROR_UPLOAD_FAILED)
             }
         }
     }
