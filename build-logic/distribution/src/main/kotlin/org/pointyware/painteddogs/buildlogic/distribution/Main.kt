@@ -93,7 +93,7 @@ fun main(vararg args: String) {
 
     val edit = dist.createEdit("org.pointyware.painteddogs")
     edit.bundle = File("app-release.aab")
-//    edit.updateTracks() // set track
-//    edit.updateListing() // set listing details
-//    edit.executeUpdate()
+    edit.updateTracks(emptyList()) // set track
+    edit.updateListing(GoogleDistribution.ListingsDetails("nothing")) // set listing details
+    edit.executeUpdate()
 }
