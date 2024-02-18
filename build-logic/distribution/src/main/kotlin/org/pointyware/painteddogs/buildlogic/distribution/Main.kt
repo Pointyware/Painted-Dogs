@@ -5,6 +5,7 @@ import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.androidpublisher.AndroidPublisher
 import com.google.auth.http.HttpCredentialsAdapter
 import com.google.auth.oauth2.ServiceAccountCredentials
+import kotlinx.coroutines.runBlocking
 import org.pointyware.painteddogs.buildlogic.distribution.google.GoogleDistribution
 import org.pointyware.painteddogs.buildlogic.distribution.google.GoogleDistributionImpl
 import org.pointyware.painteddogs.buildlogic.distribution.google.PlayAccount
@@ -95,5 +96,21 @@ fun main(vararg args: String) {
     edit.bundle = File("app-release.aab")
     edit.updateTracks(emptyList()) // set track
     edit.updateListing(GoogleDistribution.ListingsDetails("nothing")) // set listing details
-    edit.executeUpdate()
+    val updateFlow = edit.executeUpdate()
+    runBlocking {
+        updateFlow.collect {
+            it.getOrNull()?.let { progress ->
+                when (progress) {
+                    is GoogleDistribution.Progress.InProgress -> {
+                        println("Progress: ${progress.progress}")
+                    }
+                    is GoogleDistribution.Progress.Complete -> {
+                        println("Upload complete: ${progress.editId}")
+                    }
+                }
+            } ?: run {
+                println("Upload failed: ${it.exceptionOrNull()}")
+            }
+        }
+    }
 }
