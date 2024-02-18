@@ -3,8 +3,11 @@ package org.pointyware.painteddogs.buildlogic.distribution
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
 import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.androidpublisher.AndroidPublisher
+import com.google.auth.http.HttpCredentialsAdapter
+import com.google.auth.oauth2.ServiceAccountCredentials
 import org.pointyware.painteddogs.buildlogic.distribution.google.PlayAccount
 import java.io.File
+import java.io.FileInputStream
 import java.util.Locale
 
 enum class Token {
@@ -72,11 +75,16 @@ fun main(vararg args: String) {
         printHelp()
         return
     }
+// Assuming the JSON key is at some secure file path within your project's context
+    val serviceAccountKeyPath = "service-account.json"
+    val credentials = ServiceAccountCredentials.fromStream(FileInputStream(serviceAccountKeyPath))
+        .createScoped("https://www.googleapis.com/auth/androidpublisher")
+    val httpCredentialsAdapter = HttpCredentialsAdapter(credentials)
 
     val httpTransport = GoogleNetHttpTransport.newTrustedTransport()
     val jsonFactory = GsonFactory.getDefaultInstance()
-    val publisher = AndroidPublisher.Builder(httpTransport, jsonFactory, null)
-        .setApplicationName("PaintedDogs")
+    val publisher = AndroidPublisher.Builder(httpTransport, jsonFactory, httpCredentialsAdapter)
+        .setApplicationName("PaintedDogs Desktop")
         .build()
     val account = PlayAccount(serviceAccountEmail, serviceAccountKeyFile)
     val dist: GoogleDistribution = GoogleDistributionImpl(publisher, account)
