@@ -1,5 +1,9 @@
 package org.pointyware.painteddogs.buildlogic.distribution
 
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
+import com.google.api.client.json.gson.GsonFactory
+import com.google.api.services.androidpublisher.AndroidPublisher
+import org.pointyware.painteddogs.buildlogic.distribution.google.PlayAccount
 import java.io.File
 import java.util.Locale
 
@@ -59,37 +63,27 @@ fun main(vararg args: String) {
             println("Unknown token: $token")
         }
     }
-    val dist: GoogleDistribution = object: GoogleDistribution{
-        override fun createEdit(): GoogleDistribution.Edit {
-            return object: GoogleDistribution.Edit {
-                override var bundle: File? = null
-                    get() {
-                        println("getBundle()")
-                        return field
-                    }
-                    set(value) {
-                        println("setBundle($value)")
-                        field = value
-                    }
-
-                override fun updateTracks() {
-                    println("updateTracks()")
-                }
-
-                override fun updateListing() {
-                    println("updateListing()")
-                }
-
-                override fun commit() {
-                    println("commit()")
-                }
-            }
-        }
+    if (appBundlePath == null
+        || packageName == null
+        || serviceAccountEmail == null
+        || serviceAccountKeyFile == null
+        || track == null
+        ) {
+        printHelp()
+        return
     }
+
+    val httpTransport = GoogleNetHttpTransport.newTrustedTransport()
+    val jsonFactory = GsonFactory.getDefaultInstance()
+    val publisher = AndroidPublisher.Builder(httpTransport, jsonFactory, null)
+        .setApplicationName("PaintedDogs")
+        .build()
+    val account = PlayAccount(serviceAccountEmail, serviceAccountKeyFile)
+    val dist: GoogleDistribution = GoogleDistributionImpl(publisher, account)
 
     val edit = dist.createEdit()
     edit.bundle = File("app-release.aab")
-    edit.updateTracks()
-    edit.updateListing()
-    edit.commit()
+//    edit.updateTracks() // set track
+//    edit.updateListing() // set listing details
+//    edit.executeUpdate()
 }
