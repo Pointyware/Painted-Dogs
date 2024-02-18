@@ -1,5 +1,6 @@
 package org.pointyware.painteddogs.buildlogic.distribution.google
 
+import com.google.api.client.googleapis.json.GoogleJsonResponseException
 import com.google.api.client.http.InputStreamContent
 import com.google.api.services.androidpublisher.AndroidPublisher
 import com.google.api.services.androidpublisher.model.AppEdit
@@ -58,6 +59,8 @@ class GoogleDistributionImpl(
                     commitEdit.execute()
 
                     emit(Result.success(Progress.Complete(editId = edit.id)))
+                } catch (e: GoogleJsonResponseException) {
+                    emit(Result.failure(e))
                 } catch (e: IOException) {
                     emit(Result.failure(e))
                 } catch (e: Exception) {
