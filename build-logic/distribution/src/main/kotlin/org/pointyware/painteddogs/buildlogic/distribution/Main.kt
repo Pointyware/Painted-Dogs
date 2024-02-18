@@ -78,8 +78,7 @@ fun main(vararg args: String) {
         return
     }
 
-    val serviceAccountKeyPath = "service-account.json"
-    val credentials = ServiceAccountCredentials.fromStream(FileInputStream(serviceAccountKeyPath))
+    val credentials = ServiceAccountCredentials.fromStream(FileInputStream(serviceAccountKeyFile))
         .createScoped("https://www.googleapis.com/auth/androidpublisher")
     val httpCredentialsAdapter = HttpCredentialsAdapter(credentials)
 
