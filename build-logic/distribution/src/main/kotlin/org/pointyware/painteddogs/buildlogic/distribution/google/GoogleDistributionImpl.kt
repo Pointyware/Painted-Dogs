@@ -60,6 +60,8 @@ class GoogleDistributionImpl(
                     emit(Result.success(Progress.Complete(editId = edit.id)))
                 } catch (e: IOException) {
                     emit(Result.failure(e))
+                } catch (e: Exception) {
+                    emit(Result.failure(e))
                 }
             }
         }
