@@ -57,9 +57,9 @@ jobs:
             mv "$GENERATED_OUTPUT_PATH/$GENERATED_OUTPUT_NAME" \
               "$FINAL_OUTPUT_PATH/$FINAL_OUTPUT_NAME" \
           && \
-            echo "BUNDLE_NAME=$FINAL_OUTPUT_NAME" >> "$GITHUB_OUTPUT" \
+            echo "bundle_name=$FINAL_OUTPUT_NAME" >> "$GITHUB_OUTPUT" \
           && \
-            echo "BUNDLE_PATH=$FINAL_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
+            echo "bundle_path=$FINAL_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
 
       - name: "Setup - Google Cloud Auth"
         id: gcloud-auth
