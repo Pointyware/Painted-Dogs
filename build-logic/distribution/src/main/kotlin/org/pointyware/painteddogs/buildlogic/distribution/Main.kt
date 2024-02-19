@@ -95,7 +95,6 @@ fun main(vararg args: String) {
 
     val credentials: Credentials = GoogleCredentials.fromStream(FileInputStream(serviceAccountKeyFile))
         .createScoped(AndroidPublisherScopes.ANDROIDPUBLISHER)
-    credentials.refresh()
     val httpCredentialsAdapter = HttpCredentialsAdapter(credentials)
 
     val httpTransport = GoogleNetHttpTransport.newTrustedTransport()
