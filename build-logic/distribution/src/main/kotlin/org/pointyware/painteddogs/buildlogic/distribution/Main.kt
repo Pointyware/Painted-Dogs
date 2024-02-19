@@ -129,16 +129,3 @@ fun main(vararg args: String) {
         }
     }
 }
-
-
-//@Throws(GeneralSecurityException::class, IOException::class)
-//private fun authorizeWithServiceAccount(serviceAccountEmail: String, httpTransport: HttpTransport, jsonFactory: JsonFactory): Credential {
-//    // Build service account credential.
-//    return GoogleCredential.Builder()
-//        .setTransport(httpTransport)
-//        .setJsonFactory(jsonFactory)
-//        .setServiceAccountId(serviceAccountEmail)
-//        .setServiceAccountScopes(setOf<String>(AndroidPublisherScopes.ANDROIDPUBLISHER))
-//        .setServiceAccountPrivateKeyFromP12File(File(SRC_RESOURCES_KEY_P12))
-//        .build()
-//}
