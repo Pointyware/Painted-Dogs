@@ -18,7 +18,7 @@ import java.io.IOException
  */
 class GoogleDistributionImpl(
     private val androidPublisher: AndroidPublisher,
-    private val account: PlayAccount
+//    private val account: PlayAccount
 ): GoogleDistribution {
 
     private inner class PlayEdit(
