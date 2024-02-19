@@ -29,7 +29,7 @@ Pointyware ("we" or "us") respects your privacy. We created this Privacy Policy 
 4. Communicate with you: We may send you service updates and announcements, respond to your comments and questions, provide support, and send recovery information.
 
 ## 4. How We Share Your Information
-1. Third-party service providers: Google Play and other third-party services may collect and process your information to provide analytics and other services. 
+1. Third-party service providers: We may share your information with third-party service providers that help us operate the app (e.g., hosting, analytics). 
 2. Legal requirements: We may disclose your information in order to comply with laws, regulations, court orders, or government requests. 
 3. Business transfers: We may share your information if involved in a merger, acquisition, or sale of assets.
 
