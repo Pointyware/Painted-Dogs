@@ -93,8 +93,9 @@ fun main(vararg args: String) {
         exitProcess(ERROR_MISSING_ARGUMENTS)
     }
 
-    val credentials = ServiceAccountCredentials.fromStream(FileInputStream(serviceAccountKeyFile))
-        .createScoped("https://www.googleapis.com/auth/androidpublisher")
+    val credentials: Credentials = GoogleCredentials.fromStream(FileInputStream(serviceAccountKeyFile))
+        .createScoped(AndroidPublisherScopes.ANDROIDPUBLISHER)
+    credentials.refresh()
     val httpCredentialsAdapter = HttpCredentialsAdapter(credentials)
 
     val httpTransport = GoogleNetHttpTransport.newTrustedTransport()
