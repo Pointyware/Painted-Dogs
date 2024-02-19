@@ -3,7 +3,7 @@
 This Privacy Policy is effective as of 2024-02-18.
 
 ## 1. Introduction
-Pointyware ("we" or "us") respects your privacy. We created this Privacy Policy to explain how we collect, use, share, and protect your information when you use our Android app, Painted Dogs ("the App").
+Pointyware ("we" or "us") respects your privacy. We created this Privacy Policy to explain how we collect, use, share, and protect your information when you use our Android app, Painted Dogs ("the App"). As this app is intended for labor organization members, it is not intended for children under 16.
 
 ## 2. Information We Collect
 
@@ -42,12 +42,15 @@ Pointyware ("we" or "us") respects your privacy. We created this Privacy Policy 
 
 We take reasonable measures to protect your information from unauthorized access, alteration, or destruction. However, no security measure is perfect, so we cannot guarantee the security of your information.
 
-## 7. Changes to this Privacy Policy
+## 7. Children's Privacy
+Our app is intended for users 16 and older. We do not knowingly collect personal information from children under 16.
+
+## 8. Changes to this Privacy Policy
 
 We may update this Privacy Policy periodically.  We will notify you of major changes in the following ways:
     * By email (if you have provided one and opted in to receive communications)
     * By a prominent notice within the App
     * By a notice on our website
 
-## 8. Contact Us
+## 9. Contact Us
 For questions about this Privacy Policy, please contact us at [privacy@pointyware.org](mailto:privacy@pointyware.org).
