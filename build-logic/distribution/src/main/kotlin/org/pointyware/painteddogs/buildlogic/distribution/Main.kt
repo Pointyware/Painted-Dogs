@@ -3,16 +3,18 @@ package org.pointyware.painteddogs.buildlogic.distribution
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport
 import com.google.api.client.json.gson.GsonFactory
 import com.google.api.services.androidpublisher.AndroidPublisher
+import com.google.api.services.androidpublisher.AndroidPublisherScopes
+import com.google.auth.Credentials
 import com.google.auth.http.HttpCredentialsAdapter
-import com.google.auth.oauth2.ServiceAccountCredentials
+import com.google.auth.oauth2.GoogleCredentials
 import kotlinx.coroutines.runBlocking
 import org.pointyware.painteddogs.buildlogic.distribution.google.GoogleDistribution
 import org.pointyware.painteddogs.buildlogic.distribution.google.GoogleDistributionImpl
-import org.pointyware.painteddogs.buildlogic.distribution.google.PlayAccount
 import java.io.File
 import java.io.FileInputStream
 import java.util.Locale
 import kotlin.system.exitProcess
+
 
 enum class Token {
     HELP,
@@ -100,8 +102,8 @@ fun main(vararg args: String) {
     val publisher = AndroidPublisher.Builder(httpTransport, jsonFactory, httpCredentialsAdapter)
         .setApplicationName("PaintedDogs Desktop")
         .build()
-    val account = PlayAccount(serviceAccountEmail, serviceAccountKeyFile)
-    val dist: GoogleDistribution = GoogleDistributionImpl(publisher, account)
+//    val account = PlayAccount(serviceAccountEmail, serviceAccountKeyFile)
+    val dist: GoogleDistribution = GoogleDistributionImpl(publisher)
 
     val edit = dist.createEdit(packageName)
     edit.bundle = File("app-release.aab")
@@ -127,3 +129,16 @@ fun main(vararg args: String) {
         }
     }
 }
+
+
+//@Throws(GeneralSecurityException::class, IOException::class)
+//private fun authorizeWithServiceAccount(serviceAccountEmail: String, httpTransport: HttpTransport, jsonFactory: JsonFactory): Credential {
+//    // Build service account credential.
+//    return GoogleCredential.Builder()
+//        .setTransport(httpTransport)
+//        .setJsonFactory(jsonFactory)
+//        .setServiceAccountId(serviceAccountEmail)
+//        .setServiceAccountScopes(setOf<String>(AndroidPublisherScopes.ANDROIDPUBLISHER))
+//        .setServiceAccountPrivateKeyFromP12File(File(SRC_RESOURCES_KEY_P12))
+//        .build()
+//}
