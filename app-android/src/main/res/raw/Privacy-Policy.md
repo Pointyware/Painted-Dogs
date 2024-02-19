@@ -8,14 +8,13 @@ Pointyware ("we" or "us") respects your privacy. We created this Privacy Policy 
 ## 2. Information We Collect
 
 ### a. Information you provide directly:
-1. Content created within the app
-2. Account creation details (username, email)
-3. Account creation details (username).
-4. Email address (if provided).
-5. Phone number (if provided).
-6. Content filtering and aggregation preferences.
-7. Content you upload or create within the app (photos, posts, comments).
-8. Contact information (if you choose to access your device's contacts for invite automation).
+1. Content created within the app.
+2. Account creation details (username).
+3. Email address (if provided).
+4. Phone number (if provided).
+5. Content filtering and aggregation preferences.
+6. Content you upload or create within the app (photos, posts, comments).
+7. Contact information (if you choose to access your device's contacts for invite automation).
 
 ### b. Information collected automatically
 1. Device information (device model, operating system, IP address).
