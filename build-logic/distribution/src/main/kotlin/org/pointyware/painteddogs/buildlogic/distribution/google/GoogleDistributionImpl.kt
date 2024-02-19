@@ -43,20 +43,22 @@ class GoogleDistributionImpl(
                     // Prepare Bundle
                     val bundleFile = bundle ?: throw IllegalArgumentException("No bundle set for upload")
 
-                    val edit = AppEdit()
-                    val insert = androidPublisher.edits().insert(packageName, edit)
-                    insert.execute()
+                    val editsResource = androidPublisher.edits()
+                    val bundlesResource = editsResource.bundles()
 
-                    // Assuming API provides  uploading directly as bytes for simplicity
-                    val bundleUpload = androidPublisher.edits().bundles().upload(
+                    val insertRequest = editsResource.insert(packageName, null)
+                    val edit: AppEdit = insertRequest.execute()
+
+                    val uploadRequest = bundlesResource.upload(
                         packageName,
                         edit.id,
                         InputStreamContent("application/octet-stream", bundleFile.inputStream())
                     )
-                    bundleUpload.execute()
+                    val bundle = uploadRequest.execute()
+                    println("Bundle uploaded: $bundle")
 
-                    val commitEdit = androidPublisher.edits().commit(packageName, edit.id)
-                    commitEdit.execute()
+                    val commitRequest = editsResource.commit(packageName, edit.id)
+                    commitRequest.execute()
 
                     emit(Result.success(Progress.Complete(editId = edit.id)))
                 } catch (e: GoogleJsonResponseException) {
