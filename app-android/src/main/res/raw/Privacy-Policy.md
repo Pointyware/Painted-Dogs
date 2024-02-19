@@ -25,7 +25,7 @@ Pointyware ("we" or "us") respects your privacy. We created this Privacy Policy 
 ## 3. How We Use Your Information
 1. Improve the App: Device Information and Usage Data help us identify and fix errors, understand how you use the app, and make improvements.
 2. Provide features and services: Your content and contact information help us connect you with friends and provide social features.
-3. Personalize your experience (if applicable): We may use your content preferences to tailor your feed and other aspects of the app to your liking.
+3. Personalize your experience: We may use your content preferences to show you content that you may be interested in, and to filter out content that you may not be interested in.
 4. Communicate with you: We may send you service updates and announcements, respond to your comments and questions, provide support, and send recovery information.
 
 ## 4. How We Share Your Information
