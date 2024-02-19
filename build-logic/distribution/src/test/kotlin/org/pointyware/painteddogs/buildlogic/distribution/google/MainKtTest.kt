@@ -9,7 +9,7 @@ import org.pointyware.painteddogs.buildlogic.distribution.main
 class MainKtTest {
 
     companion object {
-        const val VALID_BUNDLE = "app/build/outputs/bundle/release/app-release.aab"
+        const val VALID_BUNDLE = "src/test/resources/app-android-release.aab"
         const val VALID_PACKAGE = "org.pointyware.painteddogs"
         const val VALID_ACCOUNT = "github-action-service-account@painted-dogs-prod.iam.gserviceaccount.com"
         const val VALID_ACCOUNT_FILE = "service-account.json"
