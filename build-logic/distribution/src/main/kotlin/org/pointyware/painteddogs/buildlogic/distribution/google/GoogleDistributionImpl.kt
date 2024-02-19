@@ -42,6 +42,7 @@ class GoogleDistributionImpl(
                 try {
                     // Prepare Bundle
                     val bundleFile = bundle ?: throw IllegalArgumentException("No bundle set for upload")
+                    emit(Result.success(Progress.InProgress(0.1f)))
 
                     val editsResource = androidPublisher.edits()
                     val bundlesResource = editsResource.bundles()
@@ -55,6 +56,7 @@ class GoogleDistributionImpl(
                         InputStreamContent("application/octet-stream", bundleFile.inputStream())
                     )
                     val bundle = uploadRequest.execute()
+                    emit(Result.success(Progress.InProgress(0.2f))) // began but nothing has been transferred
                     println("Bundle uploaded: $bundle")
 
                     val commitRequest = editsResource.commit(packageName, edit.id)
@@ -72,7 +74,7 @@ class GoogleDistributionImpl(
         }
     }
 
-    override fun createEdit(appPackage: String): GoogleDistribution.Edit {
-        return PlayEdit(appPackage)
+    override fun createEdit(packageName: String): GoogleDistribution.Edit {
+        return PlayEdit(packageName)
     }
 }
