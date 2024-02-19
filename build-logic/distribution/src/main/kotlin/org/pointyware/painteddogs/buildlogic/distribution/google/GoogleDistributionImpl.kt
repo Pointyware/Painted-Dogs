@@ -12,9 +12,6 @@ import java.io.IOException
 
 /**
  *
- * [thing](https://googleapis.dev/java/google-api-services-androidpublisher/latest/com/google/api/services/androidpublisher/AndroidPublisher.html)
- *
- * https://googleapis.dev/java/google-api-services-androidpublisher/latest/com/google/api/services/androidpublisher/AndroidPublisher.Builder.html
  */
 class GoogleDistributionImpl(
     private val androidPublisher: AndroidPublisher,
