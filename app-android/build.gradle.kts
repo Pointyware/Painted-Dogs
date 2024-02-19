@@ -8,7 +8,7 @@ android {
     namespace = "org.pointyware.painteddogs.android"
     compileSdk = 34
     defaultConfig {
-        applicationId = "org.pointyware.painteddogs.android"
+        applicationId = "org.pointyware.painteddogs"
         minSdk = 21
         targetSdk = 34
         versionCode = 2
