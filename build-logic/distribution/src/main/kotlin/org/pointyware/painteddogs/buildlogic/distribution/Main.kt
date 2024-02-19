@@ -107,7 +107,7 @@ fun main(vararg args: String) {
     val dist: GoogleDistribution = GoogleDistributionImpl(publisher)
 
     val edit = dist.createEdit(packageName)
-    edit.bundle = File("app-release.aab")
+    edit.bundle = File(appBundlePath)
     edit.updateTracks(emptyList()) // set track
     edit.updateListing(GoogleDistribution.ListingsDetails("nothing")) // set listing details
     val updateFlow = edit.executeUpdate()
