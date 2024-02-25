@@ -28,6 +28,29 @@ interface GoogleDistribution {
         data class Complete(val editId: String): Progress()
     }
 
-    data class Track(val name: String, val userFraction: Double = 1.0, val versionCodes: List<Long>)
+    /**
+     *
+     */
+    sealed class Track {
+        /**
+         * https://developers.google.com/android-publisher/tracks#how_to_compute_track_name_for_a_given_form_factor_track
+         */
+        abstract val name: String
+
+        data object Internal: Track() {
+            override val name: String = "qa"
+        }
+        data class Closed(
+            override val name: String
+        ): Track()
+        data object Open: Track() {
+            override val name: String = "beta"
+        }
+        data class Production(
+            val userFraction: Double = 1.0,
+        ): Track() {
+            override val name: String = "production"
+        }
+    }
     data class ListingsDetails(val extra: String)
 }
