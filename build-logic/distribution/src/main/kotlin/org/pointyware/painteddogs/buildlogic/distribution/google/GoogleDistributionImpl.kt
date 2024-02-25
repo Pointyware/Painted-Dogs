@@ -4,11 +4,15 @@ import com.google.api.client.googleapis.json.GoogleJsonResponseException
 import com.google.api.client.http.InputStreamContent
 import com.google.api.services.androidpublisher.AndroidPublisher
 import com.google.api.services.androidpublisher.model.AppEdit
+import com.google.api.services.androidpublisher.model.LocalizedText
+import com.google.api.services.androidpublisher.model.Track
+import com.google.api.services.androidpublisher.model.TrackRelease
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import org.pointyware.painteddogs.buildlogic.distribution.google.GoogleDistribution.Progress
 import java.io.File
 import java.io.IOException
+import java.util.Locale
 
 /**
  *
@@ -24,8 +28,10 @@ class GoogleDistributionImpl(
 
         override var bundle: File? = null
 
-        override fun updateTracks(tracks: List<GoogleDistribution.Track>) {
+        private var tracks: List<GoogleDistribution.Track> = emptyList()
 
+        override fun updateTracks(tracks: List<GoogleDistribution.Track>) {
+            this.tracks = tracks
         }
 
         override fun updateListing(details: GoogleDistribution.ListingsDetails) {
@@ -43,6 +49,7 @@ class GoogleDistributionImpl(
 
                     val editsResource = androidPublisher.edits()
                     val bundlesResource = editsResource.bundles()
+                    val tracksResource = editsResource.tracks()
 
                     val insertRequest = editsResource.insert(packageName, null)
                     val edit: AppEdit = insertRequest.execute()
@@ -55,6 +62,33 @@ class GoogleDistributionImpl(
                     val bundle = uploadRequest.execute()
                     emit(Result.success(Progress.InProgress(0.2f))) // began but nothing has been transferred
                     println("Bundle uploaded: $bundle")
+
+                    val openTrackRequest = tracksResource.update(packageName,
+                        edit.id,
+                        GoogleDistribution.Track.Open.name,
+                        Track().setReleases(
+                            listOf(
+                                TrackRelease()
+                                    .setName("Open Release")
+                                    .setVersionCodes(listOf(bundle.versionCode.toLong()))
+                                    .setStatus("completed")
+                                    .setReleaseNotes(
+                                        listOf(
+                                            LocalizedText()
+                                                .setLanguage(Locale.US.toString())
+                                                .setText("Initial release")
+                                        )
+                                    )
+                            )
+                        )
+                    )
+                    val track = openTrackRequest.execute()
+                    /*
+                    TODO: complete remaining steps to upload new build
+                        1. Update tracks
+                        2. Update listing
+                        3. Commit
+                     */
 
                     val commitRequest = editsResource.commit(packageName, edit.id)
                     commitRequest.execute()
