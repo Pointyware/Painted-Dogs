@@ -37,7 +37,10 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":core:entities"))
+                implementation(project(":feature:collections:core"))
 
+                implementation(libs.kotlinx.dateTime)
             }
         }
         val commonTest by getting {
