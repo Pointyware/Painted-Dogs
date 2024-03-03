@@ -1,17 +1,34 @@
 package org.pointyware.painteddogs.core.entities
 
+import kotlin.experimental.and
+import kotlin.experimental.or
 import kotlin.random.Random
+
+private const val BYTE_COUNT = 16
+private const val VERSION_INDEX = 6
+private const val VERSION_MASK_INVERSE = 0x0F.toByte()
+private const val VERSION_VALUE_4 = 0x40.toByte()
 
 /**
  *
  */
 data class Uuid(
-    private val bytes: ByteArray = ByteArray(16)
+    private val bytes: ByteArray
 ) {
 
+    init {
+        require(bytes.size == BYTE_COUNT) { "UUID must be $BYTE_COUNT bytes" }
+    }
+
+    operator fun get(index: Int): Byte = bytes[index]
+
     companion object {
+        fun nil() = Uuid(ByteArray(BYTE_COUNT) { 0x0 })
+        fun max() = Uuid(ByteArray(BYTE_COUNT) { 0xFF.toByte() })
         fun v4(): Uuid {
-            return Uuid(Random.nextBytes(16))
+            val bytes = Random.nextBytes(BYTE_COUNT)
+            bytes[VERSION_INDEX] = (bytes[VERSION_INDEX] and VERSION_MASK_INVERSE) or VERSION_VALUE_4
+            return Uuid(bytes)
         }
     }
 
