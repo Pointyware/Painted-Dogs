@@ -60,6 +60,10 @@ kotlin {
         }
         val jvmTest by getting {
             dependsOn(jvmSharedTest)
+            dependencies {
+                implementation(libs.truth)
+                implementation(libs.mockk)
+            }
         }
 
         val androidMain by getting {
