@@ -1,5 +1,7 @@
 package org.pointyware.painteddogs.core.entities
 
-interface CurrencyAmount {
+data class CurrencyAmount constructor(
+    val amount: Double,
+) {
 
 }
