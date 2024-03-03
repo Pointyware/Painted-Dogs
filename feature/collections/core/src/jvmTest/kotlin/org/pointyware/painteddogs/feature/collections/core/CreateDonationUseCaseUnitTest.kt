@@ -1,13 +1,13 @@
 package org.pointyware.painteddogs.feature.collections.core
 
+import com.google.common.truth.Truth.assertThat
 import io.mockk.spyk
 import io.mockk.verify
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
+import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.feature.collections.core.test.TestCollectionRepository
 import kotlin.test.BeforeTest
 import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
 
 /**
  *
@@ -45,12 +45,36 @@ class CreateDonationUseCaseUnitTest {
             5. The collection has the correct target amount
             6. The collection is saved to the repository
          */
-        assertEquals(CollectionType.DONATION, result.type)
-        assertEquals(title, result.title)
-        assertEquals(description, result.description)
-        assertEquals(CurrencyAmount(targetAmount), result.targetAmount)
-        assertNotNull(result.id)
+        assertThat(result.id).isNotIn(setOf(Uuid.nil(), Uuid.max()))
+        assertThat(result.type).isEqualTo(CollectionType.DONATION)
+        assertThat(result.title).isEqualTo(title)
+        assertThat(result.description).isEqualTo(description)
+        assertThat(result.targetAmount).isEqualTo(CurrencyAmount(targetAmount))
 
         verify { mockRepository.startDonationDrive(title, description, targetAmount) }
+    }
+
+    @Test
+    fun `createDonationCollection - invalid target amount`() {
+        /*
+        Given a title, description, and target amount
+         */
+        val title = "Help Support Local Animal Shelter"
+        val description = "Donations needed for food and supplies"
+        val targetAmount = -5000.0
+
+        /*
+        When the use case is invoked
+         */
+        val result = service.invoke(title, description, targetAmount)
+
+        /*
+        Then a new donation collection is not created and saved
+            1. The result is null
+            2. The collection is not saved to the repository
+         */
+        assertThat(result).isNull()
+
+        verify(exactly = 0) { mockRepository.startDonationDrive(title, description, targetAmount) }
     }
 }
