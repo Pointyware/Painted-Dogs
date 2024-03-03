@@ -40,6 +40,8 @@ kotlin {
                 implementation(project(":core:entities"))
 
                 implementation(libs.kotlinx.dateTime)
+                implementation(libs.koin.bom)
+                implementation(libs.koin.core)
             }
         }
         val commonTest by getting {
@@ -63,6 +65,7 @@ kotlin {
             dependencies {
                 implementation(libs.truth)
                 implementation(libs.mockk)
+                implementation(libs.jupiter)
             }
         }
 
