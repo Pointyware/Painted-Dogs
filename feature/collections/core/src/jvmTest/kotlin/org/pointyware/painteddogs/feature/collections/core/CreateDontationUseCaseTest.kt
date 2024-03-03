@@ -12,7 +12,7 @@ import kotlin.test.assertNotNull
 /**
  *
  */
-class CreateDonationUseCaseTest {
+class CreateDonationUseCaseUnitTest {
 
     private lateinit var mockRepository: CollectionRepository
     private lateinit var service: CreateDonationUseCase
