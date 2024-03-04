@@ -5,6 +5,7 @@ import org.pointyware.painteddogs.feature.collections.core.Collection
 
 interface CollectionCache {
     fun save(it: Collection)
+    fun findById(id: Uuid): Collection?
 }
 
 class InMemoryCollectionCache : CollectionCache {
@@ -15,5 +16,9 @@ class InMemoryCollectionCache : CollectionCache {
     private var collections: MutableMap<Uuid, Collection> = mutableMapOf()
     override fun save(it: Collection) {
         collections[it.id] = it
+    }
+
+    override fun findById(id: Uuid): Collection? {
+        return collections[id]
     }
 }
