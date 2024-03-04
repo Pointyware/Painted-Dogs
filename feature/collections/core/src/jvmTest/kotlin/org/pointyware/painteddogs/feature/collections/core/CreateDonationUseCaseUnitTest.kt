@@ -22,15 +22,15 @@ import kotlin.test.Test
 data class DonationParams(
     val title: String,
     val description: String,
-    val targetAmount: Double
+    val targetAmount: CurrencyAmount
 ) {
     class Builder {
         var title: String = ""
         var description: String = ""
-        var targetAmount: Double = 0.0
+        var targetAmount: CurrencyAmount = CurrencyAmount(0.0)
         fun title(title: String) = apply { this.title = title }
         fun description(description: String) = apply { this.description = description }
-        fun targetAmount(targetAmount: Double) = apply { this.targetAmount = targetAmount }
+        fun targetAmount(targetAmount: CurrencyAmount) = apply { this.targetAmount = targetAmount }
         fun build() = DonationParams(title, description, targetAmount)
     }
 }
@@ -80,7 +80,7 @@ class CreateDonationUseCaseUnitTestOriginal {
         val given = DonationParams.Builder()
             .title("Help Support Local Animal Shelter")
             .description("Donations needed for food and supplies")
-            .targetAmount(5000.0)
+            .targetAmount(CurrencyAmount(5000.0))
             .build()
 
         /*
@@ -101,7 +101,7 @@ class CreateDonationUseCaseUnitTestOriginal {
         assertThat(result.type).isEqualTo(CollectionType.DONATION)
         assertThat(result.title).isEqualTo(given.title)
         assertThat(result.description).isEqualTo(given.description)
-        assertThat(result.targetAmount).isEqualTo(CurrencyAmount(given.targetAmount))
+        assertThat(result.targetAmount).isEqualTo(given.targetAmount)
 
         verify { mockRepository.startDonationDrive(given.title, given.description, given.targetAmount) }
     }
@@ -113,7 +113,7 @@ class CreateDonationUseCaseUnitTestOriginal {
          */
         val title = "Help Support Local Animal Shelter"
         val description = "Donations needed for food and supplies"
-        val targetAmount = -5000.0
+        val targetAmount = CurrencyAmount(-5000.0)
 
         /*
         When the use case is invoked

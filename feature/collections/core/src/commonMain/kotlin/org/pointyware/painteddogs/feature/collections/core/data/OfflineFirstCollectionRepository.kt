@@ -1,5 +1,6 @@
 package org.pointyware.painteddogs.feature.collections.core.data
 
+import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.feature.collections.core.Collection
 import org.pointyware.painteddogs.feature.collections.core.local.CollectionCache
@@ -15,9 +16,9 @@ class OfflineFirstCollectionRepository(
     override fun startDonationDrive(
         title: String,
         description: String,
-        targetAmount: Double
-    ): Collection {
-        TODO("Submit Donation Creation Request if Network Available; Otherwise create local record to submit later")
+        targetAmount: CurrencyAmount
+    ): Result<Collection> {
+        return remoteDataSource.startDonationDrive(title, description, targetAmount).onSuccess { localDataSource.save(it) }
     }
 
     override fun findById(id: Uuid): Collection? {

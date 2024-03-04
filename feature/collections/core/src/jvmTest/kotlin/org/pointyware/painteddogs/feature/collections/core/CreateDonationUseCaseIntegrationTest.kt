@@ -30,7 +30,7 @@ class CreateDonationUseCaseIntegrationTest {
          */
         val title = "Help Support Local Animal Shelter"
         val description = "Donations needed for food and supplies"
-        val targetAmount = 5000.0
+        val targetAmount = CurrencyAmount(5000.0)
 
         /*
         When the use case is invoked
@@ -50,6 +50,6 @@ class CreateDonationUseCaseIntegrationTest {
         assertThat(result.type).isEqualTo(CollectionType.DONATION)
         assertThat(result.title).isEqualTo(title)
         assertThat(result.description).isEqualTo(description)
-        assertThat(result.targetAmount).isEqualTo(CurrencyAmount(targetAmount))
+        assertThat(result.targetAmount).isEqualTo(targetAmount)
     }
 }
