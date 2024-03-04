@@ -6,7 +6,7 @@ import org.pointyware.painteddogs.core.entities.Uuid
 /**
  * Represents a basic collection of funds within the :collections:core module.
  */
-class Collection(
+open class Collection(
     val targetAmount: CurrencyAmount,
     val id: Uuid,
     val type: CollectionType,
