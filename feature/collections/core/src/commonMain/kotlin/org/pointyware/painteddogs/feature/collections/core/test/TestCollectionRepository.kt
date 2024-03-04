@@ -3,7 +3,7 @@ package org.pointyware.painteddogs.feature.collections.core.test
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.feature.collections.core.Collection
-import org.pointyware.painteddogs.feature.collections.core.CollectionRepository
+import org.pointyware.painteddogs.feature.collections.core.data.CollectionRepository
 import org.pointyware.painteddogs.feature.collections.core.CollectionType
 
 /**

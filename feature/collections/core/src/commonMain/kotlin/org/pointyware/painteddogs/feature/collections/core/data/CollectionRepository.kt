@@ -1,6 +1,7 @@
-package org.pointyware.painteddogs.feature.collections.core
+package org.pointyware.painteddogs.feature.collections.core.data
 
 import org.pointyware.painteddogs.core.entities.Uuid
+import org.pointyware.painteddogs.feature.collections.core.Collection
 
 /**
  */

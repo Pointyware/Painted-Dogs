@@ -1,8 +1,12 @@
 package org.pointyware.painteddogs.feature.collections.core
 
 import com.google.common.truth.Truth.assertThat
+import io.mockk.mockk
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Uuid
+import org.pointyware.painteddogs.feature.collections.core.data.CollectionRepository
+import org.pointyware.painteddogs.feature.collections.core.data.OfflineFirstCollectionRepository
+import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
@@ -15,7 +19,7 @@ class CreateDonationUseCaseIntegrationTest {
     private lateinit var service: CreateDonationUseCase
     @BeforeTest
     fun setup() {
-        repository = OfflineFirstCollectionRepository()
+        repository = OfflineFirstCollectionRepository(mockk(), mockk())
         service = CreateDonationUseCase(repository)
     }
 

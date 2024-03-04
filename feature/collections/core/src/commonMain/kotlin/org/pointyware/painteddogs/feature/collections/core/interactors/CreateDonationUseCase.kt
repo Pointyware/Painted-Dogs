@@ -1,4 +1,7 @@
-package org.pointyware.painteddogs.feature.collections.core
+package org.pointyware.painteddogs.feature.collections.core.interactors
+
+import org.pointyware.painteddogs.feature.collections.core.Collection
+import org.pointyware.painteddogs.feature.collections.core.data.CollectionRepository
 
 class CreateDonationUseCase(
     private val repository: CollectionRepository
