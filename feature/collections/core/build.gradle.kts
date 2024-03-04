@@ -40,13 +40,13 @@ kotlin {
                 implementation(project(":core:entities"))
 
                 implementation(libs.kotlinx.dateTime)
-                implementation(libs.koin.bom)
                 implementation(libs.koin.core)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(libs.kotlin.test)
+                implementation(libs.koin.test)
             }
         }
 
@@ -71,9 +71,18 @@ kotlin {
 
         val androidMain by getting {
             dependsOn(jvmSharedMain)
+            dependencies {
+                implementation(libs.koin.core)
+                implementation(libs.koin.android)
+            }
         }
         val androidUnitTest by getting {
             dependsOn(jvmSharedTest)
+        }
+
+        val iosMain by getting {
+            dependencies {
+            }
         }
     }
 }
