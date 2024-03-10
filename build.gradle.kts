@@ -1,3 +1,4 @@
+import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 import org.jetbrains.dokka.gradle.DokkaTask
 import java.net.URL
 
@@ -16,7 +17,6 @@ plugins {
 
 tasks.dokkaHtmlMultiModule {
     moduleName.set("Painted Dogs")
-    this.dependsOn(subprojects.map { it.tasks.dokkaHtmlMultiModule.toString() }.toTypedArray())
 }
 
 subprojects {
