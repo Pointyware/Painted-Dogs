@@ -16,7 +16,14 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "painted-dogs"
+include(":core:ads")
+include(":core:analytics")
+include(":core:data")
 include(":core:entities")
+include(":core:interactors")
+include(":core:local")
+include(":core:remote")
+include(":core:ui")
 include(":feature:chat")
 include(":feature:collections")
 include(":feature:collections:core")
