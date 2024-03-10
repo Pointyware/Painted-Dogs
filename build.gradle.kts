@@ -9,7 +9,14 @@ plugins {
     alias(libs.plugins.kotlinAndroid).apply(false)
     alias(libs.plugins.kotlinMultiplatform).apply(false)
     alias(libs.plugins.kotlinJvm).apply(false)
-    alias(libs.plugins.dokka).apply(false)
+
+    // apply dokka now
+    alias(libs.plugins.dokka)
+}
+
+tasks.dokkaHtmlMultiModule {
+    moduleName.set("Painted Dogs")
+    this.dependsOn(subprojects.map { it.tasks.dokkaHtmlMultiModule.toString() }.toTypedArray())
 }
 
 subprojects {
