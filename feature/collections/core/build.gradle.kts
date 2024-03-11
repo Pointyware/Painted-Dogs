@@ -40,6 +40,7 @@ kotlin {
                 implementation(project(":core:entities"))
 
                 implementation(libs.kotlinx.dateTime)
+                implementation(libs.kotlinx.coroutines)
                 implementation(libs.koin.core)
             }
         }
