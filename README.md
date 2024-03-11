@@ -12,7 +12,25 @@ Collective Action? It can sound scary because of the association with unions and
 * Owner - Business Owners or Operators
 
 ## Features
-* Create a labor/owner account
-* Organize an event (place/time/purpose)
 * Promote action (promote/discourage products/brands/businesses; distribute petitions)
 * Collect funds (cause/goal/total)
+
+## Modularization
+* core
+  * data
+  * entities
+  * interactors
+  * local
+  * remote
+  * ui
+  * view-models
+* feature
+  * chat - Chat with other users
+  * events - Organize an event (place/time/purpose)
+  * groups - Organize a group (place/time/purpose)
+  * login - User authentication
+  * payments - Make or manage payments
+  * collections - Collect funds for a cause
+  * profiles - User profiles
+    * labor
+    * owner
