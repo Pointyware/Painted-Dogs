@@ -85,7 +85,7 @@ class CreateDonationUseCaseUnitTestOriginal {
         /*
         When the use case is invoked
          */
-        val result = service.invoke(given.title, given.description, given.targetAmount)
+        val result = service.invoke(given.title, given.description, given.targetAmount).getOrThrow()
 
         /*
         Then a new donation collection is created and saved
@@ -115,7 +115,7 @@ class CreateDonationUseCaseUnitTestOriginal {
         /*
         When the use case is invoked
          */
-        val result = service.invoke(given.title, given.description, given.targetAmount)
+        val result = service.invoke(given.title, given.description, given.targetAmount).getOrNull()
 
         /*
         Then a new donation collection is not created and saved

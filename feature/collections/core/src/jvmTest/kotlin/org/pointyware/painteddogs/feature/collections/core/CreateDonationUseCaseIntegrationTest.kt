@@ -44,7 +44,7 @@ class CreateDonationUseCaseIntegrationTest {
         /*
         When the use case is invoked
          */
-        val result = service.invoke(title, description, targetAmount)
+        val result = service.invoke(title, description, targetAmount).getOrThrow()
 
         /*
         Then a new donation collection is created and saved
