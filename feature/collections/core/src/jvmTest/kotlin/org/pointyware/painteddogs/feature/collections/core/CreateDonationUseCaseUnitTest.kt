@@ -32,16 +32,6 @@ data class DonationParams(
     }
 }
 
-interface RepoFactory {
-    fun createRepo(): CollectionRepository
-}
-
-class TestRepoFactory: RepoFactory {
-    override fun createRepo(): CollectionRepository {
-        return TestCollectionRepository()
-    }
-}
-
 /**
  *
  */
