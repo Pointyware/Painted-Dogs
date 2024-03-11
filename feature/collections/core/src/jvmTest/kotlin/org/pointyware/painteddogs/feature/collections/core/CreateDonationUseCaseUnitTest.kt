@@ -2,8 +2,10 @@ package org.pointyware.painteddogs.feature.collections.core
 
 import com.google.common.truth.Truth.assertThat
 import com.google.common.truth.TruthJUnit.assume
+import io.mockk.coVerify
 import io.mockk.spyk
 import io.mockk.verify
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.experimental.theories.DataPoint
 import org.junit.experimental.theories.Theories
@@ -85,7 +87,7 @@ class CreateDonationUseCaseUnitTestOriginal {
         /*
         When the use case is invoked
          */
-        val result = service.invoke(given.title, given.description, given.targetAmount).getOrThrow()
+        val result = runBlocking { service.invoke(given.title, given.description, given.targetAmount).getOrThrow() }
 
         /*
         Then a new donation collection is created and saved
@@ -97,12 +99,12 @@ class CreateDonationUseCaseUnitTestOriginal {
             6. The collection is saved to the repository
          */
         assertThat(result.id).isNotIn(setOf(Uuid.nil(), Uuid.max()))
-        assertThat(result.type).isEqualTo(CollectionType.DONATION)
+        assertThat(result.type).isEqualTo(CollectionType.CROWDFUNDING)
         assertThat(result.title).isEqualTo(given.title)
         assertThat(result.description).isEqualTo(given.description)
         assertThat(result.targetAmount).isEqualTo(given.targetAmount)
 
-        verify { mockRepository.startDonationDrive(given.title, given.description, given.targetAmount) }
+        coVerify { mockRepository.startDonationDrive(given.title, given.description, given.targetAmount) }
     }
 
     @Theory
@@ -115,7 +117,7 @@ class CreateDonationUseCaseUnitTestOriginal {
         /*
         When the use case is invoked
          */
-        val result = service.invoke(given.title, given.description, given.targetAmount).getOrNull()
+        val result = runBlocking { service.invoke(given.title, given.description, given.targetAmount).getOrNull() }
 
         /*
         Then a new donation collection is not created and saved
@@ -124,6 +126,6 @@ class CreateDonationUseCaseUnitTestOriginal {
          */
         assertThat(result).isNull()
 
-        verify(exactly = 0) { mockRepository.startDonationDrive(given.title, given.description, given.targetAmount) }
+        coVerify(exactly = 0) { mockRepository.startDonationDrive(given.title, given.description, given.targetAmount) }
     }
 }

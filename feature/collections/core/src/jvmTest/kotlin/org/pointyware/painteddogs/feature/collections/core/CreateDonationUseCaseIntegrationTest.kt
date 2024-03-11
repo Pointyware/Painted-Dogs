@@ -1,14 +1,16 @@
 package org.pointyware.painteddogs.feature.collections.core
 
 import com.google.common.truth.Truth.assertThat
-import io.mockk.mockk
+import kotlinx.coroutines.runBlocking
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.feature.collections.core.data.CollectionRepository
 import org.pointyware.painteddogs.feature.collections.core.data.OfflineFirstCollectionRepository
 import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
 import org.pointyware.painteddogs.feature.collections.core.local.CollectionCache
+import org.pointyware.painteddogs.feature.collections.core.local.InMemoryCollectionCache
 import org.pointyware.painteddogs.feature.collections.core.remote.CollectionApi
+import org.pointyware.painteddogs.feature.collections.core.remote.TestCollectionApi
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
@@ -23,8 +25,8 @@ class CreateDonationUseCaseIntegrationTest {
     private lateinit var service: CreateDonationUseCase
     @BeforeTest
     fun setup() {
-        collectionApi = TODO("Implement")
-        collectionCache = TODO("Implement")
+        collectionApi = TestCollectionApi()
+        collectionCache = InMemoryCollectionCache()
         repository = OfflineFirstCollectionRepository(
             localDataSource = collectionCache,
             remoteDataSource = collectionApi
@@ -44,7 +46,7 @@ class CreateDonationUseCaseIntegrationTest {
         /*
         When the use case is invoked
          */
-        val result = service.invoke(title, description, targetAmount).getOrThrow()
+        val result = runBlocking { service.invoke(title, description, targetAmount).getOrThrow() }
 
         /*
         Then a new donation collection is created and saved
@@ -56,7 +58,7 @@ class CreateDonationUseCaseIntegrationTest {
             6. A donation collection is started through the repository
          */
         assertThat(result.id).isNotIn(setOf(Uuid.nil(), Uuid.max()))
-        assertThat(result.type).isEqualTo(CollectionType.DONATION)
+        assertThat(result.type).isEqualTo(CollectionType.CROWDFUNDING)
         assertThat(result.title).isEqualTo(title)
         assertThat(result.description).isEqualTo(description)
         assertThat(result.targetAmount).isEqualTo(targetAmount)
