@@ -4,7 +4,6 @@ import com.google.common.truth.Truth.assertThat
 import com.google.common.truth.TruthJUnit.assume
 import io.mockk.coVerify
 import io.mockk.spyk
-import io.mockk.verify
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.experimental.theories.DataPoint
@@ -52,7 +51,7 @@ class CreateDonationUseCaseUnitTestOriginal {
     companion object {
         @JvmField
         @DataPoint
-        public var successCase =
+        var successCase =
             DonationParams.Builder()
                 .title("Help Support Local Animal Shelter")
                 .description("Donations needed for food and supplies")
@@ -61,7 +60,7 @@ class CreateDonationUseCaseUnitTestOriginal {
 
         @JvmField
         @DataPoint
-        public var failureCase =
+        var failureCase =
             DonationParams.Builder()
                 .title("Help Support Local Animal Shelter")
                 .description("Donations needed for food and supplies")
