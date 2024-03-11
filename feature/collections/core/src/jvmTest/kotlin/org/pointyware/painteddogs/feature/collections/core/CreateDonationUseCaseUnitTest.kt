@@ -1,23 +1,19 @@
 package org.pointyware.painteddogs.feature.collections.core
 
 import com.google.common.truth.Truth.assertThat
+import com.google.common.truth.TruthJUnit.assume
 import io.mockk.spyk
 import io.mockk.verify
+import org.junit.Before
+import org.junit.experimental.theories.DataPoint
 import org.junit.experimental.theories.Theories
 import org.junit.experimental.theories.Theory
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
-import org.junit.jupiter.params.provider.ValueSource
 import org.junit.runner.RunWith
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.feature.collections.core.data.CollectionRepository
 import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
 import org.pointyware.painteddogs.feature.collections.core.test.TestCollectionRepository
-import java.util.stream.Stream
-import kotlin.test.BeforeTest
-import kotlin.test.Test
 
 data class DonationParams(
     val title: String,
@@ -51,37 +47,40 @@ class TestRepoFactory: RepoFactory {
 @RunWith(Theories::class)
 class CreateDonationUseCaseUnitTestOriginal {
 
+    companion object {
+        @JvmField
+        @DataPoint
+        public var successCase =
+            DonationParams.Builder()
+                .title("Help Support Local Animal Shelter")
+                .description("Donations needed for food and supplies")
+                .targetAmount(CurrencyAmount(5000.0))
+                .build()
+
+        @JvmField
+        @DataPoint
+        public var failureCase =
+            DonationParams.Builder()
+                .title("Help Support Local Animal Shelter")
+                .description("Donations needed for food and supplies")
+                .targetAmount(CurrencyAmount(-5000.0))
+                .build()
+    }
+
     private lateinit var mockRepository: CollectionRepository
     private lateinit var service: CreateDonationUseCase
-    @BeforeTest
+    @Before
     fun setup() {
         mockRepository = spyk<TestCollectionRepository>()
         service = CreateDonationUseCase(mockRepository)
     }
 
-    companion object {
-        @JvmStatic
-        fun testData(): Stream<Arguments> {
-            return Stream.of(
-                Arguments.of(),
-                Arguments.of(),
-                Arguments.of(),
-                Arguments.of(),
-                Arguments.of()
-            )
-        }
-    }
-
     @Theory
-    @ParameterizedTest
-    @ValueSource(classes = [])
-    @MethodSource("testData")
-    fun `createDonationCollection - success`(factory: RepoFactory, given: DonationParams) {
-        val given = DonationParams.Builder()
-            .title("Help Support Local Animal Shelter")
-            .description("Donations needed for food and supplies")
-            .targetAmount(CurrencyAmount(5000.0))
-            .build()
+    fun `createDonationCollection - success`(given: DonationParams) {
+        /*
+        Given a title, description, and target amount
+         */
+        assume().that(given.targetAmount.amount).isGreaterThan(0)
 
         /*
         When the use case is invoked
@@ -106,19 +105,17 @@ class CreateDonationUseCaseUnitTestOriginal {
         verify { mockRepository.startDonationDrive(given.title, given.description, given.targetAmount) }
     }
 
-    @Test
-    fun `createDonationCollection - invalid target amount`() {
+    @Theory
+    fun `createDonationCollection - invalid target amount`(given: DonationParams) {
         /*
         Given a title, description, and target amount
          */
-        val title = "Help Support Local Animal Shelter"
-        val description = "Donations needed for food and supplies"
-        val targetAmount = CurrencyAmount(-5000.0)
+        assume().that(given.targetAmount.amount).isAtMost(0)
 
         /*
         When the use case is invoked
          */
-        val result = service.invoke(title, description, targetAmount)
+        val result = service.invoke(given.title, given.description, given.targetAmount)
 
         /*
         Then a new donation collection is not created and saved
@@ -127,6 +124,6 @@ class CreateDonationUseCaseUnitTestOriginal {
          */
         assertThat(result).isNull()
 
-        verify(exactly = 0) { mockRepository.startDonationDrive(title, description, targetAmount) }
+        verify(exactly = 0) { mockRepository.startDonationDrive(given.title, given.description, given.targetAmount) }
     }
 }
