@@ -7,6 +7,8 @@ import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.feature.collections.core.data.CollectionRepository
 import org.pointyware.painteddogs.feature.collections.core.data.OfflineFirstCollectionRepository
 import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
+import org.pointyware.painteddogs.feature.collections.core.local.CollectionCache
+import org.pointyware.painteddogs.feature.collections.core.remote.CollectionApi
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
@@ -15,11 +17,18 @@ import kotlin.test.Test
  */
 class CreateDonationUseCaseIntegrationTest {
 
+    private lateinit var collectionApi: CollectionApi
+    private lateinit var collectionCache: CollectionCache
     private lateinit var repository: CollectionRepository
     private lateinit var service: CreateDonationUseCase
     @BeforeTest
     fun setup() {
-        repository = OfflineFirstCollectionRepository(mockk(), mockk())
+        collectionApi = TODO("Implement")
+        collectionCache = TODO("Implement")
+        repository = OfflineFirstCollectionRepository(
+            localDataSource = collectionCache,
+            remoteDataSource = collectionApi
+        )
         service = CreateDonationUseCase(repository)
     }
 
