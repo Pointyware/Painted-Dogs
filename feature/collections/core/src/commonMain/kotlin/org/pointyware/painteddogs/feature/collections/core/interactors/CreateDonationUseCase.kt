@@ -11,7 +11,7 @@ class CreateDonationUseCase(
     /**
      * @throws IllegalArgumentException if title or description are blank
      */
-    fun invoke(title: String, description: String, targetAmount: CurrencyAmount): Result<Collection> {
+    suspend fun invoke(title: String, description: String, targetAmount: CurrencyAmount): Result<Collection> {
         if (title.isBlank() || description.isBlank()) {
             return Result.failure(IllegalArgumentException("Title and description are required"))
         }

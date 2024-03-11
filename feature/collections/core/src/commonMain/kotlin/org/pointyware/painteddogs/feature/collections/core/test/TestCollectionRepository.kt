@@ -13,10 +13,10 @@ class TestCollectionRepository: CollectionRepository {
 
     var collections: MutableMap<Uuid, Collection> = mutableMapOf()
 
-    override fun startDonationDrive(title: String, description: String, targetAmount: CurrencyAmount): Result<Collection> {
+    override suspend fun startDonationDrive(title: String, description: String, targetAmount: CurrencyAmount): Result<Collection> {
         val donationDrive = Collection(
             id = Uuid.v4(),
-            type = CollectionType.DONATION,
+            type = CollectionType.CROWDFUNDING,
             title = title,
             description = description,
             targetAmount = targetAmount
@@ -25,7 +25,7 @@ class TestCollectionRepository: CollectionRepository {
         return Result.success(donationDrive)
     }
 
-    override fun findById(id: Uuid): Collection? {
+    override suspend fun findById(id: Uuid): Collection? {
         return collections[id]
     }
 }

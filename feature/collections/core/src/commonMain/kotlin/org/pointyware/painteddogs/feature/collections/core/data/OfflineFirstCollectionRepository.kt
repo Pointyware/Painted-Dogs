@@ -12,7 +12,7 @@ class OfflineFirstCollectionRepository(
     private val localDataSource: CollectionCache,
     private val remoteDataSource: CollectionApi
 ): CollectionRepository {
-    override fun startDonationDrive(
+    override suspend fun startDonationDrive(
         title: String,
         description: String,
         targetAmount: CurrencyAmount
@@ -20,7 +20,7 @@ class OfflineFirstCollectionRepository(
         return remoteDataSource.startDonationDrive(title, description, targetAmount).onSuccess { localDataSource.save(it) }
     }
 
-    override fun findById(id: Uuid): Collection? {
+    override suspend fun findById(id: Uuid): Collection? {
         return localDataSource.findById(id)
     }
 }

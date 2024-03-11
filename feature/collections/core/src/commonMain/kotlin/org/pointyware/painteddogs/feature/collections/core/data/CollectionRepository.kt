@@ -7,6 +7,6 @@ import org.pointyware.painteddogs.feature.collections.core.Collection
 /**
  */
 interface CollectionRepository {
-    fun startDonationDrive(title: String, description: String, targetAmount: CurrencyAmount): Result<Collection>
-    fun findById(id: Uuid): Collection?
+    suspend fun startDonationDrive(title: String, description: String, targetAmount: CurrencyAmount): Result<Collection>
+    suspend fun findById(id: Uuid): Collection?
 }
