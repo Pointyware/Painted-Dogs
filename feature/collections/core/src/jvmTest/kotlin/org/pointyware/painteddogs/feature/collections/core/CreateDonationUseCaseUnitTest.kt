@@ -36,7 +36,7 @@ data class DonationParams(
  *
  */
 @RunWith(Theories::class)
-class CreateDonationUseCaseUnitTestOriginal {
+class CreateDonationUseCaseUnitTest {
 
     companion object {
         @JvmField
