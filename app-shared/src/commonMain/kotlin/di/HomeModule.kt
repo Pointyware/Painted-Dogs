@@ -6,7 +6,7 @@ import org.pointyware.painteddogs.shared.home.Home
 import org.pointyware.painteddogs.shared.home.HomeUiStateMapper
 import org.pointyware.painteddogs.shared.home.HomeViewModel
 import org.pointyware.painteddogs.shared.home.HomeViewModelImpl
-import kotlin.reflect.KClass
+import org.pointyware.painteddogs.shared.home.homeRoute
 
 /**
  * Defines productions bindings to satisfy interface requests.
@@ -16,5 +16,6 @@ fun homeModule() = module {
 
     single<HomeUiStateMapper> { HomeUiStateMapper }
     single<HomeViewModel> { HomeViewModelImpl() }
-    single<KClass<*>>(qualifier = named("Home")) { Home::class}
+
+    factory<Any>(qualifier = named("home")) { homeRoute }
 }

@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
-import org.pointyware.painteddogs.core.navigation.Route
 import org.pointyware.painteddogs.core.navigation.StackNavigationController
 import org.pointyware.painteddogs.core.viewmodels.BaseViewModel
 import org.pointyware.painteddogs.feature.funds.interactors.CreateFundUseCase
@@ -20,7 +19,7 @@ interface FundDetailsViewModel: BaseViewModel {
 }
 
 class FundDetailsViewModelImpl(
-    private val navController: StackNavigationController,
+    private val navController: StackNavigationController<Any, Any>,
     private val createFundUseCase: CreateFundUseCase,
 ): FundDetailsViewModel {
     private val mutableLoadingState = MutableStateFlow<LoadingState>(LoadingState.Complete)

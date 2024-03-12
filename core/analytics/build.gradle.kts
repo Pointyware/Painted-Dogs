@@ -35,9 +35,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:entities"))
-                implementation(project(":core:interactors"))
-                implementation(project(":core:data"))
+                implementation(projects.core.entities)
+                implementation(projects.core.interactors)
+                implementation(projects.core.data)
             }
         }
         val commonTest by getting {

@@ -35,7 +35,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":feature:profiles"))
+            implementation(projects.feature.profiles)
 
             implementation(libs.koin.core)
 

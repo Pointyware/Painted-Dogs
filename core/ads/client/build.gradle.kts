@@ -37,7 +37,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:ui"))
+                implementation(projects.core.ui)
 
                 implementation(compose.ui)
                 implementation(compose.material3)

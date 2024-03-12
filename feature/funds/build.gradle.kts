@@ -46,17 +46,17 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:common"))
-                implementation(project(":core:entities"))
-                implementation(project(":core:interactors"))
-                implementation(project(":core:data"))
-                implementation(project(":core:local"))
-                implementation(project(":core:remote"))
-                implementation(project(":core:view-models"))
-                implementation(project(":core:navigation"))
-                implementation(project(":core:ui"))
+                implementation(projects.core.common)
+                implementation(projects.core.entities)
+                implementation(projects.core.interactors)
+                implementation(projects.core.data)
+                implementation(projects.core.local)
+                implementation(projects.core.remote)
+                implementation(projects.core.ui)
+                implementation(projects.core.navigation)
+                implementation(projects.core.ui)
 
-                implementation(project(":feature:payments"))
+                implementation(projects.feature.payments)
 
                 implementation(libs.kotlinx.dateTime)
                 implementation(libs.kotlinx.coroutines)
@@ -69,7 +69,7 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
-                implementation(project(":assertions"))
+                implementation(libs.pointyware.kass)
 
                 implementation(libs.kotlin.test)
                 implementation(libs.koin.test)

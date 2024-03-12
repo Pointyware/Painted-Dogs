@@ -1,11 +1,12 @@
 [versions]
-agp = "8.2.0"
+agp = "8.4.1"
 artifactRegistry = "2.2.0"
-androidx-activity = "1.8.2"
-androidx-compose-ui = "1.6.5"
+androidx-activity = "1.9.0"
+androidx-compose-ui = "1.6.8"
 compose = "1.6.10"
 dokka = "1.9.20"
 jupiter = "5.10.2"
+kass = "0.1.0"
 koin = "3.5.3"
 koin-bom = "3.5.3"
 kotlin = "2.0.0"
@@ -51,6 +52,7 @@ ktor-server-netty = { module = "io.ktor:ktor-server-netty", version.ref = "ktor"
 mockative = { module = "io.mockative:mockative", version.ref = "mockative" }
 mockativeSymbolProcessor = { module = "io.mockative:mockative-processor", version.ref = "mockative" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+pointyware-kass = { module = "org.pointyware.kass:assertions", version.ref = "kass" }
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
 
 [plugins]
@@ -68,3 +70,5 @@ ktor                = { id = "io.ktor.plugin", version.ref = "ktor" }
 
 painteddogs-koin = { id = "org.pointyware.painteddogs.koin-dependency-injection-convention", version = "0.1.0" }
 painteddogs-kmp = { id = "org.pointyware.painteddogs.kmp-convention", version = "0.1.0" }
+painteddogs-compose = { id = "org.pointyware.painteddogs.compose-convention", version = "0.1.0" }
+painteddogs-coreProjects = { id = "org.pointyware.painteddogs.core-projects-convention", version = "0.1.0" }

@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.StateFlow
  * TODO: describe purpose/intent of ContributionDetailsViewModel
  */
 interface ContributionDetailsViewModel {
-    val state: StateFlow<ContributionDetailsUiState>
-
     fun onConfirm()
+
+    val state: StateFlow<ContributionDetailsUiState>
 }
 
 class ContributionDetailsViewModelImpl(): ContributionDetailsViewModel {

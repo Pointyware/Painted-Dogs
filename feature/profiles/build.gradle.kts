@@ -37,12 +37,12 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:common"))
-                implementation(project(":core:entities"))
-                implementation(project(":core:navigation"))
-                implementation(project(":core:ui"))
+                implementation(projects.core.common)
+                implementation(projects.core.entities)
+                implementation(projects.core.navigation)
+                implementation(projects.core.ui)
 
-                implementation(project(":feature:funds"))
+                implementation(projects.feature.funds)
 
                 implementation(libs.koin.core)
 

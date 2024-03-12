@@ -2,7 +2,6 @@ package org.pointyware.painteddogs.feature.funds.di
 
 import org.koin.dsl.module
 import org.pointyware.painteddogs.core.data.di.dataQualifier
-import org.pointyware.painteddogs.core.navigation.Route
 import org.pointyware.painteddogs.core.navigation.StackNavigationController
 import org.pointyware.painteddogs.feature.funds.data.FundRepository
 import org.pointyware.painteddogs.feature.funds.data.OfflineFirstFundRepository
@@ -53,7 +52,7 @@ fun featureFundsViewModelsModule() = module {
     factory<FundSearchViewModel> { FundSearchViewModelImpl(get()) }
     factory<FundDetailsViewModel> {
         FundDetailsViewModelImpl(
-            navController = get<StackNavigationController>(),
+            navController = get<StackNavigationController<Any, Any>>(),
             createFundUseCase = get()
         )
     }

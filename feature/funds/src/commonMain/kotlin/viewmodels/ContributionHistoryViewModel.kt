@@ -1,6 +1,7 @@
 package org.pointyware.painteddogs.feature.funds.viewmodels
 
 import kotlinx.coroutines.flow.StateFlow
+import org.pointyware.painteddogs.core.entities.Uuid
 
 /**
  */

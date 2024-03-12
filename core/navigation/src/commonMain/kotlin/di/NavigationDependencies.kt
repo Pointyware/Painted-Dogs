@@ -8,9 +8,9 @@ import org.pointyware.painteddogs.core.navigation.StackNavigationController
  *
  */
 interface NavigationDependencies {
-    fun getNavController(): StackNavigationController
+    fun getNavController(): StackNavigationController<Any, Any>
 }
 
 class KoinNavigationDependencies: NavigationDependencies, KoinComponent {
-    override fun getNavController(): StackNavigationController = get()
+    override fun getNavController(): StackNavigationController<Any, Any> = get()
 }

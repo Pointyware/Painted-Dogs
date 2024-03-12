@@ -3,9 +3,12 @@ package org.pointyware.painteddogs.buildlogic
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
+import org.jetbrains.kotlin.gradle.ExternalKotlinTargetApi
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.targets
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 /**
  * A plugin that sets up the KMP targets convention for the project.
@@ -16,6 +19,11 @@ class KmpTargetsConventionPlugin: Plugin<Project> {
 //        target.plugins.apply("koin")
         target.plugins.apply("kotlin-multiplatform")
 
+        target.tasks.withType(KotlinCompilationTask::class.java) {
+            compilerOptions {
+                apiVersion.set(KotlinVersion.KOTLIN_2_0)
+            }
+        }
         // Configure Kotlin targets
         target.kotlinExtension.targets.forEach {
             when (it) {

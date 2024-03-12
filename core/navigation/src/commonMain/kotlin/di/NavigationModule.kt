@@ -11,7 +11,7 @@ import org.pointyware.painteddogs.core.navigation.StackNavigationControllerImpl
 fun coreNavigationModule() = module {
     single<NavigationDependencies> { KoinNavigationDependencies() }
 
-    single<StackNavigationController> {
-        StackNavigationControllerImpl(get(qualifier = named("Home")))
+    single<StackNavigationController<Any, Any>> {
+        StackNavigationControllerImpl(get<Any>(qualifier = named("home")))
     }
 }

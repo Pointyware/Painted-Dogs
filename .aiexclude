@@ -1,2 +1,7 @@
-.keystore
 /local.properties
+
+## Release Information
+.keystore
+/release.keystore
+/app-android/debug/app-android-debug.aab
+/app-android/release/app-android-release.aab

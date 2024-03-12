@@ -12,6 +12,7 @@ kotlin {
     compilerOptions {
         apiVersion = KotlinVersion.KOTLIN_2_0
     }
+    jvmToolchain(21)
     jvm {
 
     }
@@ -44,7 +45,7 @@ kotlin {
             dependencies {
                 implementation(libs.kotlin.test)
 
-                implementation(project(":assertions"))
+                implementation(libs.pointyware.kass)
             }
         }
 
