@@ -32,6 +32,10 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
 
       - name: "Generate Documentation"
-        run: ./gradlew dokka
+        run: ./gradlew :dokkaHtmlMultiModule
+
+      - name: "Bundle Documentation"
+        run: |
+          zip -r documentation.zip build/dokka/htmlMultiModule
 
 #      - run: upload documentation to GitHub pages site
