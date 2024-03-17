@@ -7,14 +7,6 @@ Restrictions of Unions? Legislation can empower unions, and the people through t
 
 Collective Action? It can sound scary because of the association with unions and sOcIaLiSm, but it spans far beyond unionizing against exploitative businesses – disaster relief networks are one form of mutual aid most people have encountered and countless benefit from.
 
-## Users
-* Labor - Employees, Contractors, Unemployed etc. (Members of Labor Force)
-* Owner - Business Owners or Operators
-
-## Features
-* Promote action (promote/discourage products/brands/businesses; distribute petitions)
-* Collect funds (cause/goal/total)
-
 ## Modularization
 * core
   * data
@@ -25,6 +17,7 @@ Collective Action? It can sound scary because of the association with unions and
   * ui
   * view-models
 * feature
+  * activism - Promote action
   * chat - Chat with other users
   * events - Organize an event (place/time/purpose)
   * groups - Organize a group (place/time/purpose)
