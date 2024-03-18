@@ -1,7 +1,7 @@
 ---
 name: User Story
 about: Agent-oriented description of functionality
-title: "[STORY] "
+title: "[Story] "
 labels: User-story
 assignees: TSampley
 
