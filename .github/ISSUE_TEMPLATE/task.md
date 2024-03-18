@@ -3,7 +3,7 @@ name: Task
 about: Individual work item that supports a requirement
 title: "[Task] "
 labels: Task
-assignees: ''
+assignees: TSampley
 
 ---
 
