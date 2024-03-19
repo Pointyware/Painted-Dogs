@@ -27,7 +27,7 @@ kotlin {
         iosSimulatorArm64(),
     ).forEach {
         it.binaries.framework {
-            baseName = "feature_collections_core"
+            baseName = "assertions"
             isStatic = true
             framework.add(this)
         }
@@ -37,19 +37,12 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:entities"))
-
-                implementation(libs.kotlinx.dateTime)
-                implementation(libs.kotlinx.coroutines)
-                implementation(libs.koin.core)
+                implementation(libs.kotlin.test)
             }
         }
         val commonTest by getting {
             dependencies {
-                implementation(project(":assertions"))
 
-                implementation(libs.kotlin.test)
-                implementation(libs.koin.test)
             }
         }
 
@@ -68,30 +61,20 @@ kotlin {
             dependencies {
                 implementation(libs.truth)
                 implementation(libs.mockk)
-                implementation(libs.jupiter)
             }
         }
 
         val androidMain by getting {
             dependsOn(jvmSharedMain)
-            dependencies {
-                implementation(libs.koin.core)
-                implementation(libs.koin.android)
-            }
         }
         val androidUnitTest by getting {
             dependsOn(jvmSharedTest)
-        }
-
-        val iosMain by getting {
-            dependencies {
-            }
         }
     }
 }
 
 android {
-    namespace = "org.pointyware.painteddogs.feature.collections.core"
+    namespace = "org.pointyware.painteddogs.assertions"
     compileSdk = 34
     defaultConfig {
         minSdk = 21

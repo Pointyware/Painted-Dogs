@@ -16,6 +16,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "painted-dogs"
+include(":assertions")
 include(":core")
 include(":core:ads")
 include(":core:analytics")
