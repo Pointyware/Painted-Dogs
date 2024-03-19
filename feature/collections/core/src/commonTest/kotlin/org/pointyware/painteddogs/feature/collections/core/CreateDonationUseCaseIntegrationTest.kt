@@ -1,7 +1,7 @@
 package org.pointyware.painteddogs.feature.collections.core
 
-import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.runBlocking
+import org.pointyware.painteddogs.assertions.assertThat
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.feature.collections.core.data.CollectionRepository
