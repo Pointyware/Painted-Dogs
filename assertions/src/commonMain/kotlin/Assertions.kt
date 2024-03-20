@@ -4,7 +4,7 @@ package org.pointyware.painteddogs.assertions
  * Base class for declaring assertions to verify test results.
  */
 interface Assertions {
-    fun <T: Any> that(subject: T): Condition<T>
+    fun <T: Any?> that(subject: T): Condition<T>
     fun <N: Number> that(subject: N): NumberCondition<N>
     fun that(subject: String): StringCondition
     fun <E> that(subject: Collection<E>): CollectionCondition<E>
@@ -16,7 +16,7 @@ interface Assertions {
  */
 object TestAssertions: Assertions {
 
-    override fun <T : Any> that(subject: T): Condition<T> {
+    override fun <T : Any?> that(subject: T): Condition<T> {
         return Condition(subject)
     }
 
