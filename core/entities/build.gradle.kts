@@ -42,6 +42,7 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
+                implementation(project(":assertions"))
                 implementation(libs.kotlin.test)
             }
         }
