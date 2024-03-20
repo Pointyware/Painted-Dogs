@@ -36,12 +36,3 @@ data class DoublePreCondition(
         assertTrue(subject <= value, "$subject is not at most $value")
     }
 }
-object TestAssumptions: Assumptions {
-    override fun that(subject: Int): IntPreCondition {
-        return IntPreCondition(subject)
-    }
-
-    override fun that(subject: Double): DoublePreCondition {
-        return DoublePreCondition(subject)
-    }
-}
