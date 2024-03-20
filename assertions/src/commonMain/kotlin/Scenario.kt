@@ -25,7 +25,7 @@ class Precondition<T: Any>(
         try {
             assert().that(subject).condition()
         } catch (e: Throwable) {
-            return PassingTestResult()
+            return SkippedTestResult()
         }
         actions(subject)
         return AssertingTestResult(subject)
@@ -36,7 +36,7 @@ interface TestResult<T: Any> {
     fun then(conditions: Condition<T>.() -> Unit)
 }
 
-class PassingTestResult<T:Any>: TestResult<T> {
+class SkippedTestResult<T:Any>: TestResult<T> {
     override fun then(conditions: Condition<T>.() -> Unit) {
         // no-op
     }
