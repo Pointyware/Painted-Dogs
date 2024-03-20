@@ -2,7 +2,9 @@ package org.pointyware.painteddogs.assertions
 
 import kotlin.test.assertTrue
 
-
+/**
+ * TODO: convert/merge with to (Pre)Condition classes
+ */
 class Subject<T>(private val subject: T) {
     fun isNotIn(items: Collection<T>) {
         assertTrue(subject !in items, "$subject is in $items")
