@@ -22,6 +22,7 @@ class Subject<T>(private val subject: T) {
         assertTrue(subject == true, "$subject is not true")
     }
 }
+@Deprecated("Use assert() instead", ReplaceWith("assert()"))
 fun <T> assertThat(subject: T): Subject<T> {
     return Subject(subject)
 }
@@ -30,6 +31,7 @@ fun <T> assertThat(subject: T): Subject<T> {
  * Base class for declaring assertions to verify test results.
  */
 interface Assertions {
+    fun <T: Any> that(subject: T): Condition<T>
     fun that(subject: Int): IntPreCondition
     fun that(subject: Double): DoublePreCondition
     fun that(subject: String): StringPrecondition
@@ -40,6 +42,11 @@ interface Assertions {
  * Implementation of [Assertions] for tests.
  */
 object TestAssertions: Assertions {
+
+    override fun <T : Any> that(subject: T): Condition<T> {
+        return Condition(subject)
+    }
+
     override fun that(subject: Int): IntPreCondition {
         return IntPreCondition(subject)
     }
@@ -60,6 +67,6 @@ object TestAssertions: Assertions {
 /**
  * Statically available function to declare assertions in tests.
  */
-fun <T> assert(): Assertions {
+fun assert(): Assertions {
     return TestAssertions
 }
