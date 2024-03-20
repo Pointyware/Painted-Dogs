@@ -54,10 +54,6 @@ data class AnyPreCondition(
 interface PreCondition<T> {
     val subject: T
 }
-interface Assumptions {
-    fun that(subject: Int): IntPreCondition
-    fun that(subject: Double): DoublePreCondition
-}
 object TestAssumptions: Assumptions {
     override fun that(subject: Int): IntPreCondition {
         return IntPreCondition(subject)
@@ -66,8 +62,4 @@ object TestAssumptions: Assumptions {
     override fun that(subject: Double): DoublePreCondition {
         return DoublePreCondition(subject)
     }
-}
-
-fun assume(): Assumptions {
-    return TestAssumptions
 }
