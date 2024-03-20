@@ -6,6 +6,8 @@ package org.pointyware.painteddogs.assertions
 interface Assumptions {
     fun that(subject: Int): IntPreCondition
     fun that(subject: Double): DoublePreCondition
+    fun that(subject: String): StringPrecondition
+    fun <E> that(subject: Collection<E>): CollectionPrecondition<E>
 }
 
 /**
@@ -18,6 +20,14 @@ object TestAssumptions: Assumptions {
 
     override fun that(subject: Double): DoublePreCondition {
         return DoublePreCondition(subject)
+    }
+
+    override fun that(subject: String): StringPrecondition {
+        return StringPrecondition(subject)
+    }
+
+    override fun <E> that(subject: Collection<E>): CollectionPrecondition<E> {
+        return CollectionPrecondition(subject)
     }
 }
 
