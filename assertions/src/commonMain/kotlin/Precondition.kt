@@ -8,10 +8,12 @@ import kotlin.test.assertTrue
 interface PreCondition<T> {
     val subject: T
 }
+@Deprecated("Use Condition instead", ReplaceWith("Condition"))
 data class AnyPreCondition(
     override val subject: Any
 ): PreCondition<Any> {
 }
+@Deprecated("Use NumberCondition instead", ReplaceWith("NumberCondition"))
 data class IntPreCondition(
     override val subject: Int
 ): PreCondition<Int> {
@@ -22,6 +24,7 @@ data class IntPreCondition(
         assertTrue(subject > value, "$subject is not greater than $value")
     }
 }
+@Deprecated("Use NumberCondition instead", ReplaceWith("NumberCondition"))
 data class DoublePreCondition(
     override val subject: Double
 ): PreCondition<Double> {
@@ -37,6 +40,7 @@ data class DoublePreCondition(
     }
 }
 
+@Deprecated("Use StringCondition instead", ReplaceWith("StringCondition"))
 data class StringPrecondition(
     override val subject: String
 ): PreCondition<String> {
@@ -45,6 +49,7 @@ data class StringPrecondition(
     }
 }
 
+@Deprecated("Use CollectionCondition instead", ReplaceWith("CollectionCondition"))
 data class CollectionPrecondition<T>(
     override val subject: Collection<T>
 ): PreCondition<Collection<T>> {
