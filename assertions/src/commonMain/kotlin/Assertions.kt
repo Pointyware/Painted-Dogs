@@ -1,41 +1,14 @@
 package org.pointyware.painteddogs.assertions
 
-import kotlin.test.assertTrue
-
-/**
- * TODO: convert/merge with to (Pre)Condition classes
- */
-class Subject<T>(private val subject: T) {
-    fun isNotIn(items: Collection<T>) {
-        assertTrue(subject !in items, "$subject is in $items")
-    }
-
-    fun isEqualTo(other: Any) {
-        assertTrue(subject == other, "$subject is not equal to $other")
-    }
-
-    fun isNull() {
-        assertTrue(subject == null, "$subject is not null")
-    }
-
-    fun isTrue() {
-        assertTrue(subject == true, "$subject is not true")
-    }
-}
-@Deprecated("Use assert() instead", ReplaceWith("assert()"))
-fun <T> assertThat(subject: T): Subject<T> {
-    return Subject(subject)
-}
-
 /**
  * Base class for declaring assertions to verify test results.
  */
 interface Assertions {
     fun <T: Any> that(subject: T): Condition<T>
-    fun that(subject: Int): IntPreCondition
-    fun that(subject: Double): DoublePreCondition
-    fun that(subject: String): StringPrecondition
-    fun <E> that(subject: Collection<E>): CollectionPrecondition<E>
+    fun <N: Number> that(subject: N): NumberCondition<N>
+    fun that(subject: String): StringCondition
+    fun <E> that(subject: Collection<E>): CollectionCondition<E>
+    fun <E> that(subject: Result<E>): ResultCondition<E>
 }
 
 /**
@@ -47,20 +20,20 @@ object TestAssertions: Assertions {
         return Condition(subject)
     }
 
-    override fun that(subject: Int): IntPreCondition {
-        return IntPreCondition(subject)
+    override fun <N : Number> that(subject: N): NumberCondition<N> {
+        return NumberCondition(subject)
     }
 
-    override fun that(subject: Double): DoublePreCondition {
-        return DoublePreCondition(subject)
+    override fun that(subject: String): StringCondition {
+        return StringCondition(subject)
     }
 
-    override fun that(subject: String): StringPrecondition {
-        return StringPrecondition(subject)
+    override fun <E> that(subject: Collection<E>): CollectionCondition<E> {
+        return CollectionCondition(subject)
     }
 
-    override fun <E> that(subject: Collection<E>): CollectionPrecondition<E> {
-        return CollectionPrecondition(subject)
+    override fun <E> that(subject: Result<E>): ResultCondition<E> {
+        return ResultCondition(subject)
     }
 }
 

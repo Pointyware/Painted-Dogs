@@ -3,6 +3,7 @@ package org.pointyware.painteddogs.assertions
 import kotlin.test.assertContains
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /**
@@ -23,6 +24,9 @@ open class Condition<T>(
     }
     fun isNotIn(items: Collection<T>) {
         assertTrue(subject !in items, "$subject is in $items")
+    }
+    fun isNull() {
+        assertNull(subject, "$subject is not null")
     }
 }
 
@@ -63,5 +67,20 @@ data class CollectionCondition<T>(
 
     fun doesNotContain(item: T) {
         assertTrue(item !in subject, "$subject contains $item")
+    }
+}
+
+/**
+ * Extends [Condition] to provide additional statements for results.
+ */
+data class ResultCondition<T>(
+    override val subject: Result<T>
+): Condition<Result<T>>(subject) {
+    fun isFailure() {
+        assertTrue(subject.isFailure, "Result is not a failure")
+    }
+
+    fun isSuccess() {
+        assertTrue(subject.isSuccess, "Result is not a success")
     }
 }

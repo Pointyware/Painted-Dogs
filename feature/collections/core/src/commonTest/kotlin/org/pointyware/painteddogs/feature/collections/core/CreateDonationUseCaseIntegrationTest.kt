@@ -1,7 +1,7 @@
 package org.pointyware.painteddogs.feature.collections.core
 
 import kotlinx.coroutines.runBlocking
-import org.pointyware.painteddogs.assertions.assertThat
+import org.pointyware.painteddogs.assertions.assert
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.feature.collections.core.data.CollectionRepository
@@ -57,10 +57,10 @@ class CreateDonationUseCaseIntegrationTest {
             5. The collection has the correct target amount
             6. A donation collection is started through the repository
          */
-        assertThat(result.id).isNotIn(setOf(Uuid.nil(), Uuid.max()))
-        assertThat(result.type).isEqualTo(CollectionType.CROWDFUNDING)
-        assertThat(result.title).isEqualTo(title)
-        assertThat(result.description).isEqualTo(description)
-        assertThat(result.targetAmount).isEqualTo(targetAmount)
+        assert().that(result.id).isNotIn(setOf(Uuid.nil(), Uuid.max()))
+        assert().that(result.type).isEqualTo(CollectionType.CROWDFUNDING)
+        assert().that(result.title).isEqualTo(title)
+        assert().that(result.description).isEqualTo(description)
+        assert().that(result.targetAmount).isEqualTo(targetAmount)
     }
 }
