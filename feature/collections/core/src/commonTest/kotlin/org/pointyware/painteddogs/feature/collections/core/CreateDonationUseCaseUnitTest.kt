@@ -1,13 +1,14 @@
 package org.pointyware.painteddogs.feature.collections.core
 
 import kotlinx.coroutines.runBlocking
-import org.pointyware.painteddogs.assertions.assertThat
+import org.pointyware.painteddogs.assertions.assert
 import org.pointyware.painteddogs.assertions.assume
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.feature.collections.core.data.CollectionRepository
 import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
 import org.pointyware.painteddogs.feature.collections.core.test.TestCollectionRepository
+import kotlin.collections.Collection
 import kotlin.jvm.JvmField
 import kotlin.test.BeforeTest
 
@@ -101,11 +102,11 @@ class CreateDonationUseCaseUnitTest {
             5. The collection has the correct target amount
             6. The collection is saved to the repository
          */
-        assertThat(result.id).isNotIn(setOf(Uuid.nil(), Uuid.max()))
-        assertThat(result.type).isEqualTo(CollectionType.CROWDFUNDING)
-        assertThat(result.title).isEqualTo(given.title)
-        assertThat(result.description).isEqualTo(given.description)
-        assertThat(result.targetAmount).isEqualTo(given.targetAmount)
+        assert().that(result.id).isNotIn(setOf(Uuid.nil(), Uuid.max()))
+        assert().that(result.type).isEqualTo(CollectionType.CROWDFUNDING)
+        assert().that(result.title).isEqualTo(given.title)
+        assert().that(result.description).isEqualTo(given.description)
+        assert().that(result.targetAmount).isEqualTo(given.targetAmount)
     }
 
     // @Theory
@@ -118,14 +119,14 @@ class CreateDonationUseCaseUnitTest {
         /*
         When the use case is invoked
          */
-        val result = runBlocking { service.invoke(given.title, given.description, given.targetAmount).getOrNull() }
+        val result: org.pointyware.painteddogs.feature.collections.core.Collection? = runBlocking { service.invoke(given.title, given.description, given.targetAmount).getOrNull() }
 
         /*
         Then a new donation collection is not created and saved
             1. The result is null
             2. The collection is not saved to the repository
          */
-        assertThat(result).isNull()
+        assert().that(result).isNull()
     }
 }
 
@@ -162,7 +163,7 @@ class CreateDonationUseCaseParameterizedUnitTest {
             1. The result is a failure
             2. The collection is not saved to the repository
          */
-        assertThat(result.isFailure).isTrue()
+        assert().that(result).isFailure()
     }
 
     // @ParameterizedTest
@@ -188,7 +189,7 @@ class CreateDonationUseCaseParameterizedUnitTest {
             1. The result is a failure
             2. The collection is not saved to the repository
          */
-        assertThat(result.isFailure).isTrue()
+        assert().that(result).isFailure()
     }
 }
 class CreateDonationUseCaseParameterizedMethodUnitTest {
@@ -238,6 +239,6 @@ class CreateDonationUseCaseParameterizedMethodUnitTest {
             1. The result is a failure
             2. The collection is not saved to the repository
          */
-        assertThat(result.isFailure).isTrue()
+        assert().that(result).isFailure()
     }
 }
