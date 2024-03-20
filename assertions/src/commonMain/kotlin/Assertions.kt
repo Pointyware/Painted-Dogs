@@ -8,6 +8,7 @@ interface Assertions {
     fun <N: Number> that(subject: N): NumberCondition<N>
     fun that(subject: String): StringCondition
     fun <E> that(subject: Collection<E>): CollectionCondition<E>
+    fun <K, V> that(subject: Map<K, V>): MapCondition<K, V>
     fun <E> that(subject: Result<E>): ResultCondition<E>
 }
 
@@ -30,6 +31,10 @@ object TestAssertions: Assertions {
 
     override fun <E> that(subject: Collection<E>): CollectionCondition<E> {
         return CollectionCondition(subject)
+    }
+
+    override fun <K, V> that(subject: Map<K, V>): MapCondition<K, V> {
+        return MapCondition(subject)
     }
 
     override fun <E> that(subject: Result<E>): ResultCondition<E> {

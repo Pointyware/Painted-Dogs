@@ -71,6 +71,21 @@ data class CollectionCondition<T>(
 }
 
 /**
+ * Extends [Condition] to provide additional statements for maps.
+ */
+data class MapCondition<K, V>(
+    override val subject: Map<K, V>
+): Condition<Map<K, V>>(subject) {
+    fun containsKey(key: K) {
+        assertTrue(key in subject, "$subject does not contain key $key")
+    }
+
+    fun doesNotContainKey(key: K) {
+        assertTrue(key !in subject, "$subject contains key $key")
+    }
+}
+
+/**
  * Extends [Condition] to provide additional statements for results.
  */
 data class ResultCondition<T>(
