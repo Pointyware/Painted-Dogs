@@ -8,7 +8,6 @@ import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.feature.collections.core.data.CollectionRepository
 import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
 import org.pointyware.painteddogs.feature.collections.core.test.TestCollectionRepository
-import kotlin.collections.Collection
 import kotlin.jvm.JvmField
 import kotlin.test.BeforeTest
 
@@ -86,7 +85,7 @@ class CreateDonationUseCaseUnitTest {
         /*
         Given a title, description, and target amount
          */
-        assume().that(given.targetAmount.amount).isGreaterThan(0)
+        assume().that(given.targetAmount.amount).isGreaterThan(0.0)
 
         /*
         When the use case is invoked
@@ -114,7 +113,7 @@ class CreateDonationUseCaseUnitTest {
         /*
         Given a title, description, and target amount
          */
-        assume().that(given.targetAmount.amount).isAtMost(0)
+        assume().that(given.targetAmount.amount).isAtMost(0.0)
 
         /*
         When the use case is invoked
@@ -151,7 +150,7 @@ class CreateDonationUseCaseParameterizedUnitTest {
         /*
         Given a title, description, and target amount
          */
-        assume().that(given.targetAmount.amount).isAtMost(0)
+        assume().that(given.targetAmount.amount).isAtMost(0.0)
 
         /*
         When the use case is invoked
@@ -177,7 +176,7 @@ class CreateDonationUseCaseParameterizedUnitTest {
         /*
         Given a title, description, and target amount
          */
-        assume().that(given.targetAmount.amount).isAtMost(0)
+        assume().that(given.targetAmount.amount).isAtMost(0.0)
 
         /*
         When the use case is invoked
@@ -227,7 +226,7 @@ class CreateDonationUseCaseParameterizedMethodUnitTest {
         /*
         Given a title, description, and target amount
          */
-        assume().that(given.targetAmount.amount).isAtMost(0)
+        assume().that(given.targetAmount.amount).isAtMost(0.0)
 
         /*
         When the use case is invoked
