@@ -4,30 +4,35 @@ package org.pointyware.painteddogs.assertions
  * Base class for declaring assumptions to establish test preconditions.
  */
 interface Assumptions {
-    fun that(subject: Int): IntPreCondition
-    fun that(subject: Double): DoublePreCondition
-    fun that(subject: String): StringPrecondition
-    fun <E> that(subject: Collection<E>): CollectionPrecondition<E>
+    fun <T: Any> that(subject: T): Condition<T>
+    fun <N: Number> that(subject: N): NumberCondition<N>
+    fun that(subject: String): StringCondition
+    fun <E> that(subject: Collection<E>): CollectionCondition<E>
+    fun <E> that(subject: Result<E>): ResultCondition<E>
 }
 
 /**
  * Implementation of [Assumptions] for tests.
  */
 object TestAssumptions: Assumptions {
-    override fun that(subject: Int): IntPreCondition {
-        return IntPreCondition(subject)
+    override fun <T : Any> that(subject: T): Condition<T> {
+        return Condition(subject)
     }
 
-    override fun that(subject: Double): DoublePreCondition {
-        return DoublePreCondition(subject)
+    override fun <N : Number> that(subject: N): NumberCondition<N> {
+        return NumberCondition(subject)
     }
 
-    override fun that(subject: String): StringPrecondition {
-        return StringPrecondition(subject)
+    override fun that(subject: String): StringCondition {
+        return StringCondition(subject)
     }
 
-    override fun <E> that(subject: Collection<E>): CollectionPrecondition<E> {
-        return CollectionPrecondition(subject)
+    override fun <E> that(subject: Collection<E>): CollectionCondition<E> {
+        return CollectionCondition(subject)
+    }
+
+    override fun <E> that(subject: Result<E>): ResultCondition<E> {
+        return ResultCondition(subject)
     }
 }
 
