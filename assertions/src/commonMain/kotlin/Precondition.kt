@@ -36,3 +36,23 @@ data class DoublePreCondition(
         assertTrue(subject <= value, "$subject is not at most $value")
     }
 }
+
+data class StringPrecondition(
+    override val subject: String
+): PreCondition<String> {
+    fun isNotEmpty() {
+        assertTrue(subject.isNotEmpty(), "String is empty")
+    }
+}
+
+data class CollectionPrecondition<T>(
+    override val subject: Collection<T>
+): PreCondition<Collection<T>> {
+    fun contains(item: T) {
+        assertTrue(item in subject, "$subject does not contain $item")
+    }
+
+    fun doesNotContain(item: T) {
+        assertTrue(item !in subject, "$subject contains $item")
+    }
+}
