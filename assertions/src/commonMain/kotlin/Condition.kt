@@ -1,5 +1,6 @@
 package org.pointyware.painteddogs.assertions
 
+import kotlin.test.Asserter
 import kotlin.test.assertContains
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -11,22 +12,23 @@ import kotlin.test.assertTrue
  * pre-conditions, post-conditions, and invariants.
  */
 open class Condition<T>(
-    open val subject: T
+    open val subject: T,
+    val asserter: Asserter
 ) {
     fun isEqualTo(other: T) {
-        assertEquals(subject, other, "$subject is not equal to $other")
+        asserter.assertEquals("$subject is not equal to $other", other, subject)
     }
     fun isNotEqualTo(other: T) {
-        assertNotEquals(subject, other, "$subject is equal to $other")
+        asserter.assertNotEquals("$subject is equal to $other", other, subject)
     }
     fun isIn(items: Collection<T>) {
-        assertContains(items, subject, "$subject is not in $items")
+        asserter.assertTrue("$subject is not in $items", subject in items)
     }
     fun isNotIn(items: Collection<T>) {
-        assertTrue(subject !in items, "$subject is in $items")
+        asserter.assertTrue("$subject is in $items", subject !in items)
     }
     fun isNull() {
-        assertNull(subject, "$subject is not null")
+        asserter.assertNull("$subject is not null", subject)
     }
 }
 
@@ -34,68 +36,73 @@ open class Condition<T>(
  * Extends [Condition] to provide additional statements for numbers.
  */
 open class NumberCondition<T: Number>(
-    override val subject: T
-): Condition<T>(subject) {
+    override val subject: T,
+    asserter: Asserter
+): Condition<T>(subject, asserter) {
     fun isGreaterThan(value: T) {
-        assertTrue(subject.toDouble() > value.toDouble(), "$subject is not greater than $value")
+        asserter.assertTrue("$subject is not greater than $value", subject.toDouble() > value.toDouble())
     }
     fun isAtMost(value: T) {
-        assertTrue(subject.toDouble() <= value.toDouble(), "$subject is not at most $value")
+        asserter.assertTrue("$subject is not at most $value", subject.toDouble() <= value.toDouble())
     }
 }
 
 /**
  * Extends [Condition] to provide additional statements for strings.
  */
-data class StringCondition(
-    override val subject: String
-): Condition<String>(subject) {
+class StringCondition(
+    override val subject: String,
+    asserter: Asserter
+): Condition<String>(subject, asserter) {
     fun isNotEmpty() {
-        assertTrue(subject.isNotEmpty(), "String is empty")
+        asserter.assertTrue("String is empty", subject.isNotEmpty())
     }
 }
 
 /**
  * Extends [Condition] to provide additional statements for collections.
  */
-data class CollectionCondition<T>(
-    override val subject: Collection<T>
-): Condition<Collection<T>>(subject) {
+class CollectionCondition<T>(
+    override val subject: Collection<T>,
+    asserter: Asserter
+): Condition<Collection<T>>(subject, asserter) {
     fun contains(item: T) {
-        assertTrue(item in subject, "$subject does not contain $item")
+        asserter.assertTrue("$subject does not contain $item", item in subject)
     }
 
     fun doesNotContain(item: T) {
-        assertTrue(item !in subject, "$subject contains $item")
+        asserter.assertTrue("$subject contains $item", item !in subject)
     }
 }
 
 /**
  * Extends [Condition] to provide additional statements for maps.
  */
-data class MapCondition<K, V>(
-    override val subject: Map<K, V>
-): Condition<Map<K, V>>(subject) {
+class MapCondition<K, V>(
+    override val subject: Map<K, V>,
+    asserter: Asserter
+): Condition<Map<K, V>>(subject, asserter) {
     fun containsKey(key: K) {
-        assertTrue(key in subject, "$subject does not contain key $key")
+        asserter.assertTrue("$subject does not contain key $key", key in subject)
     }
 
     fun doesNotContainKey(key: K) {
-        assertTrue(key !in subject, "$subject contains key $key")
+        asserter.assertTrue("$subject contains key $key", key !in subject)
     }
 }
 
 /**
  * Extends [Condition] to provide additional statements for results.
  */
-data class ResultCondition<T>(
-    override val subject: Result<T>
-): Condition<Result<T>>(subject) {
+class ResultCondition<T>(
+    override val subject: Result<T>,
+    asserter: Asserter
+): Condition<Result<T>>(subject, asserter) {
     fun isFailure() {
-        assertTrue(subject.isFailure, "Result is not a failure")
+        asserter.assertTrue("Result is not a failure", subject.isFailure)
     }
 
     fun isSuccess() {
-        assertTrue(subject.isSuccess, "Result is not a success")
+        asserter.assertTrue("Result is not a success", subject.isSuccess)
     }
 }
