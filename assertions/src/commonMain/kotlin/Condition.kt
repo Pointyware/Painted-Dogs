@@ -15,20 +15,29 @@ open class Condition<T>(
     open val subject: T,
     val asserter: Asserter
 ) {
-    fun isEqualTo(other: T) {
+    fun isEqualTo(other: T): Condition<T> {
         asserter.assertEquals("$subject is not equal to $other", other, subject)
+        return this
     }
-    fun isNotEqualTo(other: T) {
+    fun isNotEqualTo(other: T): Condition<T> {
         asserter.assertNotEquals("$subject is equal to $other", other, subject)
+        return this
     }
-    fun isIn(items: Collection<T>) {
+    fun isIn(items: Collection<T>): Condition<T> {
         asserter.assertTrue("$subject is not in $items", subject in items)
+        return this
     }
-    fun isNotIn(items: Collection<T>) {
+    fun isNotIn(items: Collection<T>): Condition<T> {
         asserter.assertTrue("$subject is in $items", subject !in items)
+        return this
     }
-    fun isNull() {
+    fun isNull(): Condition<T> {
         asserter.assertNull("$subject is not null", subject)
+        return this
+    }
+
+    open fun and(): Condition<T> {
+        return this
     }
 }
 
@@ -39,11 +48,17 @@ open class NumberCondition<T: Number>(
     override val subject: T,
     asserter: Asserter
 ): Condition<T>(subject, asserter) {
-    fun isGreaterThan(value: T) {
+    fun isGreaterThan(value: T): NumberCondition<T> {
         asserter.assertTrue("$subject is not greater than $value", subject.toDouble() > value.toDouble())
+        return this
     }
-    fun isAtMost(value: T) {
+    fun isAtMost(value: T): NumberCondition<T> {
         asserter.assertTrue("$subject is not at most $value", subject.toDouble() <= value.toDouble())
+        return this
+    }
+
+    override fun and(): NumberCondition<T> {
+        return this
     }
 }
 
@@ -54,8 +69,9 @@ class StringCondition(
     override val subject: String,
     asserter: Asserter
 ): Condition<String>(subject, asserter) {
-    fun isNotEmpty() {
+    fun isNotEmpty(): StringCondition {
         asserter.assertTrue("String is empty", subject.isNotEmpty())
+        return this
     }
 }
 
@@ -66,12 +82,18 @@ class CollectionCondition<T>(
     override val subject: Collection<T>,
     asserter: Asserter
 ): Condition<Collection<T>>(subject, asserter) {
-    fun contains(item: T) {
+    fun contains(item: T): CollectionCondition<T> {
         asserter.assertTrue("$subject does not contain $item", item in subject)
+        return this
     }
 
-    fun doesNotContain(item: T) {
+    fun doesNotContain(item: T): CollectionCondition<T> {
         asserter.assertTrue("$subject contains $item", item !in subject)
+        return this
+    }
+
+    override fun and(): CollectionCondition<T> {
+        return this
     }
 }
 
@@ -82,12 +104,18 @@ class MapCondition<K, V>(
     override val subject: Map<K, V>,
     asserter: Asserter
 ): Condition<Map<K, V>>(subject, asserter) {
-    fun containsKey(key: K) {
+    fun containsKey(key: K): MapCondition<K, V> {
         asserter.assertTrue("$subject does not contain key $key", key in subject)
+        return this
     }
 
-    fun doesNotContainKey(key: K) {
+    fun doesNotContainKey(key: K): MapCondition<K, V> {
         asserter.assertTrue("$subject contains key $key", key !in subject)
+        return this
+    }
+
+    override fun and(): MapCondition<K, V> {
+        return this
     }
 }
 
@@ -98,11 +126,17 @@ class ResultCondition<T>(
     override val subject: Result<T>,
     asserter: Asserter
 ): Condition<Result<T>>(subject, asserter) {
-    fun isFailure() {
+    fun isFailure(): ResultCondition<T> {
         asserter.assertTrue("Result is not a failure", subject.isFailure)
+        return this
     }
 
-    fun isSuccess() {
+    fun isSuccess(): ResultCondition<T> {
         asserter.assertTrue("Result is not a success", subject.isSuccess)
+        return this
+    }
+
+    override fun and(): ResultCondition<T> {
+        return this
     }
 }
