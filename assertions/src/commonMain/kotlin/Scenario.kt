@@ -14,6 +14,24 @@ class Scenario<T: Any>(
     }
 }
 
+/**
+ * Creates and returns a new scenario for the given subject, executing the
+ * given test block. Catches any [FailedAssumption], skipping the test, and
+ * re-throws any other exception to allow normal test failure handling.
+ */
+fun <T: Any> scenario(subject: T, testCase: Scenario<T>.() -> Unit): Scenario<T> {
+    return Scenario(subject).also {
+        try {
+            it.testCase()
+        } catch (e: FailedAssumption) {
+            // TODO: print info about the skipped case
+        } catch (e: Throwable) {
+            // TODO: print info about the failed case
+            throw e
+        }
+    }
+}
+
 class Precondition<T: Any>(
     val subject: T,
     val condition: Condition<T>.() -> Unit

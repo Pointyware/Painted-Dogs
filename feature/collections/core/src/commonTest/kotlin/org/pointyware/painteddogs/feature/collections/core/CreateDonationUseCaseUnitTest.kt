@@ -1,8 +1,8 @@
 package org.pointyware.painteddogs.feature.collections.core
 
 import kotlinx.coroutines.runBlocking
+import org.pointyware.painteddogs.assertions.Assumptions.Companion.assume
 import org.pointyware.painteddogs.assertions.assert
-import org.pointyware.painteddogs.assertions.assume
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.feature.collections.core.data.CollectionRepository
