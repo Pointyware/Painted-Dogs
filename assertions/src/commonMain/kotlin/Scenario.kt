@@ -17,9 +17,9 @@ fun <T: Any> runTestWith(subject: T, testCase: Scenario<T>.() -> Unit) {
         try {
             it.testCase()
         } catch (e: FailedAssumption) {
-            // TODO: print info about the skipped case
+            println("Assumption failed: ${e.message}")
+            println(e.stackTraceToString())
         } catch (e: Throwable) {
-            // TODO: print info about the failed case
             throw e
         }
     }
