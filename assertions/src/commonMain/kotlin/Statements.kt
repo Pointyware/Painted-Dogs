@@ -8,7 +8,7 @@ import kotlin.test.Asserter
 data class StatementScope(
     val asserter: Asserter
 ) {
-    fun <T: Any> that(subject: T): Condition<T> {
+    fun <T: Any?> that(subject: T): Condition<T> {
         return Condition(subject, asserter)
     }
     fun <N: Number> that(subject: N): NumberCondition<N> {
