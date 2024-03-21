@@ -1,5 +1,5 @@
-import org.pointyware.painteddogs.assertions.Assumptions.Companion.assume
 import org.pointyware.painteddogs.assertions.FailedAssumption
+import org.pointyware.painteddogs.assertions.assume
 import org.pointyware.painteddogs.assertions.runTestWith
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
