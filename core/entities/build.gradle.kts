@@ -37,7 +37,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-
+                implementation(libs.kotlinx.dateTime)
             }
         }
         val commonTest by getting {
