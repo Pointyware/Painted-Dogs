@@ -10,3 +10,8 @@ interface FundsRepository {
     suspend fun updateFund(collection: Fund): Result<Fund>
     suspend fun deleteFund(collectionId: String)
 }
+
+/**
+ * @param collectionId The ID of the fund that was requested.
+ */
+data class FundNotFoundException(val collectionId: String): Throwable("Fund not found: $collectionId")
