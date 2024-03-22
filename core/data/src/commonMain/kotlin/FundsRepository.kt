@@ -1,3 +1,5 @@
+package org.pointyware.painteddogs.core.data
+
 import org.pointyware.painteddogs.core.entities.Fund
 
 /**
