@@ -1,11 +1,6 @@
 package org.pointyware.painteddogs.assertions
 
 import kotlin.test.Asserter
-import kotlin.test.assertContains
-import kotlin.test.assertEquals
-import kotlin.test.assertNotEquals
-import kotlin.test.assertNull
-import kotlin.test.assertTrue
 
 /**
  * Represents subject-based statements about some system that can be used to establish
