@@ -1,7 +1,7 @@
-package test
+package org.pointyware.painteddogs.core.data.test
 
-import FundNotFoundException
-import FundsRepository
+import org.pointyware.painteddogs.core.data.FundNotFoundException
+import org.pointyware.painteddogs.core.data.FundsRepository
 import org.pointyware.painteddogs.core.entities.Fund
 
 /**
@@ -12,7 +12,9 @@ class TestFundsRepository: FundsRepository {
     private val funds = mutableMapOf<String, Fund>() // Simple in-memory storage
 
     override suspend fun getFund(collectionId: String): Result<Fund> {
-        return funds[collectionId]?.let { Result.success(it) } ?: Result.failure(FundNotFoundException(collectionId))
+        return funds[collectionId]?.let { Result.success(it) } ?: Result.failure(
+            FundNotFoundException(collectionId)
+        )
     }
 
     override suspend fun getFunds(): Result<List<Fund>> {
