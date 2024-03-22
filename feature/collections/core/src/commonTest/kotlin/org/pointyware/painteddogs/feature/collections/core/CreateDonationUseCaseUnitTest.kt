@@ -5,6 +5,7 @@ import org.pointyware.painteddogs.assertions.assert
 import org.pointyware.painteddogs.assertions.assume
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Uuid
+import org.pointyware.painteddogs.core.entities.usDollars
 import org.pointyware.painteddogs.feature.collections.core.data.CollectionRepository
 import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
 import org.pointyware.painteddogs.feature.collections.core.test.TestCollectionRepository
@@ -23,7 +24,7 @@ data class DonationParams(
     class Builder {
         var title: String = ""
         var description: String = ""
-        var targetAmount: CurrencyAmount = CurrencyAmount(0.0)
+        var targetAmount: CurrencyAmount = 0L.usDollars()
         fun title(title: String) = apply { this.title = title }
         fun description(description: String) = apply { this.description = description }
         fun targetAmount(targetAmount: CurrencyAmount) = apply { this.targetAmount = targetAmount }
@@ -44,7 +45,7 @@ class CreateDonationUseCaseUnitTest {
             DonationParams(
                 title = "Help Support Local Animal Shelter",
                 description = "Donations needed for food and supplies",
-                targetAmount = CurrencyAmount(5000.0)
+                targetAmount = 5000L.usDollars()
             )
         @JvmField
         // @DataPoint
@@ -52,7 +53,7 @@ class CreateDonationUseCaseUnitTest {
             DonationParams(
                 title = "Help Support Local Animal Shelter",
                 description = "Donations needed for food and supplies",
-                targetAmount = CurrencyAmount(-5000.0)
+                targetAmount = (-5000L).usDollars()
             )
         @JvmField
         // @DataPoint
@@ -60,7 +61,7 @@ class CreateDonationUseCaseUnitTest {
             DonationParams(
                 title = "Help Support Local Animal Shelter",
                 description = "Donations needed for food and supplies",
-                targetAmount = CurrencyAmount(-5000.0)
+                targetAmount = (-5000L).usDollars()
             )
         @JvmField
         // @DataPoint
@@ -68,7 +69,7 @@ class CreateDonationUseCaseUnitTest {
             DonationParams(
                 title = "Help Support Local Animal Shelter",
                 description = "Donations needed for food and supplies",
-                targetAmount = CurrencyAmount(-5000.0)
+                targetAmount = (-5000L).usDollars()
             )
     }
 
@@ -85,7 +86,7 @@ class CreateDonationUseCaseUnitTest {
         /*
         Given a title, description, and target amount
          */
-        assume().that(given.targetAmount.amount).isGreaterThan(0.0)
+        assume().that(given.targetAmount.amount).isGreaterThan(0L)
 
         /*
         When the use case is invoked
@@ -113,7 +114,7 @@ class CreateDonationUseCaseUnitTest {
         /*
         Given a title, description, and target amount
          */
-        assume().that(given.targetAmount.amount).isAtMost(0.0)
+        assume().that(given.targetAmount.amount).isAtMost(0L)
 
         /*
         When the use case is invoked
@@ -145,12 +146,12 @@ class CreateDonationUseCaseParameterizedUnitTest {
         val given = DonationParams(
             title = generateString(length),
             description = "Valid description",
-            targetAmount = CurrencyAmount(2000.0)
+            targetAmount = 2000L.usDollars()
         )
         /*
         Given a title, description, and target amount
          */
-        assume().that(given.targetAmount.amount).isAtMost(0.0)
+        assume().that(given.targetAmount.amount).isAtMost(0L)
 
         /*
         When the use case is invoked
@@ -171,12 +172,12 @@ class CreateDonationUseCaseParameterizedUnitTest {
         val given = DonationParams(
             title = generateString(length),
             description = "Valid description",
-            targetAmount = CurrencyAmount(2000.0)
+            targetAmount = 2000L.usDollars()
         )
         /*
         Given a title, description, and target amount
          */
-        assume().that(given.targetAmount.amount).isAtMost(0.0)
+        assume().that(given.targetAmount.amount).isAtMost(0L)
 
         /*
         When the use case is invoked
@@ -221,12 +222,12 @@ class CreateDonationUseCaseParameterizedMethodUnitTest {
         val given = DonationParams(
             title = generateString(length),
             description = "Valid description",
-            targetAmount = CurrencyAmount(2000.0)
+            targetAmount = 2000L.usDollars()
         )
         /*
         Given a title, description, and target amount
          */
-        assume().that(given.targetAmount.amount).isAtMost(0.0)
+        assume().that(given.targetAmount.amount).isAtMost(0L)
 
         /*
         When the use case is invoked
