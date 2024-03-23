@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.composeMultiplatform)
 }
 
 kotlin {
@@ -42,6 +43,10 @@ kotlin {
                 implementation(libs.kotlinx.dateTime)
                 implementation(libs.kotlinx.coroutines)
                 implementation(libs.koin.core)
+
+                implementation(compose.runtime)
+                runtimeOnly(compose.preview)
+                implementation(compose.material3)
             }
         }
         val commonTest by getting {
