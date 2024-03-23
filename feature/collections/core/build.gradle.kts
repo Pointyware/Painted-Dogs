@@ -39,6 +39,12 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:entities"))
+                implementation(project(":core:interactors"))
+                implementation(project(":core:data"))
+                implementation(project(":core:local"))
+                implementation(project(":core:remote"))
+                implementation(project(":core:view-models"))
+                implementation(project(":core:ui"))
 
                 implementation(libs.kotlinx.dateTime)
                 implementation(libs.kotlinx.coroutines)
