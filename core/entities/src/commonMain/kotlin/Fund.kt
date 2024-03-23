@@ -11,7 +11,7 @@ import kotlinx.datetime.Instant
  * @param end The end date of the collection.
  */
 data class Fund(
-    val id: String,
+    val id: Uuid,
     val title: String,
     val description: String,
     val target: CurrencyAmount?,
