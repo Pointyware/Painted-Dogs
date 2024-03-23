@@ -2,20 +2,20 @@ package org.pointyware.painteddogs.feature.collections.core
 
 import kotlinx.coroutines.runBlocking
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
-import org.pointyware.painteddogs.feature.collections.core.data.CollectionRepository
+import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
 import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
-import org.pointyware.painteddogs.feature.collections.core.test.TestCollectionRepository
+import org.pointyware.painteddogs.feature.collections.core.test.TestFundRepository
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
 class CreateDonationUseCaseTest {
 
-    private lateinit var fakeRepository: CollectionRepository
+    private lateinit var fakeRepository: FundRepository
     private lateinit var service: CreateDonationUseCase
     @BeforeTest
     fun setup() {
-        fakeRepository = TestCollectionRepository()
+        fakeRepository = TestFundRepository()
         service = CreateDonationUseCase(fakeRepository)
     }
     @Test

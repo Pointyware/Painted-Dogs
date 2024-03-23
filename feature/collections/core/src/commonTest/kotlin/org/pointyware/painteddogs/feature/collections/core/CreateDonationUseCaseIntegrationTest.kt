@@ -4,7 +4,7 @@ import kotlinx.coroutines.runBlocking
 import org.pointyware.painteddogs.assertions.assert
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Uuid
-import org.pointyware.painteddogs.feature.collections.core.data.CollectionRepository
+import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
 import org.pointyware.painteddogs.feature.collections.core.data.OfflineFirstCollectionRepository
 import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
 import org.pointyware.painteddogs.feature.collections.core.local.CollectionCache
@@ -21,7 +21,7 @@ class CreateDonationUseCaseIntegrationTest {
 
     private lateinit var collectionApi: CollectionApi
     private lateinit var collectionCache: CollectionCache
-    private lateinit var repository: CollectionRepository
+    private lateinit var repository: FundRepository
     private lateinit var service: CreateDonationUseCase
     @BeforeTest
     fun setup() {

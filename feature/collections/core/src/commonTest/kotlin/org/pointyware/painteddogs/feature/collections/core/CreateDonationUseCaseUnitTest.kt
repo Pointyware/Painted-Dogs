@@ -4,11 +4,12 @@ import kotlinx.coroutines.runBlocking
 import org.pointyware.painteddogs.assertions.assert
 import org.pointyware.painteddogs.assertions.assume
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
+import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.core.entities.usDollars
-import org.pointyware.painteddogs.feature.collections.core.data.CollectionRepository
+import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
 import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
-import org.pointyware.painteddogs.feature.collections.core.test.TestCollectionRepository
+import org.pointyware.painteddogs.feature.collections.core.test.TestFundRepository
 import kotlin.jvm.JvmField
 import kotlin.test.BeforeTest
 
@@ -73,11 +74,11 @@ class CreateDonationUseCaseUnitTest {
             )
     }
 
-    private lateinit var fakeRepository: CollectionRepository
+    private lateinit var fakeRepository: FundRepository
     private lateinit var service: CreateDonationUseCase
     @BeforeTest
     fun setup() {
-        fakeRepository = TestCollectionRepository()
+        fakeRepository = TestFundRepository()
         service = CreateDonationUseCase(fakeRepository)
     }
 
@@ -103,10 +104,9 @@ class CreateDonationUseCaseUnitTest {
             6. The collection is saved to the repository
          */
         assert().that(result.id).isNotIn(setOf(Uuid.nil(), Uuid.max()))
-        assert().that(result.type).isEqualTo(CollectionType.CROWDFUNDING)
         assert().that(result.title).isEqualTo(given.title)
         assert().that(result.description).isEqualTo(given.description)
-        assert().that(result.targetAmount).isEqualTo(given.targetAmount)
+        assert().that(result.target).isEqualTo(given.targetAmount)
     }
 
     // @Theory
@@ -119,7 +119,7 @@ class CreateDonationUseCaseUnitTest {
         /*
         When the use case is invoked
          */
-        val result: Collection? = runBlocking { service.invoke(given.title, given.description, given.targetAmount).getOrNull() }
+        val result: Fund? = runBlocking { service.invoke(given.title, given.description, given.targetAmount).getOrNull() }
 
         /*
         Then a new donation collection is not created and saved
@@ -132,11 +132,11 @@ class CreateDonationUseCaseUnitTest {
 
 class CreateDonationUseCaseParameterizedUnitTest {
 
-    private lateinit var mockRepository: CollectionRepository
+    private lateinit var mockRepository: FundRepository
     private lateinit var service: CreateDonationUseCase
     @BeforeTest
     fun setup() {
-        mockRepository = TestCollectionRepository()
+        mockRepository = TestFundRepository()
         service = CreateDonationUseCase(mockRepository)
     }
 
@@ -194,11 +194,11 @@ class CreateDonationUseCaseParameterizedUnitTest {
 }
 class CreateDonationUseCaseParameterizedMethodUnitTest {
 
-    private lateinit var mockRepository: CollectionRepository
+    private lateinit var mockRepository: FundRepository
     private lateinit var service: CreateDonationUseCase
     @BeforeTest
     fun setup() {
-        mockRepository = TestCollectionRepository()
+        mockRepository = TestFundRepository()
         service = CreateDonationUseCase(mockRepository)
     }
 

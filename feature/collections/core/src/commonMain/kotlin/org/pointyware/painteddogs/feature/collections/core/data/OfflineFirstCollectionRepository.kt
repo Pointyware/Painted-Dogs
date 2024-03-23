@@ -11,7 +11,7 @@ import org.pointyware.painteddogs.feature.collections.core.remote.CollectionApi
 class OfflineFirstCollectionRepository(
     private val localDataSource: CollectionCache,
     private val remoteDataSource: CollectionApi
-): CollectionRepository {
+): FundRepository {
     override suspend fun startDonationDrive(
         title: String,
         description: String,
