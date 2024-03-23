@@ -10,7 +10,7 @@ private const val VERSION_MASK_INVERSE = 0x0F.toByte()
 private const val VERSION_VALUE_4 = 0x40.toByte()
 
 /**
- *
+ * Minimal implementation of Universal Uniform Identifier.
  */
 data class Uuid(
     private val bytes: ByteArray
