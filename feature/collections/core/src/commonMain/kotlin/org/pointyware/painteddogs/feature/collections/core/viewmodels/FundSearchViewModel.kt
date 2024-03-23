@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.StateFlow
 /**
  * ViewModel for searching donations/collections.
  */
-interface CollectionSearchViewModel {
+interface FundSearchViewModel {
     val state: StateFlow<CollectionSearchUiState>
     /**
      * Called when the search query changes.
