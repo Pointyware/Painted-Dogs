@@ -2,6 +2,7 @@ package org.pointyware.painteddogs.feature.collections.core
 
 import kotlinx.coroutines.runBlocking
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
+import org.pointyware.painteddogs.core.entities.usDollars
 import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
 import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
 import org.pointyware.painteddogs.feature.collections.core.test.TestFundRepository
@@ -24,7 +25,7 @@ class CreateDonationUseCaseTest {
         val given = DonationParams(
             title = longTitle,
             description = "Valid description",
-            targetAmount = CurrencyAmount(2000.0)
+            targetAmount = 2000L.usDollars()
         )
 
         /*
