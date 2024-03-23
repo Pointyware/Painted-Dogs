@@ -26,6 +26,7 @@ include(":core:interactors")
 include(":core:local")
 include(":core:remote")
 include(":core:ui")
+include(":core:view-models")
 
 include(":feature")
 include(":feature:chat")
