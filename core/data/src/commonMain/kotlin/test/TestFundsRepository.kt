@@ -1,6 +1,5 @@
 package org.pointyware.painteddogs.core.data.test
 
-import kotlinx.coroutines.delay
 import org.pointyware.painteddogs.core.data.FundNotFoundException
 import org.pointyware.painteddogs.core.data.FundsRepository
 import org.pointyware.painteddogs.core.entities.Fund
