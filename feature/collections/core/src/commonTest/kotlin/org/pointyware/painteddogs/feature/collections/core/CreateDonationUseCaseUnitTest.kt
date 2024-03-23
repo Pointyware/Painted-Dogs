@@ -119,7 +119,7 @@ class CreateDonationUseCaseUnitTest {
         /*
         When the use case is invoked
          */
-        val result: org.pointyware.painteddogs.feature.collections.core.Collection? = runBlocking { service.invoke(given.title, given.description, given.targetAmount).getOrNull() }
+        val result: Collection? = runBlocking { service.invoke(given.title, given.description, given.targetAmount).getOrNull() }
 
         /*
         Then a new donation collection is not created and saved
