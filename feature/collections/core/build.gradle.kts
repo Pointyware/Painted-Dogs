@@ -45,7 +45,7 @@ kotlin {
                 implementation(libs.koin.core)
 
                 implementation(compose.runtime)
-                runtimeOnly(compose.preview)
+                implementation(compose.preview)
                 implementation(compose.material3)
             }
         }
