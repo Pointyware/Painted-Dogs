@@ -38,6 +38,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:entities"))
+                implementation(libs.kotlinx.coroutines)
             }
         }
         val commonTest by getting {
