@@ -2,6 +2,7 @@ package org.pointyware.painteddogs.feature.collections.core
 
 import kotlinx.datetime.DateTimePeriod
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
+import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.Uuid
 
 /**
@@ -16,7 +17,7 @@ interface Transaction {
     /**
      * Context of the transaction.
      */
-    val collection: Collection
+    val collection: Fund
 
     /**
      * Unique identifier for the payer.
