@@ -5,8 +5,10 @@ import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.Uuid
 
 /**
+ *
  */
 interface FundRepository {
     suspend fun startDonationDrive(title: String, description: String, targetAmount: CurrencyAmount): Result<Fund>
     suspend fun findById(id: Uuid): Fund?
+    suspend fun search(query: String): Result<List<Fund>>
 }
