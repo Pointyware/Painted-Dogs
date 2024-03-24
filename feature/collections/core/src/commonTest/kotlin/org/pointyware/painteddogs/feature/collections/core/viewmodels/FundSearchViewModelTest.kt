@@ -1,5 +1,6 @@
 package org.pointyware.painteddogs.feature.collections.core.viewmodels
 
+import kotlinx.coroutines.test.runTest
 import org.pointyware.painteddogs.assertions.assert
 import org.pointyware.painteddogs.assertions.assume
 import org.pointyware.painteddogs.assertions.runTestWith
@@ -14,7 +15,7 @@ import kotlin.test.Test
 
 class FundSearchViewModelTest {
     @Test
-    fun `searching for a collection updates the state`() {
+    fun `searching for a collection updates the state`() = runTest {
         // given a view model and mock dependencies (use cases)
         val searchCollectionsUseCase = SearchCollectionsUseCase(TestFundRepository())
         val viewModel = FundSearchViewModelImpl(searchCollectionsUseCase)
