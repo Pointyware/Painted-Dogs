@@ -9,6 +9,7 @@ import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.core.entities.usDollars
 import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
 import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
+import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCaseImpl
 import org.pointyware.painteddogs.feature.collections.core.test.TestFundRepository
 import kotlin.jvm.JvmField
 import kotlin.test.BeforeTest
@@ -79,7 +80,7 @@ class CreateDonationUseCaseUnitTest {
     @BeforeTest
     fun setup() {
         fakeRepository = TestFundRepository()
-        service = CreateDonationUseCase(fakeRepository)
+        service = CreateDonationUseCaseImpl(fakeRepository)
     }
 
     // @Theory
@@ -137,7 +138,7 @@ class CreateDonationUseCaseParameterizedUnitTest {
     @BeforeTest
     fun setup() {
         mockRepository = TestFundRepository()
-        service = CreateDonationUseCase(mockRepository)
+        service = CreateDonationUseCaseImpl(mockRepository)
     }
 
     // @ParameterizedTest
@@ -199,7 +200,7 @@ class CreateDonationUseCaseParameterizedMethodUnitTest {
     @BeforeTest
     fun setup() {
         mockRepository = TestFundRepository()
-        service = CreateDonationUseCase(mockRepository)
+        service = CreateDonationUseCaseImpl(mockRepository)
     }
 
     companion object {
