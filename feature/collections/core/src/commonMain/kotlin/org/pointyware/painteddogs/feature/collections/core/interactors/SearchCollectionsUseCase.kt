@@ -3,10 +3,20 @@ package org.pointyware.painteddogs.feature.collections.core.interactors
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
 
-class SearchCollectionsUseCase(
+/**
+ * Use case for searching donations/collections.
+ */
+interface SearchCollectionsUseCase {
+    suspend operator fun invoke(query: String): Result<List<Fund>>
+}
+
+/**
+ *
+ */
+class SearchCollectionsUseCaseImpl(
     private val collectionRepository: FundRepository
-) {
-    suspend operator fun invoke(query: String): Result<List<Fund>> {
+) : SearchCollectionsUseCase {
+    override suspend operator fun invoke(query: String): Result<List<Fund>> {
         return collectionRepository.search(query)
     }
 }
