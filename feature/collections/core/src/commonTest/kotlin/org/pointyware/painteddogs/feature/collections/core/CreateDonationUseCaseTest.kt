@@ -1,6 +1,7 @@
 package org.pointyware.painteddogs.feature.collections.core
 
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.usDollars
 import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
@@ -20,7 +21,7 @@ class CreateDonationUseCaseTest {
         service = CreateDonationUseCase(fakeRepository)
     }
     @Test
-    fun `title validation - too long`() { // Changed test name for accuracy
+    fun `title validation - too long`() = runTest { // Changed test name for accuracy
         val longTitle = generateString(101) // Ensure a title exceeding the 100-character limit
         val given = DonationParams(
             title = longTitle,
@@ -31,7 +32,7 @@ class CreateDonationUseCaseTest {
         /*
         When the use case is invoked
          */
-        val result = runBlocking { service.invoke(given.title, given.description, given.targetAmount) }
+        val result = service.invoke(given.title, given.description, given.targetAmount)
 
         assertTrue(result.isFailure)
     }

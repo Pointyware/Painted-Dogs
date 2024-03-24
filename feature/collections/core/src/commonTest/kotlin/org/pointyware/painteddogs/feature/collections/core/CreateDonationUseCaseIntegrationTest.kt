@@ -1,6 +1,9 @@
 package org.pointyware.painteddogs.feature.collections.core
 
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestDispatcher
+import kotlinx.coroutines.test.runTest
 import org.pointyware.painteddogs.assertions.assert
 import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.core.entities.usDollars
@@ -19,23 +22,28 @@ import kotlin.test.Test
  */
 class CreateDonationUseCaseIntegrationTest {
 
+    private lateinit var testDispatcher: TestDispatcher
+    private lateinit var testScope: CoroutineScope
     private lateinit var collectionApi: CollectionApi
     private lateinit var collectionCache: CollectionCache
     private lateinit var repository: FundRepository
     private lateinit var service: CreateDonationUseCase
     @BeforeTest
     fun setup() {
+        testDispatcher = StandardTestDispatcher()
+        testScope = CoroutineScope(testDispatcher)
         collectionApi = TestCollectionApi()
         collectionCache = InMemoryCollectionCache()
         repository = OfflineFirstCollectionRepository(
             localDataSource = collectionCache,
-            remoteDataSource = collectionApi
+            remoteDataSource = collectionApi,
+            dataScope = testScope
         )
         service = CreateDonationUseCase(repository)
     }
 
     @Test
-    fun `createDonationCollection - success`() {
+    fun `createDonationCollection - success`() = runTest {
         /*
         Given a title, description, and target amount
          */
@@ -46,7 +54,7 @@ class CreateDonationUseCaseIntegrationTest {
         /*
         When the use case is invoked
          */
-        val result = runBlocking { service.invoke(title, description, targetAmount).getOrThrow() }
+        val result = service.invoke(title, description, targetAmount).getOrThrow()
 
         /*
         Then a new donation collection is created and saved
