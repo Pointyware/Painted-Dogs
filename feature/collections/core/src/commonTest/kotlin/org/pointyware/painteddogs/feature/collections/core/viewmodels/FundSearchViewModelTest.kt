@@ -4,20 +4,17 @@ import kotlinx.coroutines.test.runTest
 import org.pointyware.painteddogs.assertions.assert
 import org.pointyware.painteddogs.assertions.assume
 import org.pointyware.painteddogs.assertions.runTestWith
-import org.pointyware.painteddogs.core.viewmodels.SimpleTestViewModelImpl
 import org.pointyware.painteddogs.feature.collections.core.UiTest
-import org.pointyware.painteddogs.feature.collections.core.interactors.SearchCollectionsUseCase
+import org.pointyware.painteddogs.feature.collections.core.interactors.SearchCollectionsUseCaseImpl
 import org.pointyware.painteddogs.feature.collections.core.test.TestFundRepository
-import org.pointyware.painteddogs.feature.collections.core.viewmodels.test.SearchEvent
-import org.pointyware.painteddogs.feature.collections.core.viewmodels.test.TestFundSearchViewModelImpl
 import kotlin.test.Test
 
 
 class FundSearchViewModelTest {
     @Test
-    fun `searching for a collection updates the state`() = runTest {
+    fun `onQueryUpdated update ui state but does not trigger search`() = runTest {
         // given a view model and mock dependencies (use cases)
-        val searchCollectionsUseCase = SearchCollectionsUseCase(TestFundRepository())
+        val searchCollectionsUseCase = SearchCollectionsUseCaseImpl(TestFundRepository())
         val viewModel = FundSearchViewModelImpl(searchCollectionsUseCase)
 
         // when the method under test is invoked with given arguments
@@ -29,7 +26,7 @@ class FundSearchViewModelTest {
                 CollectionSearchUiState("", false, emptyList())
             )
 
-            subject.onSubmitQuery("puppy")
+            subject.onSearchQueryChanged("puppy")
 //            subject on SearchEvent.SearchQueryChanged("puppy")
 
             assert().that(subject.state.value).isEqualTo(
