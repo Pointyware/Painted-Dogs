@@ -4,14 +4,21 @@ import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
 
-class CreateDonationUseCase(
+interface CreateDonationUseCase {
+    /**
+     * @throws IllegalArgumentException if title or description are blank
+     */
+    suspend fun invoke(title: String, description: String, targetAmount: CurrencyAmount): Result<Fund>
+}
+
+class CreateDonationUseCaseImpl(
     private val repository: FundRepository
-) {
+) : CreateDonationUseCase {
 
     /**
      * @throws IllegalArgumentException if title or description are blank
      */
-    suspend fun invoke(title: String, description: String, targetAmount: CurrencyAmount): Result<Fund> {
+    override suspend fun invoke(title: String, description: String, targetAmount: CurrencyAmount): Result<Fund> {
         if (title.isBlank() || description.isBlank()) {
             return Result.failure(IllegalArgumentException("Title and description are required"))
         }
