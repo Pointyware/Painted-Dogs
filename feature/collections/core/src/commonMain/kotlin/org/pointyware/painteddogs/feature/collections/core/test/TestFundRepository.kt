@@ -28,4 +28,8 @@ class TestFundRepository: FundRepository {
     override suspend fun findById(id: Uuid): Fund? {
         return collections[id]
     }
+
+    override suspend fun search(query: String): Result<List<Fund>> {
+        return Result.success(collections.values.filter { it.title.contains(query, ignoreCase = true) })
+    }
 }
