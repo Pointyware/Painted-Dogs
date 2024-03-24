@@ -6,6 +6,7 @@ import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.usDollars
 import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
 import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
+import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCaseImpl
 import org.pointyware.painteddogs.feature.collections.core.test.TestFundRepository
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -18,7 +19,7 @@ class CreateDonationUseCaseTest {
     @BeforeTest
     fun setup() {
         fakeRepository = TestFundRepository()
-        service = CreateDonationUseCase(fakeRepository)
+        service = CreateDonationUseCaseImpl(fakeRepository)
     }
     @Test
     fun `title validation - too long`() = runTest { // Changed test name for accuracy

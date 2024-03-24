@@ -10,6 +10,7 @@ import org.pointyware.painteddogs.core.entities.usDollars
 import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
 import org.pointyware.painteddogs.feature.collections.core.data.OfflineFirstCollectionRepository
 import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
+import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCaseImpl
 import org.pointyware.painteddogs.feature.collections.core.local.CollectionCache
 import org.pointyware.painteddogs.feature.collections.core.local.InMemoryCollectionCache
 import org.pointyware.painteddogs.feature.collections.core.remote.CollectionApi
@@ -39,7 +40,7 @@ class CreateDonationUseCaseIntegrationTest {
             remoteDataSource = collectionApi,
             dataScope = testScope
         )
-        service = CreateDonationUseCase(repository)
+        service = CreateDonationUseCaseImpl(repository)
     }
 
     @Test
