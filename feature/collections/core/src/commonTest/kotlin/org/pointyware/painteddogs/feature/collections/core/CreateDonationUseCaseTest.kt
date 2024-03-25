@@ -2,6 +2,7 @@ package org.pointyware.painteddogs.feature.collections.core
 
 import kotlinx.coroutines.test.runTest
 import org.pointyware.painteddogs.assertions.assert
+import org.pointyware.painteddogs.core.entities.StringArgumentException
 import org.pointyware.painteddogs.core.entities.usDollars
 import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
 import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
@@ -56,5 +57,8 @@ class CreateDonationUseCaseTest {
         val result = service.invoke(given.title, given.description, given.targetAmount)
 
         assertTrue(result.isFailure)
+        with(result.exceptionOrNull()!!) {
+            assert().that(this::class).isEqualTo(StringArgumentException.LengthArgumentException.AtMost::class)
+        }
     }
 }
