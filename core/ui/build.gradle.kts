@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.composeMultiplatform)
 }
 
 kotlin {
@@ -37,12 +38,16 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-
+                implementation(compose.ui)
+                implementation(compose.material3)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(libs.kotlin.test)
+
+                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+                implementation(compose.uiTest)
             }
         }
 
@@ -55,6 +60,9 @@ kotlin {
 
         val jvmMain by getting {
             dependsOn(jvmSharedMain)
+            dependencies {
+                implementation(compose.desktop.currentOs)
+            }
         }
         val jvmTest by getting {
             dependsOn(jvmSharedTest)
