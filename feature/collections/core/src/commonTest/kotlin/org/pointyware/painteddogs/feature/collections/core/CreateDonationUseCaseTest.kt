@@ -1,8 +1,6 @@
 package org.pointyware.painteddogs.feature.collections.core
 
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
-import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.usDollars
 import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
 import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
@@ -12,6 +10,7 @@ import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
+@UnitTest
 class CreateDonationUseCaseTest {
 
     private lateinit var fakeRepository: FundRepository
