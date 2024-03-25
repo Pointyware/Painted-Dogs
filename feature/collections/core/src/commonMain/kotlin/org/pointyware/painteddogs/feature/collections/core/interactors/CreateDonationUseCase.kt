@@ -1,6 +1,5 @@
 package org.pointyware.painteddogs.feature.collections.core.interactors
 
-import org.pointyware.painteddogs.core.entities.BlankStringArgumentException
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.NumberArgumentException
@@ -12,7 +11,7 @@ interface CreateDonationUseCase {
     /**
      * @throws IllegalArgumentException if title or description are blank
      */
-    @Throws(BlankStringArgumentException::class, NumberArgumentException::class, CancellationException::class)
+    @Throws(StringArgumentException.BlankStringArgumentException::class, NumberArgumentException::class, CancellationException::class)
     suspend fun invoke(title: String, description: String, targetAmount: CurrencyAmount): Result<Fund>
 }
 
@@ -22,12 +21,14 @@ class CreateDonationUseCaseImpl(
 
     private val exclusiveMinimum = 0
     private val titleMaxLength = 100
+    private val descriptionMaxLength = 1000
 
     override suspend fun invoke(title: String, description: String, targetAmount: CurrencyAmount): Result<Fund> {
         when {
-            title.isBlank() -> return Result.failure(BlankStringArgumentException("Title"))
+            title.isBlank() -> return Result.failure(StringArgumentException.BlankStringArgumentException("Title"))
             title.length >= titleMaxLength -> return Result.failure(StringArgumentException.LengthArgumentException.AtMost(titleMaxLength, "Title", title.length))
-            description.isBlank() -> return Result.failure(BlankStringArgumentException("Description"))
+            description.isBlank() -> return Result.failure(StringArgumentException.BlankStringArgumentException("Description"))
+            description.length >= descriptionMaxLength -> return Result.failure(StringArgumentException.LengthArgumentException.AtMost(descriptionMaxLength, "Description", description.length))
             targetAmount.amount <= exclusiveMinimum -> return Result.failure(NumberArgumentException.AtMost(exclusiveMinimum, "Target Amount", targetAmount.amount))
         }
 
