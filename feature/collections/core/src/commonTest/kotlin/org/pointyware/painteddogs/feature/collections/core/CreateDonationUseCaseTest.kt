@@ -2,11 +2,12 @@ package org.pointyware.painteddogs.feature.collections.core
 
 import kotlinx.coroutines.test.runTest
 import org.pointyware.painteddogs.assertions.assert
+import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.StringArgumentException
 import org.pointyware.painteddogs.core.entities.usDollars
-import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
 import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
 import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCaseImpl
+import org.pointyware.painteddogs.feature.collections.core.test.TestFundRepository
 import org.pointyware.painteddogs.feature.collections.core.test.TestFundRepositoryImpl
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -15,7 +16,7 @@ import kotlin.test.assertTrue
 @UnitTest
 class CreateDonationUseCaseTest {
 
-    private lateinit var fakeRepository: FundRepository
+    private lateinit var fakeRepository: TestFundRepository
     private lateinit var service: CreateDonationUseCase
     @BeforeTest
     fun setup() {
@@ -106,5 +107,21 @@ class CreateDonationUseCaseTest {
         with(result.exceptionOrNull()!!) {
             assert().that(this::class).isEqualTo(StringArgumentException.BlankStringArgumentException::class)
         }
+    }
+
+    @Test
+    fun `use case passes repo result through`() = runTest {
+        val given = DonationParams(
+            title = "Test Fund",
+            description = "Test Description",
+            targetAmount = 2000L.usDollars()
+        )
+        val fakeResult = Result.failure<Fund>(IllegalArgumentException("Some arbitrary exception - it doesn't matter"))
+        fakeRepository.startDonationDriveResponse = fakeResult
+
+        val result = service.invoke(given.title, given.description, given.targetAmount)
+
+        assert().that(result).isFailure()
+        assert().that(result).isEqualTo(fakeResult)
     }
 }
