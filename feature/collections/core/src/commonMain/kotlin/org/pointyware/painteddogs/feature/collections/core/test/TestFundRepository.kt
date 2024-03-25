@@ -6,13 +6,23 @@ import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
 
 /**
+ * Defines test extensions for the [FundRepository] interface.
+ */
+interface TestFundRepository: FundRepository {
+    var startDonationDriveResponse: Result<Fund>?
+}
+
+/**
  * Provides in-memory storage of collections for testing purposes.
  */
-class TestFundRepository: FundRepository {
+class TestFundRepositoryImpl: TestFundRepository {
 
     var collections: MutableMap<Uuid, Fund> = mutableMapOf()
 
+    override var startDonationDriveResponse: Result<Fund>? = null
     override suspend fun startDonationDrive(title: String, description: String, targetAmount: CurrencyAmount): Result<Fund> {
+        startDonationDriveResponse?.let { return it }
+
         val donationDrive = Fund(
             id = Uuid.v4(),
             title = title,
