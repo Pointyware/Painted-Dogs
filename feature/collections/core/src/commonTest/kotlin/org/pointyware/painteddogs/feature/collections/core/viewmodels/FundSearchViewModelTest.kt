@@ -4,7 +4,6 @@ import kotlinx.coroutines.test.runTest
 import org.pointyware.painteddogs.assertions.assert
 import org.pointyware.painteddogs.assertions.assume
 import org.pointyware.painteddogs.assertions.runTestWith
-import org.pointyware.painteddogs.feature.collections.core.UiTest
 import org.pointyware.painteddogs.feature.collections.core.interactors.SearchCollectionsUseCaseImpl
 import org.pointyware.painteddogs.feature.collections.core.test.TestFundRepositoryImpl
 import kotlin.test.Test
@@ -33,15 +32,5 @@ class FundSearchViewModelTest {
                 CollectionSearchUiState("puppy", false, emptyList())
             )
         }
-    }
-}
-
-@UiTest
-class FundSearchViewUiTest {
-    @Test
-    fun `searching for a collection updates the state`() {
-        // given ui and a view model
-        // when the expected UI elements is pressed
-        // then the expected view model event is fired with the expected arguments
     }
 }
