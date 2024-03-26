@@ -51,7 +51,6 @@ kotlin {
                 implementation(libs.koin.core)
 
                 implementation(compose.runtime)
-                implementation(compose.preview)
                 implementation(compose.material3)
             }
         }
@@ -77,6 +76,9 @@ kotlin {
 
         val jvmMain by getting {
             dependsOn(jvmSharedMain)
+            dependencies {
+                implementation(compose.desktop.currentOs)
+            }
         }
         val jvmTest by getting {
             dependsOn(jvmSharedTest)
@@ -100,6 +102,12 @@ kotlin {
 
         val iosMain by getting {
             dependencies {
+            }
+        }
+
+        val iosTest by getting {
+            dependencies {
+
             }
         }
     }
