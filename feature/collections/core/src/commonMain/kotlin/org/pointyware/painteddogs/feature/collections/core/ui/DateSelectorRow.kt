@@ -11,7 +11,6 @@ import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,15 +45,12 @@ fun DateSelectorRow(
         Checkbox(
             checked = state.isStartDateSelected,
             onCheckedChange = { onStartDateSelectedChange(it) },
-            modifier = Modifier.testTag("startDateCheckbox")
         )
         Text(
             text = state.title,
-            modifier = Modifier.testTag("startDateText")
         )
         DatePicker(
             state = state.datePickerState,
-            modifier = Modifier.testTag("datePicker")
         )
     }
 }

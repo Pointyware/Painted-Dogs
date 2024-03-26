@@ -13,7 +13,6 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 
 data class FundCreationViewState(
@@ -120,7 +119,6 @@ fun FundCreationView(
             onClick = onSubmitDonation,
             modifier = Modifier.fillMaxWidth()
                 .padding(top = 16.dp, bottom = 16.dp)
-                .testTag("submitButton")
         ) {
             Text(text = "Create Donation")
         }
