@@ -64,6 +64,8 @@ kotlin {
 
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.uiTest)
+
+                implementation(libs.mockative)
             }
         }
 
