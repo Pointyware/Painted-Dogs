@@ -10,6 +10,13 @@ data class CurrencyAmount(
             CurrencyUnit.UsDollars -> "$$amount"
         }
     }
+
+    operator fun compareTo(target: CurrencyAmount): Int {
+        val convertedValue = amount
+        val otherConvertedValue = target.amount
+        // TODO: convert using currency conversions?
+        return convertedValue.compareTo(otherConvertedValue)
+    }
 }
 
 enum class CurrencyUnit {
