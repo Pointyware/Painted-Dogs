@@ -43,7 +43,7 @@ class FundCreationViewUnitTest {
     }
 
     @Test
-    fun `empty state`() = runComposeUiTest {
+    fun `State - Empty`() = runComposeUiTest {
         // given an empty state
         val emptyState = FundCreationViewState(
             title = "",
@@ -90,7 +90,7 @@ class FundCreationViewUnitTest {
     }
 
     @Test
-    fun `filled state`() = runComposeUiTest {
+    fun `State - Filled`() = runComposeUiTest {
         // given some initial valid state
         val donationState = FundCreationViewState(
             title = "Some title",
@@ -137,7 +137,7 @@ class FundCreationViewUnitTest {
     }
 
     @Test
-    fun `When Submit Button is tapped Then invoke callback Create Collection`() = runComposeUiTest {
+    fun `Event - When Submit Button is tapped Then invoke callback Create Collection`() = runComposeUiTest {
         // given some initial empty state
 
         // when - the content is displayed
