@@ -116,6 +116,14 @@ kotlin {
     }
 }
 
+dependencies {
+    configurations
+        .filter { it.name.startsWith("ksp") && it.name.contains("Test") }
+        .forEach {
+            add(it.name, libs.mockativeSymbolProcessor)
+        }
+}
+
 android {
     namespace = "org.pointyware.painteddogs.feature.collections.core"
     compileSdk = 34
