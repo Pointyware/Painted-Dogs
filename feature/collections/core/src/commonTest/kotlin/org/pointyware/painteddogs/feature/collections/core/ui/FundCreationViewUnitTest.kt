@@ -43,20 +43,20 @@ class FundCreationViewUnitTest {
     }
 
     @Test
-    fun `should display search input field`() = runComposeUiTest {
-        // given some initial valid state
-        val donationState = FundCreationViewState(
-            title = "Some title",
-            description = "Some description",
-            targetAmount = "$500",
-            startDate = "January 1",
-            endDate = "December 2",
+    fun `empty state`() = runComposeUiTest {
+        // given an empty state
+        val emptyState = FundCreationViewState(
+            title = "",
+            description = "",
+            targetAmount = "",
+            startDate = "",
+            endDate = "",
         )
 
         // when - the content is displayed
         setContent {
             FundCreationView(
-                state = donationState,
+                state = emptyState,
                 onTitleChange = onStringEvent::invoke,
                 onDescriptionChange = onStringEvent::invoke,
                 onGoalChange = onDoubleEvent::invoke,
