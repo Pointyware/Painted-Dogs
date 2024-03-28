@@ -67,7 +67,26 @@ class FundCreationViewUnitTest {
         }
 
         // then - assert state
-        onNodeWithText("Search ", substring = true).assertExists()
+        // title
+        onNodeWithText("Create Collection")
+            .assertExists()
+        // collection details
+        onNodeWithText("Title")
+            .assertExists()
+        onNodeWithText("Description")
+            .assertExists()
+        onNodeWithText("Goal")
+            .assertExists()
+        // media
+
+        // dates
+        onNodeWithText("Start Date")
+            .assertExists()
+        onNodeWithText("End Date")
+            .assertExists()
+        // submission
+        onNodeWithText("Submit")
+            .assertExists()
     }
 
     @Test
