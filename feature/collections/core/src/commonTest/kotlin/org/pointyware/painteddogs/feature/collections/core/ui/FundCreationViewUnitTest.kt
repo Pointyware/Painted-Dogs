@@ -90,6 +90,53 @@ class FundCreationViewUnitTest {
     }
 
     @Test
+    fun `filled state`() = runComposeUiTest {
+        // given some initial valid state
+        val donationState = FundCreationViewState(
+            title = "Some title",
+            description = "Some description",
+            targetAmount = "$500",
+            startDate = "January 1",
+            endDate = "December 2",
+        )
+
+        // when - the content is displayed
+        setContent {
+            FundCreationView(
+                state = donationState,
+                onTitleChange = onStringEvent::invoke,
+                onDescriptionChange = onStringEvent::invoke,
+                onGoalChange = onDoubleEvent::invoke,
+                onStartDateSelectedChange = onBooleanEvent::invoke,
+                onEndDateSelectedChange = onBooleanEvent::invoke,
+                onSubmitDonation = onEvent::invoke,
+            )
+        }
+
+        // then - assert state
+        // title
+        onNodeWithText("Create Collection")
+            .assertExists()
+        // collection details
+        onNodeWithText("Title")
+            .assertExists()
+        onNodeWithText("Description")
+            .assertExists()
+        onNodeWithText("Goal")
+            .assertExists()
+        // media
+
+        // dates
+        onNodeWithText("Start Date")
+            .assertExists()
+        onNodeWithText("End Date")
+            .assertExists()
+        // submission
+        onNodeWithText("Submit")
+            .assertExists()
+    }
+
+    @Test
     fun `search query when submit is tapped`() = runComposeUiTest {
         // given some initial empty state
 
