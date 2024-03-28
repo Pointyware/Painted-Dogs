@@ -8,11 +8,16 @@ import androidx.compose.ui.test.runComposeUiTest
 import io.mockative.Fun0
 import io.mockative.Fun1
 import io.mockative.Mock
+import io.mockative.any
 import io.mockative.classOf
+import io.mockative.doesNothing
+import io.mockative.every
 import io.mockative.mock
 import io.mockative.once
 import io.mockative.verify
 import org.pointyware.painteddogs.feature.collections.core.UiTest
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 
 @OptIn(ExperimentalTestApi::class)
@@ -26,6 +31,16 @@ class FundCreationViewUnitTest {
     val onBooleanEvent = mock(classOf<Fun1<Boolean, Unit>>())
     @Mock
     val onDoubleEvent = mock(classOf<Fun1<Double, Unit>>())
+
+    @BeforeTest
+    fun setUp() {
+        every { onStringEvent.invoke(any()) }.doesNothing()
+    }
+
+    @AfterTest
+    fun tearDown() {
+
+    }
 
     @Test
     fun `should display search input field`() = runComposeUiTest {
