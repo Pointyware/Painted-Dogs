@@ -137,7 +137,7 @@ class FundCreationViewUnitTest {
     }
 
     @Test
-    fun `search query when submit is tapped`() = runComposeUiTest {
+    fun `When Submit Button is tapped Then invoke callback Create Collection`() = runComposeUiTest {
         // given some initial empty state
 
         // when - the content is displayed
