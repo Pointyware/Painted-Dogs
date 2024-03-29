@@ -6,6 +6,10 @@ import androidx.compose.ui.test.SemanticsNodeInteraction
 import androidx.compose.ui.test.assertHeightIsAtLeast
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertWidthIsAtLeast
+import androidx.compose.ui.test.filter
+import androidx.compose.ui.test.hasClickAction
+import androidx.compose.ui.test.onChildren
+import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
@@ -84,6 +88,33 @@ class FundCreationViewUnitTest {
     @AfterTest
     fun tearDown() {
 
+    }
+
+    @Test
+    fun `Event - When Start Date is selected Then invoke callback onStartDateChanged`() = runComposeUiTest {
+        // Given some initial empty state
+
+        // When - the content is displayed
+        setContent {
+            FundCreationView(
+                state = rememberFundCreationViewState(),
+                onTitleChange = onStringEvent::invoke,
+                onDescriptionChange = onStringEvent::invoke,
+                onGoalChange = onDoubleEvent::invoke,
+                onStartDateSelectedChange = onBooleanEvent::invoke,
+                onEndDateSelectedChange = onBooleanEvent::invoke,
+                // TODO: modify signature to include onStart/End DateSelectedChange
+                onSubmitDonation = onEvent::invoke,
+            )
+        }
+        onNodeWithText("Start Date")
+            .onChildren().filter(hasClickAction()).onFirst()
+            .performClick()
+        // TODO: pick date
+
+        // Then methods are invoked with same arguments
+        invariants()
+        // TODO: verify date changed event after selecting date
     }
 
     @Test
