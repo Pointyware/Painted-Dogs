@@ -1,10 +1,17 @@
 package org.pointyware.painteddogs.feature.collections.core.ui
 
+import androidx.compose.ui.test.ComposeUiTest
 import androidx.compose.ui.test.ExperimentalTestApi
+import androidx.compose.ui.test.SemanticsNodeInteraction
+import androidx.compose.ui.test.assertHeightIsAtLeast
+import androidx.compose.ui.test.assertIsEnabled
+import androidx.compose.ui.test.assertWidthIsAtLeast
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.runComposeUiTest
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import io.mockative.Fun0
 import io.mockative.Fun1
 import io.mockative.Mock
@@ -37,6 +44,43 @@ class FundCreationViewUnitTest {
         every { onStringEvent.invoke(any()) }.doesNothing()
     }
 
+    fun SemanticsNodeInteraction.assertSizeIsAtLeast(width: Dp, height: Dp): SemanticsNodeInteraction {
+        return this.assertHeightIsAtLeast(height)
+            .assertWidthIsAtLeast(width)
+    }
+
+    fun SemanticsNodeInteraction.assertSizeIsMinimumTouchSize(): SemanticsNodeInteraction {
+        return this.assertSizeIsAtLeast(48.dp, 48.dp)
+    }
+
+    fun SemanticsNodeInteraction.assertNorms(): SemanticsNodeInteraction {
+        return this.assertIsEnabled()
+            .assertSizeIsMinimumTouchSize()
+    }
+
+    private fun ComposeUiTest.invariants() {
+        // title
+        onNodeWithText("Create Collection")
+            .assertNorms()
+        // collection details
+        onNodeWithText("Title")
+            .assertNorms()
+        onNodeWithText("Description")
+            .assertNorms()
+        onNodeWithText("Goal")
+            .assertNorms()
+        // media
+
+        // dates
+        onNodeWithText("Start Date")
+            .assertNorms()
+        onNodeWithText("End Date")
+            .assertNorms()
+        // submission
+        onNodeWithText("Submit")
+            .assertNorms()
+    }
+
     @AfterTest
     fun tearDown() {
 
@@ -44,7 +88,7 @@ class FundCreationViewUnitTest {
 
     @Test
     fun `State - Empty`() = runComposeUiTest {
-        // given an empty state
+        // Given an empty state
         val emptyState = FundCreationViewState(
             title = "",
             description = "",
@@ -53,7 +97,7 @@ class FundCreationViewUnitTest {
             endDate = "",
         )
 
-        // when - the content is displayed
+        // When the content is displayed
         setContent {
             FundCreationView(
                 state = emptyState,
@@ -66,7 +110,8 @@ class FundCreationViewUnitTest {
             )
         }
 
-        // then - assert state
+        // Then UI is empty
+        invariants()
         // title
         onNodeWithText("Create Collection")
             .assertExists()
@@ -91,7 +136,7 @@ class FundCreationViewUnitTest {
 
     @Test
     fun `State - Filled`() = runComposeUiTest {
-        // given some initial valid state
+        // Given some initial valid state
         val donationState = FundCreationViewState(
             title = "Some title",
             description = "Some description",
@@ -100,7 +145,7 @@ class FundCreationViewUnitTest {
             endDate = "December 2",
         )
 
-        // when - the content is displayed
+        // When the content is displayed
         setContent {
             FundCreationView(
                 state = donationState,
@@ -113,7 +158,8 @@ class FundCreationViewUnitTest {
             )
         }
 
-        // then - assert state
+        // Then UI is filled
+        invariants()
         // title
         onNodeWithText("Create Collection")
             .assertExists()
@@ -137,10 +183,20 @@ class FundCreationViewUnitTest {
     }
 
     @Test
-    fun `Event - When Submit Button is tapped Then invoke callback Create Collection`() = runComposeUiTest {
-        // given some initial empty state
+    fun `State - `() = runComposeUiTest{
+        // Given some state
 
-        // when - the content is displayed
+        // When the content is displayed
+
+        // Then assert state
+        invariants()
+    }
+
+    @Test
+    fun `Event - When Submit Button is tapped Then invoke callback Create Collection`() = runComposeUiTest {
+        // Given some initial empty state
+
+        // When - the content is displayed
         setContent {
             FundCreationView(
                 state = rememberFundCreationViewState(),
@@ -158,9 +214,20 @@ class FundCreationViewUnitTest {
         onNodeWithText("Submit").performClick()
 
         // Then methods are invoked with same arguments
+        invariants()
         verify { onStringEvent.invoke("Test Title") }.wasInvoked(once)
         verify { onStringEvent.invoke("Test Description") }.wasInvoked(once)
         verify { onDoubleEvent.invoke(1000.0) }.wasInvoked(once)
         verify { onEvent.invoke() }.wasInvoked(once)
+    }
+
+    @Test
+    fun `Event - `() = runComposeUiTest{
+        // Given some state
+
+        // When the content is displayed
+
+        // Then assert state
+        invariants()
     }
 }
