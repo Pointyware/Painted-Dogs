@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import kotlinx.datetime.Instant
 
 data class FundCreationViewState(
     val title: String,
@@ -52,8 +53,8 @@ fun FundCreationView(
     onTitleChange: (String) -> Unit,
     onDescriptionChange: (String) -> Unit,
     onGoalChange: (Double) -> Unit,
-    onStartDateSelectedChange: (Boolean) -> Unit,
-    onEndDateSelectedChange: (Boolean) -> Unit,
+    onStartDateChanged: (Instant?) -> Unit,
+    onEndDateChanged: (Instant?) -> Unit,
     onSubmitDonation: () -> Unit,
 ) {
     Column(modifier = modifier.fillMaxSize()) {
@@ -110,8 +111,14 @@ fun FundCreationView(
 
         // Dates
         Column(modifier = Modifier.fillMaxWidth()) {
-            DateSelectorRow { onStartDateSelectedChange(it) }
-            DateSelectorRow { onEndDateSelectedChange(it) }
+            DateSelectorRow(
+                state = DateSelectorRowState(null),
+                onDateChanged = onStartDateChanged
+            )
+            DateSelectorRow(
+                state = DateSelectorRowState(null),
+                onDateChanged = onEndDateChanged
+            )
         }
 
         // Button
