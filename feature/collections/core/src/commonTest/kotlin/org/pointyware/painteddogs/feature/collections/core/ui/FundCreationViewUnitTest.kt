@@ -26,6 +26,7 @@ import io.mockative.every
 import io.mockative.mock
 import io.mockative.once
 import io.mockative.verify
+import kotlinx.datetime.Instant
 import org.pointyware.painteddogs.feature.collections.core.UiTest
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
@@ -42,6 +43,8 @@ class FundCreationViewUnitTest {
     val onBooleanEvent = mock(classOf<Fun1<Boolean, Unit>>())
     @Mock
     val onDoubleEvent = mock(classOf<Fun1<Double, Unit>>())
+    @Mock
+    val onInstantEvent = mock(classOf<Fun1<Instant?, Unit>>())
 
     @BeforeTest
     fun setUp() {
@@ -101,8 +104,8 @@ class FundCreationViewUnitTest {
                 onTitleChange = onStringEvent::invoke,
                 onDescriptionChange = onStringEvent::invoke,
                 onGoalChange = onDoubleEvent::invoke,
-                onStartDateSelectedChange = onBooleanEvent::invoke,
-                onEndDateSelectedChange = onBooleanEvent::invoke,
+                onStartDateChanged = onInstantEvent::invoke,
+                onEndDateChanged = onInstantEvent::invoke,
                 // TODO: modify signature to include onStart/End DateSelectedChange
                 onSubmitDonation = onEvent::invoke,
             )
@@ -135,8 +138,8 @@ class FundCreationViewUnitTest {
                 onTitleChange = onStringEvent::invoke,
                 onDescriptionChange = onStringEvent::invoke,
                 onGoalChange = onDoubleEvent::invoke,
-                onStartDateSelectedChange = onBooleanEvent::invoke,
-                onEndDateSelectedChange = onBooleanEvent::invoke,
+                onStartDateChanged = onInstantEvent::invoke,
+                onEndDateChanged = onInstantEvent::invoke,
                 onSubmitDonation = onEvent::invoke,
             )
         }
@@ -183,8 +186,8 @@ class FundCreationViewUnitTest {
                 onTitleChange = onStringEvent::invoke,
                 onDescriptionChange = onStringEvent::invoke,
                 onGoalChange = onDoubleEvent::invoke,
-                onStartDateSelectedChange = onBooleanEvent::invoke,
-                onEndDateSelectedChange = onBooleanEvent::invoke,
+                onStartDateChanged = onInstantEvent::invoke,
+                onEndDateChanged = onInstantEvent::invoke,
                 onSubmitDonation = onEvent::invoke,
             )
         }
@@ -234,8 +237,8 @@ class FundCreationViewUnitTest {
                 onTitleChange = onStringEvent::invoke,
                 onDescriptionChange = onStringEvent::invoke,
                 onGoalChange = onDoubleEvent::invoke,
-                onStartDateSelectedChange = onBooleanEvent::invoke,
-                onEndDateSelectedChange = onBooleanEvent::invoke,
+                onStartDateChanged = onInstantEvent::invoke,
+                onEndDateChanged = onInstantEvent::invoke,
                 onSubmitDonation = onEvent::invoke,
             )
         }
