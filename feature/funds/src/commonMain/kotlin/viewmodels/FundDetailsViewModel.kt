@@ -20,7 +20,7 @@ interface FundDetailsViewModel: BaseViewModel {
 }
 
 class FundDetailsViewModelImpl(
-    private val navController: StackNavigationController<Route<String>, Any>,
+    private val navController: StackNavigationController,
     private val createFundUseCase: CreateFundUseCase,
 ): FundDetailsViewModel {
     private val mutableLoadingState = MutableStateFlow<LoadingState>(LoadingState.Complete)

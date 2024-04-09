@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.StateFlow
  */
 interface ContributionHistoryViewModel {
     val state: StateFlow<DonationHistoryUiState>
-    fun onViewFund(fundId: String)
+    fun onViewFund(fundId: Uuid)
 }
 
 data class DonationHistoryUiState(
@@ -14,7 +14,7 @@ data class DonationHistoryUiState(
 )
 
 data class DonationUiState(
-    val id: String,
+    val id: Uuid,
     val title: String,
     val description: String,
 )
@@ -23,7 +23,7 @@ class ContributionHistoryViewModelImpl(): ContributionHistoryViewModel {
     override val state: StateFlow<DonationHistoryUiState>
         get() = TODO("Not yet implemented")
 
-    override fun onViewFund(fundId: String) {
+    override fun onViewFund(fundId: Uuid) {
         TODO("Not yet implemented")
     }
 }

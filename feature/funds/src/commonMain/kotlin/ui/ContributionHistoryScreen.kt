@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.feature.funds.viewmodels.ContributionHistoryViewModel
 
 data class ContributionHistoryScreenState(
@@ -19,7 +20,7 @@ data class ContributionHistoryScreenState(
 fun ContributionHistoryScreen(
     state: ContributionHistoryScreenState,
     modifier: Modifier = Modifier,
-    onViewFund: (String) -> Unit
+    onViewFund: (Uuid) -> Unit
 ) {
     Column(
         modifier = modifier

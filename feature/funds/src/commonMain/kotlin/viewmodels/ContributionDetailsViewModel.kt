@@ -8,10 +8,16 @@ import kotlinx.coroutines.flow.StateFlow
  */
 interface ContributionDetailsViewModel {
     val state: StateFlow<ContributionDetailsUiState>
+
+    fun onConfirm()
 }
 
 class ContributionDetailsViewModelImpl(): ContributionDetailsViewModel {
     private val mutableState = MutableStateFlow(ContributionDetailsUiState())
     override val state: StateFlow<ContributionDetailsUiState>
         get() = mutableState
+
+    override fun onConfirm() {
+        TODO("Not yet implemented")
+    }
 }

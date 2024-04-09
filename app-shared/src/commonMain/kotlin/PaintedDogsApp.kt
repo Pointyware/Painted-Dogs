@@ -17,14 +17,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import org.pointyware.painteddogs.core.entities.Uuid
-import org.pointyware.painteddogs.core.navigation.LocationRoot
-import org.pointyware.painteddogs.core.navigation.route
+import org.pointyware.painteddogs.core.navigation.TypeRouter
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
-import org.pointyware.painteddogs.feature.funds.navigation.fundsRoute
+import org.pointyware.painteddogs.feature.funds.navigation.Funds
 import org.pointyware.painteddogs.feature.funds.navigation.fundsRouting
+import org.pointyware.painteddogs.feature.profiles.navigation.Profile
 import org.pointyware.painteddogs.feature.profiles.navigation.profileRouting
 import org.pointyware.painteddogs.shared.di.AppDependencies
-import org.pointyware.painteddogs.shared.home.homeRoute
+import org.pointyware.painteddogs.shared.home.Home
 import org.pointyware.painteddogs.shared.home.homeRouting
 
 /**
@@ -63,14 +63,15 @@ fun PaintedDogsApp(
                         }
                     },
                     title = {
-                        Text(currentLocation.value.segments.lastOrNull() ?: "Painted Dogs")
+                        Text(currentLocation.value.simpleName ?: "Painted Dogs")
                     },
                     actions = {
                         val userId: Uuid = Uuid.v4() // TODO: get actual user/id from active user
-                        IconButton(onClick = { navController.navigateTo(route("users", userId.toString(), "profile")) }) {
+                        IconButton(onClick = {
+                            navController.navigateTo(Profile::class, Profile(userId)) }) {
                             Icon(Icons.Default.AccountBox, contentDescription = "Profile")
                         }
-                        IconButton(onClick = { navController.navigateTo(route("funds", "search")) }) {
+                        IconButton(onClick = { navController.navigateTo(Funds.Search::class, Funds.Search) }) {
                             Icon(Icons.Default.Search, contentDescription = "Search")
                         }
                     },
@@ -78,14 +79,12 @@ fun PaintedDogsApp(
             },
             floatingActionButton = {
                 when (currentLocation.value) {
-                    homeRoute,
-                    fundsRoute -> {
+                    Home::class,
+                    Funds::class -> {
                         IconButton(onClick = {
                             navController.navigateTo(
-                                route(
-                                    "funds",
-                                    "create"
-                                )
+                                Funds.Create::class,
+                                Funds.Create
                             )
                         }) {
                             Icon(Icons.Default.AddCircle, contentDescription = "Create Fund")
@@ -120,7 +119,7 @@ fun PaintedDogsApp(
 //                }
 //            }
         ) { paddingValues ->
-            LocationRoot(
+            TypeRouter(
                 navController = navController,
                 modifier = Modifier.padding(paddingValues),
             ) {
