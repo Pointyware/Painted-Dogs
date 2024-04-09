@@ -19,6 +19,24 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import org.pointyware.painteddogs.core.entities.Uuid
+import org.pointyware.painteddogs.core.navigation.LocationRoot
+import org.pointyware.painteddogs.core.navigation.StackNavigationControllerImpl
+import org.pointyware.painteddogs.core.ui.ContributionDetailsScreen
+import org.pointyware.painteddogs.core.ui.ContributionDetailsScreenState
+import org.pointyware.painteddogs.core.ui.ContributionHistoryScreen
+import org.pointyware.painteddogs.core.ui.ContributionHistoryScreenState
+import org.pointyware.painteddogs.core.ui.ContributionInfoScreen
+import org.pointyware.painteddogs.core.ui.ContributionInfoScreenState
+import org.pointyware.painteddogs.core.ui.FundDetailsScreen
+import org.pointyware.painteddogs.core.ui.FundInfoScreen
+import org.pointyware.painteddogs.core.ui.FundInfoScreenState
+import org.pointyware.painteddogs.core.ui.HomeScreen
+import org.pointyware.painteddogs.core.ui.HomeScreenState
+import org.pointyware.painteddogs.core.ui.ProfileScreen
+import org.pointyware.painteddogs.core.ui.ProfileScreenState
+import org.pointyware.painteddogs.core.ui.SearchCollectionsScreen
+import org.pointyware.painteddogs.core.ui.SearchCollectionsScreenState
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.resources.stringResource
@@ -34,6 +52,7 @@ import org.pointyware.painteddogs.shared.home.Home
 import org.pointyware.painteddogs.shared.home.homeRouting
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
+import org.pointyware.painteddogs.core.ui.views.FundDetailsViewState
 
 /**
  * The main entry point for the Painted Dogs app.
