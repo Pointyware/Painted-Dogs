@@ -53,6 +53,7 @@ kotlin {
 
                 implementation(compose.runtime)
                 implementation(compose.material3)
+                implementation(compose.components.uiToolingPreview) // fleet support
             }
         }
         val commonTest by getting {
@@ -72,6 +73,9 @@ kotlin {
 
         val jvmSharedMain by creating {
             dependsOn(commonMain)
+            dependencies {
+                implementation(compose.preview) // android/desktop support
+            }
         }
         val jvmSharedTest by creating {
             dependsOn(commonTest)
