@@ -73,9 +73,6 @@ kotlin {
 
         val jvmSharedMain by creating {
             dependsOn(commonMain)
-            dependencies {
-                implementation(compose.preview) // android/desktop support
-            }
         }
         val jvmSharedTest by creating {
             dependsOn(commonTest)
@@ -84,6 +81,7 @@ kotlin {
         val jvmMain by getting {
             dependsOn(jvmSharedMain)
             dependencies {
+                implementation(compose.preview) // android/desktop support
                 implementation(compose.desktop.currentOs)
             }
         }
@@ -101,6 +99,7 @@ kotlin {
             dependencies {
                 implementation(libs.koin.core)
                 implementation(libs.koin.android)
+                implementation(libs.androidx.composePreview)
             }
         }
         val androidUnitTest by getting {
