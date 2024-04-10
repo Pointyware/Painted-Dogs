@@ -1,6 +1,7 @@
 [versions]
 agp = "8.2.0"
-androidx-compose = "1.8.2"
+androidx-activity = "1.8.2"
+androidx-compose-ui = "1.6.5"
 compose = "1.6.1"
 dokka = "1.9.20"
 jupiter = "5.10.2"
@@ -15,7 +16,9 @@ mockk = "1.12.0"
 truth = "1.1.3"
 
 [libraries]
-androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-compose" }
+androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+androidx-composeTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose-ui" }
+androidx-composePreview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "androidx-compose-ui" }
 jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "jupiter" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin-bom" }
