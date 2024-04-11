@@ -1,3 +1,5 @@
+package org.pointyware.painteddogs.core.ui
+
 import androidx.compose.ui.tooling.preview.Preview
 
 private const val popularSizeGroup = "popular sizes"
