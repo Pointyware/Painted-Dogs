@@ -1,8 +1,9 @@
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.datetime.Clock
-import org.pointyware.painteddogs.feature.collections.core.ui.DateSelectorRow
-import org.pointyware.painteddogs.feature.collections.core.ui.DateSelectorRowState
+import org.pointyware.painteddogs.core.ui.DateSelectorRow
+import org.pointyware.painteddogs.core.ui.DateSelectorRowState
+import org.pointyware.painteddogs.core.ui.PopularSizePreviews
 
 @PopularSizePreviews
 @Preview

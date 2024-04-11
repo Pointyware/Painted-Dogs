@@ -17,6 +17,8 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.UtcOffset
 import kotlinx.datetime.toInstant
+import org.pointyware.painteddogs.core.ui.DateSelectorRow
+import org.pointyware.painteddogs.core.ui.DateSelectorRowState
 import org.pointyware.painteddogs.feature.collections.core.UiTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -119,7 +121,8 @@ class DateSelectorRowUnitTest {
     @Test
     fun `When selected date is tapped Then date picker dialog is shown`() = runComposeUiTest {
     // Given a state with selected date
-        val selectedDateState = DateSelectorRowState(date = LocalDateTime(2022, 1, 1, 0, 0).toInstant(UtcOffset.ZERO))
+        val selectedDateState =
+            DateSelectorRowState(date = LocalDateTime(2022, 1, 1, 0, 0).toInstant(UtcOffset.ZERO))
 
         // When the content is displayed and selected date is tapped
         runComposeUiTest {
@@ -144,7 +147,8 @@ class DateSelectorRowUnitTest {
     @Test
     fun `When date is selected Then display date and Clear button`() = runComposeUiTest {
         // Given a state with selected date
-        val selectedDateState = DateSelectorRowState(date = LocalDateTime(2022, 1, 1, 0, 0).toInstant(UtcOffset.ZERO))
+        val selectedDateState =
+            DateSelectorRowState(date = LocalDateTime(2022, 1, 1, 0, 0).toInstant(UtcOffset.ZERO))
 
         // When the content is displayed
         setContent {
@@ -164,7 +168,8 @@ class DateSelectorRowUnitTest {
     @Test
     fun `When Clear button is clicked Then invoke callback with null`() = runComposeUiTest {
         // Given a state with selected date
-        val selectedDateState = DateSelectorRowState(date = LocalDateTime(2022, 1, 1, 0, 0).toInstant(UtcOffset.ZERO))
+        val selectedDateState =
+            DateSelectorRowState(date = LocalDateTime(2022, 1, 1, 0, 0).toInstant(UtcOffset.ZERO))
 
         // When the content is displayed and Clear button is clicked
         setContent {

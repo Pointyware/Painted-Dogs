@@ -40,6 +40,10 @@ kotlin {
             dependencies {
                 implementation(compose.ui)
                 implementation(compose.material3)
+
+                implementation(libs.kotlinx.dateTime)
+                implementation(libs.kotlinx.coroutines)
+                implementation(libs.koin.core)
             }
         }
         val commonTest by getting {
