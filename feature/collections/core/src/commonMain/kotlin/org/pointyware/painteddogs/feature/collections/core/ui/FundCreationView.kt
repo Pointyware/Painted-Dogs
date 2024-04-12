@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.datetime.Instant
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.pointyware.painteddogs.core.ui.DateSelectorRow
 import org.pointyware.painteddogs.core.ui.DateSelectorRowState
 
@@ -132,4 +133,24 @@ fun FundCreationView(
             Text(text = "Create Donation")
         }
     }
+}
+
+@Preview
+@Composable
+fun FundCreationViewPreview() {
+    FundCreationView(
+        state = FundCreationViewState(
+            title = "Some title",
+            description = "Some description",
+            targetAmount = "$500",
+            startDate = "January 1",
+            endDate = "December 2",
+        ),
+        onTitleChange = {},
+        onDescriptionChange = {},
+        onGoalChange = {},
+        onStartDateChanged = {},
+        onEndDateChanged = {},
+        onSubmitDonation = {},
+    )
 }
