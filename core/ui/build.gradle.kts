@@ -40,6 +40,7 @@ kotlin {
             dependencies {
                 implementation(compose.ui)
                 implementation(compose.material3)
+                implementation(compose.components.uiToolingPreview) // fleet support
 
                 implementation(libs.kotlinx.dateTime)
                 implementation(libs.kotlinx.coroutines)
@@ -48,10 +49,15 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
+                implementation(project(":assertions"))
+
                 implementation(libs.kotlin.test)
+                implementation(libs.koin.test)
+                implementation(libs.kotlinx.coroutinesTest)
 
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.uiTest)
+                implementation(libs.mockative)
             }
         }
 
