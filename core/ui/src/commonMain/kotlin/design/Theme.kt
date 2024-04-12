@@ -4,9 +4,12 @@ package org.pointyware.painteddogs.core.ui.design
  * Combines primitives to create a Painted Dogs theme
  */
 
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  *
@@ -22,4 +25,17 @@ fun PaintedDogsTheme(
         typography = typography,
         content = content
     )
+}
+
+@Preview
+@Composable
+fun PaintedDogsThemePreview() {
+    PaintedDogsTheme {
+        Surface {
+            Text("ooh, a button")
+            Button(onClick = { println("Click") }) {
+                Text("Click me!")
+            }
+        }
+    }
 }
