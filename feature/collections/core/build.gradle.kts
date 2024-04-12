@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
@@ -19,6 +21,16 @@ kotlin {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "1.8"
+            }
+        }
+
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        instrumentedTestVariant {
+            sourceSetTree.set(KotlinSourceSetTree.test)
+
+            dependencies {
+                implementation(libs.androidx.composeTest)
+                debugImplementation(libs.androidx.composeManifest)
             }
         }
     }
@@ -103,6 +115,9 @@ kotlin {
         }
         val androidUnitTest by getting {
             dependsOn(jvmSharedTest)
+            dependencies {
+                implementation(libs.koin.test)
+            }
         }
 
         val iosMain by getting {
@@ -131,5 +146,7 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = 21
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 }
