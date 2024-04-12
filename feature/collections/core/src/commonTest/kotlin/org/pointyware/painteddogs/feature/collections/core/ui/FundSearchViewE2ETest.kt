@@ -3,11 +3,12 @@ package org.pointyware.painteddogs.feature.collections.core.ui
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.runComposeUiTest
 import io.mockative.Mock
-import kotlinx.coroutines.flow.StateFlow
+import org.pointyware.painteddogs.core.viewmodels.SimpleTestViewModelImpl
 import org.pointyware.painteddogs.feature.collections.core.EndToEndTest
 import org.pointyware.painteddogs.feature.collections.core.UiTest
 import org.pointyware.painteddogs.feature.collections.core.viewmodels.CollectionSearchUiState
 import org.pointyware.painteddogs.feature.collections.core.viewmodels.FundSearchViewModel
+import org.pointyware.painteddogs.feature.collections.core.viewmodels.test.TestFundSearchViewModelImpl
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -25,18 +26,9 @@ class FundSearchViewE2ETest {
 
     @BeforeTest
     fun setUp() {
-        fakeViewModel = object : FundSearchViewModel {
-            override val state: StateFlow<CollectionSearchUiState>
-                get() = TODO("Not yet implemented")
-
-            override fun onSearchQueryChanged(query: String) {
-                // no-op
-            }
-
-            override fun onSubmitQuery(query: String) {
-                // no-op
-            }
-        }
+        fakeViewModel = TestFundSearchViewModelImpl(
+            SimpleTestViewModelImpl(CollectionSearchUiState.EMPTY)
+        )
     }
 
     @AfterTest
