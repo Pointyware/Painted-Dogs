@@ -15,7 +15,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
+import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.pointyware.painteddogs.core.ui.design.PopularDevicePreviews
 
 data class DateSelectorRowState(
     val date: Instant?,
@@ -73,5 +76,19 @@ fun DateSelectorRow(
                 )
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun DateSelectorRowPreview() {
+    var state by remember { mutableStateOf(DateSelectorRowState(date = Clock.System.now()))}
+    val onDateChanged: (Instant?) -> Unit = { state = state.copy(date = it) }
+
+    PopularDevicePreviews {
+        DateSelectorRow(
+            state = state,
+            onDateChanged = onDateChanged
+        )
     }
 }
