@@ -1,6 +1,8 @@
 package org.pointyware.painteddogs.feature.collections.core.viewmodels
 
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -32,7 +34,7 @@ class FundSearchViewModelImpl(
     private val searchCollectionsUseCase: SearchCollectionsUseCase,
     // TODO: Fund->CollectionUiStateMapper impls for different contexts
 ): FundSearchViewModel {
-    private val viewModelScope: CoroutineScope = TODO("")
+    private val viewModelScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
 
     private val _state = MutableStateFlow(CollectionSearchUiState.EMPTY)
     override val state: StateFlow<CollectionSearchUiState>
