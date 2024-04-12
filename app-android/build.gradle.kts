@@ -52,11 +52,9 @@ dependencies {
     implementation(project(":core:ui"))
 
     implementation(libs.androidx.activityCompose)
+    implementation(libs.androidx.composeMaterial3)
     debugImplementation(libs.androidx.composeTooling)
     implementation(libs.androidx.composePreview)
-
-    implementation(compose.ui)
-    implementation(compose.material3)
 
     androidTestDebugImplementation(libs.androidx.composeManifest)
 }
