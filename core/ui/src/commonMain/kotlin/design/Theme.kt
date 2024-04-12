@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
  */
 @Composable
 fun PaintedDogsTheme(
-    modifier: Modifier = Modifier,
     isDark: Boolean = false,
     content: @Composable ()->Unit,
 ) {
