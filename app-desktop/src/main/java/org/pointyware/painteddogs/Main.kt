@@ -1,9 +1,11 @@
 package org.pointyware.painteddogs
 
-import androidx.compose.material3.Text
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import kotlinx.datetime.Clock
+import org.pointyware.painteddogs.core.ui.DateSelectorRow
+import org.pointyware.painteddogs.core.ui.DateSelectorRowState
 
 fun main() = application {
 
@@ -13,8 +15,11 @@ fun main() = application {
         state = state,
         onCloseRequest = this::exitApplication
     ) {
-        Text(
-            text = "Hello, App!"
+        DateSelectorRow(
+            state = DateSelectorRowState(
+                date = Clock.System.now()
+            ),
+            onDateChanged = { println("Date Changed") }
         )
     }
 }

@@ -9,6 +9,11 @@ java {
 }
 
 dependencies {
+    implementation(project(":core:ui"))
+    implementation(project(":feature:collections:core"))
+
+    implementation(libs.kotlinx.dateTime)
+
     implementation(compose.desktop.currentOs)
     implementation(compose.ui)
     implementation(compose.preview)
