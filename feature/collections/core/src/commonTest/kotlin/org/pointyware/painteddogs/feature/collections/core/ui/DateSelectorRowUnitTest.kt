@@ -17,8 +17,8 @@ import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.UtcOffset
 import kotlinx.datetime.toInstant
-import org.pointyware.painteddogs.core.ui.DateSelectorRow
-import org.pointyware.painteddogs.core.ui.DateSelectorRowState
+import org.pointyware.painteddogs.core.ui.components.DateSelectorRow
+import org.pointyware.painteddogs.core.ui.components.DateSelectorRowState
 import org.pointyware.painteddogs.feature.collections.core.UiTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test

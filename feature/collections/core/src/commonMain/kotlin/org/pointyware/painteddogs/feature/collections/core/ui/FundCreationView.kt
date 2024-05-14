@@ -16,8 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.datetime.Instant
 import org.jetbrains.compose.ui.tooling.preview.Preview
-import org.pointyware.painteddogs.core.ui.DateSelectorRow
-import org.pointyware.painteddogs.core.ui.DateSelectorRowState
+import org.pointyware.painteddogs.core.ui.components.DateSelectorRow
+import org.pointyware.painteddogs.core.ui.components.DateSelectorRowState
 
 data class FundCreationViewState(
     val title: String,
