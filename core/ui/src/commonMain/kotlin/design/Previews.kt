@@ -1,12 +1,15 @@
 package org.pointyware.painteddogs.core.ui.design
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import org.pointyware.painteddogs.core.ui.design.Dimension.Companion.by
 
@@ -102,7 +105,9 @@ fun DevicePreview(
     content: @Composable () -> Unit,
 ) {
     // TODO: provide a way to switch between light and dark mode; add actual implementation for androidx `isSystemInDarkTheme()`?
-    Column {
+    Column(
+        modifier = Modifier.border(1.dp, Color.White)
+    ) {
         Text("Device: ${device.name}")
         if (previewLevel >= LEVEL_DEBUG) {
             Text("Width: ${device.width}")
@@ -114,7 +119,9 @@ fun DevicePreview(
         }
 
         Box(
-            modifier = Modifier.size(device.width.dp, device.height.dp),
+            modifier = Modifier
+                .requiredSize(device.width.dp, device.height.dp)
+                .border(1.dp, Color.Black)
         ) {
             content()
         }
