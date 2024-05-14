@@ -9,7 +9,20 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.compositionLocalOf
+import kotlinx.datetime.Instant
 import org.jetbrains.compose.ui.tooling.preview.Preview
+
+interface XPDateFormatter {
+    fun format(date: Instant): String
+}
+val SimpleDateFormatter = object : XPDateFormatter {
+    override fun format(date: Instant): String {
+        return date.toString()
+    }
+}
+val DateFormat = compositionLocalOf<XPDateFormatter> { throw IllegalStateException("DateFormat not provided") }
 
 /**
  *
@@ -17,14 +30,19 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 fun PaintedDogsTheme(
     isDark: Boolean = false,
+    // TODO: pass locale to determine date format?
     content: @Composable ()->Unit,
 ) {
-    MaterialTheme(
-        colorScheme = if (isDark) darkColors else lightColors,
-        shapes = shapes,
-        typography = typography,
-        content = content
-    )
+    CompositionLocalProvider(
+        DateFormat provides SimpleDateFormatter
+    ) {
+        MaterialTheme(
+            colorScheme = if (isDark) darkColors else lightColors,
+            shapes = shapes,
+            typography = typography,
+            content = content
+        )
+    }
 }
 
 @Preview

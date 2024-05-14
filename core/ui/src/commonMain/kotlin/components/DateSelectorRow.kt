@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.pointyware.painteddogs.core.ui.design.DateFormat
 import org.pointyware.painteddogs.core.ui.design.PopularDevicePreviews
 
 data class DateSelectorRowState(
@@ -41,8 +42,9 @@ fun DateSelectorRow(
         var datePickerOpen by remember { mutableStateOf(false) }
         // Date
         state.date?.let { localDateTime ->
+            val formattedDate = DateFormat.current.format(localDateTime)
             Text(
-                text = localDateTime.toString(),
+                text = formattedDate,
                 modifier = Modifier.clickable {
                     datePickerOpen = true
                 }
