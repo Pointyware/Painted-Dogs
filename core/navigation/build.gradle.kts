@@ -37,7 +37,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-
+                implementation(libs.kotlinx.coroutines)
             }
         }
         val commonTest by getting {
