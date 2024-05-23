@@ -51,6 +51,8 @@ dependencies {
     implementation(project(":core:entities"))
     implementation(project(":core:ui"))
 
+    implementation(project(":app-shared"))
+
     implementation(libs.androidx.activityCompose)
     implementation(libs.androidx.composeMaterial3)
     debugImplementation(libs.androidx.composeTooling)
