@@ -38,6 +38,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":core:entities"))
+
                 implementation(compose.ui)
                 implementation(compose.material3)
                 implementation(compose.components.uiToolingPreview) // fleet support
