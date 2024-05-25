@@ -64,7 +64,7 @@ interface StackNavigationController<K, A> {
 
 class StackNavigationControllerImpl<K: Any?, A: Any?>(
     initialLocation: K,
-    val stateScope: CoroutineScope = CoroutineScope(Dispatchers.Main),
+    private val stateScope: CoroutineScope = CoroutineScope(Dispatchers.Main),
 ): StackNavigationController<K, A> {
 
     private val _space = AggregateSpace<K>()
