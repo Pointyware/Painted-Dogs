@@ -19,6 +19,29 @@ Android uses the CREATED, STARTED, RESUMED, PAUSED, STOPPED, and DESTROYED state
 O           -init->         CREATED -starting-> STARTED -resuming-> RESUMED 
 DESTROYED   <-destroying-   STOPPED <-stopping- PAUSED  <-pausing-
 
+init: onCreate,
+starting: onStart,
+resuming: onResume,
+pausing: onPause,
+stopping: onStop,
+destroying: onDestroy
 
 0           -init->         CREATED -setup->    READY       -activate->   ACTIVE
 DESTROYED <-destroying- (RE)CREATED <-teardown- INACTIVE    <-deactivate-
+
+init: onCreate,
+setup: onSetup,
+activate: onActivate,
+deactivate: onDeactivate,
+teardown: onTearDown,
+destroying: onDestroy
+
+## Navigation States
+- A single frame on the navigation stack contains the following:
+  - the location
+  - the navigation arguments
+  - the navigation options
+- The navigation system has a navigation state that represents
+  - The current frame
+  - The back stack
+  - The forward stack
