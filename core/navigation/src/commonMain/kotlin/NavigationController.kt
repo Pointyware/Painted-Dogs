@@ -81,14 +81,14 @@ class StackNavigationControllerImpl<K: Any?, A: Any?>(
         get() = TODO("Not yet implemented")
 
     override fun goBack() {
-        TODO("Not Yet Implemented")
+        TODO("Get the previous location from the back list and navigate to it.")
     }
 
     override val forwardList: StateFlow<List<K>>
         get() = TODO("Not yet implemented")
 
     override fun goForward() {
-
+        TODO("Get the next location from the forward list and navigate to it.")
     }
 
     private val _currentFrame = MutableStateFlow(StackNavigationController.Frame(initialLocation, null))
@@ -96,7 +96,7 @@ class StackNavigationControllerImpl<K: Any?, A: Any?>(
         get() = TODO("Not yet implemented")
 
     override fun navigateTo(location: K, arguments: A?) {
-        TODO()
+        TODO("Create new frame with location, arguments, and options (none for now) and update current frame.")
     }
 }
 
