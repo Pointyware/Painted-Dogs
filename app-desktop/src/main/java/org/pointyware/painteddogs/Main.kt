@@ -1,5 +1,6 @@
 package org.pointyware.painteddogs
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.ui.window.Window
@@ -18,6 +19,8 @@ fun main() = application {
         state = state,
         onCloseRequest = this::exitApplication
     ) {
-        PaintedDogsApp()
+        PaintedDogsApp(
+            isDarkTheme = false // TODO: Create desktop implementation of theme
+        )
     }
 }
