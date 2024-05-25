@@ -13,6 +13,10 @@ plugins {
 
     // apply dokka now
     alias(libs.plugins.dokka)
+
+    alias(libs.plugins.painteddogs.koin).apply(false)
+    alias(libs.plugins.painteddogs.kmp).apply(false)
+    // TODO: add other plugins
 }
 
 tasks.dokkaHtmlMultiModule {
