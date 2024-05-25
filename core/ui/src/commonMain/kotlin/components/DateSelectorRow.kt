@@ -18,8 +18,8 @@ import androidx.compose.ui.Modifier
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.pointyware.painteddogs.core.ui.PopularDevicePreviews
 import org.pointyware.painteddogs.core.ui.design.DateFormat
-import org.pointyware.painteddogs.core.ui.design.PopularDevicePreviews
 
 data class DateSelectorRowState(
     val date: Instant?,
