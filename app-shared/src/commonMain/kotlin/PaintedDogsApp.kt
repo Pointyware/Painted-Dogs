@@ -32,6 +32,7 @@ fun PaintedDogsApp(
         LocationRoot(
             navController = navController,
             startLocation = null,
+            modifier = modifier,
         ) {
             // user home screen; entry point
             location(null) {
