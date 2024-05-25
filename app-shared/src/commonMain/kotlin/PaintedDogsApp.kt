@@ -9,6 +9,7 @@ import org.pointyware.painteddogs.core.ui.CollectionHistoryScreen
 import org.pointyware.painteddogs.core.ui.ContributionInfoScreen
 import org.pointyware.painteddogs.core.ui.ContributionDetailsScreen
 import org.pointyware.painteddogs.core.ui.CollectionDetailsScreen
+import org.pointyware.painteddogs.core.ui.ContributionHistoryScreen
 import org.pointyware.painteddogs.core.ui.HomeScreen
 import org.pointyware.painteddogs.core.ui.ProfileScreen
 import org.pointyware.painteddogs.core.ui.SearchCollectionsScreen
@@ -23,7 +24,7 @@ fun PaintedDogsApp(
     val navController = StackNavigationControllerImpl<String?, Any>(null)
     // val androidNavController = NavigationController<Url, Bundle>()
 
-    LocationRoot<String?, Any>(
+    LocationRoot(
         navController = navController,
         startLocation = null,
     ) {
@@ -59,6 +60,10 @@ fun PaintedDogsApp(
         // we need to show the user the details of their contribution after server confirmation
         location("collections/\$collectionId/contributions/\$contributionId") {
             ContributionInfoScreen()
+        }
+        // a user needs to control how they appear to others
+        location("users/\$id/contributions") {
+            ContributionHistoryScreen()
         }
     }
 }
