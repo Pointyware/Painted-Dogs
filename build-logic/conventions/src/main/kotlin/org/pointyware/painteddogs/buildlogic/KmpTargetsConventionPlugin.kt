@@ -37,8 +37,9 @@ class KmpTargetsConventionPlugin: Plugin<Project> {
 
         // Add dependencies after evaluation
         target.afterEvaluate {
-            val coreProject = project(":core")
-            val featureProject = project(":feature")
+
+            val coreProject = project(":core:entities")
+            val featureProject = project(":feature:collections")
 
             dependencies {
                 add("implementation", coreProject)
