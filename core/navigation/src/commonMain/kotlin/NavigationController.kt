@@ -67,8 +67,6 @@ class StackNavigationControllerImpl<K: Any?, A: Any?>(
     val stateScope: CoroutineScope = CoroutineScope(Dispatchers.Main),
 ): StackNavigationController<K, A> {
 
-    val _currentFrame = MutableStateFlow(StackNavigationController.Frame(initialLocation, null))
-
     private val _space = AggregateSpace<K>()
     override val space: Space<K>
         get() = _space
@@ -93,6 +91,7 @@ class StackNavigationControllerImpl<K: Any?, A: Any?>(
 
     }
 
+    private val _currentFrame = MutableStateFlow(StackNavigationController.Frame(initialLocation, null))
     override val currentFrame: StateFlow<StackNavigationController.Frame<K, A>>
         get() = TODO("Not yet implemented")
 
