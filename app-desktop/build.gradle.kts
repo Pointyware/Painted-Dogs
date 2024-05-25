@@ -29,6 +29,8 @@ dependencies {
     implementation(project(":feature:payments"))
     implementation(project(":feature:profiles"))
 
+    implementation(project(":app-shared"))
+
     implementation(libs.kotlinx.dateTime)
 
     implementation(compose.desktop.currentOs)

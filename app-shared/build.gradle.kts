@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.painteddogs.koin)
+    alias(libs.plugins.painteddogs.kmp)
 }
 
 kotlin {
@@ -45,6 +47,7 @@ kotlin {
                 implementation(project(":core:interactors"))
                 implementation(project(":core:local"))
                 implementation(project(":core:navigation"))
+                implementation(project(":core:navigation:compose"))
                 implementation(project(":core:remote"))
                 implementation(project(":core:ui"))
                 implementation(project(":core:view-models"))
