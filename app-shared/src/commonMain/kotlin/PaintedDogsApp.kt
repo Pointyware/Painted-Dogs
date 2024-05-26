@@ -11,7 +11,6 @@ import org.pointyware.painteddogs.core.ui.ContributionHistoryScreenState
 import org.pointyware.painteddogs.core.ui.ContributionInfoScreen
 import org.pointyware.painteddogs.core.ui.ContributionInfoScreenState
 import org.pointyware.painteddogs.core.ui.FundDetailsScreen
-import org.pointyware.painteddogs.core.ui.FundDetailsScreenState
 import org.pointyware.painteddogs.core.ui.FundInfoScreen
 import org.pointyware.painteddogs.core.ui.FundInfoScreenState
 import org.pointyware.painteddogs.core.ui.HomeScreen
@@ -21,6 +20,7 @@ import org.pointyware.painteddogs.core.ui.ProfileScreenState
 import org.pointyware.painteddogs.core.ui.SearchCollectionsScreen
 import org.pointyware.painteddogs.core.ui.SearchCollectionsScreenState
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
+import org.pointyware.painteddogs.core.ui.views.FundDetailsViewState
 
 /**
  * The main entry point for the Painted Dogs app.
@@ -67,7 +67,7 @@ fun PaintedDogsApp(
             // we need to make a collection before anyone can contribute
             location("collections/create") {
                 FundDetailsScreen(
-                    state = FundDetailsScreenState(
+                    state = FundDetailsViewState(
                         title = "My Collection",
                         description = "A collection of things",
                     ),

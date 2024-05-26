@@ -4,12 +4,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import org.pointyware.painteddogs.core.ui.views.FundDetailsView
+import org.pointyware.painteddogs.core.ui.views.FundDetailsViewState
 
-data class FundDetailsScreenState(
-    val title: String,
-    val description: String,
-    val dirty: Boolean = false
-)
 
 /**
  * Displays options for creating a new collection.
@@ -17,12 +14,13 @@ data class FundDetailsScreenState(
  */
 @Composable
 fun FundDetailsScreen(
-    state: FundDetailsScreenState,
+    state: FundDetailsViewState,
     modifier: Modifier = Modifier,
     onConfirm: () -> Unit
 ) {
-    Column {
-        Text("Title: ${state.title}")
-        Text("Description: ${state.description}")
-    }
+    FundDetailsView(
+        state = state,
+        modifier = modifier,
+        onConfirm = onConfirm
+    )
 }
