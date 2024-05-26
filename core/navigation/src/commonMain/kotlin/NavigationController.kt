@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
 
 
 /**
@@ -26,7 +25,7 @@ interface StackNavigationController<K, A> {
     /**
      * Navigate to a new location in the space, passing the given arguments.
      */
-    fun navigateTo(location: @UnsafeVariance K, arguments: A?)
+    fun navigateTo(location: @UnsafeVariance K, arguments: A? = null)
 
     /**
      * The current location in the space.

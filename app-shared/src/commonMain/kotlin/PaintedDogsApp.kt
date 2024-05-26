@@ -11,6 +11,7 @@ import org.pointyware.painteddogs.core.ui.ContributionDetailsScreen
 import org.pointyware.painteddogs.core.ui.CollectionDetailsScreen
 import org.pointyware.painteddogs.core.ui.ContributionHistoryScreen
 import org.pointyware.painteddogs.core.ui.HomeScreen
+import org.pointyware.painteddogs.core.ui.HomeScreenState
 import org.pointyware.painteddogs.core.ui.ProfileScreen
 import org.pointyware.painteddogs.core.ui.SearchCollectionsScreen
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
@@ -29,14 +30,18 @@ fun PaintedDogsApp(
     PaintedDogsTheme(
         isDark = isDarkTheme
     ) {
-        LocationRoot(
+        LocationRoot( // TODO: rename to ScreenHost or something more meaningful
             navController = navController,
-            startLocation = null,
             modifier = modifier,
         ) {
             // user home screen; entry point
             location(null) {
                 HomeScreen(
+                    state = HomeScreenState(),
+                    onCreateFund = { navController.navigateTo("collections/create") },
+                    onSearchFunds = { navController.navigateTo("collections/search") },
+                    onViewProfile = { navController.navigateTo("users/123/profile") },
+                    onFundSelected = { collectionId -> navController.navigateTo("collections/$collectionId") },
                 )
             }
             // a user needs to control how they appear to others
