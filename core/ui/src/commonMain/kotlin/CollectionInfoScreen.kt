@@ -1,18 +1,37 @@
 package org.pointyware.painteddogs.core.ui
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+
+data class FundInfoScreenState(
+    val title: String,
+)
 
 /**
  *
  * TODO: replace/move to :feature:collections module; rename FundInfoScreen
  */
 @Composable
-fun CollectionInfoScreen(
+fun FundInfoScreen(
+    state: FundInfoScreenState,
+    onContribute: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    /*
-    TODO: Collection Details Screen (Donor view)
-      1. Button => Make Contribution [x]
-     */
+    Column(
+        modifier = modifier
+    ) {
+        Text(
+            text = state.title
+        )
+        Button(
+            onClick = { onContribute() },
+        ) {
+            Text(
+                text = "Make Contribution"
+            )
+        }
+    }
 }

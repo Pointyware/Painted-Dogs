@@ -2,21 +2,24 @@ package org.pointyware.painteddogs.app
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import org.pointyware.painteddogs.core.navigation.StackNavigationControllerImpl
 import org.pointyware.painteddogs.core.navigation.LocationRoot
-import org.pointyware.painteddogs.core.ui.CollectionInfoScreen
-import org.pointyware.painteddogs.core.ui.CollectionHistoryScreen
-import org.pointyware.painteddogs.core.ui.ContributionInfoScreen
+import org.pointyware.painteddogs.core.navigation.StackNavigationControllerImpl
 import org.pointyware.painteddogs.core.ui.ContributionDetailsScreen
+import org.pointyware.painteddogs.core.ui.ContributionDetailsScreenState
+import org.pointyware.painteddogs.core.ui.ContributionHistoryScreen
+import org.pointyware.painteddogs.core.ui.ContributionHistoryScreenState
+import org.pointyware.painteddogs.core.ui.ContributionInfoScreen
+import org.pointyware.painteddogs.core.ui.ContributionInfoScreenState
 import org.pointyware.painteddogs.core.ui.FundDetailsScreen
-import org.pointyware.painteddogs.core.ui.FundHistoryScreen
 import org.pointyware.painteddogs.core.ui.FundDetailsScreenState
-import org.pointyware.painteddogs.core.ui.FundHistoryScreenState
+import org.pointyware.painteddogs.core.ui.FundInfoScreen
+import org.pointyware.painteddogs.core.ui.FundInfoScreenState
 import org.pointyware.painteddogs.core.ui.HomeScreen
 import org.pointyware.painteddogs.core.ui.HomeScreenState
 import org.pointyware.painteddogs.core.ui.ProfileScreen
 import org.pointyware.painteddogs.core.ui.ProfileScreenState
 import org.pointyware.painteddogs.core.ui.SearchCollectionsScreen
+import org.pointyware.painteddogs.core.ui.SearchCollectionsScreenState
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 
 /**
@@ -73,28 +76,55 @@ fun PaintedDogsApp(
             }
             // a user can see all their current and past collections
             location("users/\$id/collections") {
-                CollectionHistoryScreen()
+                ContributionHistoryScreen(
+                    state = ContributionHistoryScreenState(
+                        contributions = emptyList()
+                    ),
+                    onViewFund = { fundId -> navController.navigateTo("collections/$fundId") },
+                )
             }
             // a user needs to find a collection to contribute to
             location("collections/search") {
-                SearchCollectionsScreen()
+                SearchCollectionsScreen(
+                    state = SearchCollectionsScreenState(
+                        query = "",
+                    ),
+                )
             }
             // a user needs to see the details of a collection before deciding to contribute
             location("collections/\$collectionId") {
-                CollectionInfoScreen()
+                FundInfoScreen(
+                    state = FundInfoScreenState(
+                        title = "My Collection",
+                    ),
+                    onContribute = { navController.navigateTo("collections/123/contribute") },
+                )
             }
             // a user needs to determine how much they want to contribute
             location("collections/\$collectionId/contribute") {
-                ContributionDetailsScreen()
+                ContributionDetailsScreen(
+                    state = ContributionDetailsScreenState(
+                        id = "123",
+                        title = "My Collection",
+                        description = "A collection of things",
+                    ),
+                    onConfirm = { navController.navigateTo("collections/123/contribute/confirm") },
+                )
             }
             // we need to show the user the details of their contribution after server confirmation
             location("collections/\$collectionId/contributions/\$contributionId") {
-                ContributionInfoScreen()
+                ContributionInfoScreen(
+                    state = ContributionInfoScreenState(
+                        id = "123",
+                        title = "My Collection",
+                        description = "A collection of things",
+                    ),
+                )
             }
             // a user needs to control how they appear to others
             location("users/\$id/contributions") {
-                FundHistoryScreen(
-                    state = FundHistoryScreenState(
+                ContributionHistoryScreen(
+                    state = ContributionHistoryScreenState(
                         contributions = emptyList(),
                     ),
                     onViewFund = { fundId -> navController.navigateTo("collections/$fundId") },

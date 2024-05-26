@@ -8,16 +8,15 @@ import androidx.compose.ui.Modifier
 import org.pointyware.painteddogs.core.ui.views.FundRow
 import org.pointyware.painteddogs.core.ui.views.FundRowState
 
-data class ContributionHistoryScreenState(
-    val contributions: List<FundRowState>,
+data class FundHistoryScreenState(
+    val collections: List<FundRowState> = emptyList()
 )
-
 /**
- * Lists a user's contribution history, allowing them to view details about each fund.
+ * TODO: replace/move to :feature:collections module; rename FundHistoryScreen
  */
 @Composable
-fun ContributionHistoryScreen(
-    state: ContributionHistoryScreenState,
+fun FundHistoryScreen(
+    state: FundHistoryScreenState,
     modifier: Modifier = Modifier,
     onViewFund: (String) -> Unit
 ) {
@@ -25,8 +24,11 @@ fun ContributionHistoryScreen(
         modifier = modifier
     ) {
         LazyColumn {
-            items(state.contributions) {
-                FundRow(state = it, onTap = { fundId -> onViewFund(fundId) })
+            items(state.collections) {
+                 FundRow(
+                     state = it,
+                     onTap = { fundId -> onViewFund(fundId) }
+                 )
             }
         }
     }
