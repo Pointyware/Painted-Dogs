@@ -75,6 +75,13 @@ kotlin {
                 implementation(project(":assertions"))
             }
         }
+
+        val jvmMain by getting {
+            dependencies {
+                implementation(compose.desktop.common)
+                implementation(libs.kotlinx.coroutinesSwing)
+            }
+        }
     }
 }
 
