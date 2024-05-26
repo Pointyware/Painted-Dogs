@@ -93,7 +93,12 @@ fun PaintedDogsApp(
             }
             // a user needs to control how they appear to others
             location("users/\$id/contributions") {
-                ContributionHistoryScreen()
+                FundHistoryScreen(
+                    state = FundHistoryScreenState(
+                        contributions = emptyList(),
+                    ),
+                    onViewFund = { fundId -> navController.navigateTo("collections/$fundId") },
+                )
             }
         }
     }
