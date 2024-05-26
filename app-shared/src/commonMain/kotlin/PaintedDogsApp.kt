@@ -13,6 +13,7 @@ import org.pointyware.painteddogs.core.ui.ContributionHistoryScreen
 import org.pointyware.painteddogs.core.ui.HomeScreen
 import org.pointyware.painteddogs.core.ui.HomeScreenState
 import org.pointyware.painteddogs.core.ui.ProfileScreen
+import org.pointyware.painteddogs.core.ui.ProfileScreenState
 import org.pointyware.painteddogs.core.ui.SearchCollectionsScreen
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 
@@ -46,12 +47,22 @@ fun PaintedDogsApp(
             }
             // a user needs to control how they appear to others
             location("users/\$id/profile") {
-                ProfileScreen()
+                ProfileScreen(
+                    state = ProfileScreenState(
+                        userId = "123",
+                        username = "johndoe",
+                    ),
+                    onEditProfile = {},
+                    onViewCollections = { navController.navigateTo("users/123/collections") },
+                    onViewContributions = { navController.navigateTo("users/123/contributions") },
+                    onLogout = {},
+                )
             }
 
             // we need to make a collection before anyone can contribute
             location("collections/create") {
-                CollectionDetailsScreen()
+                CollectionDetailsScreen(
+                )
             }
             // a user can see all their current and past collections
             location("users/\$id/collections") {
