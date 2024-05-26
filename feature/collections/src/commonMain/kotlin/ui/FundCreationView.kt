@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.feature.collections.core.ui
+package org.pointyware.painteddogs.feature.collections.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
