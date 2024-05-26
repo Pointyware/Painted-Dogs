@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 
 
 /**
@@ -66,36 +67,76 @@ class StackNavigationControllerImpl<K: Any?, A: Any?>(
     private val stateScope: CoroutineScope = CoroutineScope(Dispatchers.Main),
 ): StackNavigationController<K, A> {
 
+    internal data class State<K, A>(
+        val backList: List<StackNavigationController.Frame<K, A>>,
+        val forwardList: List<StackNavigationController.Frame<K, A>>,
+        val frame: StackNavigationController.Frame<K, A>,
+    )
+    private val mutableState = MutableStateFlow(State(emptyList(), emptyList(), StackNavigationController.Frame<K, A>(initialLocation, null)))
+
     private val _space = AggregateSpace<K>()
     override val space: Space<K>
         get() = _space
 
     override val currentLocation: StateFlow<K>
-        get() = _currentFrame.value.location.let { currentValue ->
-            _currentFrame.map { it.location }
-                .stateIn(stateScope, SharingStarted.Eagerly, currentValue)
+        get() = mutableState.value.frame.location.let { currentValue ->
+            mutableState.map { it.frame.location }
+                .stateIn(stateScope, SharingStarted.WhileSubscribed(), currentValue)
         }
 
+
     override val backList: StateFlow<List<K>>
-        get() = TODO("Not yet implemented")
+        get() = mutableState.value.let { currentValue ->
+            mutableState.map { it.backList.map { it.location } }
+                .stateIn(stateScope, SharingStarted.WhileSubscribed(), currentValue.backList.map { it.location })
+        }
 
     override fun goBack() {
-        TODO("Get the previous location from the back list and navigate to it.")
+        mutableState.update { currentState ->
+            val previous = currentState.backList.lastOrNull()
+            previous?.let {
+                currentState.copy(
+                    backList = currentState.backList.dropLast(1),
+                    forwardList = currentState.forwardList + currentState.frame,
+                    frame = previous
+                )
+            } ?: throw IllegalStateException("Back stack is empty")
+        }
     }
 
     override val forwardList: StateFlow<List<K>>
-        get() = TODO("Not yet implemented")
+        get() = mutableState.value.let { currentValue ->
+            mutableState.map { it.forwardList.map { it.location } }
+                .stateIn(stateScope, SharingStarted.WhileSubscribed(), currentValue.forwardList.map { it.location })
+        }
 
     override fun goForward() {
-        TODO("Get the next location from the forward list and navigate to it.")
+        mutableState.update { currentState ->
+            val next = currentState.forwardList.lastOrNull()
+            next?.let {
+                currentState.copy(
+                    backList = currentState.backList + currentState.frame,
+                    forwardList = currentState.forwardList.dropLast(1),
+                    frame = next
+                )
+            } ?: throw IllegalStateException("Back stack is empty")
+        }
     }
 
-    private val _currentFrame = MutableStateFlow(StackNavigationController.Frame(initialLocation, null))
     override val currentFrame: StateFlow<StackNavigationController.Frame<K, A>>
-        get() = TODO("Not yet implemented")
+        get() = mutableState.value.frame.let { currentValue ->
+            mutableState.map { it.frame }
+                .stateIn(stateScope, SharingStarted.WhileSubscribed(), currentValue)
+        }
 
     override fun navigateTo(location: K, arguments: A?) {
-        TODO("Create new frame with location, arguments, and options (none for now) and update current frame.")
+        mutableState.update {
+            it.copy(
+                backList = it.backList + it.frame,
+                forwardList = emptyList(),
+                frame = StackNavigationController.Frame(location, arguments),
+            )
+        }
     }
 }
 
