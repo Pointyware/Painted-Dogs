@@ -37,6 +37,8 @@ dependencies {
     implementation(compose.ui)
     implementation(compose.preview)
     implementation(compose.material3)
+
+    implementation(libs.kotlinx.coroutinesJvm)
 }
 
 compose.desktop {

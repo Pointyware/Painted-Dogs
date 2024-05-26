@@ -59,4 +59,5 @@ dependencies {
     implementation(libs.androidx.composePreview)
 
     androidTestDebugImplementation(libs.androidx.composeManifest)
+    implementation(libs.kotlinx.coroutinesAndroid)
 }
