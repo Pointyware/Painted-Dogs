@@ -1,5 +1,6 @@
 package org.pointyware.painteddogs.core.ui.views
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,9 +19,21 @@ data class MakeContributionViewState(
 fun MakeContributionView(
     state: MakeContributionViewState,
     modifier: Modifier = Modifier,
+    onConfirm: () -> Unit,
 ) {
-    Button(onClick = { println("Click") }) {
-        // button text
-        Text("Submit")
+    Column(
+        modifier = modifier
+    ) {
+        Text(
+            text = "Contribute to Fund ${state.fundId}"
+        )
+        Text(
+            text = "Amount: ${state.contributionAmount}"
+        )
+
+        Button(onClick = onConfirm) {
+            // button text
+            Text("Submit")
+        }
     }
 }
