@@ -8,8 +8,10 @@ import org.pointyware.painteddogs.core.ui.CollectionInfoScreen
 import org.pointyware.painteddogs.core.ui.CollectionHistoryScreen
 import org.pointyware.painteddogs.core.ui.ContributionInfoScreen
 import org.pointyware.painteddogs.core.ui.ContributionDetailsScreen
-import org.pointyware.painteddogs.core.ui.CollectionDetailsScreen
-import org.pointyware.painteddogs.core.ui.ContributionHistoryScreen
+import org.pointyware.painteddogs.core.ui.FundDetailsScreen
+import org.pointyware.painteddogs.core.ui.FundHistoryScreen
+import org.pointyware.painteddogs.core.ui.FundDetailsScreenState
+import org.pointyware.painteddogs.core.ui.FundHistoryScreenState
 import org.pointyware.painteddogs.core.ui.HomeScreen
 import org.pointyware.painteddogs.core.ui.HomeScreenState
 import org.pointyware.painteddogs.core.ui.ProfileScreen
@@ -61,7 +63,12 @@ fun PaintedDogsApp(
 
             // we need to make a collection before anyone can contribute
             location("collections/create") {
-                CollectionDetailsScreen(
+                FundDetailsScreen(
+                    state = FundDetailsScreenState(
+                        title = "My Collection",
+                        description = "A collection of things",
+                    ),
+                    onConfirm = { navController.navigateTo("collections/123/contribute") },
                 )
             }
             // a user can see all their current and past collections
