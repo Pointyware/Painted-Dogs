@@ -3,7 +3,7 @@ package org.pointyware.painteddogs.app
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import org.pointyware.painteddogs.core.navigation.StackNavigationControllerImpl
-import org.pointyware.painteddogs.core.navigation.compose.LocationRoot
+import org.pointyware.painteddogs.core.navigation.LocationRoot
 import org.pointyware.painteddogs.core.ui.CollectionInfoScreen
 import org.pointyware.painteddogs.core.ui.CollectionHistoryScreen
 import org.pointyware.painteddogs.core.ui.ContributionInfoScreen
@@ -36,7 +36,8 @@ fun PaintedDogsApp(
         ) {
             // user home screen; entry point
             location(null) {
-                HomeScreen()
+                HomeScreen(
+                )
             }
             // a user needs to control how they appear to others
             location("users/\$id/profile") {

@@ -1,8 +1,7 @@
-package org.pointyware.painteddogs.core.navigation.compose
+package org.pointyware.painteddogs.core.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import org.pointyware.painteddogs.core.navigation.StackNavigationController
 
 /**
  * A composable that provides a location-based navigation root.
