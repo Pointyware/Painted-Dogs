@@ -12,7 +12,7 @@ import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 fun main() = application {
 
 
-    
+
     val state = rememberWindowState()
     Window(
         title = "My Application",

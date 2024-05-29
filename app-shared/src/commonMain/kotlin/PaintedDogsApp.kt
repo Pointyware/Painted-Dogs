@@ -127,7 +127,7 @@ fun PaintedDogsApp(
                     state = ContributionHistoryScreenState(
                         contributions = emptyList(),
                     ),
-                    onViewFund = { fundId -> navController.navigateTo("collections/$fundId") },
+                    onViewFund = { fundId -> navController.navigateTo("collections/\$fundId") },
                 )
             }
         }
