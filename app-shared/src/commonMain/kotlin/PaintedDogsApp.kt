@@ -2,6 +2,8 @@ package org.pointyware.painteddogs.app
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import org.pointyware.painteddogs.app.di.Dependencies
+import org.pointyware.painteddogs.app.di.MockDependencies
 import org.pointyware.painteddogs.core.navigation.LocationRoot
 import org.pointyware.painteddogs.core.navigation.StackNavigationControllerImpl
 import org.pointyware.painteddogs.core.ui.ContributionDetailsScreen
@@ -27,6 +29,7 @@ import org.pointyware.painteddogs.core.ui.views.FundDetailsViewState
  */
 @Composable
 fun PaintedDogsApp(
+    appDependencies: Dependencies = MockDependencies(),
     isDarkTheme: Boolean,
     modifier: Modifier = Modifier,
 ) {
