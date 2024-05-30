@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.composeMultiplatform)
 }
 
 kotlin {
@@ -37,7 +38,11 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":core:ui"))
 
+                implementation(compose.ui)
+                implementation(compose.material3)
+                implementation(compose.components.resources)
             }
         }
         val commonTest by getting {
