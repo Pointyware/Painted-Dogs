@@ -60,4 +60,6 @@ dependencies {
 
     androidTestDebugImplementation(libs.androidx.composeManifest)
     implementation(libs.kotlinx.coroutinesAndroid)
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
 }
