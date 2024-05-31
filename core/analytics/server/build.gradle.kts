@@ -9,6 +9,8 @@ kotlin {
     dependencies {
         implementation(project(":core:entities"))
 
+        implementation(libs.koin.ktor)
+
         implementation(libs.ktor.server.core)
         implementation(libs.ktor.server.netty)
     }
