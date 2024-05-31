@@ -39,7 +39,6 @@ kotlin {
             dependencies {
 
                 implementation(libs.koin.core)
-                implementation(libs.koin.ktor)
             }
         }
         val commonTest by getting {

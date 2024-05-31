@@ -42,7 +42,12 @@ include(":feature:login")
 include(":feature:payments")
 include(":feature:payments:core")
 include(":feature:profiles")
+
 include(":api")
+include(":api:ads")
+include(":api:analytics")
+include(":api:auth")
+
 include(":app-shared")
 include(":app-android")
 //include(":app-ios")
