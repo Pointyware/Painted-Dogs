@@ -23,5 +23,7 @@ expect class PlatformDependencies(): Dependencies {
 }
 
 fun appModule(): Module = module {
-    TODO("not implemented")
+    includes(
+
+    )
 }
