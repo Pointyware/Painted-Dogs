@@ -11,7 +11,7 @@ import io.ktor.server.routing.routing
 
 fun Routing.ads() {
     get("/ads") {
-        call.respondNullable<String?>(null)
+        call.respondNullable<String?>("Welcome to Ads Endpoint")
         // TODO: Define analytics api routes
     }
 }

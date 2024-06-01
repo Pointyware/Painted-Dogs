@@ -8,7 +8,7 @@ import io.ktor.server.routing.get
 
 fun Routing.analytics() {
     get("/analytics") {
-        call.respondNullable<String?>(null)
+        call.respondNullable<String?>("Welcome to Analytics Endpoint")
         // TODO: Define analytics api routes
     }
 }
