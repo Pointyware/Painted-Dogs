@@ -5,6 +5,9 @@ plugins {
     `maven-publish`
 }
 
+description = "Painted Dogs API"
+version = libs.versions.paintedDogs.get()
+
 kotlin {
     dependencies {
         implementation(project(":core:entities"))
@@ -19,6 +22,13 @@ kotlin {
 }
 
 publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "org.pointyware.painteddogs"
+            artifactId = "painted-dogs-api"
+            from(components["java"])
+        }
+    }
     repositories {
         maven {
             name = "GitHubPackages"
