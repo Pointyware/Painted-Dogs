@@ -60,6 +60,7 @@ kotlinAndroid       = { id = "org.jetbrains.kotlin.android", version.ref = "kotl
 kotlinJvm           = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 ksp                 = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+ktor                = { id = "io.ktor.plugin", version.ref = "ktor" }
 
 painteddogs-koin = { id = "org.pointyware.painteddogs.koin-dependency-injection-convention", version = "0.1.0" }
 painteddogs-kmp = { id = "org.pointyware.painteddogs.kmp-convention", version = "0.1.0" }

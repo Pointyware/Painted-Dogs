@@ -2,6 +2,7 @@ import java.net.URI
 
 plugins {
     alias(libs.plugins.kotlinJvm)
+    alias(libs.plugins.ktor)
     `maven-publish`
 }
 
@@ -18,6 +19,16 @@ kotlin {
 
         implementation(libs.ktor.server.core)
         implementation(libs.ktor.server.netty)
+    }
+}
+
+application {
+    mainClass = "org.pointyware.painteddogs.api.ServerKt"
+}
+
+ktor {
+    fatJar {
+        archiveFileName = "PaintedDogsAPI.jar"
     }
 }
 
