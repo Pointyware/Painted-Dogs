@@ -27,3 +27,21 @@ fun appModule(): Module = module {
 
     )
 }
+
+private fun coreModule(): Module = module {
+    includes(
+        entitiesModule()
+    )
+}
+
+private fun entitiesModule(): Module = module {
+
+}
+
+private fun interactorsModule(): Module = module {
+
+}
+
+private fun uiModule(): Module = module {
+
+}
