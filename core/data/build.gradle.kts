@@ -39,6 +39,7 @@ kotlin {
             dependencies {
                 implementation(project(":core:entities"))
                 implementation(libs.kotlinx.coroutines)
+                implementation(libs.koin.core)
             }
         }
         val commonTest by getting {

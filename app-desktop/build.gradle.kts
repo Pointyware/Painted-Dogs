@@ -21,8 +21,7 @@ dependencies {
     implementation(project(":core:view-models"))
 
     implementation(project(":feature:chat"))
-    implementation(project(":feature:collections:core"))
-    implementation(project(":feature:collections:crowdfunding"))
+    implementation(project(":feature:funds"))
     implementation(project(":feature:events"))
     implementation(project(":feature:groups"))
     implementation(project(":feature:login"))

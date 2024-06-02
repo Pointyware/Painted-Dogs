@@ -42,6 +42,7 @@ kotlin {
 
                 implementation(compose.ui)
                 implementation(compose.material3)
+                implementation(libs.koin.core)
             }
         }
         val commonTest by getting {

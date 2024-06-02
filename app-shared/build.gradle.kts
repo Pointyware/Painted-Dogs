@@ -52,7 +52,7 @@ kotlin {
                 implementation(project(":core:view-models"))
 
                 implementation(project(":feature:chat"))
-                implementation(project(":feature:collections"))
+                implementation(project(":feature:funds"))
                 implementation(project(":feature:events"))
                 implementation(project(":feature:groups"))
                 implementation(project(":feature:login"))
