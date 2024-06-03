@@ -10,7 +10,8 @@ import org.pointyware.painteddogs.core.ads.server.ads
 import org.pointyware.painteddogs.core.analytics.server.analytics
 
 fun main() {
-    embeddedServer(Netty, 8080) {
+    val port = System.getenv("PORT")?.toInt() ?: 8080
+    embeddedServer(Netty, port) {
         routing {
             auth()
 
