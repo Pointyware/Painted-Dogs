@@ -11,7 +11,15 @@ import io.ktor.server.routing.routing
 
 fun Routing.ads() {
     get("/ads") {
-        call.respondNullable<String?>("Welcome to Ads Endpoint")
-        // TODO: Define analytics api routes
+        call.respondNullable<String?>("Not Yet Implemented")
+    }
+    get("/ads/{id}") {
+        call.respondNullable<String?>("Not Yet Implemented")
+    }
+    get("/ads/campaigns") {
+        call.respondNullable<String?>("Not Yet Implemented")
+    }
+    get("/ads/campaigns/{campaignId}") {
+        call.respondNullable<String?>("Not Yet Implemented")
     }
 }
