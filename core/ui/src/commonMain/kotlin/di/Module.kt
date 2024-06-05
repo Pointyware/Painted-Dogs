@@ -1,8 +1,10 @@
 package org.pointyware.painteddogs.core.ui.di
 
+import org.koin.dsl.module
+
 /**
- * TODO: describe purpose/intent of Module
+ *
  */
-fun coreUiModule() = org.koin.dsl.module {
-    single { org.pointyware.painteddogs.core.ui.MainViewModel(get()) }
+fun coreUiModule() = module {
+//    single { org.pointyware.painteddogs.core.ui.MainViewModel(get()) }
 }
