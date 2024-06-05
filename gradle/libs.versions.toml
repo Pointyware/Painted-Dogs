@@ -1,5 +1,6 @@
 [versions]
 agp = "8.2.0"
+artifactRegistry = "2.2.0"
 androidx-activity = "1.8.2"
 androidx-compose-ui = "1.6.5"
 compose = "1.6.1"
@@ -54,8 +55,9 @@ truth = { module = "com.google.truth:truth", version.ref = "truth" }
 [plugins]
 androidApplication  = { id = "com.android.application", version.ref = "agp" }
 androidLibrary      = { id = "com.android.library", version.ref = "agp" }
-composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose" }
-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+artifactRegistry    = { id = "com.google.cloud.artifactregistry.gradle-plugin", version.ref = "artifactRegistry" }
+composeMultiplatform    = { id = "org.jetbrains.compose", version.ref = "compose" }
+dokka               = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinAndroid       = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinJvm           = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }

@@ -16,7 +16,7 @@ plugins {
 
     alias(libs.plugins.painteddogs.koin).apply(false)
     alias(libs.plugins.painteddogs.kmp).apply(false)
-    // TODO: add other plugins
+    alias(libs.plugins.artifactRegistry).apply(false)
 }
 
 tasks.dokkaHtmlMultiModule {
