@@ -1,9 +1,16 @@
-import java.net.URI
 
 plugins {
     alias(libs.plugins.kotlinJvm)
     alias(libs.plugins.ktor)
     `maven-publish`
+    alias(libs.plugins.artifactRegistry)
+}
+
+tasks.named<Zip>("distZip") {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+tasks.named<Tar>("distTar") {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
 description = "Painted Dogs API"
@@ -28,7 +35,7 @@ application {
 
 ktor {
     fatJar {
-        archiveFileName = "PaintedDogsAPI.jar"
+        archiveFileName = "PaintedDogsAPI-${version}.jar"
     }
 }
 
@@ -42,12 +49,18 @@ publishing {
     }
     repositories {
         maven {
-            name = "GitHubPackages"
-            url = URI("https://maven.pkg.github.com/Pointyware/Painted-Dogs")
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
-            }
+            val releaseURL = "artifactregistry://us-central1-maven.pkg.dev/painted-dogs-prod-425222/painted-dogs-prod-server-repo"
+            url = uri(releaseURL)
         }
+
+        // TODO: Add GitHub Packages
+//        maven {
+//            name = "GitHubPackages"
+//            url = URI("https://maven.pkg.github.com/Pointyware/Painted-Dogs")
+//            credentials {
+//                username = System.getenv("GITHUB_ACTOR")
+//                password = System.getenv("GITHUB_TOKEN")
+//            }
+//        }
     }
 }
