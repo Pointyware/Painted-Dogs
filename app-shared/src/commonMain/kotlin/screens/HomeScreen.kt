@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.core.ui
+package org.pointyware.painteddogs.app.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn

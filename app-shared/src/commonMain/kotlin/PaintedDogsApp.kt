@@ -15,8 +15,8 @@ import org.pointyware.painteddogs.core.ui.ContributionInfoScreenState
 import org.pointyware.painteddogs.core.ui.FundDetailsScreen
 import org.pointyware.painteddogs.core.ui.FundInfoScreen
 import org.pointyware.painteddogs.core.ui.FundInfoScreenState
-import org.pointyware.painteddogs.core.ui.HomeScreen
-import org.pointyware.painteddogs.core.ui.HomeScreenState
+import org.pointyware.painteddogs.app.screens.HomeScreen
+import org.pointyware.painteddogs.app.screens.HomeScreenState
 import org.pointyware.painteddogs.core.ui.ProfileScreen
 import org.pointyware.painteddogs.core.ui.ProfileScreenState
 import org.pointyware.painteddogs.core.ui.SearchCollectionsScreen
