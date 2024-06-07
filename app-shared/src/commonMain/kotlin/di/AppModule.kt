@@ -1,6 +1,7 @@
 package org.pointyware.painteddogs.app.di
 
 import di.coreInteractorsModule
+import org.koin.core.component.KoinComponent
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import org.pointyware.painteddogs.core.data.di.coreDataModule
@@ -11,7 +12,7 @@ import org.pointyware.painteddogs.core.viewmodels.di.coreViewModelsModule
 import org.pointyware.painteddogs.feature.collections.core.di.featureFundsModule
 
 
-interface Dependencies {
+interface Dependencies: KoinComponent {
 
 }
 

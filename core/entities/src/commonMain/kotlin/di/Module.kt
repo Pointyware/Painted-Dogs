@@ -3,7 +3,7 @@ package org.pointyware.painteddogs.core.entities.di
 import org.koin.dsl.module
 
 /**
- * TODO: describe purpose/intent of Module
+ *
  */
 fun coreEntitiesModule() = module {
 //    single { DogRepository() }

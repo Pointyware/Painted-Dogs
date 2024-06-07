@@ -5,7 +5,7 @@ import org.koin.dsl.module
 /**
  *
  */
-val coreLocalModule = module {
+fun coreLocalModule() = module {
 //    single { DogDao() }
 //    single { DogRepository(get()) }
 //    single { DogInteractor(get()) }
