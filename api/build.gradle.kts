@@ -26,6 +26,11 @@ kotlin {
 
         implementation(libs.ktor.server.core)
         implementation(libs.ktor.server.netty)
+
+        implementation(libs.kotlinx.coroutines)
+
+        testImplementation(libs.kotlin.test)
+        testImplementation(libs.kotlinx.coroutinesTest)
     }
 }
 
