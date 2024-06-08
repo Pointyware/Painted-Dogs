@@ -29,17 +29,3 @@ class KoinAppDependencies: AppDependencies, KoinComponent {
         TODO("Not yet implemented")
     }
 }
-
-class KoinMockAppDependencies: AppDependencies, KoinComponent {
-    override fun provideProfileDependencies(): ProfileDependencies {
-        TODO("Not yet implemented")
-    }
-
-    override fun provideFundDependencies(): FundDependencies {
-        TODO("Not yet implemented")
-    }
-
-    override fun providePaymentDependencies(): PaymentDependencies {
-        TODO("Not yet implemented")
-    }
-}
