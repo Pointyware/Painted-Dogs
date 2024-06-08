@@ -11,18 +11,17 @@ import org.pointyware.painteddogs.feature.profiles.di.ProfileDependencies
  * Top level dependencies for the app
  */
 interface AppDependencies {
-    fun provideProfileDependencies(): ProfileDependencies
-    fun provideFundDependencies(): FundDependencies
-    fun providePaymentDependencies(): PaymentDependencies
-
+    fun getProfileDependencies(): ProfileDependencies
+    fun getFundDependencies(): FundDependencies
+    fun getPaymentDependencies(): PaymentDependencies
     fun getNavigationDependencies(): NavigationDependencies
 }
 
 fun getDependencies(): AppDependencies = KoinAppDependencies()
 
 class KoinAppDependencies: AppDependencies, KoinComponent {
-    override fun provideProfileDependencies(): ProfileDependencies = get()
-    override fun provideFundDependencies(): FundDependencies = get()
-    override fun providePaymentDependencies(): PaymentDependencies = get()
+    override fun getProfileDependencies(): ProfileDependencies = get()
+    override fun getFundDependencies(): FundDependencies = get()
+    override fun getPaymentDependencies(): PaymentDependencies = get()
     override fun getNavigationDependencies(): NavigationDependencies = get()
 }
