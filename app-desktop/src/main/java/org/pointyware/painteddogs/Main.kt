@@ -1,5 +1,6 @@
 package org.pointyware.painteddogs
 
+import androidx.compose.runtime.remember
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
@@ -16,7 +17,7 @@ fun main() = application {
         )
     }
 
-    val appDependencies = getDependencies()
+    val appDependencies = remember { getDependencies() }
 
     val state = rememberWindowState()
     Window(
