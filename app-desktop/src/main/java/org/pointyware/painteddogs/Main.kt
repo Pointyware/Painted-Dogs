@@ -3,7 +3,6 @@ package org.pointyware.painteddogs
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
-import kotlinx.coroutines.runBlocking
 import org.koin.core.context.startKoin
 import org.pointyware.painteddogs.app.PaintedDogsApp
 import org.pointyware.painteddogs.app.di.appModule
@@ -17,7 +16,7 @@ fun main() = application {
         )
     }
 
-    val appDependencies = runBlocking { getDependencies() }
+    val appDependencies = getDependencies()
 
     val state = rememberWindowState()
     Window(
@@ -26,6 +25,7 @@ fun main() = application {
         onCloseRequest = this::exitApplication
     ) {
         PaintedDogsApp(
+            dependencies = appDependencies,
             isDarkTheme = false // TODO: Create desktop implementation of theme
         )
     }

@@ -14,7 +14,7 @@ interface AppDependencies {
     fun providePaymentDependencies(): PaymentDependencies
 }
 
-suspend fun getDependencies(): AppDependencies = KoinAppDependencies()
+fun getDependencies(): AppDependencies = KoinAppDependencies()
 
 class KoinAppDependencies: AppDependencies, KoinComponent {
     override fun provideProfileDependencies(): ProfileDependencies {
