@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
 import org.pointyware.painteddogs.app.PaintedDogsApp
+import org.pointyware.painteddogs.app.di.getDependencies
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,6 +13,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             PaintedDogsApp(
+                dependencies = getDependencies(),
                 isDarkTheme = isSystemInDarkTheme()
             )
         }
