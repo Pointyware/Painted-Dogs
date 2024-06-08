@@ -15,3 +15,7 @@ fun coreLocalModule() = module {
 //    single { DogListViewModel(get()) }
 //    single { DogDetailViewModel(get()) }
 }
+
+fun dogDaoModule() = module {
+//    single { DogDao() }
+}

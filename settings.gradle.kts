@@ -42,7 +42,6 @@ include(":feature:events")
 include(":feature:groups")
 include(":feature:login")
 include(":feature:payments")
-include(":feature:payments:core")
 include(":feature:profiles")
 
 include(":api")

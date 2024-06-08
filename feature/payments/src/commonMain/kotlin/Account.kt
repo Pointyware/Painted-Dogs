@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.feature.payments.core
+package org.pointyware.painteddogs.feature.payments
 
 import org.pointyware.painteddogs.core.entities.Uuid
 
