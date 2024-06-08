@@ -1,40 +1,24 @@
 package org.pointyware.painteddogs.app.di
 
-import di.coreInteractorsModule
-import org.koin.core.component.KoinComponent
 import org.koin.core.module.Module
 import org.koin.dsl.module
-import org.pointyware.painteddogs.core.data.di.coreDataModule
+import org.pointyware.painteddogs.core.data.di.dataModule
 import org.pointyware.painteddogs.core.entities.di.coreEntitiesModule
+import org.pointyware.painteddogs.core.interactors.di.coreInteractorsModule
 import org.pointyware.painteddogs.core.local.di.coreLocalModule
 import org.pointyware.painteddogs.core.navigation.di.coreNavigationModule
 import org.pointyware.painteddogs.core.remote.di.coreRemoteModule
 import org.pointyware.painteddogs.core.ui.di.coreUiModule
 import org.pointyware.painteddogs.core.viewmodels.di.coreViewModelsModule
 import org.pointyware.painteddogs.feature.collections.core.di.featureFundsModule
+import org.pointyware.painteddogs.feature.payments.di.featurePaymentsModule
+import org.pointyware.painteddogs.feature.profiles.di.featureProfilesModule
 
-
-interface Dependencies: KoinComponent {
-
-}
-
-fun MockDependencies(): Dependencies = object : Dependencies {
-
-}
-
-/**
- * setup koin app-level module
- */
-suspend fun getDependencies(): Dependencies = PlatformDependencies()
-
-
-expect class PlatformDependencies(): Dependencies {
-
-}
 
 fun appModule(): Module = module {
     includes(
         coreModule(),
+        featureModule()
     )
 }
 
@@ -43,7 +27,7 @@ fun coreModule() = module {
         coreEntitiesModule(),
         coreInteractorsModule(),
         coreViewModelsModule(),
-        coreDataModule(),
+        dataModule(),
         coreLocalModule(),
         coreRemoteModule(),
         coreNavigationModule(),
@@ -53,6 +37,8 @@ fun coreModule() = module {
 
 fun featureModule() = module {
     includes(
-        featureFundsModule()
+        featureFundsModule(),
+        featureProfilesModule(),
+        featurePaymentsModule(),
     )
 }

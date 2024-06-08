@@ -1,4 +1,4 @@
-package di
+package org.pointyware.painteddogs.core.interactors.di
 
 import org.koin.dsl.module
 

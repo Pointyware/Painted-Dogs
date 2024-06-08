@@ -7,12 +7,12 @@ import org.koin.dsl.module
  */
 fun featureFundsModule() = module {
     includes(
-        featureInteractorsModule(),
+        featureFundsInteractorsModule(),
         featureFundsDataModule(),
-        featureLocalModule(),
-        featureRemoteModule(),
-        featureViewModelsModule(),
-        featureUiModule(),
+        featureFundsLocalModule(),
+        featureFundsRemoteModule(),
+        featureFundsViewModelsModule(),
+        featureFundsUiModule(),
     )
 }
 
@@ -20,7 +20,7 @@ fun featureFundsDataModule() = module {
     // single { CollectionRepositoryImpl(get(), get(), get(), get()) as CollectionRepository }
 }
 
-fun featureInteractorsModule() = module {
+fun featureFundsInteractorsModule() = module {
     // single { GetCollectionsUseCase(get()) }
     // single { GetCollectionUseCase(get()) }
     // single { CreateCollectionUseCase(get()) }
@@ -28,19 +28,19 @@ fun featureInteractorsModule() = module {
     // single { DeleteCollectionUseCase(get()) }
 }
 
-fun featureViewModelsModule() = module {
+fun featureFundsViewModelsModule() = module {
     // viewModel { CollectionsViewModel(get(), get(), get(), get(), get()) }
     // viewModel { CollectionViewModel(get(), get(), get(), get(), get()) }
 }
 
-fun featureLocalModule() = module {
+fun featureFundsLocalModule() = module {
     // single { LocalCollectionDataSource(get()) }
 }
 
-fun featureRemoteModule() = module {
+fun featureFundsRemoteModule() = module {
     // single { RemoteCollectionDataSource(get()) }
 }
 
-fun featureUiModule() = module {
+fun featureFundsUiModule() = module {
     // factory { CollectionAdapter() }
 }
