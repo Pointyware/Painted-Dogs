@@ -1,12 +1,17 @@
 package org.pointyware.painteddogs.feature.collections.core.di
 
 import org.koin.dsl.module
+import org.pointyware.painteddogs.core.navigation.di.coreNavigationModule
 
 /**
  * Production funds feature module.
  */
 fun featureFundsModule() = module {
+    single<FundDependencies> { KoinFundDependencies() }
+
     includes(
+        coreNavigationModule(),
+
         featureFundsInteractorsModule(),
         featureFundsDataModule(),
         featureFundsLocalModule(),

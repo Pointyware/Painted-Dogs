@@ -57,6 +57,7 @@ kotlin {
                 implementation(project(":core:local"))
                 implementation(project(":core:remote"))
                 implementation(project(":core:view-models"))
+                implementation(project(":core:navigation"))
                 implementation(project(":core:ui"))
 
                 implementation(libs.kotlinx.dateTime)
