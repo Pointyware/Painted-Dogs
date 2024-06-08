@@ -31,6 +31,7 @@ dependencies {
     implementation(project(":app-shared"))
 
     implementation(libs.kotlinx.dateTime)
+    implementation(libs.koin.core)
 
     implementation(compose.desktop.currentOs)
     implementation(compose.ui)
