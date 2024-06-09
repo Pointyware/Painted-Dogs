@@ -27,7 +27,7 @@ fun main() = application {
     ) {
         PaintedDogsApp(
             dependencies = appDependencies,
-            isDarkTheme = false // TODO: Create desktop implementation of theme
+            isDarkTheme = false
         )
     }
 }
