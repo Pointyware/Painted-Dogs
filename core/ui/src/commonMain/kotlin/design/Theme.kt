@@ -25,7 +25,7 @@ val SimpleDateFormatter = object : XPDateFormatter {
 val DateFormat = compositionLocalOf<XPDateFormatter> { throw IllegalStateException("DateFormat not provided") }
 
 /**
- *
+ * Extends the Material3 Theme with an [XPDateFormatter].
  */
 @Composable
 fun PaintedDogsTheme(
