@@ -12,6 +12,6 @@ fun coreNavigationModule() = module {
     single<NavigationDependencies> { KoinNavigationDependencies() }
 
     single<StackNavigationController<String?, Any>> {
-        StackNavigationControllerImpl(it.get())
+        StackNavigationControllerImpl(null)
     }
 }

@@ -13,5 +13,5 @@ interface NavigationDependencies {
 }
 
 class KoinNavigationDependencies: NavigationDependencies, KoinComponent {
-    override fun getNavController(): StackNavigationController<String?, Any> = get(parameters = { parametersOf(null)})
+    override fun getNavController(): StackNavigationController<String?, Any> = get()
 }
