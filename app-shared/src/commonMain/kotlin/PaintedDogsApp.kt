@@ -1,7 +1,18 @@
 package org.pointyware.painteddogs.app
 
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.resources.vectorResource
 import org.pointyware.painteddogs.app.di.AppDependencies
 import org.pointyware.painteddogs.app.screens.HomeScreen
 import org.pointyware.painteddogs.app.screens.HomeScreenState
@@ -9,10 +20,16 @@ import org.pointyware.painteddogs.core.navigation.LocationRoot
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import org.pointyware.painteddogs.feature.collections.core.navigation.fundsNavigation
 import org.pointyware.painteddogs.feature.profiles.profileNavigation
+import painted_dogs.app_shared.generated.resources.Res
+import painted_dogs.app_shared.generated.resources.app_name
+import painted_dogs.app_shared.generated.resources.funds
+import painted_dogs.app_shared.generated.resources.rides
+import painted_dogs.app_shared.generated.resources.social
 
 /**
  * The main entry point for the Painted Dogs app.
  */
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalResourceApi::class)
 @Composable
 fun PaintedDogsApp(
     dependencies: AppDependencies,
@@ -24,36 +41,64 @@ fun PaintedDogsApp(
     PaintedDogsTheme(
         isDark = isDarkTheme
     ) {
-        LocationRoot(
-            navController = navController,
+        Scaffold(
             modifier = modifier,
-        ) {
-            // user home screen; entry point
-            location(null) {
-                HomeScreen(
-                    state = HomeScreenState(),
-                    onCreateFund = { navController.navigateTo("collections/create") },
-                    onSearchFunds = { navController.navigateTo("collections/search") },
-                    onViewProfile = { navController.navigateTo("users/123/profile") },
-                    onFundSelected = { collectionId -> navController.navigateTo("collections/$collectionId") },
+            topBar = {
+                TopAppBar(
+//                    colors = TopAppBarColors()
+                    navigationIcon = { },
+                    title = { Text("Painted Dogs" /* stringResource(Res.string.app_name) */) },
+                    actions = { },
                 )
+            },
+            bottomBar = {
+                NavigationBar(
+//                    containerColor =
+//                    contentColor =
+                ) {
+                    IconButton(onClick = { navController.navigateTo("funds") }) {
+                        Icon(imageVector = vectorResource(Res.drawable.funds), contentDescription = "Funds")
+                    }
+                    IconButton(onClick = { navController.navigateTo("rides") }) {
+                        Icon(imageVector = vectorResource(Res.drawable.rides), contentDescription = "Rides")
+                    }
+                    IconButton(onClick = { navController.navigateTo("social") }) {
+                        Icon(imageVector = vectorResource(Res.drawable.social), contentDescription = "Social")
+                    }
+                }
             }
+        ) { paddingValues ->
+            LocationRoot(
+                navController = navController,
+                modifier = Modifier.padding(paddingValues),
+            ) {
+                // user home screen; entry point
+                location(null) {
+                    HomeScreen(
+                        state = HomeScreenState(),
+                        onCreateFund = { navController.navigateTo("funds/create") },
+                        onSearchFunds = { navController.navigateTo("funds/search") },
+                        onViewProfile = { navController.navigateTo("users/123/profile") },
+                        onFundSelected = { collectionId -> navController.navigateTo("funds/$collectionId") },
+                    )
+                }
 
-            profileNavigation(
-                navigationDependencies = dependencies.getNavigationDependencies(),
-                profileDependencies = dependencies.getProfileDependencies(),
-            )
+                profileNavigation(
+                    navigationDependencies = dependencies.getNavigationDependencies(),
+                    profileDependencies = dependencies.getProfileDependencies(),
+                )
 
-            fundsNavigation(
-                navigationDependencies = dependencies.getNavigationDependencies(),
-                fundDependencies = dependencies.getFundDependencies(),
-            )
-            // fundsNavigation: donations/funds
-            // ridesNavigation: ride shares
-            // businessNavigation: labor/business/reporting/negotiation/
-            // actionNavigation: strikes/petitions/etc.
-            // eventsNavigation: strikes?
-            // socialNavigation: petitions?
+                fundsNavigation(
+                    navigationDependencies = dependencies.getNavigationDependencies(),
+                    fundDependencies = dependencies.getFundDependencies(),
+                )
+                // fundsNavigation: donations/funds
+                // ridesNavigation: ride shares
+                // businessNavigation: labor/business/reporting/negotiation/
+                // actionNavigation: strikes/petitions/etc.
+                // eventsNavigation: strikes?
+                // socialNavigation: petitions?
+            }
         }
     }
 }
