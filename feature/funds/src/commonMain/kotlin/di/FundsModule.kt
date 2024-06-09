@@ -2,7 +2,6 @@ package org.pointyware.painteddogs.feature.collections.core.di
 
 import org.koin.dsl.module
 import org.pointyware.painteddogs.core.data.di.dataQualifier
-import org.pointyware.painteddogs.core.navigation.di.coreNavigationModule
 import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
 import org.pointyware.painteddogs.feature.collections.core.data.OfflineFirstCollectionRepository
 import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
@@ -23,8 +22,6 @@ fun featureFundsModule() = module {
     single<FundDependencies> { KoinFundDependencies() }
 
     includes(
-        coreNavigationModule(),
-
         featureFundsInteractorsModule(),
         featureFundsDataModule(),
         featureFundsLocalModule(),
