@@ -9,6 +9,8 @@ import org.pointyware.painteddogs.feature.collections.core.UiTest
 import org.pointyware.painteddogs.feature.collections.core.viewmodels.CollectionSearchUiState
 import org.pointyware.painteddogs.feature.collections.core.viewmodels.FundSearchViewModel
 import org.pointyware.painteddogs.feature.collections.core.viewmodels.test.TestFundSearchViewModelImpl
+import ui.FundSearchView
+import ui.FundSearchViewState
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test

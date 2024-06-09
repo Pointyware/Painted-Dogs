@@ -4,6 +4,8 @@ import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
 import org.pointyware.painteddogs.feature.collections.core.UxTest
+import ui.FundSearchView
+import ui.FundSearchViewState
 import kotlin.test.Test
 
 /**

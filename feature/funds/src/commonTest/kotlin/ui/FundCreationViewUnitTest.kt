@@ -28,6 +28,9 @@ import io.mockative.once
 import io.mockative.verify
 import kotlinx.datetime.Instant
 import org.pointyware.painteddogs.feature.collections.core.UiTest
+import org.pointyware.painteddogs.feature.collections.ui.FundCreationView
+import org.pointyware.painteddogs.feature.collections.ui.FundCreationViewState
+import org.pointyware.painteddogs.feature.collections.ui.rememberFundCreationViewState
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
