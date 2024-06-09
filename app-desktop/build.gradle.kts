@@ -37,6 +37,7 @@ dependencies {
     implementation(compose.ui)
     implementation(compose.preview)
     implementation(compose.material3)
+    implementation(compose.components.resources)
 }
 
 compose.desktop {
