@@ -43,6 +43,7 @@ include(":feature:groups")
 include(":feature:login")
 include(":feature:payments")
 include(":feature:profiles")
+include(":feature:rides")
 
 include(":api")
 include(":app-shared")
