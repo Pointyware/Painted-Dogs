@@ -10,6 +10,8 @@ import org.koin.core.context.startKoin
 import org.pointyware.painteddogs.app.PaintedDogsApp
 import org.pointyware.painteddogs.app.di.appModule
 import org.pointyware.painteddogs.app.di.getDependencies
+import painted_dogs.app_desktop.generated.resources.Res
+import painted_dogs.app_desktop.generated.resources.tray_icon
 
 @OptIn(ExperimentalResourceApi::class)
 fun main() = application {
@@ -34,7 +36,7 @@ fun main() = application {
         )
     }
 
-    val painter = painterResource(DrawableResource("Tray Icon.png"))
+    val painter = painterResource(Res.drawable.tray_icon)
     Tray(
         icon = painter,
         menu = {
