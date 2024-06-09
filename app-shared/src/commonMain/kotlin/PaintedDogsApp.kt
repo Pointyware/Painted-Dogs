@@ -24,7 +24,7 @@ fun PaintedDogsApp(
     PaintedDogsTheme(
         isDark = isDarkTheme
     ) {
-        LocationRoot( // TODO: rename to ScreenHost or something more meaningful
+        LocationRoot(
             navController = navController,
             modifier = modifier,
         ) {
