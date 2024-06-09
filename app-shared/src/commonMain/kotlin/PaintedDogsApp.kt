@@ -48,6 +48,12 @@ fun PaintedDogsApp(
                 navigationDependencies = dependencies.getNavigationDependencies(),
                 fundDependencies = dependencies.getFundDependencies(),
             )
+            // fundsNavigation: donations/funds
+            // ridesNavigation: ride shares
+            // businessNavigation: labor/business/reporting/negotiation/
+            // actionNavigation: strikes/petitions/etc.
+            // eventsNavigation: strikes?
+            // socialNavigation: petitions?
         }
     }
 }
