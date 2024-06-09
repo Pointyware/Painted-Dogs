@@ -30,7 +30,6 @@ val DateFormat = compositionLocalOf<XPDateFormatter> { throw IllegalStateExcepti
 @Composable
 fun PaintedDogsTheme(
     isDark: Boolean = false,
-    // TODO: pass locale to determine date format?
     content: @Composable ()->Unit,
 ) {
     CompositionLocalProvider(
