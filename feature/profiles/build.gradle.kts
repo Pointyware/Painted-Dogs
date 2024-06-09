@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.composeMultiplatform)
 }
 
 kotlin {
@@ -37,7 +38,16 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":core:entities"))
+                implementation(project(":core:navigation"))
+                implementation(project(":core:ui"))
+
+                implementation(project(":feature:funds"))
+
                 implementation(libs.koin.core)
+
+                implementation(compose.ui)
+                implementation(compose.material3)
             }
         }
         val commonTest by getting {

@@ -5,7 +5,6 @@ import org.koin.core.component.KoinComponent
 /**
  */
 interface ProfileDependencies {
-
 }
 
 class KoinProfileDependencies: ProfileDependencies, KoinComponent {

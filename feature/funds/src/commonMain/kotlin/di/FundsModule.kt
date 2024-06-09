@@ -2,6 +2,10 @@ package org.pointyware.painteddogs.feature.collections.core.di
 
 import org.koin.dsl.module
 import org.pointyware.painteddogs.core.navigation.di.coreNavigationModule
+import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
+import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCaseImpl
+import org.pointyware.painteddogs.feature.collections.core.interactors.SearchCollectionsUseCase
+import org.pointyware.painteddogs.feature.collections.core.interactors.SearchCollectionsUseCaseImpl
 
 /**
  * Production funds feature module.
@@ -26,16 +30,12 @@ fun featureFundsDataModule() = module {
 }
 
 fun featureFundsInteractorsModule() = module {
-    // single { GetCollectionsUseCase(get()) }
-    // single { GetCollectionUseCase(get()) }
-    // single { CreateCollectionUseCase(get()) }
-    // single { UpdateCollectionUseCase(get()) }
-    // single { DeleteCollectionUseCase(get()) }
+    factory<CreateDonationUseCase> { CreateDonationUseCaseImpl(get()) }
+    factory<SearchCollectionsUseCase> { SearchCollectionsUseCaseImpl(get()) }
 }
 
 fun featureFundsViewModelsModule() = module {
-    // viewModel { CollectionsViewModel(get(), get(), get(), get(), get()) }
-    // viewModel { CollectionViewModel(get(), get(), get(), get(), get()) }
+
 }
 
 fun featureFundsLocalModule() = module {

@@ -1,5 +1,6 @@
 package org.pointyware.painteddogs.feature.collections.core.navigation
 
+import androidx.compose.runtime.Composable
 import org.pointyware.painteddogs.core.navigation.LocationRootScope
 import org.pointyware.painteddogs.core.navigation.di.NavigationDependencies
 import org.pointyware.painteddogs.core.ui.ContributionDetailsScreen
@@ -19,6 +20,7 @@ import org.pointyware.painteddogs.feature.collections.core.di.FundDependencies
 /**
  *
  */
+@Composable
 fun LocationRootScope<String?>.fundsNavigation(
     navigationDependencies: NavigationDependencies,
     fundDependencies: FundDependencies,
@@ -34,15 +36,6 @@ fun LocationRootScope<String?>.fundsNavigation(
                 description = "A collection of things",
             ),
             onConfirm = { navController.navigateTo("collections/123/contribute") },
-        )
-    }
-    // a user can see all their current and past collections
-    location("users/\$id/collections") {
-        ContributionHistoryScreen(
-            state = ContributionHistoryScreenState(
-                contributions = emptyList()
-            ),
-            onViewFund = { fundId -> navController.navigateTo("collections/$fundId") },
         )
     }
     // a user needs to find a collection to contribute to
