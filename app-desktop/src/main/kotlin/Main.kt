@@ -34,7 +34,7 @@ fun main() = application {
         )
     }
 
-    val painter = painterResource(DrawableResource("icon.png"))
+    val painter = painterResource(DrawableResource("Tray Icon.png"))
     Tray(
         icon = painter,
         menu = {
