@@ -11,7 +11,6 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.resources.vectorResource
 import org.pointyware.painteddogs.app.di.AppDependencies
 import org.pointyware.painteddogs.app.screens.HomeScreen
@@ -21,7 +20,6 @@ import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import org.pointyware.painteddogs.feature.collections.core.navigation.fundsNavigation
 import org.pointyware.painteddogs.feature.profiles.profileNavigation
 import painted_dogs.app_shared.generated.resources.Res
-import painted_dogs.app_shared.generated.resources.app_name
 import painted_dogs.app_shared.generated.resources.funds
 import painted_dogs.app_shared.generated.resources.rides
 import painted_dogs.app_shared.generated.resources.social
