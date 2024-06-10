@@ -10,8 +10,6 @@ import org.koin.core.context.startKoin
 import org.pointyware.painteddogs.shared.PaintedDogsApp
 import org.pointyware.painteddogs.shared.di.appModule
 import org.pointyware.painteddogs.shared.di.getDependencies
-import org.pointyware.painteddogs.shared.social
-import org.pointyware.painteddogs.shared.Res as SharedRes
 
 fun main() = application {
 
@@ -35,9 +33,8 @@ fun main() = application {
         )
     }
 
-    val painter = painterResource(SharedRes.drawable.social)
     Tray(
-        icon = painter,
+        icon = painterResource(Res.drawable.tray_icon),
         menu = {
             Menu("File") {
             }
