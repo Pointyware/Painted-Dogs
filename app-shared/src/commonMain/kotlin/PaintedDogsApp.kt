@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.app
+package org.pointyware.painteddogs.shared
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -12,17 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.vectorResource
-import org.pointyware.painteddogs.app.di.AppDependencies
-import org.pointyware.painteddogs.app.screens.HomeScreen
-import org.pointyware.painteddogs.app.screens.HomeScreenState
 import org.pointyware.painteddogs.core.navigation.LocationRoot
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import org.pointyware.painteddogs.feature.collections.core.navigation.fundsNavigation
 import org.pointyware.painteddogs.feature.profiles.profileNavigation
-import painted_dogs.app_shared.generated.resources.Res
-import painted_dogs.app_shared.generated.resources.funds
-import painted_dogs.app_shared.generated.resources.rides
-import painted_dogs.app_shared.generated.resources.social
+import org.pointyware.painteddogs.shared.di.AppDependencies
+import org.pointyware.painteddogs.shared.screens.HomeScreen
+import org.pointyware.painteddogs.shared.screens.HomeScreenState
 
 /**
  * The main entry point for the Painted Dogs app.
@@ -48,6 +44,11 @@ fun PaintedDogsApp(
                     title = { Text("Painted Dogs" /* stringResource(Res.string.app_name) */) },
                     actions = { },
                 )
+            },
+            floatingActionButton = {
+                IconButton(onClick = { navController.navigateTo("funds/create") }) {
+                    Icon(imageVector = vectorResource(Res.drawable.funds), contentDescription = "Create Fund")
+                }
             },
             bottomBar = {
                 NavigationBar(

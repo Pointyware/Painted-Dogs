@@ -6,9 +6,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
+import painted_dogs.core.ads.generated.resources.Res
+import painted_dogs.core.ads.generated.resources.Test_Ad
 
 data class AdViewState(
     val adId: String,
@@ -33,7 +34,7 @@ fun AdView(
             state.adImageUrl
         }
         Image(
-            painter = painterResource(DrawableResource("Test-Ad.svg")),
+            painter = painterResource(Res.drawable.Test_Ad),
             contentDescription = "Ad",
             modifier = Modifier.clickable {
                 onClickUrl(state.adClickUrl)

@@ -1,19 +1,18 @@
+package org.pointyware.painteddogs.desktop
+
 import androidx.compose.runtime.remember
 import androidx.compose.ui.window.Tray
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
-import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.koin.core.context.startKoin
-import org.pointyware.painteddogs.app.PaintedDogsApp
-import org.pointyware.painteddogs.app.di.appModule
-import org.pointyware.painteddogs.app.di.getDependencies
-import painted_dogs.app_desktop.generated.resources.Res
-import painted_dogs.app_desktop.generated.resources.tray_icon
+import org.pointyware.painteddogs.shared.PaintedDogsApp
+import org.pointyware.painteddogs.shared.di.appModule
+import org.pointyware.painteddogs.shared.di.getDependencies
+import org.pointyware.painteddogs.shared.social
+import org.pointyware.painteddogs.shared.Res as SharedRes
 
-@OptIn(ExperimentalResourceApi::class)
 fun main() = application {
 
     startKoin {
@@ -36,7 +35,7 @@ fun main() = application {
         )
     }
 
-    val painter = painterResource(Res.drawable.tray_icon)
+    val painter = painterResource(SharedRes.drawable.social)
     Tray(
         icon = painter,
         menu = {

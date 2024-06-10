@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.app.di
+package org.pointyware.painteddogs.shared.di
 
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get

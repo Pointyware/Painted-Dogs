@@ -41,6 +41,12 @@ dependencies {
     implementation(compose.components.resources)
 }
 
+compose.resources {
+    publicResClass = true
+    packageOfResClass = "org.pointyware.painteddogs.desktop"
+    generateResClass = always
+}
+
 compose.desktop {
     application {
         mainClass = "org.pointyware.painteddogs.desktop.MainKt"

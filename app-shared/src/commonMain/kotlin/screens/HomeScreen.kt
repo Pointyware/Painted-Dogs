@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.app.screens
+package org.pointyware.painteddogs.shared.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn

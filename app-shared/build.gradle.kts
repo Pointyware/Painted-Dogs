@@ -84,9 +84,14 @@ kotlin {
         }
     }
 }
+compose.resources {
+    publicResClass = true
+    packageOfResClass = "org.pointyware.painteddogs.shared"
+    generateResClass = always
+}
 
 android {
-    namespace = "org.pointyware.painteddogs.app"
+    namespace = "org.pointyware.painteddogs.shared"
     compileSdk = 34
     defaultConfig {
         minSdk = 21
