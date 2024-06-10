@@ -1,5 +1,6 @@
 package org.pointyware.painteddogs.core.navigation
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -19,7 +20,9 @@ fun <K, V> LocationRoot(
     locationRootScope.content() // TODO: cache calculation of locations
 
     val currentLocation by navController.currentLocation.collectAsState()
-    locationRootScope.locations[currentLocation]?.invoke()
+    Box(modifier = modifier) {
+        locationRootScope.locations[currentLocation]?.invoke()
+    }
 }
 
 interface LocationRootScope<K> {
