@@ -10,7 +10,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.pointyware.painteddogs.core.navigation.LocationRoot
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
@@ -23,7 +22,7 @@ import org.pointyware.painteddogs.shared.screens.HomeScreenState
 /**
  * The main entry point for the Painted Dogs app.
  */
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalResourceApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PaintedDogsApp(
     dependencies: AppDependencies,
