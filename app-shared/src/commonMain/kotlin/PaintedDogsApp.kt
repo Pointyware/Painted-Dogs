@@ -11,7 +11,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.vectorResource
+import org.jetbrains.compose.resources.painterResource
 import org.pointyware.painteddogs.core.navigation.LocationRoot
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import org.pointyware.painteddogs.feature.collections.core.navigation.fundsNavigation
@@ -47,7 +47,7 @@ fun PaintedDogsApp(
             },
             floatingActionButton = {
                 IconButton(onClick = { navController.navigateTo("funds/create") }) {
-                    Icon(imageVector = vectorResource(Res.drawable.funds), contentDescription = "Create Fund")
+                    Icon(painter = painterResource(Res.drawable.funds), contentDescription = "Create Fund")
                 }
             },
             bottomBar = {
@@ -56,13 +56,13 @@ fun PaintedDogsApp(
 //                    contentColor =
                 ) {
                     IconButton(onClick = { navController.navigateTo("funds") }) {
-                        Icon(imageVector = vectorResource(Res.drawable.funds), contentDescription = "Funds")
+                        Icon(painter = painterResource(Res.drawable.funds), contentDescription = "Funds")
                     }
                     IconButton(onClick = { navController.navigateTo("rides") }) {
-                        Icon(imageVector = vectorResource(Res.drawable.rides), contentDescription = "Rides")
+                        Icon(painter = painterResource(Res.drawable.rides), contentDescription = "Rides")
                     }
                     IconButton(onClick = { navController.navigateTo("social") }) {
-                        Icon(imageVector = vectorResource(Res.drawable.social), contentDescription = "Social")
+                        Icon(painter = painterResource(Res.drawable.social), contentDescription = "Social")
                     }
                 }
             }
