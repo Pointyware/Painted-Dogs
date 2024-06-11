@@ -14,10 +14,9 @@ import org.jetbrains.compose.resources.painterResource
 import org.pointyware.painteddogs.core.navigation.LocationRoot
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import org.pointyware.painteddogs.feature.collections.core.navigation.fundsNavigation
-import org.pointyware.painteddogs.feature.profiles.profileNavigation
+import org.pointyware.painteddogs.feature.profiles.navigation.profileNavigation
 import org.pointyware.painteddogs.shared.di.AppDependencies
-import org.pointyware.painteddogs.shared.screens.HomeScreen
-import org.pointyware.painteddogs.shared.screens.HomeScreenState
+import org.pointyware.painteddogs.shared.navigation.homeRouting
 
 /**
  * The main entry point for the Painted Dogs app.
@@ -70,16 +69,7 @@ fun PaintedDogsApp(
                 navController = navController,
                 modifier = Modifier.padding(paddingValues),
             ) {
-                // user home screen; entry point
-                location(null) {
-                    HomeScreen(
-                        state = HomeScreenState(),
-                        onCreateFund = { navController.navigateTo("funds/create") },
-                        onSearchFunds = { navController.navigateTo("funds/search") },
-                        onViewProfile = { navController.navigateTo("users/123/profile") },
-                        onFundSelected = { collectionId -> navController.navigateTo("funds/$collectionId") },
-                    )
-                }
+                homeRouting(navController = navController)
 
                 profileNavigation(
                     navigationDependencies = dependencies.getNavigationDependencies(),
@@ -90,12 +80,6 @@ fun PaintedDogsApp(
                     navigationDependencies = dependencies.getNavigationDependencies(),
                     fundDependencies = dependencies.getFundDependencies(),
                 )
-                // fundsNavigation: donations/funds
-                // ridesNavigation: ride shares
-                // businessNavigation: labor/business/reporting/negotiation/
-                // actionNavigation: strikes/petitions/etc.
-                // eventsNavigation: strikes?
-                // socialNavigation: petitions?
             }
         }
     }
