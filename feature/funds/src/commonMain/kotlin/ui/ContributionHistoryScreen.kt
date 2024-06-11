@@ -1,12 +1,14 @@
-package org.pointyware.painteddogs.core.ui
+package org.pointyware.painteddogs.feature.collections.core.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import org.pointyware.painteddogs.core.ui.views.FundRow
 import org.pointyware.painteddogs.core.ui.views.FundRowState
+import org.pointyware.painteddogs.feature.collections.core.viewmodels.ContributionHistoryViewModel
 
 data class ContributionHistoryScreenState(
     val contributions: List<FundRowState>,
@@ -30,4 +32,17 @@ fun ContributionHistoryScreen(
             }
         }
     }
+}
+
+@Composable
+fun ContributionHistoryScreen(
+    viewModel: ContributionHistoryViewModel,
+    modifier: Modifier = Modifier,
+) {
+    val state = viewModel.state.collectAsState()
+    ContributionHistoryScreen(
+        state = ContributionHistoryMapper.map(state.value),
+        modifier = modifier,
+        onViewFund = viewModel::onViewFund
+    )
 }

@@ -5,8 +5,6 @@ import org.pointyware.painteddogs.core.navigation.LocationRootScope
 import org.pointyware.painteddogs.core.navigation.di.NavigationDependencies
 import org.pointyware.painteddogs.core.ui.ContributionDetailsScreen
 import org.pointyware.painteddogs.core.ui.ContributionDetailsScreenState
-import org.pointyware.painteddogs.core.ui.ContributionHistoryScreen
-import org.pointyware.painteddogs.core.ui.ContributionHistoryScreenState
 import org.pointyware.painteddogs.core.ui.ContributionInfoScreen
 import org.pointyware.painteddogs.core.ui.ContributionInfoScreenState
 import org.pointyware.painteddogs.core.ui.FundDetailsScreen
