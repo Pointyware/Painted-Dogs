@@ -18,3 +18,12 @@ data class DonationUiState(
     val title: String,
     val description: String,
 )
+
+class ContributionHistoryViewModelImpl(): ContributionHistoryViewModel {
+    override val state: StateFlow<DonationHistoryUiState>
+        get() = TODO("Not yet implemented")
+
+    override fun onViewFund(fundId: String) {
+        TODO("Not yet implemented")
+    }
+}
