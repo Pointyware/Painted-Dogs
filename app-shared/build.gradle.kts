@@ -39,6 +39,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":core:common"))
                 implementation(project(":core:ads"))
                 implementation(project(":core:analytics"))
                 implementation(project(":core:data"))
