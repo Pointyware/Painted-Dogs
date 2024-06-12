@@ -2,13 +2,14 @@ package org.pointyware.painteddogs.feature.profiles.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import org.koin.mp.KoinPlatform
+import androidx.compose.runtime.remember
+import org.koin.mp.KoinPlatform.getKoin
 import org.pointyware.painteddogs.core.navigation.LocationRootScope
 import org.pointyware.painteddogs.core.ui.ProfileScreen
 import org.pointyware.painteddogs.feature.collections.core.ui.ContributionHistoryScreen
 import org.pointyware.painteddogs.feature.collections.core.ui.ContributionHistoryScreenState
+import org.pointyware.painteddogs.feature.profiles.di.ProfileDependencies
 import org.pointyware.painteddogs.feature.profiles.ui.ProfileUiStateMapper
-import org.pointyware.painteddogs.feature.profiles.viewmodels.ProfileViewModel
 
 /**
  *
@@ -21,10 +22,12 @@ fun LocationRootScope<String?>.profileRouting(
     onViewContributions: () -> Unit,
     onViewFund: (fundId:String) -> Unit,
 ) {
+    val di = remember { getKoin() }
+    val profileDependencies = remember { di.get<ProfileDependencies>() }
 
     // a user needs to control how they appear to others
     location("users/\$id") {
-        val viewModel = KoinPlatform.getKoin().get<ProfileViewModel>()
+        val viewModel = remember { profileDependencies.getProfileViewModel() }
         val state = viewModel.state.collectAsState()
         ProfileScreen(
             state = ProfileUiStateMapper.map(state.value),
@@ -36,6 +39,8 @@ fun LocationRootScope<String?>.profileRouting(
     }
     // a user can see all their current and past collections
     location("users/\$id/funds") {
+        val viewModel = remember { profileDependencies.getContributionHistoryViewModel() }
+        val state = viewModel.state.collectAsState()
         ContributionHistoryScreen(
             state = ContributionHistoryScreenState(
                 contributions = emptyList()
