@@ -13,10 +13,12 @@ import org.pointyware.painteddogs.core.ui.SearchCollectionsScreenState
 import org.pointyware.painteddogs.core.ui.views.FundDetailsViewState
 
 /**
- * TODO: describe purpose/intent of FundsRouting
+ *
  */
 fun LocationRootScope<String?>.fundsRouting(
     onContribute: () -> Unit,
+    onConfirmFundDetails: () -> Unit,
+    onConfirmContributionDetails: () -> Unit,
 
 ) {
 
@@ -28,7 +30,7 @@ fun LocationRootScope<String?>.fundsRouting(
                 title = "My Collection",
                 description = "A collection of things",
             ),
-            onConfirm = { navController.navigateTo("collections/123/contribute") },
+            onConfirm = onConfirmFundDetails,
         )
     }
     // a user needs to find a collection to contribute to
@@ -56,7 +58,7 @@ fun LocationRootScope<String?>.fundsRouting(
                 title = "My Collection",
                 description = "A collection of things",
             ),
-            onConfirm = { navController.navigateTo("funds/123/contribute/confirm") },
+            onConfirm = onConfirmContributionDetails,
         )
     }
     // we need to show the user the details of their contribution after server confirmation

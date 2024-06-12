@@ -85,7 +85,9 @@ fun PaintedDogsApp(
                 )
 
                 fundsRouting(
-                    onContribute = { navController.navigateTo("funds/123/contribute") }
+                    onContribute = { navController.navigateTo("funds/123/contribute") },
+                    onConfirmFundDetails = { navController.navigateTo("collections/123/contribute") },
+                    onConfirmContributionDetails = { navController.navigateTo("funds/123/contribute/confirm") }
                 )
             }
         }
