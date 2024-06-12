@@ -27,7 +27,7 @@ kotlin {
         iosSimulatorArm64(),
     ).forEach {
         it.binaries.framework {
-            baseName = "core_ads"
+            baseName = "core_ads_client"
             isStatic = true
             framework.add(this)
         }
@@ -78,7 +78,7 @@ kotlin {
 }
 
 android {
-    namespace = "org.pointyware.painteddogs.core.ads"
+    namespace = "org.pointyware.painteddogs.core.ads.client"
     compileSdk = 34
     defaultConfig {
         minSdk = 21

@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.core.ads
+package org.pointyware.painteddogs.core.ads.client
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
