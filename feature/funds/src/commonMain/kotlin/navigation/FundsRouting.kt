@@ -1,8 +1,6 @@
 package org.pointyware.painteddogs.feature.collections.core.navigation
 
-import androidx.compose.runtime.Composable
 import org.pointyware.painteddogs.core.navigation.LocationRootScope
-import org.pointyware.painteddogs.core.navigation.di.NavigationDependencies
 import org.pointyware.painteddogs.core.ui.ContributionDetailsScreen
 import org.pointyware.painteddogs.core.ui.ContributionDetailsScreenState
 import org.pointyware.painteddogs.core.ui.ContributionInfoScreen
@@ -13,21 +11,18 @@ import org.pointyware.painteddogs.core.ui.FundInfoScreenState
 import org.pointyware.painteddogs.core.ui.SearchCollectionsScreen
 import org.pointyware.painteddogs.core.ui.SearchCollectionsScreenState
 import org.pointyware.painteddogs.core.ui.views.FundDetailsViewState
-import org.pointyware.painteddogs.feature.collections.core.di.FundDependencies
 
 /**
- *
+ * TODO: describe purpose/intent of FundsRouting
  */
-@Composable
-fun LocationRootScope<String?>.fundsNavigation(
-    navigationDependencies: NavigationDependencies,
-    fundDependencies: FundDependencies,
-) {
+fun LocationRootScope<String?>.fundsRouting(
+    onContribute: () -> Unit,
 
-    val navController = navigationDependencies.getNavController()
+) {
 
     // we need to make a collection before anyone can contribute
     location("funds/create") {
+
         FundDetailsScreen(
             state = FundDetailsViewState(
                 title = "My Collection",
@@ -50,7 +45,7 @@ fun LocationRootScope<String?>.fundsNavigation(
             state = FundInfoScreenState(
                 title = "My Collection",
             ),
-            onContribute = { navController.navigateTo("funds/123/contribute") },
+            onContribute = onContribute,
         )
     }
     // a user needs to determine how much they want to contribute

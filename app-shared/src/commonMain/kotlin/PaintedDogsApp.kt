@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.painterResource
 import org.pointyware.painteddogs.core.navigation.LocationRoot
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
-import org.pointyware.painteddogs.feature.collections.core.navigation.fundsNavigation
+import org.pointyware.painteddogs.feature.collections.core.navigation.fundsRouting
 import org.pointyware.painteddogs.feature.profiles.navigation.profileRouting
 import org.pointyware.painteddogs.shared.di.AppDependencies
 import org.pointyware.painteddogs.shared.navigation.homeRouting
@@ -84,9 +84,8 @@ fun PaintedDogsApp(
                     onViewFund = { fundId -> navController.navigateTo("funds/$fundId") },
                 )
 
-                fundsNavigation(
-                    navigationDependencies = dependencies.getNavigationDependencies(),
-                    fundDependencies = dependencies.getFundDependencies(),
+                fundsRouting(
+                    onContribute = { navController.navigateTo("funds/123/contribute") }
                 )
             }
         }
