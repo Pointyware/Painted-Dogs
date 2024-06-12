@@ -14,7 +14,7 @@ import org.jetbrains.compose.resources.painterResource
 import org.pointyware.painteddogs.core.navigation.LocationRoot
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import org.pointyware.painteddogs.feature.collections.core.navigation.fundsNavigation
-import org.pointyware.painteddogs.feature.profiles.navigation.profileNavigation
+import org.pointyware.painteddogs.feature.profiles.navigation.profileRouting
 import org.pointyware.painteddogs.shared.di.AppDependencies
 import org.pointyware.painteddogs.shared.navigation.homeRouting
 
@@ -76,9 +76,12 @@ fun PaintedDogsApp(
                     onFundSelected = { collectionId -> navController.navigateTo("funds/$collectionId") },
                 )
 
-                profileNavigation(
-                    navigationDependencies = dependencies.getNavigationDependencies(),
-                    profileDependencies = dependencies.getProfileDependencies(),
+                profileRouting(
+                    onEditProfile = { navController.navigateTo("users/123/edit") },
+                    onLogout = ::logout,
+                    onViewCollections = { navController.navigateTo("users/123/funds") },
+                    onViewContributions = { navController.navigateTo("users/123/contribs") },
+                    onViewFund = { fundId -> navController.navigateTo("funds/$fundId") },
                 )
 
                 fundsNavigation(
@@ -88,4 +91,9 @@ fun PaintedDogsApp(
             }
         }
     }
+}
+
+fun logout() {
+    println("Logging out")
+    println("Logged out")
 }
