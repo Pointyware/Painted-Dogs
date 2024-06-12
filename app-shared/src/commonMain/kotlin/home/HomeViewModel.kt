@@ -12,3 +12,8 @@ interface HomeViewModel {
 class HomeUiState {
 
 }
+
+class HomeViewModelImpl: HomeViewModel {
+    override val state: StateFlow<HomeUiState>
+        get() = TODO("Not yet implemented")
+}
