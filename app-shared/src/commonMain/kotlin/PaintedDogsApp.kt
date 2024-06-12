@@ -69,7 +69,12 @@ fun PaintedDogsApp(
                 navController = navController,
                 modifier = Modifier.padding(paddingValues),
             ) {
-                homeRouting(navController = navController)
+                homeRouting(
+                    onCreateFund = { navController.navigateTo("funds/create") },
+                    onSearchFunds = { navController.navigateTo("funds/search") },
+                    onViewProfile = { navController.navigateTo("users/123/profile") },
+                    onFundSelected = { collectionId -> navController.navigateTo("funds/$collectionId") },
+                )
 
                 profileNavigation(
                     navigationDependencies = dependencies.getNavigationDependencies(),

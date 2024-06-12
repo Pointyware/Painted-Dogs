@@ -1,21 +1,36 @@
 package org.pointyware.painteddogs.shared.navigation
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import org.koin.mp.KoinPlatform.getKoin
 import org.pointyware.painteddogs.core.navigation.LocationRootScope
-import org.pointyware.painteddogs.core.navigation.StackNavigationController
+import org.pointyware.painteddogs.shared.home.HomeUiStateMapper
+import org.pointyware.painteddogs.shared.home.HomeViewModel
 import org.pointyware.painteddogs.shared.screens.HomeScreen
-import org.pointyware.painteddogs.shared.screens.HomeScreenState
 
 /**
- * TODO: describe purpose/intent of HomeRouting
+ * Sets up all routes for home navigation.
  */
-fun LocationRootScope<String?>.homeRouting(navController: StackNavigationController<String?, Any>) {
+@Composable
+fun LocationRootScope<String?>.homeRouting(
+    onCreateFund: () -> Unit,
+    onSearchFunds: () -> Unit,
+    onViewProfile: () -> Unit,
+    onFundSelected: (String) -> Unit,
+) {
+    val koin = getKoin()
+    val homeViewModel = koin.get<HomeViewModel>()
+    val mapper = koin.get<HomeUiStateMapper>()
+
+    val state = homeViewModel.state.collectAsState()
+
     location(null) {
         HomeScreen(
-            state = HomeScreenState(),
-            onCreateFund = { navController.navigateTo("funds/create") },
-            onSearchFunds = { navController.navigateTo("funds/search") },
-            onViewProfile = { navController.navigateTo("users/123/profile") },
-            onFundSelected = { collectionId -> navController.navigateTo("funds/$collectionId") },
+            state = mapper.map(state.value),
+            onCreateFund = onCreateFund,
+            onSearchFunds = onSearchFunds,
+            onViewProfile = onViewProfile,
+            onFundSelected = onFundSelected,
         )
     }
 }
