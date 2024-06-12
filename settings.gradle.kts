@@ -19,7 +19,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "painted-dogs"
 include(":assertions")
-include(":core")
 include(":core:ads")
 include(":core:ads:client")
 include(":core:ads:server")
@@ -35,7 +34,6 @@ include(":core:remote")
 include(":core:ui")
 include(":core:view-models")
 
-include(":feature")
 include(":feature:chat")
 include(":feature:funds")
 include(":feature:events")
