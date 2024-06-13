@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.feature.collections.core
+package org.pointyware.painteddogs.feature.funds
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme

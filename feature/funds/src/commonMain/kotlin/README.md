@@ -1,4 +1,4 @@
-# Package org.pointyware.painteddogs.feature.collections
+# Package org.pointyware.painteddogs.feature.funds
 
 ## Expected Flow
 1. User A (Adam) creates a fund

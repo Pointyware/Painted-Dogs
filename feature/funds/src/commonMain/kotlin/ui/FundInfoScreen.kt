@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.feature.collections.core
+package org.pointyware.painteddogs.feature.collections.core.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
@@ -12,7 +12,6 @@ data class FundInfoScreenState(
 
 /**
  *
- * TODO: replace/move to :feature:collections module; rename FundInfoScreen
  */
 @Composable
 fun FundInfoScreen(

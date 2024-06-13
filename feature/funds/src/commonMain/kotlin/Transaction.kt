@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.feature.collections.core
+package org.pointyware.painteddogs.feature.funds
 
 import kotlinx.datetime.DateTimePeriod
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
