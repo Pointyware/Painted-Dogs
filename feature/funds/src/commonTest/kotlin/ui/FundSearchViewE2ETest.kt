@@ -1,14 +1,14 @@
-package org.pointyware.painteddogs.feature.collections.core.ui
+package org.pointyware.painteddogs.feature.funds.ui
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.runComposeUiTest
 import io.mockative.Mock
 import org.pointyware.painteddogs.core.viewmodels.SimpleTestViewModelImpl
-import org.pointyware.painteddogs.feature.collections.core.EndToEndTest
-import org.pointyware.painteddogs.feature.collections.core.UiTest
-import org.pointyware.painteddogs.feature.collections.core.viewmodels.CollectionSearchUiState
-import org.pointyware.painteddogs.feature.collections.core.viewmodels.FundSearchViewModel
-import org.pointyware.painteddogs.feature.collections.core.viewmodels.test.TestFundSearchViewModelImpl
+import org.pointyware.painteddogs.feature.funds.EndToEndTest
+import org.pointyware.painteddogs.feature.funds.UiTest
+import org.pointyware.painteddogs.feature.funds.viewmodels.CollectionSearchUiState
+import org.pointyware.painteddogs.feature.funds.viewmodels.FundSearchViewModel
+import org.pointyware.painteddogs.feature.funds.viewmodels.test.TestFundSearchViewModelImpl
 import ui.FundSearchView
 import ui.FundSearchViewState
 import kotlin.test.AfterTest

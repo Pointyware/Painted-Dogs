@@ -3,7 +3,7 @@ package org.pointyware.painteddogs.shared.di
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import org.pointyware.painteddogs.core.navigation.di.NavigationDependencies
-import org.pointyware.painteddogs.feature.collections.core.di.FundDependencies
+import org.pointyware.painteddogs.feature.funds.di.FundDependencies
 import org.pointyware.painteddogs.feature.payments.di.PaymentDependencies
 import org.pointyware.painteddogs.feature.profiles.di.ProfileDependencies
 

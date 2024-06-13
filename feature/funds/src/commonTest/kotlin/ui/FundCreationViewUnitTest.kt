@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.feature.collections.core.ui
+package org.pointyware.painteddogs.feature.funds.ui
 
 import androidx.compose.ui.test.ComposeUiTest
 import androidx.compose.ui.test.ExperimentalTestApi
@@ -27,7 +27,7 @@ import io.mockative.mock
 import io.mockative.once
 import io.mockative.verify
 import kotlinx.datetime.Instant
-import org.pointyware.painteddogs.feature.collections.core.UiTest
+import org.pointyware.painteddogs.feature.funds.UiTest
 import org.pointyware.painteddogs.feature.collections.ui.FundCreationView
 import org.pointyware.painteddogs.feature.collections.ui.FundCreationViewState
 import org.pointyware.painteddogs.feature.collections.ui.rememberFundCreationViewState

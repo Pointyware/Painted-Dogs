@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.feature.collections.core.viewmodels
+package org.pointyware.painteddogs.feature.funds.viewmodels
 
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 

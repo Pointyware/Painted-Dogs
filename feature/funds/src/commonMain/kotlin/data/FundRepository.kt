@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.feature.collections.core.data
+package org.pointyware.painteddogs.feature.funds.data
 
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund

@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.painterResource
 import org.pointyware.painteddogs.core.navigation.LocationRoot
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
-import org.pointyware.painteddogs.feature.collections.core.navigation.fundsRouting
+import org.pointyware.painteddogs.feature.funds.navigation.fundsRouting
 import org.pointyware.painteddogs.feature.profiles.navigation.profileRouting
 import org.pointyware.painteddogs.shared.di.AppDependencies
 import org.pointyware.painteddogs.shared.navigation.homeRouting

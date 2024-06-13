@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.feature.collections.core.local
+package org.pointyware.painteddogs.feature.funds.local
 
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.Uuid

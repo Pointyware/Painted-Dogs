@@ -1,10 +1,10 @@
-package org.pointyware.painteddogs.feature.collections.core.interactors
+package org.pointyware.painteddogs.feature.funds.interactors
 
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.NumberArgumentException
 import org.pointyware.painteddogs.core.entities.StringArgumentException
-import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
+import org.pointyware.painteddogs.feature.funds.data.FundRepository
 import kotlin.coroutines.cancellation.CancellationException
 
 interface CreateDonationUseCase {

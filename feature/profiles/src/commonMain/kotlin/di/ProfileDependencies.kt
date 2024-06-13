@@ -2,7 +2,7 @@ package org.pointyware.painteddogs.feature.profiles.di
 
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
-import org.pointyware.painteddogs.feature.collections.core.viewmodels.ContributionHistoryViewModel
+import org.pointyware.painteddogs.feature.funds.viewmodels.ContributionHistoryViewModel
 import org.pointyware.painteddogs.feature.profiles.viewmodels.ProfileViewModel
 
 /**

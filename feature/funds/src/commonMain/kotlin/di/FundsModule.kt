@@ -1,19 +1,19 @@
-package org.pointyware.painteddogs.feature.collections.core.di
+package org.pointyware.painteddogs.feature.funds.di
 
 import org.koin.dsl.module
 import org.pointyware.painteddogs.core.data.di.dataQualifier
-import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
-import org.pointyware.painteddogs.feature.collections.core.data.OfflineFirstCollectionRepository
-import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
-import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCaseImpl
-import org.pointyware.painteddogs.feature.collections.core.interactors.SearchCollectionsUseCase
-import org.pointyware.painteddogs.feature.collections.core.interactors.SearchCollectionsUseCaseImpl
-import org.pointyware.painteddogs.feature.collections.core.local.CollectionCache
-import org.pointyware.painteddogs.feature.collections.core.local.InMemoryCollectionCache
-import org.pointyware.painteddogs.feature.collections.core.remote.CollectionApi
-import org.pointyware.painteddogs.feature.collections.core.remote.TestCollectionApi
-import org.pointyware.painteddogs.feature.collections.core.viewmodels.FundSearchViewModel
-import org.pointyware.painteddogs.feature.collections.core.viewmodels.FundSearchViewModelImpl
+import org.pointyware.painteddogs.feature.funds.data.FundRepository
+import org.pointyware.painteddogs.feature.funds.data.OfflineFirstCollectionRepository
+import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCase
+import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCaseImpl
+import org.pointyware.painteddogs.feature.funds.interactors.SearchCollectionsUseCase
+import org.pointyware.painteddogs.feature.funds.interactors.SearchCollectionsUseCaseImpl
+import org.pointyware.painteddogs.feature.funds.local.CollectionCache
+import org.pointyware.painteddogs.feature.funds.local.InMemoryCollectionCache
+import org.pointyware.painteddogs.feature.funds.remote.CollectionApi
+import org.pointyware.painteddogs.feature.funds.remote.TestCollectionApi
+import org.pointyware.painteddogs.feature.funds.viewmodels.FundSearchViewModel
+import org.pointyware.painteddogs.feature.funds.viewmodels.FundSearchViewModelImpl
 
 /**
  * Production funds feature module.

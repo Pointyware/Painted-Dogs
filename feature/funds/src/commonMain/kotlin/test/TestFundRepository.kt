@@ -1,9 +1,9 @@
-package org.pointyware.painteddogs.feature.collections.core.test
+package org.pointyware.painteddogs.feature.funds.test
 
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.Uuid
-import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
+import org.pointyware.painteddogs.feature.funds.data.FundRepository
 
 /**
  * Defines test extensions for the [FundRepository] interface.

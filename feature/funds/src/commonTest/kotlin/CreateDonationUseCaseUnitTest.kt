@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.feature.collections.core
+package org.pointyware.painteddogs.feature.funds
 
 import kotlinx.coroutines.runBlocking
 import org.pointyware.painteddogs.assertions.assert
@@ -7,10 +7,10 @@ import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.core.entities.usDollars
-import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
-import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
-import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCaseImpl
-import org.pointyware.painteddogs.feature.collections.core.test.TestFundRepositoryImpl
+import org.pointyware.painteddogs.feature.funds.data.FundRepository
+import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCase
+import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCaseImpl
+import org.pointyware.painteddogs.feature.funds.test.TestFundRepositoryImpl
 import kotlin.jvm.JvmField
 import kotlin.test.BeforeTest
 

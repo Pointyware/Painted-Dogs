@@ -1,6 +1,6 @@
-package org.pointyware.painteddogs.feature.collections.core.ui
+package org.pointyware.painteddogs.feature.funds.ui
 
-import org.pointyware.painteddogs.feature.collections.core.viewmodels.DonationHistoryUiState
+import org.pointyware.painteddogs.feature.funds.viewmodels.DonationHistoryUiState
 
 /**
  *

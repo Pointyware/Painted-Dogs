@@ -1,11 +1,11 @@
-package org.pointyware.painteddogs.feature.collections.core.viewmodels
+package org.pointyware.painteddogs.feature.funds.viewmodels
 
 import kotlinx.coroutines.test.runTest
 import org.pointyware.painteddogs.assertions.assert
 import org.pointyware.painteddogs.assertions.assume
 import org.pointyware.painteddogs.assertions.runTestWith
-import org.pointyware.painteddogs.feature.collections.core.interactors.SearchCollectionsUseCaseImpl
-import org.pointyware.painteddogs.feature.collections.core.test.TestFundRepositoryImpl
+import org.pointyware.painteddogs.feature.funds.interactors.SearchCollectionsUseCaseImpl
+import org.pointyware.painteddogs.feature.funds.test.TestFundRepositoryImpl
 import kotlin.test.Test
 
 

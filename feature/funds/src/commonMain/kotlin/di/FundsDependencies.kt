@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.feature.collections.core.di
+package org.pointyware.painteddogs.feature.funds.di
 
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get

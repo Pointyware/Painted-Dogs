@@ -10,7 +10,7 @@ import org.pointyware.painteddogs.core.navigation.di.coreNavigationModule
 import org.pointyware.painteddogs.core.remote.di.coreRemoteModule
 import org.pointyware.painteddogs.core.ui.di.coreUiModule
 import org.pointyware.painteddogs.core.viewmodels.di.coreViewModelsModule
-import org.pointyware.painteddogs.feature.collections.core.di.featureFundsModule
+import org.pointyware.painteddogs.feature.funds.di.featureFundsModule
 import org.pointyware.painteddogs.feature.payments.di.featurePaymentsModule
 import org.pointyware.painteddogs.feature.profiles.di.featureProfilesModule
 

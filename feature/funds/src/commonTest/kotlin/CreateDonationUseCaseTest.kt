@@ -1,14 +1,14 @@
-package org.pointyware.painteddogs.feature.collections.core
+package org.pointyware.painteddogs.feature.funds
 
 import kotlinx.coroutines.test.runTest
 import org.pointyware.painteddogs.assertions.assert
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.StringArgumentException
 import org.pointyware.painteddogs.core.entities.usDollars
-import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
-import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCaseImpl
-import org.pointyware.painteddogs.feature.collections.core.test.TestFundRepository
-import org.pointyware.painteddogs.feature.collections.core.test.TestFundRepositoryImpl
+import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCase
+import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCaseImpl
+import org.pointyware.painteddogs.feature.funds.test.TestFundRepository
+import org.pointyware.painteddogs.feature.funds.test.TestFundRepositoryImpl
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertTrue

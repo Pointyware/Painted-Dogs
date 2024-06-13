@@ -17,7 +17,7 @@
  * | Appearance | Ui | Ux | End-to-End |
  *
  */
-package org.pointyware.painteddogs.feature.collections.core
+package org.pointyware.painteddogs.feature.funds
 
 
 /**

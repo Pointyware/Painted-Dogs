@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.feature.collections.core.ui
+package org.pointyware.painteddogs.feature.funds.ui
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.onNodeWithText
@@ -19,7 +19,7 @@ import kotlinx.datetime.UtcOffset
 import kotlinx.datetime.toInstant
 import org.pointyware.painteddogs.core.ui.components.DateSelectorRow
 import org.pointyware.painteddogs.core.ui.components.DateSelectorRowState
-import org.pointyware.painteddogs.feature.collections.core.UiTest
+import org.pointyware.painteddogs.feature.funds.UiTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 

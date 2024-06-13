@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.feature.collections.core.ui
+package org.pointyware.painteddogs.feature.funds.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row

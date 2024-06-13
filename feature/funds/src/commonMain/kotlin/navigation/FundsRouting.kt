@@ -1,12 +1,12 @@
 package org.pointyware.painteddogs.feature.funds.navigation
 
 import org.pointyware.painteddogs.core.navigation.LocationRootScope
-import org.pointyware.painteddogs.feature.collections.core.ui.FundDetailsScreen
-import org.pointyware.painteddogs.feature.collections.core.ui.FundDetailsViewState
-import org.pointyware.painteddogs.feature.collections.core.ui.FundInfoScreen
-import org.pointyware.painteddogs.feature.collections.core.ui.FundInfoScreenState
-import org.pointyware.painteddogs.feature.collections.core.ui.SearchCollectionsScreen
-import org.pointyware.painteddogs.feature.collections.core.ui.SearchCollectionsScreenState
+import org.pointyware.painteddogs.feature.funds.ui.FundDetailsScreen
+import org.pointyware.painteddogs.feature.funds.ui.FundDetailsViewState
+import org.pointyware.painteddogs.feature.funds.ui.FundInfoScreen
+import org.pointyware.painteddogs.feature.funds.ui.FundInfoScreenState
+import org.pointyware.painteddogs.feature.funds.ui.SearchCollectionsScreen
+import org.pointyware.painteddogs.feature.funds.ui.SearchCollectionsScreenState
 import org.pointyware.painteddogs.feature.funds.ContributionDetailsScreen
 import org.pointyware.painteddogs.feature.funds.ContributionDetailsScreenState
 import org.pointyware.painteddogs.feature.funds.ContributionInfoScreen

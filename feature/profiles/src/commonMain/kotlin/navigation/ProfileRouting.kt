@@ -6,8 +6,8 @@ import androidx.compose.runtime.remember
 import org.koin.mp.KoinPlatform.getKoin
 import org.pointyware.painteddogs.core.navigation.LocationRootScope
 import org.pointyware.painteddogs.feature.profiles.ProfileScreen
-import org.pointyware.painteddogs.feature.collections.core.ui.ContributionHistoryScreen
-import org.pointyware.painteddogs.feature.collections.core.ui.ContributionHistoryScreenState
+import org.pointyware.painteddogs.feature.funds.ui.ContributionHistoryScreen
+import org.pointyware.painteddogs.feature.funds.ui.ContributionHistoryScreenState
 import org.pointyware.painteddogs.feature.profiles.di.ProfileDependencies
 import org.pointyware.painteddogs.feature.profiles.ui.ProfileUiStateMapper
 

@@ -1,10 +1,10 @@
-package org.pointyware.painteddogs.feature.collections.core.viewmodels.test
+package org.pointyware.painteddogs.feature.funds.viewmodels.test
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import org.pointyware.painteddogs.core.viewmodels.SimpleTestViewModel
-import org.pointyware.painteddogs.feature.collections.core.viewmodels.CollectionSearchUiState
-import org.pointyware.painteddogs.feature.collections.core.viewmodels.FundSearchViewModel
+import org.pointyware.painteddogs.feature.funds.viewmodels.CollectionSearchUiState
+import org.pointyware.painteddogs.feature.funds.viewmodels.FundSearchViewModel
 
 
 sealed interface SearchEvent {

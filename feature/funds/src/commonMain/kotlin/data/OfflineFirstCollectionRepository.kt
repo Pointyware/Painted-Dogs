@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.feature.collections.core.data
+package org.pointyware.painteddogs.feature.funds.data
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -8,8 +8,8 @@ import kotlinx.coroutines.launch
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.Uuid
-import org.pointyware.painteddogs.feature.collections.core.local.CollectionCache
-import org.pointyware.painteddogs.feature.collections.core.remote.CollectionApi
+import org.pointyware.painteddogs.feature.funds.local.CollectionCache
+import org.pointyware.painteddogs.feature.funds.remote.CollectionApi
 
 /**
  */

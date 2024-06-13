@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.feature.collections.core
+package org.pointyware.painteddogs.feature.funds
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -7,14 +7,14 @@ import kotlinx.coroutines.test.runTest
 import org.pointyware.painteddogs.assertions.assert
 import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.core.entities.usDollars
-import org.pointyware.painteddogs.feature.collections.core.data.FundRepository
-import org.pointyware.painteddogs.feature.collections.core.data.OfflineFirstCollectionRepository
-import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCase
-import org.pointyware.painteddogs.feature.collections.core.interactors.CreateDonationUseCaseImpl
-import org.pointyware.painteddogs.feature.collections.core.local.CollectionCache
-import org.pointyware.painteddogs.feature.collections.core.local.InMemoryCollectionCache
-import org.pointyware.painteddogs.feature.collections.core.remote.CollectionApi
-import org.pointyware.painteddogs.feature.collections.core.remote.TestCollectionApi
+import org.pointyware.painteddogs.feature.funds.data.FundRepository
+import org.pointyware.painteddogs.feature.funds.data.OfflineFirstCollectionRepository
+import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCase
+import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCaseImpl
+import org.pointyware.painteddogs.feature.funds.local.CollectionCache
+import org.pointyware.painteddogs.feature.funds.local.InMemoryCollectionCache
+import org.pointyware.painteddogs.feature.funds.remote.CollectionApi
+import org.pointyware.painteddogs.feature.funds.remote.TestCollectionApi
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 

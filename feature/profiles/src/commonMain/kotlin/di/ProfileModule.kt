@@ -1,8 +1,8 @@
 package org.pointyware.painteddogs.feature.profiles.di
 
 import org.koin.dsl.module
-import org.pointyware.painteddogs.feature.collections.core.viewmodels.ContributionHistoryViewModel
-import org.pointyware.painteddogs.feature.collections.core.viewmodels.ContributionHistoryViewModelImpl
+import org.pointyware.painteddogs.feature.funds.viewmodels.ContributionHistoryViewModel
+import org.pointyware.painteddogs.feature.funds.viewmodels.ContributionHistoryViewModelImpl
 import org.pointyware.painteddogs.feature.profiles.viewmodels.ProfileViewModel
 import org.pointyware.painteddogs.feature.profiles.viewmodels.ProfileViewModelImpl
 

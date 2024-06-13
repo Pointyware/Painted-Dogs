@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.feature.collections.core.remote
+package org.pointyware.painteddogs.feature.funds.remote
 
 import kotlinx.coroutines.delay
 import org.pointyware.painteddogs.core.entities.CurrencyAmount

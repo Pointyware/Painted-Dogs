@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.feature.collections.core.viewmodels
+package org.pointyware.painteddogs.feature.funds.viewmodels
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.pointyware.painteddogs.core.entities.usDollars
-import org.pointyware.painteddogs.feature.collections.core.interactors.SearchCollectionsUseCase
+import org.pointyware.painteddogs.feature.funds.interactors.SearchCollectionsUseCase
 
 /**
  * ViewModel for searching donations/collections.

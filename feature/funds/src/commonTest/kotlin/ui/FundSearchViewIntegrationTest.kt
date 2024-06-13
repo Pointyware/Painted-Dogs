@@ -1,9 +1,9 @@
-package org.pointyware.painteddogs.feature.collections.core.ui
+package org.pointyware.painteddogs.feature.funds.ui
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
-import org.pointyware.painteddogs.feature.collections.core.UxTest
+import org.pointyware.painteddogs.feature.funds.UxTest
 import ui.FundSearchView
 import ui.FundSearchViewState
 import kotlin.test.Test
