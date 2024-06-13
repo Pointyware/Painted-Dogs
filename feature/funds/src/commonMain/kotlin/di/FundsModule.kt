@@ -12,6 +12,8 @@ import org.pointyware.painteddogs.feature.funds.local.CollectionCache
 import org.pointyware.painteddogs.feature.funds.local.InMemoryCollectionCache
 import org.pointyware.painteddogs.feature.funds.remote.CollectionApi
 import org.pointyware.painteddogs.feature.funds.remote.TestCollectionApi
+import org.pointyware.painteddogs.feature.funds.viewmodels.FundDetailsViewModel
+import org.pointyware.painteddogs.feature.funds.viewmodels.FundDetailsViewModelImpl
 import org.pointyware.painteddogs.feature.funds.viewmodels.FundSearchViewModel
 import org.pointyware.painteddogs.feature.funds.viewmodels.FundSearchViewModelImpl
 
@@ -41,7 +43,8 @@ fun featureFundsInteractorsModule() = module {
 }
 
 fun featureFundsViewModelsModule() = module {
-    single<FundSearchViewModel> { FundSearchViewModelImpl(get()) }
+    factory<FundSearchViewModel> { FundSearchViewModelImpl(get()) }
+    factory<FundDetailsViewModel> { FundDetailsViewModelImpl() }
 }
 
 fun featureFundsLocalModule() = module {

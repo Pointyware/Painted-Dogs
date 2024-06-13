@@ -1,35 +1,42 @@
 package org.pointyware.painteddogs.feature.funds.navigation
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
+import org.koin.mp.KoinPlatform.getKoin
 import org.pointyware.painteddogs.core.navigation.LocationRootScope
-import org.pointyware.painteddogs.feature.funds.ui.FundDetailsScreen
-import org.pointyware.painteddogs.feature.funds.ui.FundDetailsViewState
-import org.pointyware.painteddogs.feature.funds.ui.FundInfoScreen
-import org.pointyware.painteddogs.feature.funds.ui.FundInfoScreenState
-import org.pointyware.painteddogs.feature.funds.ui.SearchCollectionsScreen
-import org.pointyware.painteddogs.feature.funds.ui.SearchCollectionsScreenState
 import org.pointyware.painteddogs.feature.funds.ContributionDetailsScreen
 import org.pointyware.painteddogs.feature.funds.ContributionDetailsScreenState
 import org.pointyware.painteddogs.feature.funds.ContributionInfoScreen
 import org.pointyware.painteddogs.feature.funds.ContributionInfoScreenState
+import org.pointyware.painteddogs.feature.funds.di.FundDependencies
+import org.pointyware.painteddogs.feature.funds.ui.FundDetailsScreen
+import org.pointyware.painteddogs.feature.funds.ui.FundInfoScreen
+import org.pointyware.painteddogs.feature.funds.ui.FundInfoScreenState
+import org.pointyware.painteddogs.feature.funds.ui.SearchCollectionsScreen
+import org.pointyware.painteddogs.feature.funds.ui.SearchCollectionsScreenState
 
 /**
  *
  */
+@Composable
 fun LocationRootScope<String?>.fundsRouting(
     onContribute: () -> Unit,
     onConfirmFundDetails: () -> Unit,
     onConfirmContributionDetails: () -> Unit,
+    ) {
 
-) {
+    val di = remember { getKoin() }
+    val fundsDependencies = remember { di.get<FundDependencies>() }
 
     // we need to make a collection before anyone can contribute
     location("funds/create") {
 
+        val detailViewModel = remember { fundsDependencies.getFundDetailsViewModel() }
+        val mapper = remember { fundsDependencies.getFundDetailsUiStateMapper() }
+        val state = detailViewModel.state.collectAsState()
         FundDetailsScreen(
-            state = FundDetailsViewState(
-                title = "My Collection",
-                description = "A collection of things",
-            ),
+            state = mapper.map(state.value),
             onConfirm = onConfirmFundDetails,
         )
     }

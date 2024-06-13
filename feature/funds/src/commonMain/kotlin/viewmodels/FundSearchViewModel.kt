@@ -71,7 +71,7 @@ class FundSearchViewModelImpl(
                 val progress = if (currentAmount >= target) target else currentAmount
                 val percentage = progress.amount * 100f / target.amount + 0.5f
 
-                CollectionUiState(
+                FundUiState(
                     id = fund.id,
                     title = fund.title,
                     description = fund.description,
