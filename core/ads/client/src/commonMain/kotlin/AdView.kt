@@ -8,8 +8,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
-import painted_dogs.core.ads.generated.resources.Res
-import painted_dogs.core.ads.generated.resources.Test_Ad
+import painted_dogs.core.ads.client.generated.resources.Res
+import painted_dogs.core.ads.client.generated.resources.Test_Ad
 
 data class AdViewState(
     val adId: String,
