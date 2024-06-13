@@ -7,6 +7,7 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import org.jetbrains.compose.resources.painterResource
 import org.koin.core.context.startKoin
+import org.pointyware.painteddogs.desktop.di.desktopModule
 import org.pointyware.painteddogs.shared.PaintedDogsApp
 import org.pointyware.painteddogs.shared.di.appModule
 import org.pointyware.painteddogs.shared.di.getDependencies
@@ -15,6 +16,7 @@ fun main() = application {
 
     startKoin {
         modules(
+            desktopModule(),
             appModule()
         )
     }
