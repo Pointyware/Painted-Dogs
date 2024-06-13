@@ -6,8 +6,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import org.pointyware.painteddogs.core.ui.views.FundRow
-import org.pointyware.painteddogs.core.ui.views.FundRowState
+import org.pointyware.painteddogs.feature.collections.core.FundRow
+import org.pointyware.painteddogs.feature.collections.core.FundRowState
 import org.pointyware.painteddogs.feature.collections.core.viewmodels.ContributionHistoryViewModel
 
 data class ContributionHistoryScreenState(

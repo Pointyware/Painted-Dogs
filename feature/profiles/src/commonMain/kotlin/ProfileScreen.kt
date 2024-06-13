@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.core.ui
+package org.pointyware.painteddogs.feature.profiles
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

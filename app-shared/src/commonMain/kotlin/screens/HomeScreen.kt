@@ -7,8 +7,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import org.pointyware.painteddogs.core.ui.views.FundRow
-import org.pointyware.painteddogs.core.ui.views.FundRowState
+import org.pointyware.painteddogs.feature.collections.core.FundRow
+import org.pointyware.painteddogs.feature.collections.core.FundRowState
 
 data class HomeScreenState(
     val isLoading: Boolean = false,

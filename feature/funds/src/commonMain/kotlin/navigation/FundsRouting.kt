@@ -1,16 +1,16 @@
 package org.pointyware.painteddogs.feature.collections.core.navigation
 
 import org.pointyware.painteddogs.core.navigation.LocationRootScope
-import org.pointyware.painteddogs.core.ui.ContributionDetailsScreen
-import org.pointyware.painteddogs.core.ui.ContributionDetailsScreenState
-import org.pointyware.painteddogs.core.ui.ContributionInfoScreen
-import org.pointyware.painteddogs.core.ui.ContributionInfoScreenState
-import org.pointyware.painteddogs.core.ui.FundDetailsScreen
-import org.pointyware.painteddogs.core.ui.FundInfoScreen
-import org.pointyware.painteddogs.core.ui.FundInfoScreenState
-import org.pointyware.painteddogs.core.ui.SearchCollectionsScreen
-import org.pointyware.painteddogs.core.ui.SearchCollectionsScreenState
-import org.pointyware.painteddogs.core.ui.views.FundDetailsViewState
+import org.pointyware.painteddogs.feature.collections.core.ContributionDetailsScreen
+import org.pointyware.painteddogs.feature.collections.core.ContributionDetailsScreenState
+import org.pointyware.painteddogs.feature.collections.core.ContributionInfoScreen
+import org.pointyware.painteddogs.feature.collections.core.ContributionInfoScreenState
+import org.pointyware.painteddogs.feature.collections.core.FundDetailsScreen
+import org.pointyware.painteddogs.feature.collections.core.FundInfoScreen
+import org.pointyware.painteddogs.feature.collections.core.FundInfoScreenState
+import org.pointyware.painteddogs.feature.collections.core.SearchCollectionsScreen
+import org.pointyware.painteddogs.feature.collections.core.SearchCollectionsScreenState
+import org.pointyware.painteddogs.feature.collections.core.FundDetailsViewState
 
 /**
  *

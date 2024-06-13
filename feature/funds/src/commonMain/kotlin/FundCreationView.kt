@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.core.ui.views
+package org.pointyware.painteddogs.feature.collections.core
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

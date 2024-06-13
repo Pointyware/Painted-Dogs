@@ -1,6 +1,6 @@
 package org.pointyware.painteddogs.feature.collections.core.ui
 
-import org.pointyware.painteddogs.core.ui.views.FundRowState
+import org.pointyware.painteddogs.feature.collections.core.FundRowState
 import org.pointyware.painteddogs.feature.collections.core.viewmodels.DonationHistoryUiState
 
 /**
