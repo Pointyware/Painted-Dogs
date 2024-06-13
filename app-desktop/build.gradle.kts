@@ -10,7 +10,7 @@ java {
 }
 
 dependencies {
-    implementation(project(":core:ads"))
+    implementation(project(":core:ads:client"))
     implementation(project(":core:analytics"))
     implementation(project(":core:data"))
     implementation(project(":core:entities"))
