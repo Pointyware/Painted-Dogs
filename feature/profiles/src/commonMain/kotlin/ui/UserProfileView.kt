@@ -2,6 +2,8 @@ package org.pointyware.painteddogs.feature.profiles.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -29,7 +31,7 @@ fun UserProfileView(
     onViewContributions: () -> Unit = {},
 ) {
     Column(
-        modifier = modifier,
+        modifier = modifier.verticalScroll(state = rememberScrollState()),
     ) {
         Text(
             text = "User Profile View",
