@@ -12,7 +12,7 @@ import org.pointyware.painteddogs.feature.profiles.di.ProfileDependencies
 import org.pointyware.painteddogs.feature.profiles.ui.UserProfileView
 
 /**
- *
+ * Sets up all routes for profile navigation and defines navigation callbacks.
  */
 @Composable
 fun LocationRootScope<String?>.profileRouting(
