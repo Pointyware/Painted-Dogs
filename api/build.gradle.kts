@@ -57,15 +57,5 @@ publishing {
             val releaseURL = "artifactregistry://us-central1-maven.pkg.dev/painted-dogs-prod-425222/painted-dogs-prod-server-repo"
             url = uri(releaseURL)
         }
-
-        // TODO: Add GitHub Packages
-//        maven {
-//            name = "GitHubPackages"
-//            url = URI("https://maven.pkg.github.com/Pointyware/Painted-Dogs")
-//            credentials {
-//                username = System.getenv("GITHUB_ACTOR")
-//                password = System.getenv("GITHUB_TOKEN")
-//            }
-//        }
     }
 }
