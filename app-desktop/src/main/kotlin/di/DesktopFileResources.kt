@@ -3,7 +3,7 @@ package org.pointyware.painteddogs.desktop.di
 import org.pointyware.painteddogs.shared.entities.SharedFileResources
 
 /**
- * TODO: describe purpose/intent of DesktopFileResources
+ * Binds the file resources for the desktop platform
  */
 class DesktopFileResources: SharedFileResources {
 }
