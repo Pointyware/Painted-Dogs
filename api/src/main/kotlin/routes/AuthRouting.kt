@@ -6,7 +6,7 @@ import io.ktor.server.routing.Routing
 import io.ktor.server.routing.get
 
 /**
- * TODO: describe purpose/intent of AuthRouting
+ * Directs auth requests to the appropriate controller.
  */
 fun Routing.auth() {
     get("/auth") {
