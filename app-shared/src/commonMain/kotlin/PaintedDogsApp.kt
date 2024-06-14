@@ -4,6 +4,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material.icons.filled.Build
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
@@ -84,15 +88,15 @@ fun PaintedDogsApp(
 //                    contentColor =
                 ) {
                     IconButton(onClick = { navController.navigateTo("funds") }) {
-                        Text("Funds")
+                        Icon(Icons.Default.Build, contentDescription = "Create Fund")
 //                        Icon(painter = painterResource(Res.drawable.funds), contentDescription = "Funds")
                     }
                     IconButton(onClick = { navController.navigateTo("rides") }) {
-                        Text("Rides")
+                        Icon(Icons.Default.Call, contentDescription = "Rides")
 //                        Icon(painter = painterResource(Res.drawable.rides), contentDescription = "Rides")
                     }
                     IconButton(onClick = { navController.navigateTo("social") }) {
-                        Text("Social")
+                        Icon(Icons.Default.Person, contentDescription = "Social")
 //                        Icon(painter = painterResource(Res.drawable.social), contentDescription = "Social")
                     }
                 }
