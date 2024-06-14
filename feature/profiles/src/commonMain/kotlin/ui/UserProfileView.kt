@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.feature.profiles
+package org.pointyware.painteddogs.feature.profiles.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme

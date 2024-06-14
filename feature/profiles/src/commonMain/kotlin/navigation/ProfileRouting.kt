@@ -9,14 +9,12 @@ import org.pointyware.painteddogs.feature.funds.ui.ContributionHistoryScreen
 import org.pointyware.painteddogs.feature.funds.ui.ContributionHistoryUiStateMapper
 import org.pointyware.painteddogs.feature.profiles.ProfileScreen
 import org.pointyware.painteddogs.feature.profiles.di.ProfileDependencies
-import org.pointyware.painteddogs.feature.profiles.ui.ProfileUiStateMapper
 
 /**
  *
  */
 @Composable
 fun LocationRootScope<String?>.profileRouting(
-    onEditProfile: () -> Unit,
     onLogout: () -> Unit,
     onViewCollections: () -> Unit,
     onViewContributions: () -> Unit,
@@ -28,10 +26,11 @@ fun LocationRootScope<String?>.profileRouting(
     // a user needs to control how they appear to others
     location("users/\$id") {
         val viewModel = remember { profileDependencies.getProfileViewModel() }
+        val mapper = remember { profileDependencies.getProfileUiStateMapper() }
         val state = viewModel.state.collectAsState()
         ProfileScreen(
-            state = ProfileUiStateMapper.map(state.value),
-            onEditProfile = onEditProfile,
+            state = mapper.map(state.value),
+            onEditProfile = viewModel::onEditProfile,
             onViewCollections = onViewCollections,
             onViewContributions = onViewContributions,
             onLogout = onLogout,
