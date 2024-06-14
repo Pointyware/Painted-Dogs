@@ -1,7 +1,6 @@
 package org.pointyware.painteddogs.shared.home
 
 import org.pointyware.painteddogs.core.common.Mapper
-import org.pointyware.painteddogs.shared.screens.HomeScreenState
 
 /**
  */
