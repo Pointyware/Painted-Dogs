@@ -42,6 +42,7 @@ fun LocationRootScope<String?>.fundsRouting(
     }
     // a user needs to find a collection to contribute to
     location("funds/search") {
+        // TODO: inject view models/mapper
         SearchCollectionsScreen(
             state = SearchCollectionsScreenState(
                 query = "",
@@ -50,6 +51,7 @@ fun LocationRootScope<String?>.fundsRouting(
     }
     // a user needs to see the details of a collection before deciding to contribute
     location("funds/\$collectionId") {
+        // TODO: inject view models/mapper
         FundInfoScreen(
             state = FundInfoScreenState(
                 title = "My Collection",
@@ -59,6 +61,7 @@ fun LocationRootScope<String?>.fundsRouting(
     }
     // a user needs to determine how much they want to contribute
     location("funds/\$collectionId/contribute") {
+        // TODO: inject view models/mapper
         ContributionDetailsScreen(
             state = ContributionDetailsScreenState(
                 id = "123",
@@ -70,6 +73,7 @@ fun LocationRootScope<String?>.fundsRouting(
     }
     // we need to show the user the details of their contribution after server confirmation
     location("funds/\$collectionId/contributions/\$contributionId") {
+        // TODO: inject view models/mapper
         ContributionInfoScreen(
             state = ContributionInfoScreenState(
                 id = "123",

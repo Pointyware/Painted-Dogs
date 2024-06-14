@@ -91,6 +91,8 @@ fun PaintedDogsApp(
                     onConfirmFundDetails = { navController.navigateTo("collections/123/contribute") },
                     onConfirmContributionDetails = { navController.navigateTo("funds/123/contribute/confirm") }
                 )
+
+                // Add more routing here
             }
         }
     }
