@@ -1,16 +1,20 @@
 package org.pointyware.painteddogs.shared
 
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
+import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import org.pointyware.painteddogs.core.navigation.LocationRoot
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
@@ -50,11 +54,11 @@ fun PaintedDogsApp(
                     title = { Text("Painted Dogs" /* stringResource(Res.string.app_name) */) },
                     actions = {
                         IconButton(onClick = { navController.navigateTo("users/123/profile") }) {
-                            Text("Profile")
+                            Icon(Icons.Default.AccountBox, contentDescription = "Profile")
 //                            Icon(painter = painterResource(Res.drawable.profile), contentDescription = "Profile")
                         }
                         IconButton(onClick = { navController.navigateTo("funds/search") }) {
-                            Text("Search")
+                            Icon(Icons.Default.Search, contentDescription = "Search")
 //                            Icon(painter = painterResource(Res.drawable.profile), contentDescription = "Profile")
                         }
                     },
