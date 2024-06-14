@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import org.koin.mp.KoinPlatform.getKoin
+import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.core.navigation.LocationRootScope
 import org.pointyware.painteddogs.feature.funds.ui.ContributionHistoryScreen
 import org.pointyware.painteddogs.feature.funds.ui.ContributionHistoryUiStateMapper
@@ -16,8 +17,8 @@ import org.pointyware.painteddogs.feature.profiles.ui.UserProfileView
 @Composable
 fun LocationRootScope<String?>.profileRouting(
     onLogout: () -> Unit,
-    onViewCollections: () -> Unit,
-    onViewContributions: () -> Unit,
+    onViewCollections: (userId:Uuid) -> Unit,
+    onViewContributions: (userId:Uuid) -> Unit,
     onViewFund: (fundId:String) -> Unit,
 ) {
     val di = remember { getKoin() }

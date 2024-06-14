@@ -9,9 +9,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import org.pointyware.painteddogs.core.entities.Uuid
 
 data class UserProfileViewState(
-    val userId: String,
+    val userId: Uuid,
     val username: String,
     val email: String? = null,
     val bio: String,
@@ -27,8 +28,8 @@ fun UserProfileView(
     modifier: Modifier = Modifier,
     onLogout: () -> Unit = {},
     onEditProfile: () -> Unit = {},
-    onViewCollections: () -> Unit = {},
-    onViewContributions: () -> Unit = {},
+    onViewCollections: (userId: Uuid) -> Unit = {},
+    onViewContributions: (userId:Uuid) -> Unit = {},
 ) {
     Column(
         modifier = modifier.verticalScroll(state = rememberScrollState()),
@@ -60,10 +61,10 @@ fun UserProfileView(
         Button(onClick = onEditProfile) {
             Text("Edit Profile")
         }
-        Button(onClick = onViewCollections) {
+        Button(onClick = { onViewCollections(state.userId) }) {
             Text("View Collections")
         }
-        Button(onClick = onViewContributions) {
+        Button(onClick = { onViewContributions(state.userId) }) {
             Text("View Contributions")
         }
     }
