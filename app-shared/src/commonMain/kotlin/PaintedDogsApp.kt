@@ -77,7 +77,7 @@ fun PaintedDogsApp(
             },
             floatingActionButton = {
                 IconButton(onClick = { navController.navigateTo("funds/create") }) {
-                    Text("Create Fund")
+                    Icon(Icons.Default.AddCircle, contentDescription = "Create Fund")
 //                    Icon(painter = painterResource(Res.drawable.funds), contentDescription = "Create Fund")
                 }
             },
