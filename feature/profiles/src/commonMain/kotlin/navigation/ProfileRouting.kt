@@ -7,8 +7,8 @@ import org.koin.mp.KoinPlatform.getKoin
 import org.pointyware.painteddogs.core.navigation.LocationRootScope
 import org.pointyware.painteddogs.feature.funds.ui.ContributionHistoryScreen
 import org.pointyware.painteddogs.feature.funds.ui.ContributionHistoryUiStateMapper
-import org.pointyware.painteddogs.feature.profiles.ProfileScreen
 import org.pointyware.painteddogs.feature.profiles.di.ProfileDependencies
+import org.pointyware.painteddogs.feature.profiles.ui.UserProfileView
 
 /**
  *
@@ -28,7 +28,7 @@ fun LocationRootScope<String?>.profileRouting(
         val viewModel = remember { profileDependencies.getProfileViewModel() }
         val mapper = remember { profileDependencies.getProfileUiStateMapper() }
         val state = viewModel.state.collectAsState()
-        ProfileScreen(
+        UserProfileView(
             state = mapper.map(state.value),
             onEditProfile = viewModel::onEditProfile,
             onViewCollections = onViewCollections,

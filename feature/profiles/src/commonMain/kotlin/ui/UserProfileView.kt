@@ -1,6 +1,8 @@
 package org.pointyware.painteddogs.feature.profiles.ui
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -9,9 +11,9 @@ import androidx.compose.ui.Modifier
 data class UserProfileViewState(
     val userId: String,
     val username: String,
-    val email: String,
+    val email: String? = null,
     val bio: String,
-    val profileImageUrl: String,
+    val profileImageUrl: String? = null,
 )
 
 /**
@@ -21,6 +23,10 @@ data class UserProfileViewState(
 fun UserProfileView(
     state: UserProfileViewState,
     modifier: Modifier = Modifier,
+    onLogout: () -> Unit = {},
+    onEditProfile: () -> Unit = {},
+    onViewCollections: () -> Unit = {},
+    onViewContributions: () -> Unit = {},
 ) {
     Column(
         modifier = modifier,
@@ -45,5 +51,18 @@ fun UserProfileView(
             text = "Profile image URL: ${state.profileImageUrl}",
             style = MaterialTheme.typography.labelSmall
         )
+        Spacer(modifier = Modifier.weight(1f))
+        Button(onClick = onLogout) {
+            Text("Logout")
+        }
+        Button(onClick = onEditProfile) {
+            Text("Edit Profile")
+        }
+        Button(onClick = onViewCollections) {
+            Text("View Collections")
+        }
+        Button(onClick = onViewContributions) {
+            Text("View Contributions")
+        }
     }
 }
