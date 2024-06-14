@@ -30,6 +30,7 @@ fun <K, V> LocationRoot(
 }
 
 interface LocationRootScope<K> {
+    @Composable
     fun location(key: K, content: @Composable () -> Unit)
 }
 
@@ -38,6 +39,7 @@ private class LocationRootScopeImpl<K, V>(
 ) : LocationRootScope<K> {
 
     val locations = mutableMapOf<K, @Composable () -> Unit>()
+    @Composable
     override fun location(key: K, content: @Composable () -> Unit) {
         locations[key] = content
     }
