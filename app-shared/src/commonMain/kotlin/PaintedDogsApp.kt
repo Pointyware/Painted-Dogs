@@ -50,7 +50,14 @@ fun PaintedDogsApp(
 //                        actionIconContentColor =
 //                        scrolledContainerColor =
 //                    ),
-                    navigationIcon = { },
+                    navigationIcon = {
+                        val stack = navController.backList.collectAsState()
+                        if (stack.value.isNotEmpty()) {
+                            IconButton(onClick = { navController.goBack() }) {
+                                Icon(Icons.AutoMirrored.Default.ArrowBack, contentDescription = "Profile")
+                            }
+                        }
+                    },
                     title = { Text("Painted Dogs" /* stringResource(Res.string.app_name) */) },
                     actions = {
                         IconButton(onClick = { navController.navigateTo("users/123/profile") }) {
