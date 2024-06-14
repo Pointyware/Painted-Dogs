@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 
 /**
@@ -14,10 +15,13 @@ fun <K, V> LocationRoot(
     navController: StackNavigationController<K, V>,
 
     modifier: Modifier = Modifier,
-    content: @Composable LocationRootScope<K>.() -> Unit,
+    content: LocationRootScope<K>.() -> Unit,
 ) {
-    val locationRootScope = LocationRootScopeImpl(navController)
-    locationRootScope.content() // TODO: cache calculation of locations
+    val locationRootScope = remember(navController, content) {
+        LocationRootScopeImpl(navController).also {
+            it.content()
+        }
+    }
 
     val currentLocation by navController.currentLocation.collectAsState()
     Box(modifier = modifier) {
@@ -26,7 +30,7 @@ fun <K, V> LocationRoot(
 }
 
 interface LocationRootScope<K> {
-    @Composable fun location(key: K, content: @Composable () -> Unit)
+    fun location(key: K, content: @Composable () -> Unit)
 }
 
 private class LocationRootScopeImpl<K, V>(
@@ -34,7 +38,6 @@ private class LocationRootScopeImpl<K, V>(
 ) : LocationRootScope<K> {
 
     val locations = mutableMapOf<K, @Composable () -> Unit>()
-    @Composable
     override fun location(key: K, content: @Composable () -> Unit) {
         locations[key] = content
     }
