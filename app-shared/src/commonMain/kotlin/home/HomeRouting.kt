@@ -22,7 +22,7 @@ fun LocationRootScope<String?>.homeRouting(
         val mapper = remember { profileDependencies.getHomeUiStateMapper() }
         val state = homeViewModel.state.collectAsState()
         HomeScreen(
-            state = HomeUiStateMapper.map(state.value),
+            state = mapper.map(state.value),
             onFundSelected = onFundSelected,
         )
     }
