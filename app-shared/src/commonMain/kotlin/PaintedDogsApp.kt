@@ -62,7 +62,10 @@ fun PaintedDogsApp(
                             }
                         }
                     },
-                    title = { Text("Painted Dogs" /* stringResource(Res.string.app_name) */) },
+                    title = {
+                        val stack = navController.currentLocation.collectAsState()
+                        Text(stack.value ?: "Painted Dogs")
+                    },
                     actions = {
                         IconButton(onClick = { navController.navigateTo("users/123/profile") }) {
                             Icon(Icons.Default.AccountBox, contentDescription = "Profile")
