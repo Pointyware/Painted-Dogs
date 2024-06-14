@@ -3,7 +3,6 @@ package org.pointyware.painteddogs.shared
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
-import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Scaffold
@@ -11,13 +10,12 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.painterResource
 import org.pointyware.painteddogs.core.navigation.LocationRoot
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import org.pointyware.painteddogs.feature.funds.navigation.fundsRouting
 import org.pointyware.painteddogs.feature.profiles.navigation.profileRouting
 import org.pointyware.painteddogs.shared.di.AppDependencies
-import org.pointyware.painteddogs.shared.navigation.homeRouting
+import org.pointyware.painteddogs.shared.home.homeRouting
 
 /**
  * The main entry point for the Painted Dogs app.
@@ -41,12 +39,22 @@ fun PaintedDogsApp(
 //                    colors = TopAppBarColors()
                     navigationIcon = { },
                     title = { Text("Painted Dogs" /* stringResource(Res.string.app_name) */) },
-                    actions = { },
+                    actions = {
+                        IconButton(onClick = { navController.navigateTo("users/123/profile") }) {
+                            Text("Profile")
+//                            Icon(painter = painterResource(Res.drawable.profile), contentDescription = "Profile")
+                        }
+                        IconButton(onClick = { navController.navigateTo("funds/search") }) {
+                            Text("Search")
+//                            Icon(painter = painterResource(Res.drawable.profile), contentDescription = "Profile")
+                        }
+                    },
                 )
             },
             floatingActionButton = {
                 IconButton(onClick = { navController.navigateTo("funds/create") }) {
-                    Icon(painter = painterResource(Res.drawable.funds), contentDescription = "Create Fund")
+                    Text("Create Fund")
+//                    Icon(painter = painterResource(Res.drawable.funds), contentDescription = "Create Fund")
                 }
             },
             floatingActionButtonPosition = FabPosition.End,
@@ -56,13 +64,16 @@ fun PaintedDogsApp(
 //                    contentColor =
                 ) {
                     IconButton(onClick = { navController.navigateTo("funds") }) {
-                        Icon(painter = painterResource(Res.drawable.funds), contentDescription = "Funds")
+                        Text("Funds")
+//                        Icon(painter = painterResource(Res.drawable.funds), contentDescription = "Funds")
                     }
                     IconButton(onClick = { navController.navigateTo("rides") }) {
-                        Icon(painter = painterResource(Res.drawable.rides), contentDescription = "Rides")
+                        Text("Rides")
+//                        Icon(painter = painterResource(Res.drawable.rides), contentDescription = "Rides")
                     }
                     IconButton(onClick = { navController.navigateTo("social") }) {
-                        Icon(painter = painterResource(Res.drawable.social), contentDescription = "Social")
+                        Text("Social")
+//                        Icon(painter = painterResource(Res.drawable.social), contentDescription = "Social")
                     }
                 }
             }
@@ -72,9 +83,6 @@ fun PaintedDogsApp(
                 modifier = Modifier.padding(paddingValues),
             ) {
                 homeRouting(
-                    onCreateFund = { navController.navigateTo("funds/create") },
-                    onSearchFunds = { navController.navigateTo("funds/search") },
-                    onViewProfile = { navController.navigateTo("users/123/profile") },
                     onFundSelected = { collectionId -> navController.navigateTo("funds/$collectionId") },
                 )
 
