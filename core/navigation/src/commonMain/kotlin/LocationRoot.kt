@@ -15,13 +15,10 @@ fun <K, V> LocationRoot(
     navController: StackNavigationController<K, V>,
 
     modifier: Modifier = Modifier,
-    content: LocationRootScope<K>.() -> Unit,
+    content: @Composable LocationRootScope<K>.() -> Unit,
 ) {
-    val locationRootScope = remember(navController, content) {
-        LocationRootScopeImpl(navController).also {
-            it.content()
-        }
-    }
+    val locationRootScope = LocationRootScopeImpl(navController)
+    locationRootScope.content()
 
     val currentLocation by navController.currentLocation.collectAsState()
     Box(modifier = modifier) {
