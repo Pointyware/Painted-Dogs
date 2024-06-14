@@ -18,7 +18,8 @@ import org.pointyware.painteddogs.feature.profiles.di.featureProfilesModule
 fun appModule(): Module = module {
     includes(
         coreModule(),
-        featureModule()
+        featureModule(),
+        homeModule()
     )
 }
 
