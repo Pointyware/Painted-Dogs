@@ -29,6 +29,7 @@ fun PaintedDogsApp(
 ) {
     val navController = dependencies.getNavigationDependencies().getNavController()
 
+    // TODO: remove navigation callbacks in "routing" functions when type-safe navigation is implemented
     PaintedDogsTheme(
         isDark = isDarkTheme
     ) {
