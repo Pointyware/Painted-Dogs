@@ -40,9 +40,10 @@ fun LocationRootScope<String?>.profileRouting(
     // a user can see all their current and past collections
     location("users/\$id/funds") {
         val viewModel = remember { profileDependencies.getContributionHistoryViewModel() }
+        val mapper = remember { profileDependencies.getContributionHistoryUiStateMapper()}
         val state = viewModel.state.collectAsState()
         ContributionHistoryScreen(
-            state = ContributionHistoryUiStateMapper.map(state.value),
+            state = mapper.map(state.value),
             onViewFund = onViewFund,
         )
     }
