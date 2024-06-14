@@ -5,9 +5,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import org.koin.mp.KoinPlatform.getKoin
 import org.pointyware.painteddogs.core.navigation.LocationRootScope
-import org.pointyware.painteddogs.feature.profiles.ProfileScreen
 import org.pointyware.painteddogs.feature.funds.ui.ContributionHistoryScreen
-import org.pointyware.painteddogs.feature.funds.ui.ContributionHistoryScreenState
+import org.pointyware.painteddogs.feature.funds.ui.ContributionHistoryUiStateMapper
+import org.pointyware.painteddogs.feature.profiles.ProfileScreen
 import org.pointyware.painteddogs.feature.profiles.di.ProfileDependencies
 import org.pointyware.painteddogs.feature.profiles.ui.ProfileUiStateMapper
 
@@ -42,9 +42,7 @@ fun LocationRootScope<String?>.profileRouting(
         val viewModel = remember { profileDependencies.getContributionHistoryViewModel() }
         val state = viewModel.state.collectAsState()
         ContributionHistoryScreen(
-            state = ContributionHistoryScreenState(
-                contributions = emptyList()
-            ),
+            state = ContributionHistoryUiStateMapper.map(state.value),
             onViewFund = onViewFund,
         )
     }

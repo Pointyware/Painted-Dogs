@@ -39,7 +39,7 @@ fun ContributionHistoryScreen(
 ) {
     val state = viewModel.state.collectAsState()
     ContributionHistoryScreen(
-        state = ContributionHistoryMapper.map(state.value),
+        state = ContributionHistoryUiStateMapper.map(state.value),
         modifier = modifier,
         onViewFund = viewModel::onViewFund
     )

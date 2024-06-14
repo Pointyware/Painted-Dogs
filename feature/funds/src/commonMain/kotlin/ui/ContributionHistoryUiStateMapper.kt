@@ -5,7 +5,7 @@ import org.pointyware.painteddogs.feature.funds.viewmodels.DonationHistoryUiStat
 /**
  *
  */
-object ContributionHistoryMapper {
+object ContributionHistoryUiStateMapper {
     fun map(value: DonationHistoryUiState): ContributionHistoryScreenState {
         return ContributionHistoryScreenState(
             value.contributions.map {
