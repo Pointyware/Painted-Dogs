@@ -17,7 +17,8 @@ fun <K, V> LocationRoot(
     modifier: Modifier = Modifier,
     content: @Composable LocationRootScope<K, V>.() -> Unit,
 ) {
-    val locationRootScope = LocationRootScopeImpl(navController)
+    // TODO: remove navigation callbacks in "routing" functions when type-safe navigation is implemented
+    val locationRootScope = LocationRootScopeImpl<K, V>()
     locationRootScope.content()
 
     val currentLocation by navController.currentLocation.collectAsState()
@@ -31,9 +32,7 @@ interface LocationRootScope<K, V> {
     fun location(key: K, content: @Composable (StackNavigationController<K, V>) -> Unit)
 }
 
-private class LocationRootScopeImpl<K, V>(
-    private val navController: StackNavigationController<K, V>,
-) : LocationRootScope<K, V> {
+private class LocationRootScopeImpl<K, V> : LocationRootScope<K, V> {
 
     val locations = mutableMapOf<K, @Composable (StackNavigationController<K, V>) -> Unit>()
     @Composable
