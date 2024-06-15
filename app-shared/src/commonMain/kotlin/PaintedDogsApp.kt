@@ -117,9 +117,7 @@ fun PaintedDogsApp(
                 navController = navController,
                 modifier = Modifier.padding(paddingValues),
             ) {
-                homeRouting(
-                    onFundSelected = { collectionId -> navController.navigateTo("funds/$collectionId") },
-                )
+                homeRouting()
 
                 profileRouting(
                     onLogout = ::logout,

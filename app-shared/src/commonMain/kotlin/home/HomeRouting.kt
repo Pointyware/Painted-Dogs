@@ -11,9 +11,7 @@ import org.pointyware.painteddogs.shared.di.HomeDependencies
  * Sets up all routes for home navigation.
  */
 @Composable
-fun LocationRootScope<String?, Any>.homeRouting(
-    onFundSelected: (String) -> Unit,
-) {
+fun LocationRootScope<String?, Any>.homeRouting() {
     val di = remember { getKoin() }
     val profileDependencies = remember { di.get<HomeDependencies>() }
 
@@ -23,7 +21,7 @@ fun LocationRootScope<String?, Any>.homeRouting(
         val state = homeViewModel.state.collectAsState()
         HomeScreen(
             state = mapper.map(state.value),
-            onFundSelected = onFundSelected,
+            onFundSelected = { collectionId -> it.navigateTo("funds/$collectionId") },
         )
     }
 }
