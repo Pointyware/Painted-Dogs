@@ -37,6 +37,10 @@ kotlin {
             dependencies {
 
                 implementation(libs.koin.core)
+
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.contentNegotiation)
+                implementation(libs.ktor.client.serialization)
             }
         }
         val commonTest by getting {
@@ -47,6 +51,10 @@ kotlin {
 
         val jvmSharedMain by creating {
             dependsOn(commonMain)
+
+            dependencies {
+                implementation(libs.ktor.client.okhttp)
+            }
         }
         val jvmSharedTest by creating {
             dependsOn(commonTest)
@@ -68,6 +76,15 @@ kotlin {
         }
         val androidUnitTest by getting {
             dependsOn(jvmSharedTest)
+        }
+
+        val nativeMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.cio)
+            }
+        }
+        val nativeTest by getting {
+
         }
     }
 }

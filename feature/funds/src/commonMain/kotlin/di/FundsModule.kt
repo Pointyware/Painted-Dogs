@@ -13,7 +13,7 @@ import org.pointyware.painteddogs.feature.funds.interactors.SearchCollectionsUse
 import org.pointyware.painteddogs.feature.funds.local.FundCache
 import org.pointyware.painteddogs.feature.funds.local.InMemoryFundCache
 import org.pointyware.painteddogs.feature.funds.remote.FundApi
-import org.pointyware.painteddogs.feature.funds.remote.TestFundApi
+import org.pointyware.painteddogs.feature.funds.remote.GCloudFundApi
 import org.pointyware.painteddogs.feature.funds.ui.FundDetailsUiStateMapper
 import org.pointyware.painteddogs.feature.funds.ui.FundInfoUiStateMapper
 import org.pointyware.painteddogs.feature.funds.ui.FundSearchUiStateMapper
@@ -66,7 +66,7 @@ fun featureFundsLocalModule() = module {
 }
 
 fun featureFundsRemoteModule() = module {
-    single<FundApi> { TestFundApi() }
+    single<FundApi> { GCloudFundApi() }
 }
 
 fun featureFundsUiModule() = module {
