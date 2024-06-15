@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import org.pointyware.painteddogs.core.navigation.LocationRoot
+import org.pointyware.painteddogs.core.navigation.route
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import org.pointyware.painteddogs.feature.funds.navigation.fundsRouting
 import org.pointyware.painteddogs.feature.profiles.navigation.profileRouting
@@ -63,14 +64,14 @@ fun PaintedDogsApp(
                     },
                     title = {
                         val stack = navController.currentLocation.collectAsState()
-                        Text(stack.value ?: "Painted Dogs")
+                        Text(stack.value.segments.lastOrNull() ?: "Painted Dogs")
                     },
                     actions = {
-                        IconButton(onClick = { navController.navigateTo("users/123/profile") }) {
+                        IconButton(onClick = { navController.navigateTo(route("users/123/profile")) }) {
                             Icon(Icons.Default.AccountBox, contentDescription = "Profile")
 //                            Icon(painter = painterResource(Res.drawable.profile), contentDescription = "Profile")
                         }
-                        IconButton(onClick = { navController.navigateTo("funds/search") }) {
+                        IconButton(onClick = { navController.navigateTo(route("funds/search")) }) {
                             Icon(Icons.Default.Search, contentDescription = "Search")
 //                            Icon(painter = painterResource(Res.drawable.profile), contentDescription = "Profile")
                         }
@@ -78,7 +79,7 @@ fun PaintedDogsApp(
                 )
             },
             floatingActionButton = {
-                IconButton(onClick = { navController.navigateTo("funds/create") }) {
+                IconButton(onClick = { navController.navigateTo(route("funds/create")) }) {
                     Icon(Icons.Default.AddCircle, contentDescription = "Create Fund")
 //                    Icon(painter = painterResource(Res.drawable.funds), contentDescription = "Create Fund")
                 }
@@ -91,21 +92,21 @@ fun PaintedDogsApp(
                 ) {
                     IconButton(
                         modifier = Modifier.weight(1f),
-                        onClick = { navController.navigateTo("funds") }
+                        onClick = { navController.navigateTo(route("funds")) }
                     ) {
                         Icon(Icons.Default.Build, contentDescription = "Create Fund")
 //                        Icon(painter = painterResource(Res.drawable.funds), contentDescription = "Funds")
                     }
                     IconButton(
                         modifier = Modifier.weight(1f),
-                        onClick = { navController.navigateTo("rides") }
+                        onClick = { navController.navigateTo(route("rides")) }
                     ) {
                         Icon(Icons.Default.Call, contentDescription = "Rides")
 //                        Icon(painter = painterResource(Res.drawable.rides), contentDescription = "Rides")
                     }
                     IconButton(
                         modifier = Modifier.weight(1f),
-                        onClick = { navController.navigateTo("social") }
+                        onClick = { navController.navigateTo(route("social")) }
                     ) {
                         Icon(Icons.Default.Person, contentDescription = "Social")
 //                        Icon(painter = painterResource(Res.drawable.social), contentDescription = "Social")

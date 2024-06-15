@@ -6,7 +6,6 @@ import androidx.compose.ui.Modifier
 
 /**
  * Displays options for creating a new collection.
- * TODO: replace/move to :feature:collections module; rename FundDetailsScreen
  */
 @Composable
 fun FundDetailsScreen(

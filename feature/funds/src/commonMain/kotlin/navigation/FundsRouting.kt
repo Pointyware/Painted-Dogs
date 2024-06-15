@@ -5,6 +5,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import org.koin.mp.KoinPlatform.getKoin
 import org.pointyware.painteddogs.core.navigation.LocationRootScope
+import org.pointyware.painteddogs.core.navigation.Route
+import org.pointyware.painteddogs.core.navigation.route
 import org.pointyware.painteddogs.feature.funds.ContributionDetailsScreen
 import org.pointyware.painteddogs.feature.funds.ContributionInfoScreen
 import org.pointyware.painteddogs.feature.funds.di.FundDependencies
@@ -16,24 +18,24 @@ import ui.FundSearchView
  *
  */
 @Composable
-fun LocationRootScope<String?, Any>.fundsRouting(
+fun LocationRootScope<Route<String>, Any>.fundsRouting(
 ) {
     val di = remember { getKoin() }
     val fundsDependencies = remember { di.get<FundDependencies>() }
 
     // we need to make a collection before anyone can contribute
-    location("funds/create") {
+    location(route("funds","create")) {
 
         val detailViewModel = remember { fundsDependencies.getFundDetailsViewModel() }
         val mapper = remember { fundsDependencies.getFundDetailsUiStateMapper() }
         val state = detailViewModel.state.collectAsState()
         FundDetailsScreen(
             state = mapper.map(state.value),
-            onConfirm = { it.navigateTo("collections/123/contribute") },
+            onConfirm = { it.navigateTo(route("collections", state.value.id.toString(), "contribute")) },
         )
     }
     // a user needs to find a collection to contribute to
-    location("funds/search") {
+    location(route("funds", "search")) {
         val searchViewModel = remember { fundsDependencies.getFundSearchViewModel() }
         val mapper = remember { fundsDependencies.getFundSearchUiStateMapper() }
         val state = searchViewModel.state.collectAsState()
@@ -41,31 +43,31 @@ fun LocationRootScope<String?, Any>.fundsRouting(
             state = mapper.map(state.value),
             onSearchQueryChanged = searchViewModel::onSearchQueryChanged,
             onSearchQuerySubmitted = searchViewModel::onSubmitQuery,
-            onFundSelected = { uuid -> it.navigateTo("funds/$uuid") },
+            onFundSelected = { uuid -> it.navigateTo(route("funds", "$uuid")) },
         )
     }
     // a user needs to see the details of a collection before deciding to contribute
-    location("funds/\$collectionId") {
+    location(route("funds", "\$collectionId")) {
         val fundInfoViewModel = remember { fundsDependencies.getFundInfoViewModel() }
         val mapper = remember { fundsDependencies.getFundInfoUiStateMapper() }
         val state = fundInfoViewModel.state.collectAsState()
         FundInfoScreen(
             state = mapper.map(state.value),
-            onContribute = { uuid -> it.navigateTo("funds/$uuid/contribute") },
+            onContribute = { uuid -> it.navigateTo(route("funds", "$uuid", "contribute")) },
         )
     }
     // a user needs to determine how much they want to contribute
-    location("funds/\$collectionId/contribute") {
+    location(route("funds", "\$collectionId", "contribute")) {
         val contributionDetailsViewModel = remember { fundsDependencies.getContributionDetailsViewModel() }
         val mapper = remember { fundsDependencies.getContributionDetailsUiStateMapper() }
         val state = contributionDetailsViewModel.state.collectAsState()
         ContributionDetailsScreen(
             state = mapper.map(state.value),
-            onConfirm = { uuid -> it.navigateTo("funds/$uuid/contribute/confirm") },
+            onConfirm = { uuid -> it.navigateTo(route("funds", "$uuid", "contribute", "confirm")) },
         )
     }
     // we need to show the user the details of their contribution after server confirmation
-    location("funds/\$collectionId/contributions/\$contributionId") {
+    location(route("funds", "\$collectionId", "contributions", "\$contributionId")) {
         val contributionInfoScreen = remember { fundsDependencies.getContributionInfoViewModel() }
         val mapper = remember { fundsDependencies.getContributionInfoUiStateMapper() }
         val state = contributionInfoScreen.state.collectAsState()
