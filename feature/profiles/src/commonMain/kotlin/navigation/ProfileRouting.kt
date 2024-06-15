@@ -17,9 +17,6 @@ import org.pointyware.painteddogs.feature.profiles.ui.UserProfileView
 @Composable
 fun LocationRootScope<String?, Any>.profileRouting(
     onLogout: () -> Unit,
-    onViewCollections: (userId:Uuid) -> Unit,
-    onViewContributions: (userId:Uuid) -> Unit,
-    onViewFund: (fundId:String) -> Unit,
 ) {
     val di = remember { getKoin() }
     val profileDependencies = remember { di.get<ProfileDependencies>() }
@@ -32,8 +29,8 @@ fun LocationRootScope<String?, Any>.profileRouting(
         UserProfileView(
             state = mapper.map(state.value),
             onEditProfile = viewModel::onEditProfile,
-            onViewCollections = onViewCollections,
-            onViewContributions = onViewContributions,
+            onViewCollections = { userId -> it.navigateTo("users/$userId/funds") },
+            onViewContributions = { userId -> it.navigateTo("users/$userId/contribs") },
             onLogout = onLogout,
         )
     }
@@ -44,7 +41,7 @@ fun LocationRootScope<String?, Any>.profileRouting(
         val state = viewModel.state.collectAsState()
         ContributionHistoryScreen(
             state = mapper.map(state.value),
-            onViewFund = onViewFund,
+            onViewFund = { fundId -> it.navigateTo("funds/$fundId") },
         )
     }
 }

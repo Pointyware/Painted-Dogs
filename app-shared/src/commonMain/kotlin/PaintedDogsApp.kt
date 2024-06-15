@@ -120,10 +120,7 @@ fun PaintedDogsApp(
                 homeRouting()
 
                 profileRouting(
-                    onLogout = ::logout,
-                    onViewCollections = { userId -> navController.navigateTo("users/$userId/funds") },
-                    onViewContributions = { userId -> navController.navigateTo("users/$userId/contribs") },
-                    onViewFund = { fundId -> navController.navigateTo("funds/$fundId") },
+                    onLogout = ::logout
                 )
 
                 fundsRouting(
