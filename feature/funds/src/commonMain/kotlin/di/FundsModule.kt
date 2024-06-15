@@ -49,7 +49,7 @@ fun featureFundsInteractorsModule() = module {
 
 fun featureFundsViewModelsModule() = module {
     factory<FundSearchViewModel> { FundSearchViewModelImpl(get()) }
-    factory<FundDetailsViewModel> { FundDetailsViewModelImpl() }
+    factory<FundDetailsViewModel> { FundDetailsViewModelImpl(get()) }
     factory<FundSearchViewModel> { FundSearchViewModelImpl(get()) }
     factory<FundInfoViewModel> { FundInfoViewModelImpl() }
 }
