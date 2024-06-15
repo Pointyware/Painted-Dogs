@@ -8,7 +8,7 @@ import org.pointyware.painteddogs.assertions.assert
 import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.core.entities.usDollars
 import org.pointyware.painteddogs.feature.funds.data.FundRepository
-import org.pointyware.painteddogs.feature.funds.data.OfflineFirstCollectionRepository
+import org.pointyware.painteddogs.feature.funds.data.OfflineFirstFundRepository
 import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCase
 import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCaseImpl
 import org.pointyware.painteddogs.feature.funds.local.CollectionCache
@@ -35,7 +35,7 @@ class CreateDonationUseCaseIntegrationTest {
         testScope = CoroutineScope(testDispatcher)
         collectionApi = TestCollectionApi()
         collectionCache = InMemoryCollectionCache()
-        repository = OfflineFirstCollectionRepository(
+        repository = OfflineFirstFundRepository(
             localDataSource = collectionCache,
             remoteDataSource = collectionApi,
             dataScope = testScope

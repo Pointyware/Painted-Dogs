@@ -1,10 +1,7 @@
 package org.pointyware.painteddogs.feature.funds.data
 
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.launch
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.Uuid
@@ -13,7 +10,7 @@ import org.pointyware.painteddogs.feature.funds.remote.CollectionApi
 
 /**
  */
-class OfflineFirstCollectionRepository(
+class OfflineFirstFundRepository(
     private val localDataSource: CollectionCache,
     private val remoteDataSource: CollectionApi,
     private val dataScope: CoroutineScope,

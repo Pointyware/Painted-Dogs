@@ -2,8 +2,10 @@ package org.pointyware.painteddogs.feature.funds.di
 
 import org.koin.dsl.module
 import org.pointyware.painteddogs.core.data.di.dataQualifier
+import org.pointyware.painteddogs.core.navigation.Route
+import org.pointyware.painteddogs.core.navigation.StackNavigationController
 import org.pointyware.painteddogs.feature.funds.data.FundRepository
-import org.pointyware.painteddogs.feature.funds.data.OfflineFirstCollectionRepository
+import org.pointyware.painteddogs.feature.funds.data.OfflineFirstFundRepository
 import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCase
 import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCaseImpl
 import org.pointyware.painteddogs.feature.funds.interactors.SearchCollectionsUseCase
@@ -39,7 +41,7 @@ fun featureFundsModule() = module {
 }
 
 fun featureFundsDataModule() = module {
-    single<FundRepository> { OfflineFirstCollectionRepository(get(), get(), get(qualifier = dataQualifier)) }
+    single<FundRepository> { OfflineFirstFundRepository(get(), get(), get(qualifier = dataQualifier)) }
 }
 
 fun featureFundsInteractorsModule() = module {
@@ -49,7 +51,7 @@ fun featureFundsInteractorsModule() = module {
 
 fun featureFundsViewModelsModule() = module {
     factory<FundSearchViewModel> { FundSearchViewModelImpl(get()) }
-    factory<FundDetailsViewModel> { FundDetailsViewModelImpl(get()) }
+    factory<FundDetailsViewModel> { FundDetailsViewModelImpl(get<StackNavigationController<Route<String>, Any>>(), get<FundRepository>()) }
     factory<FundSearchViewModel> { FundSearchViewModelImpl(get()) }
     factory<FundInfoViewModel> { FundInfoViewModelImpl() }
 }

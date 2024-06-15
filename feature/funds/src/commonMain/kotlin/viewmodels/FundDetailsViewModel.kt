@@ -8,6 +8,7 @@ import org.pointyware.painteddogs.core.navigation.Route
 import org.pointyware.painteddogs.core.navigation.StackNavigationController
 import org.pointyware.painteddogs.core.navigation.route
 import org.pointyware.painteddogs.core.viewmodels.BaseViewModel
+import org.pointyware.painteddogs.feature.funds.data.FundRepository
 
 interface FundDetailsViewModel: BaseViewModel {
     fun onConfirm()
@@ -17,7 +18,8 @@ interface FundDetailsViewModel: BaseViewModel {
 }
 
 class FundDetailsViewModelImpl(
-    private val navController: StackNavigationController<Route<String>, Any>
+    private val navController: StackNavigationController<Route<String>, Any>,
+    private val fundRepository: FundRepository,
 ): FundDetailsViewModel {
     private val mutableState = MutableStateFlow(FundDetailsUiState.Empty)
     override val state: StateFlow<FundDetailsUiState>
