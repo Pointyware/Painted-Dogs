@@ -1,6 +1,7 @@
 package org.pointyware.painteddogs.feature.funds.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import org.koin.mp.KoinPlatform.getKoin
@@ -24,14 +25,19 @@ fun LocationRootScope<Route<String>, Any>.fundsRouting(
     val fundsDependencies = remember { di.get<FundDependencies>() }
 
     // we need to make a collection before anyone can contribute
-    location(route("funds","create")) {
+    location(route("funds", "create")) { navController ->
 
         val detailViewModel = remember { fundsDependencies.getFundDetailsViewModel() }
         val mapper = remember { fundsDependencies.getFundDetailsUiStateMapper() }
         val state = detailViewModel.state.collectAsState()
+        LaunchedEffect(Unit) {
+            detailViewModel.onBack.collect {
+                navController.goBack()
+            }
+        }
         FundDetailsScreen(
             state = mapper.map(state.value),
-            onConfirm = { it.navigateTo(route("collections", state.value.id.toString(), "contribute")) },
+            onConfirm = detailViewModel::onConfirm,
         )
     }
     // a user needs to find a collection to contribute to

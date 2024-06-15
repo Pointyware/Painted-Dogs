@@ -1,19 +1,36 @@
 package org.pointyware.painteddogs.feature.funds.viewmodels
 
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
-import org.pointyware.painteddogs.core.entities.Uuid
+import org.pointyware.painteddogs.core.navigation.Route
+import org.pointyware.painteddogs.core.navigation.StackNavigationController
+import org.pointyware.painteddogs.core.navigation.route
 import org.pointyware.painteddogs.core.viewmodels.BaseViewModel
 
 interface FundDetailsViewModel: BaseViewModel {
+    fun onConfirm()
 
-    abstract val state: StateFlow<FundDetailsUiState>
+    val onBack: SharedFlow<Unit>
+    val state: StateFlow<FundDetailsUiState>
 }
 
-class FundDetailsViewModelImpl: FundDetailsViewModel {
+class FundDetailsViewModelImpl(
+    private val navController: StackNavigationController<Route<String>, Any>
+): FundDetailsViewModel {
     private val mutableState = MutableStateFlow(FundDetailsUiState.Empty)
     override val state: StateFlow<FundDetailsUiState>
         get() = mutableState
+
+    private val _onBack = MutableSharedFlow<Unit>()
+    override val onBack: SharedFlow<Unit>
+        get() = _onBack
+
+    override fun onConfirm() {
+        TODO("Run transaction; Submit new contribution to the fund")
+        navController.navigateTo(route())
+    }
 }
 
 data class FundDetailsUiState(
