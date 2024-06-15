@@ -4,10 +4,12 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import org.pointyware.painteddogs.core.navigation.di.NavigationDependencies
 import org.pointyware.painteddogs.feature.funds.ui.ContributionDetailsUiStateMapper
+import org.pointyware.painteddogs.feature.funds.ui.ContributionInfoUiStateMapper
 import org.pointyware.painteddogs.feature.funds.ui.FundDetailsUiStateMapper
 import org.pointyware.painteddogs.feature.funds.ui.FundInfoUiStateMapper
 import org.pointyware.painteddogs.feature.funds.ui.FundSearchUiStateMapper
 import org.pointyware.painteddogs.feature.funds.viewmodels.ContributionDetailsViewModel
+import org.pointyware.painteddogs.feature.funds.viewmodels.ContributionInfoViewModel
 import org.pointyware.painteddogs.feature.funds.viewmodels.FundDetailsViewModel
 import org.pointyware.painteddogs.feature.funds.viewmodels.FundInfoViewModel
 import org.pointyware.painteddogs.feature.funds.viewmodels.FundSearchViewModel
@@ -25,6 +27,8 @@ interface FundDependencies {
     fun getFundInfoUiStateMapper(): FundInfoUiStateMapper
     fun getContributionDetailsViewModel(): ContributionDetailsViewModel
     fun getContributionDetailsUiStateMapper(): ContributionDetailsUiStateMapper
+    fun getContributionInfoViewModel(): ContributionInfoViewModel
+    fun getContributionInfoUiStateMapper(): ContributionInfoUiStateMapper
 }
 
 class KoinFundDependencies: FundDependencies, KoinComponent {
@@ -38,4 +42,7 @@ class KoinFundDependencies: FundDependencies, KoinComponent {
     override fun getContributionDetailsViewModel(): ContributionDetailsViewModel = get()
 
     override fun getContributionDetailsUiStateMapper(): ContributionDetailsUiStateMapper = get()
+    override fun getContributionInfoViewModel(): ContributionInfoViewModel = get()
+
+    override fun getContributionInfoUiStateMapper(): ContributionInfoUiStateMapper = get()
 }

@@ -6,9 +6,7 @@ import androidx.compose.runtime.remember
 import org.koin.mp.KoinPlatform.getKoin
 import org.pointyware.painteddogs.core.navigation.LocationRootScope
 import org.pointyware.painteddogs.feature.funds.ContributionDetailsScreen
-import org.pointyware.painteddogs.feature.funds.ContributionDetailsScreenState
 import org.pointyware.painteddogs.feature.funds.ContributionInfoScreen
-import org.pointyware.painteddogs.feature.funds.ContributionInfoScreenState
 import org.pointyware.painteddogs.feature.funds.di.FundDependencies
 import org.pointyware.painteddogs.feature.funds.ui.FundDetailsScreen
 import org.pointyware.painteddogs.feature.funds.ui.FundInfoScreen
@@ -20,7 +18,6 @@ import ui.FundSearchView
 @Composable
 fun LocationRootScope<String?, Any>.fundsRouting(
 ) {
-
     val di = remember { getKoin() }
     val fundsDependencies = remember { di.get<FundDependencies>() }
 
@@ -69,15 +66,11 @@ fun LocationRootScope<String?, Any>.fundsRouting(
     }
     // we need to show the user the details of their contribution after server confirmation
     location("funds/\$collectionId/contributions/\$contributionId") {
-        val detailViewModel = remember { fundsDependencies.getFundDetailsViewModel() }
-        val mapper = remember { fundsDependencies.getFundDetailsUiStateMapper() }
-        val state = detailViewModel.state.collectAsState()
+        val contributionInfoScreen = remember { fundsDependencies.getContributionInfoViewModel() }
+        val mapper = remember { fundsDependencies.getContributionInfoUiStateMapper() }
+        val state = contributionInfoScreen.state.collectAsState()
         ContributionInfoScreen(
-            state = ContributionInfoScreenState(
-                id = "123",
-                title = "My Collection",
-                description = "A collection of things",
-            ),
+            state = mapper.map(state.value),
         )
     }
 }
