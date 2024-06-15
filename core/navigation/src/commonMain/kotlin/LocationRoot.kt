@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 
 /**
@@ -39,4 +38,25 @@ private class LocationRootScopeImpl<K, V> : LocationRootScope<K, V> {
     override fun location(key: K, content: @Composable (StackNavigationController<K, V>) -> Unit) {
         locations[key] = content
     }
+}
+
+/**
+ * Supporting interface for LocationRootScope to allow type-safe or string paths with
+ * `LocationRootScope<Route<Any>, Any>` or `LocationRootScope<String, Any>`.
+ */
+interface Route<S> {
+    val segments: List<S>
+}
+
+data class SegmentList<S>(override val segments: List<S>): Route<S> {
+    operator fun plus(segment: S): SegmentList<S> {
+        return SegmentList(segments + segment)
+    }
+}
+
+/**
+ * Replace `location("some/path") {` with `location(route("some", "path")) {`
+ */
+fun <S> route(vararg segments: S): Route<S> {
+    return SegmentList(segments.toList())
 }
