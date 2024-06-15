@@ -6,9 +6,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import org.pointyware.painteddogs.core.entities.Uuid
 
 data class ContributionDetailsScreenState(
-    val id: String,
+    val id: Uuid,
     val title: String,
     val description: String,
 )
@@ -20,7 +21,7 @@ data class ContributionDetailsScreenState(
 fun ContributionDetailsScreen(
     state: ContributionDetailsScreenState,
     modifier: Modifier = Modifier,
-    onConfirm: () -> Unit,
+    onConfirm: (Uuid) -> Unit,
 ) {
     Column(
         modifier = modifier
@@ -39,7 +40,7 @@ fun ContributionDetailsScreen(
         )
         Spacer(modifier = Modifier.weight(1f))
         Button(
-            onClick = { onConfirm() },
+            onClick = { onConfirm(state.id) },
         ) {
             Text(
                 text = "Confirm Contribution"

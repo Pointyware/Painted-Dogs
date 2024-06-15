@@ -12,7 +12,6 @@ import org.pointyware.painteddogs.feature.funds.ContributionInfoScreenState
 import org.pointyware.painteddogs.feature.funds.di.FundDependencies
 import org.pointyware.painteddogs.feature.funds.ui.FundDetailsScreen
 import org.pointyware.painteddogs.feature.funds.ui.FundInfoScreen
-import org.pointyware.painteddogs.feature.funds.ui.FundInfoScreenState
 import ui.FundSearchView
 
 /**
@@ -60,16 +59,12 @@ fun LocationRootScope<String?, Any>.fundsRouting(
     }
     // a user needs to determine how much they want to contribute
     location("funds/\$collectionId/contribute") {
-        val detailViewModel = remember { fundsDependencies.getFundDetailsViewModel() }
-        val mapper = remember { fundsDependencies.getFundDetailsUiStateMapper() }
-        val state = detailViewModel.state.collectAsState()
+        val contributionDetailsViewModel = remember { fundsDependencies.getContributionDetailsViewModel() }
+        val mapper = remember { fundsDependencies.getContributionDetailsUiStateMapper() }
+        val state = contributionDetailsViewModel.state.collectAsState()
         ContributionDetailsScreen(
-            state = ContributionDetailsScreenState(
-                id = "123",
-                title = "My Collection",
-                description = "A collection of things",
-            ),
-            onConfirm = { it.navigateTo("funds/123/contribute/confirm") },
+            state = mapper.map(state.value),
+            onConfirm = { uuid -> it.navigateTo("funds/$uuid/contribute/confirm") },
         )
     }
     // we need to show the user the details of their contribution after server confirmation
