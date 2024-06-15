@@ -6,8 +6,8 @@ import org.pointyware.painteddogs.core.navigation.Route
 import org.pointyware.painteddogs.core.navigation.StackNavigationController
 import org.pointyware.painteddogs.feature.funds.data.FundRepository
 import org.pointyware.painteddogs.feature.funds.data.OfflineFirstFundRepository
-import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCase
-import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCaseImpl
+import org.pointyware.painteddogs.feature.funds.interactors.CreateFundUseCase
+import org.pointyware.painteddogs.feature.funds.interactors.CreateFundUseCaseImpl
 import org.pointyware.painteddogs.feature.funds.interactors.SearchCollectionsUseCase
 import org.pointyware.painteddogs.feature.funds.interactors.SearchCollectionsUseCaseImpl
 import org.pointyware.painteddogs.feature.funds.local.CollectionCache
@@ -45,7 +45,7 @@ fun featureFundsDataModule() = module {
 }
 
 fun featureFundsInteractorsModule() = module {
-    factory<CreateDonationUseCase> { CreateDonationUseCaseImpl(get()) }
+    factory<CreateFundUseCase> { CreateFundUseCaseImpl(get()) }
     factory<SearchCollectionsUseCase> { SearchCollectionsUseCaseImpl(get()) }
 }
 
@@ -54,7 +54,7 @@ fun featureFundsViewModelsModule() = module {
     factory<FundDetailsViewModel> {
         FundDetailsViewModelImpl(
             navController = get<StackNavigationController<Route<String>, Any>>(),
-            fundRepository = get<FundRepository>()
+            createFundUseCase = get()
         )
     }
     factory<FundSearchViewModel> { FundSearchViewModelImpl(get()) }
