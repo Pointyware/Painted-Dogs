@@ -17,7 +17,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -91,15 +90,24 @@ fun PaintedDogsApp(
 //                    containerColor =
 //                    contentColor =
                 ) {
-                    IconButton(onClick = { navController.navigateTo("funds") }) {
+                    IconButton(
+                        modifier = Modifier.weight(1f),
+                        onClick = { navController.navigateTo("funds") }
+                    ) {
                         Icon(Icons.Default.Build, contentDescription = "Create Fund")
 //                        Icon(painter = painterResource(Res.drawable.funds), contentDescription = "Funds")
                     }
-                    IconButton(onClick = { navController.navigateTo("rides") }) {
+                    IconButton(
+                        modifier = Modifier.weight(1f),
+                        onClick = { navController.navigateTo("rides") }
+                    ) {
                         Icon(Icons.Default.Call, contentDescription = "Rides")
 //                        Icon(painter = painterResource(Res.drawable.rides), contentDescription = "Rides")
                     }
-                    IconButton(onClick = { navController.navigateTo("social") }) {
+                    IconButton(
+                        modifier = Modifier.weight(1f),
+                        onClick = { navController.navigateTo("social") }
+                    ) {
                         Icon(Icons.Default.Person, contentDescription = "Social")
 //                        Icon(painter = painterResource(Res.drawable.social), contentDescription = "Social")
                     }
