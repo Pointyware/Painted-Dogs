@@ -13,6 +13,9 @@ interface CollectionApi {
     ): Result<Fund>
 
     suspend fun search(query: String): Result<List<Fund>>
+
+    suspend fun update(fund: Fund): Result<Fund>
+    suspend fun delete(fund: Fund): Result<Unit>
 }
 
 class TestCollectionApi(
@@ -40,5 +43,21 @@ class TestCollectionApi(
         return funds.filter { it.title.contains(query, ignoreCase = true) }.let {
             Result.success(it)
         }
+    }
+
+    override suspend fun update(fund: Fund): Result<Fund> {
+        delay(defaultDelay)
+        val index = funds.indexOfFirst { it.id == fund.id }
+        if (index == -1) return Result.failure(IllegalArgumentException("Fund not found"))
+        funds[index] = fund
+        return Result.success(fund)
+    }
+
+    override suspend fun delete(fund: Fund): Result<Unit> {
+        delay(defaultDelay)
+        val index = funds.indexOfFirst { it.id == fund.id }
+        if (index == -1) return Result.failure(IllegalArgumentException("Fund not found"))
+        funds.removeAt(index)
+        return Result.success(Unit)
     }
 }

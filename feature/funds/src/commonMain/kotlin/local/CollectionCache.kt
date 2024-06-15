@@ -7,6 +7,7 @@ interface CollectionCache {
     fun save(it: Fund)
     fun findById(id: Uuid): Fund?
     suspend fun search(query: String): Result<List<Fund>>
+    suspend fun delete(fund: Fund): Result<Unit>
 }
 
 class InMemoryCollectionCache : CollectionCache {
@@ -27,5 +28,9 @@ class InMemoryCollectionCache : CollectionCache {
         return collections.filter { it.value.title.contains(query, ignoreCase = true) }.values.toList().let {
             Result.success(it)
         }
+    }
+
+    override suspend fun delete(fund: Fund): Result<Unit> {
+        return collections.remove(fund.id)?.let { Result.success(Unit) } ?: Result.failure(Exception("Fund not found"))
     }
 }
