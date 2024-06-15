@@ -51,7 +51,12 @@ fun featureFundsInteractorsModule() = module {
 
 fun featureFundsViewModelsModule() = module {
     factory<FundSearchViewModel> { FundSearchViewModelImpl(get()) }
-    factory<FundDetailsViewModel> { FundDetailsViewModelImpl(get<StackNavigationController<Route<String>, Any>>(), get<FundRepository>()) }
+    factory<FundDetailsViewModel> {
+        FundDetailsViewModelImpl(
+            navController = get<StackNavigationController<Route<String>, Any>>(),
+            fundRepository = get<FundRepository>()
+        )
+    }
     factory<FundSearchViewModel> { FundSearchViewModelImpl(get()) }
     factory<FundInfoViewModel> { FundInfoViewModelImpl() }
 }
