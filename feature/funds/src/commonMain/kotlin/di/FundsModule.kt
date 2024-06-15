@@ -13,9 +13,12 @@ import org.pointyware.painteddogs.feature.funds.local.InMemoryCollectionCache
 import org.pointyware.painteddogs.feature.funds.remote.CollectionApi
 import org.pointyware.painteddogs.feature.funds.remote.TestCollectionApi
 import org.pointyware.painteddogs.feature.funds.ui.FundDetailsUiStateMapper
+import org.pointyware.painteddogs.feature.funds.ui.FundInfoUiStateMapper
 import org.pointyware.painteddogs.feature.funds.ui.FundSearchUiStateMapper
 import org.pointyware.painteddogs.feature.funds.viewmodels.FundDetailsViewModel
 import org.pointyware.painteddogs.feature.funds.viewmodels.FundDetailsViewModelImpl
+import org.pointyware.painteddogs.feature.funds.viewmodels.FundInfoViewModel
+import org.pointyware.painteddogs.feature.funds.viewmodels.FundInfoViewModelImpl
 import org.pointyware.painteddogs.feature.funds.viewmodels.FundSearchViewModel
 import org.pointyware.painteddogs.feature.funds.viewmodels.FundSearchViewModelImpl
 
@@ -48,6 +51,7 @@ fun featureFundsViewModelsModule() = module {
     factory<FundSearchViewModel> { FundSearchViewModelImpl(get()) }
     factory<FundDetailsViewModel> { FundDetailsViewModelImpl() }
     factory<FundSearchViewModel> { FundSearchViewModelImpl(get()) }
+    factory<FundInfoViewModel> { FundInfoViewModelImpl() }
 }
 
 fun featureFundsLocalModule() = module {
@@ -61,4 +65,5 @@ fun featureFundsRemoteModule() = module {
 fun featureFundsUiModule() = module {
     single<FundDetailsUiStateMapper> { FundDetailsUiStateMapper }
     single<FundSearchUiStateMapper> { FundSearchUiStateMapper }
+    single<FundInfoUiStateMapper> { FundInfoUiStateMapper }
 }

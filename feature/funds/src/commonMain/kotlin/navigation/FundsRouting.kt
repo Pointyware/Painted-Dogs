@@ -50,17 +50,19 @@ fun LocationRootScope<String?, Any>.fundsRouting(
     }
     // a user needs to see the details of a collection before deciding to contribute
     location("funds/\$collectionId") {
-        // TODO: inject view models/mapper
+        val fundInfoViewModel = remember { fundsDependencies.getFundInfoViewModel() }
+        val mapper = remember { fundsDependencies.getFundInfoUiStateMapper() }
+        val state = fundInfoViewModel.state.collectAsState()
         FundInfoScreen(
-            state = FundInfoScreenState(
-                title = "My Collection",
-            ),
-            onContribute = { it.navigateTo("funds/123/contribute") },
+            state = mapper.map(state.value),
+            onContribute = { uuid -> it.navigateTo("funds/$uuid/contribute") },
         )
     }
     // a user needs to determine how much they want to contribute
     location("funds/\$collectionId/contribute") {
-        // TODO: inject view models/mapper
+        val detailViewModel = remember { fundsDependencies.getFundDetailsViewModel() }
+        val mapper = remember { fundsDependencies.getFundDetailsUiStateMapper() }
+        val state = detailViewModel.state.collectAsState()
         ContributionDetailsScreen(
             state = ContributionDetailsScreenState(
                 id = "123",
@@ -72,7 +74,9 @@ fun LocationRootScope<String?, Any>.fundsRouting(
     }
     // we need to show the user the details of their contribution after server confirmation
     location("funds/\$collectionId/contributions/\$contributionId") {
-        // TODO: inject view models/mapper
+        val detailViewModel = remember { fundsDependencies.getFundDetailsViewModel() }
+        val mapper = remember { fundsDependencies.getFundDetailsUiStateMapper() }
+        val state = detailViewModel.state.collectAsState()
         ContributionInfoScreen(
             state = ContributionInfoScreenState(
                 id = "123",

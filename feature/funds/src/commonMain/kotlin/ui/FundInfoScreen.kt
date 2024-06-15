@@ -5,8 +5,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import org.pointyware.painteddogs.core.entities.Uuid
 
 data class FundInfoScreenState(
+    val id: Uuid,
     val title: String,
 )
 
@@ -16,7 +18,7 @@ data class FundInfoScreenState(
 @Composable
 fun FundInfoScreen(
     state: FundInfoScreenState,
-    onContribute: () -> Unit,
+    onContribute: (Uuid) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -26,7 +28,7 @@ fun FundInfoScreen(
             text = state.title
         )
         Button(
-            onClick = { onContribute() },
+            onClick = { onContribute(state.id) },
         ) {
             Text(
                 text = "Make Contribution"
