@@ -20,7 +20,7 @@ import org.pointyware.painteddogs.feature.funds.ui.SearchCollectionsScreenState
  *
  */
 @Composable
-fun LocationRootScope<String?>.fundsRouting(
+fun LocationRootScope<String?, Any>.fundsRouting(
     onContribute: () -> Unit,
     onConfirmFundDetails: () -> Unit,
     onConfirmContributionDetails: () -> Unit,

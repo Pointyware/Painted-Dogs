@@ -11,7 +11,7 @@ import org.pointyware.painteddogs.shared.di.HomeDependencies
  * Sets up all routes for home navigation.
  */
 @Composable
-fun LocationRootScope<String?>.homeRouting(
+fun LocationRootScope<String?, Any>.homeRouting(
     onFundSelected: (String) -> Unit,
 ) {
     val di = remember { getKoin() }

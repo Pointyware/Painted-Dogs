@@ -15,29 +15,29 @@ fun <K, V> LocationRoot(
     navController: StackNavigationController<K, V>,
 
     modifier: Modifier = Modifier,
-    content: @Composable LocationRootScope<K>.() -> Unit,
+    content: @Composable LocationRootScope<K, V>.() -> Unit,
 ) {
     val locationRootScope = LocationRootScopeImpl(navController)
     locationRootScope.content()
 
     val currentLocation by navController.currentLocation.collectAsState()
     Box(modifier = modifier) {
-        locationRootScope.locations[currentLocation]?.invoke()
+        locationRootScope.locations[currentLocation]?.invoke(navController)
     }
 }
 
-interface LocationRootScope<K> {
+interface LocationRootScope<K, V> {
     @Composable
-    fun location(key: K, content: @Composable () -> Unit)
+    fun location(key: K, content: @Composable (StackNavigationController<K, V>) -> Unit)
 }
 
 private class LocationRootScopeImpl<K, V>(
     private val navController: StackNavigationController<K, V>,
-) : LocationRootScope<K> {
+) : LocationRootScope<K, V> {
 
-    val locations = mutableMapOf<K, @Composable () -> Unit>()
+    val locations = mutableMapOf<K, @Composable (StackNavigationController<K, V>) -> Unit>()
     @Composable
-    override fun location(key: K, content: @Composable () -> Unit) {
+    override fun location(key: K, content: @Composable (StackNavigationController<K, V>) -> Unit) {
         locations[key] = content
     }
 }

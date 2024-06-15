@@ -15,7 +15,7 @@ import org.pointyware.painteddogs.feature.profiles.ui.UserProfileView
  * Sets up all routes for profile navigation and defines navigation callbacks.
  */
 @Composable
-fun LocationRootScope<String?>.profileRouting(
+fun LocationRootScope<String?, Any>.profileRouting(
     onLogout: () -> Unit,
     onViewCollections: (userId:Uuid) -> Unit,
     onViewContributions: (userId:Uuid) -> Unit,
