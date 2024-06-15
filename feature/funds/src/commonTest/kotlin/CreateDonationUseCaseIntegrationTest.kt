@@ -9,8 +9,8 @@ import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.core.entities.usDollars
 import org.pointyware.painteddogs.feature.funds.data.FundRepository
 import org.pointyware.painteddogs.feature.funds.data.OfflineFirstFundRepository
-import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCase
-import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCaseImpl
+import org.pointyware.painteddogs.feature.funds.interactors.CreateFundUseCase
+import org.pointyware.painteddogs.feature.funds.interactors.CreateFundUseCaseImpl
 import org.pointyware.painteddogs.feature.funds.local.CollectionCache
 import org.pointyware.painteddogs.feature.funds.local.InMemoryCollectionCache
 import org.pointyware.painteddogs.feature.funds.remote.CollectionApi
@@ -28,7 +28,7 @@ class CreateDonationUseCaseIntegrationTest {
     private lateinit var collectionApi: CollectionApi
     private lateinit var collectionCache: CollectionCache
     private lateinit var repository: FundRepository
-    private lateinit var service: CreateDonationUseCase
+    private lateinit var service: CreateFundUseCase
     @BeforeTest
     fun setup() {
         testDispatcher = StandardTestDispatcher()
@@ -40,7 +40,7 @@ class CreateDonationUseCaseIntegrationTest {
             remoteDataSource = collectionApi,
             dataScope = testScope
         )
-        service = CreateDonationUseCaseImpl(repository)
+        service = CreateFundUseCaseImpl(repository)
     }
 
     @Test

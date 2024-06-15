@@ -8,8 +8,8 @@ import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.core.entities.usDollars
 import org.pointyware.painteddogs.feature.funds.data.FundRepository
-import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCase
-import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCaseImpl
+import org.pointyware.painteddogs.feature.funds.interactors.CreateFundUseCase
+import org.pointyware.painteddogs.feature.funds.interactors.CreateFundUseCaseImpl
 import org.pointyware.painteddogs.feature.funds.test.TestFundRepositoryImpl
 import kotlin.jvm.JvmField
 import kotlin.test.BeforeTest
@@ -76,11 +76,11 @@ class CreateDonationUseCaseUnitTest {
     }
 
     private lateinit var fakeRepository: FundRepository
-    private lateinit var service: CreateDonationUseCase
+    private lateinit var service: CreateFundUseCase
     @BeforeTest
     fun setup() {
         fakeRepository = TestFundRepositoryImpl()
-        service = CreateDonationUseCaseImpl(fakeRepository)
+        service = CreateFundUseCaseImpl(fakeRepository)
     }
 
     // @Theory
@@ -134,11 +134,11 @@ class CreateDonationUseCaseUnitTest {
 class CreateDonationUseCaseParameterizedUnitTest {
 
     private lateinit var mockRepository: FundRepository
-    private lateinit var service: CreateDonationUseCase
+    private lateinit var service: CreateFundUseCase
     @BeforeTest
     fun setup() {
         mockRepository = TestFundRepositoryImpl()
-        service = CreateDonationUseCaseImpl(mockRepository)
+        service = CreateFundUseCaseImpl(mockRepository)
     }
 
     // @ParameterizedTest
@@ -196,11 +196,11 @@ class CreateDonationUseCaseParameterizedUnitTest {
 class CreateDonationUseCaseParameterizedMethodUnitTest {
 
     private lateinit var mockRepository: FundRepository
-    private lateinit var service: CreateDonationUseCase
+    private lateinit var service: CreateFundUseCase
     @BeforeTest
     fun setup() {
         mockRepository = TestFundRepositoryImpl()
-        service = CreateDonationUseCaseImpl(mockRepository)
+        service = CreateFundUseCaseImpl(mockRepository)
     }
 
     companion object {

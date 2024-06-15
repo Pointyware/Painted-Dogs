@@ -7,7 +7,7 @@ import org.pointyware.painteddogs.core.entities.StringArgumentException
 import org.pointyware.painteddogs.feature.funds.data.FundRepository
 import kotlin.coroutines.cancellation.CancellationException
 
-interface CreateDonationUseCase {
+interface CreateFundUseCase {
     /**
      * @throws IllegalArgumentException if title or description are blank
      */
@@ -15,9 +15,9 @@ interface CreateDonationUseCase {
     suspend fun invoke(title: String, description: String, targetAmount: CurrencyAmount): Result<Fund>
 }
 
-class CreateDonationUseCaseImpl(
+class CreateFundUseCaseImpl(
     private val repository: FundRepository
-) : CreateDonationUseCase {
+) : CreateFundUseCase {
 
     private val exclusiveMinimum = 0
     private val titleMaxLength = 100

@@ -39,4 +39,16 @@ class OfflineFirstFundRepository(
             }
         }
     }
+
+    override suspend fun update(fund: Fund): Result<Fund> {
+        val result = remoteDataSource.update(fund)
+            .onSuccess { localDataSource.save(it) }
+        return result
+    }
+
+    override suspend fun delete(fund: Fund): Result<Unit> {
+        val result = remoteDataSource.delete(fund)
+            .onSuccess { localDataSource.delete(fund) }
+        return result
+    }
 }

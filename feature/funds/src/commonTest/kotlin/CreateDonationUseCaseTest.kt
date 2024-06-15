@@ -5,8 +5,8 @@ import org.pointyware.painteddogs.assertions.assert
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.StringArgumentException
 import org.pointyware.painteddogs.core.entities.usDollars
-import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCase
-import org.pointyware.painteddogs.feature.funds.interactors.CreateDonationUseCaseImpl
+import org.pointyware.painteddogs.feature.funds.interactors.CreateFundUseCase
+import org.pointyware.painteddogs.feature.funds.interactors.CreateFundUseCaseImpl
 import org.pointyware.painteddogs.feature.funds.test.TestFundRepository
 import org.pointyware.painteddogs.feature.funds.test.TestFundRepositoryImpl
 import kotlin.test.BeforeTest
@@ -17,11 +17,11 @@ import kotlin.test.assertTrue
 class CreateDonationUseCaseTest {
 
     private lateinit var fakeRepository: TestFundRepository
-    private lateinit var service: CreateDonationUseCase
+    private lateinit var service: CreateFundUseCase
     @BeforeTest
     fun setup() {
         fakeRepository = TestFundRepositoryImpl()
-        service = CreateDonationUseCaseImpl(fakeRepository)
+        service = CreateFundUseCaseImpl(fakeRepository)
     }
 
     @Test
