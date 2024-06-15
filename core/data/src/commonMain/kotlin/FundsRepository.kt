@@ -15,6 +15,6 @@ interface FundsRepository {
 }
 
 /**
- * @param collectionId The ID of the fund that was requested.
+ * @param fundId The ID of the fund that was requested.
  */
-data class FundNotFoundException(val collectionId: Uuid): Throwable("Fund not found: $collectionId")
+data class FundNotFoundException(val fundId: Uuid): Throwable("Fund not found: $fundId")
