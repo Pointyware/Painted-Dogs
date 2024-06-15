@@ -38,9 +38,9 @@ kotlin {
 
                 implementation(libs.koin.core)
 
-                implementation(libs.ktor.client.core)
-                implementation(libs.ktor.client.contentNegotiation)
-                implementation(libs.ktor.client.serialization)
+                api(libs.ktor.client.core)
+                api(libs.ktor.client.contentNegotiation)
+                api(libs.ktor.client.serialization)
             }
         }
         val commonTest by getting {
