@@ -16,7 +16,7 @@ import org.pointyware.painteddogs.feature.funds.interactors.SearchCollectionsUse
  * ViewModel for searching donations/collections.
  */
 interface FundSearchViewModel {
-    val state: StateFlow<CollectionSearchUiState>
+    val state: StateFlow<FundSearchUiState>
     /**
      * Called when the search query changes.
      */
@@ -36,8 +36,8 @@ class FundSearchViewModelImpl(
 ): FundSearchViewModel {
     private val viewModelScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
 
-    private val _state = MutableStateFlow(CollectionSearchUiState.EMPTY)
-    override val state: StateFlow<CollectionSearchUiState>
+    private val _state = MutableStateFlow(FundSearchUiState.EMPTY)
+    override val state: StateFlow<FundSearchUiState>
         get() = _state
 
     override fun onSearchQueryChanged(query: String) {
@@ -62,7 +62,7 @@ class FundSearchViewModelImpl(
 
     private var queryJobContainer: JobContainer = JobContainer(viewModelScope)
     override fun onSubmitQuery(query: String) {
-        _state.value = CollectionSearchUiState(query, true, emptyList())
+        _state.value = FundSearchUiState(query, true, emptyList())
         queryJobContainer.cancelAndLaunch(query) {
             val fundList = searchCollectionsUseCase.invoke(query).getOrNull() ?: emptyList()
             val uiList = fundList.map { fund ->

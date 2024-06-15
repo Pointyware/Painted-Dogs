@@ -13,8 +13,7 @@ import org.pointyware.painteddogs.feature.funds.di.FundDependencies
 import org.pointyware.painteddogs.feature.funds.ui.FundDetailsScreen
 import org.pointyware.painteddogs.feature.funds.ui.FundInfoScreen
 import org.pointyware.painteddogs.feature.funds.ui.FundInfoScreenState
-import org.pointyware.painteddogs.feature.funds.ui.SearchCollectionsScreen
-import org.pointyware.painteddogs.feature.funds.ui.SearchCollectionsScreenState
+import ui.FundSearchView
 
 /**
  *
@@ -39,11 +38,14 @@ fun LocationRootScope<String?, Any>.fundsRouting(
     }
     // a user needs to find a collection to contribute to
     location("funds/search") {
-        // TODO: inject view models/mapper
-        SearchCollectionsScreen(
-            state = SearchCollectionsScreenState(
-                query = "",
-            ),
+        val searchViewModel = remember { fundsDependencies.getFundSearchViewModel() }
+        val mapper = remember { fundsDependencies.getFundSearchUiStateMapper() }
+        val state = searchViewModel.state.collectAsState()
+        FundSearchView(
+            state = mapper.map(state.value),
+            onSearchQueryChanged = searchViewModel::onSearchQueryChanged,
+            onSearchQuerySubmitted = searchViewModel::onSubmitQuery,
+            onFundSelected = { uuid -> it.navigateTo("funds/$uuid") },
         )
     }
     // a user needs to see the details of a collection before deciding to contribute

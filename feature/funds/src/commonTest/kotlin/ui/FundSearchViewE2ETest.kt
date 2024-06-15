@@ -6,7 +6,7 @@ import io.mockative.Mock
 import org.pointyware.painteddogs.core.viewmodels.SimpleTestViewModelImpl
 import org.pointyware.painteddogs.feature.funds.EndToEndTest
 import org.pointyware.painteddogs.feature.funds.UiTest
-import org.pointyware.painteddogs.feature.funds.viewmodels.CollectionSearchUiState
+import org.pointyware.painteddogs.feature.funds.viewmodels.FundSearchUiState
 import org.pointyware.painteddogs.feature.funds.viewmodels.FundSearchViewModel
 import org.pointyware.painteddogs.feature.funds.viewmodels.test.TestFundSearchViewModelImpl
 import ui.FundSearchView
@@ -29,7 +29,7 @@ class FundSearchViewE2ETest {
     @BeforeTest
     fun setUp() {
         fakeViewModel = TestFundSearchViewModelImpl(
-            SimpleTestViewModelImpl(CollectionSearchUiState.EMPTY)
+            SimpleTestViewModelImpl(FundSearchUiState.EMPTY)
         )
     }
 

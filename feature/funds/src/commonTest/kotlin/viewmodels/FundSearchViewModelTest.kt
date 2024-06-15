@@ -22,14 +22,14 @@ class FundSearchViewModelTest {
 
         runTestWith(viewModel) {
             assume().that(subject.state.value).isEqualTo(
-                CollectionSearchUiState("", false, emptyList())
+                FundSearchUiState("", false, emptyList())
             )
 
             subject.onSearchQueryChanged("puppy")
 //            subject on SearchEvent.SearchQueryChanged("puppy")
 
             assert().that(subject.state.value).isEqualTo(
-                CollectionSearchUiState("puppy", false, emptyList())
+                FundSearchUiState("puppy", false, emptyList())
             )
         }
     }
