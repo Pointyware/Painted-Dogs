@@ -21,10 +21,7 @@ import org.pointyware.painteddogs.feature.funds.ui.SearchCollectionsScreenState
  */
 @Composable
 fun LocationRootScope<String?, Any>.fundsRouting(
-    onContribute: () -> Unit,
-    onConfirmFundDetails: () -> Unit,
-    onConfirmContributionDetails: () -> Unit,
-    ) {
+) {
 
     val di = remember { getKoin() }
     val fundsDependencies = remember { di.get<FundDependencies>() }
@@ -37,7 +34,7 @@ fun LocationRootScope<String?, Any>.fundsRouting(
         val state = detailViewModel.state.collectAsState()
         FundDetailsScreen(
             state = mapper.map(state.value),
-            onConfirm = onConfirmFundDetails,
+            onConfirm = { it.navigateTo("collections/123/contribute") },
         )
     }
     // a user needs to find a collection to contribute to
@@ -56,7 +53,7 @@ fun LocationRootScope<String?, Any>.fundsRouting(
             state = FundInfoScreenState(
                 title = "My Collection",
             ),
-            onContribute = onContribute,
+            onContribute = { it.navigateTo("funds/123/contribute") },
         )
     }
     // a user needs to determine how much they want to contribute
@@ -68,7 +65,7 @@ fun LocationRootScope<String?, Any>.fundsRouting(
                 title = "My Collection",
                 description = "A collection of things",
             ),
-            onConfirm = onConfirmContributionDetails,
+            onConfirm = { it.navigateTo("funds/123/contribute/confirm") },
         )
     }
     // we need to show the user the details of their contribution after server confirmation

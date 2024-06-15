@@ -123,11 +123,7 @@ fun PaintedDogsApp(
                     onLogout = ::logout
                 )
 
-                fundsRouting(
-                    onContribute = { navController.navigateTo("funds/123/contribute") },
-                    onConfirmFundDetails = { navController.navigateTo("collections/123/contribute") },
-                    onConfirmContributionDetails = { navController.navigateTo("funds/123/contribute/confirm") }
-                )
+                fundsRouting()
 
                 // Add more routing here
             }
