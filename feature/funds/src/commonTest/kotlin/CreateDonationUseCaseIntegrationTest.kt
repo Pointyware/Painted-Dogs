@@ -11,10 +11,10 @@ import org.pointyware.painteddogs.feature.funds.data.FundRepository
 import org.pointyware.painteddogs.feature.funds.data.OfflineFirstFundRepository
 import org.pointyware.painteddogs.feature.funds.interactors.CreateFundUseCase
 import org.pointyware.painteddogs.feature.funds.interactors.CreateFundUseCaseImpl
-import org.pointyware.painteddogs.feature.funds.local.CollectionCache
-import org.pointyware.painteddogs.feature.funds.local.InMemoryCollectionCache
-import org.pointyware.painteddogs.feature.funds.remote.CollectionApi
-import org.pointyware.painteddogs.feature.funds.remote.TestCollectionApi
+import org.pointyware.painteddogs.feature.funds.local.FundCache
+import org.pointyware.painteddogs.feature.funds.local.InMemoryFundCache
+import org.pointyware.painteddogs.feature.funds.remote.FundApi
+import org.pointyware.painteddogs.feature.funds.remote.TestFundApi
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
@@ -25,19 +25,19 @@ class CreateDonationUseCaseIntegrationTest {
 
     private lateinit var testDispatcher: TestDispatcher
     private lateinit var testScope: CoroutineScope
-    private lateinit var collectionApi: CollectionApi
-    private lateinit var collectionCache: CollectionCache
+    private lateinit var fundApi: FundApi
+    private lateinit var fundCache: FundCache
     private lateinit var repository: FundRepository
     private lateinit var service: CreateFundUseCase
     @BeforeTest
     fun setup() {
         testDispatcher = StandardTestDispatcher()
         testScope = CoroutineScope(testDispatcher)
-        collectionApi = TestCollectionApi()
-        collectionCache = InMemoryCollectionCache()
+        fundApi = TestFundApi()
+        fundCache = InMemoryFundCache()
         repository = OfflineFirstFundRepository(
-            localDataSource = collectionCache,
-            remoteDataSource = collectionApi,
+            localDataSource = fundCache,
+            remoteDataSource = fundApi,
             dataScope = testScope
         )
         service = CreateFundUseCaseImpl(repository)

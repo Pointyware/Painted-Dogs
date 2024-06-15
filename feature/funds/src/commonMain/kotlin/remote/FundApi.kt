@@ -5,7 +5,7 @@ import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.Uuid
 
-interface CollectionApi {
+interface FundApi {
     suspend fun startDonationDrive(
         title: String,
         description: String,
@@ -18,10 +18,10 @@ interface CollectionApi {
     suspend fun delete(fund: Fund): Result<Unit>
 }
 
-class TestCollectionApi(
+class TestFundApi(
     private val defaultDelay: Long = 1000,
     initialFundList: List<Fund> = emptyList()
-): CollectionApi {
+): FundApi {
 
     private val funds = initialFundList.toMutableList()
     fun addFund(fund: Fund) {

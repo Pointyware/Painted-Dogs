@@ -5,14 +5,14 @@ import kotlinx.coroutines.async
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.Uuid
-import org.pointyware.painteddogs.feature.funds.local.CollectionCache
-import org.pointyware.painteddogs.feature.funds.remote.CollectionApi
+import org.pointyware.painteddogs.feature.funds.local.FundCache
+import org.pointyware.painteddogs.feature.funds.remote.FundApi
 
 /**
  */
 class OfflineFirstFundRepository(
-    private val localDataSource: CollectionCache,
-    private val remoteDataSource: CollectionApi,
+    private val localDataSource: FundCache,
+    private val remoteDataSource: FundApi,
     private val dataScope: CoroutineScope,
 ): FundRepository {
     override suspend fun startDonationDrive(

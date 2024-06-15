@@ -10,10 +10,10 @@ import org.pointyware.painteddogs.feature.funds.interactors.CreateFundUseCase
 import org.pointyware.painteddogs.feature.funds.interactors.CreateFundUseCaseImpl
 import org.pointyware.painteddogs.feature.funds.interactors.SearchCollectionsUseCase
 import org.pointyware.painteddogs.feature.funds.interactors.SearchCollectionsUseCaseImpl
-import org.pointyware.painteddogs.feature.funds.local.CollectionCache
-import org.pointyware.painteddogs.feature.funds.local.InMemoryCollectionCache
-import org.pointyware.painteddogs.feature.funds.remote.CollectionApi
-import org.pointyware.painteddogs.feature.funds.remote.TestCollectionApi
+import org.pointyware.painteddogs.feature.funds.local.FundCache
+import org.pointyware.painteddogs.feature.funds.local.InMemoryFundCache
+import org.pointyware.painteddogs.feature.funds.remote.FundApi
+import org.pointyware.painteddogs.feature.funds.remote.TestFundApi
 import org.pointyware.painteddogs.feature.funds.ui.FundDetailsUiStateMapper
 import org.pointyware.painteddogs.feature.funds.ui.FundInfoUiStateMapper
 import org.pointyware.painteddogs.feature.funds.ui.FundSearchUiStateMapper
@@ -62,11 +62,11 @@ fun featureFundsViewModelsModule() = module {
 }
 
 fun featureFundsLocalModule() = module {
-    single<CollectionCache> { InMemoryCollectionCache() }
+    single<FundCache> { InMemoryFundCache() }
 }
 
 fun featureFundsRemoteModule() = module {
-    single<CollectionApi> { TestCollectionApi() }
+    single<FundApi> { TestFundApi() }
 }
 
 fun featureFundsUiModule() = module {

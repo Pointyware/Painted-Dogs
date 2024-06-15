@@ -3,14 +3,14 @@ package org.pointyware.painteddogs.feature.funds.local
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.Uuid
 
-interface CollectionCache {
+interface FundCache {
     fun save(it: Fund)
     fun findById(id: Uuid): Fund?
     suspend fun search(query: String): Result<List<Fund>>
     suspend fun delete(fund: Fund): Result<Unit>
 }
 
-class InMemoryCollectionCache : CollectionCache {
+class InMemoryFundCache : FundCache {
 
     /**
      * Mutable map of collections
