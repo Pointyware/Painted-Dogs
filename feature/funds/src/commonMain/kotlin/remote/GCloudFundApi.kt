@@ -1,5 +1,6 @@
 package org.pointyware.painteddogs.feature.funds.remote
 
+import io.ktor.client.HttpClient
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund
 
