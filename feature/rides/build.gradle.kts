@@ -36,7 +36,7 @@ kotlin {
         iosSimulatorArm64(),
     ).forEach {
         it.binaries.framework {
-            baseName = "feature_funds"
+            baseName = "feature_rides"
             isStatic = true
             framework.add(this)
         }
@@ -141,7 +141,7 @@ dependencies {
 }
 
 android {
-    namespace = "org.pointyware.painteddogs.feature.funds"
+    namespace = "org.pointyware.painteddogs.feature.rides"
     compileSdk = 34
     defaultConfig {
         minSdk = 21
