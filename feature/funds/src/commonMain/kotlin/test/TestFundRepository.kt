@@ -42,4 +42,14 @@ class TestFundRepositoryImpl: TestFundRepository {
     override suspend fun search(query: String): Result<List<Fund>> {
         return Result.success(collections.values.filter { it.title.contains(query, ignoreCase = true) })
     }
+
+    override suspend fun update(fund: Fund): Result<Fund> {
+        collections[fund.id] = fund
+        return Result.success(fund)
+    }
+
+    override suspend fun delete(fund: Fund): Result<Unit> {
+        collections.remove(fund.id)
+        return Result.success(Unit)
+    }
 }
