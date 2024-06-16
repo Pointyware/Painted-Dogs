@@ -47,12 +47,8 @@ private class LocationRootScopeImpl<K, V> : LocationRootScope<K, V> {
  * `LocationRootScope<Route<Any>, Any>` or `LocationRootScope<String, Any>`.
  *
  * ```kotlin
- * interface StaticSegment { }
- * interface VariableSegment<K> {
- *   val value: K
- * }
- * class TypeA(val name: String): StaticSegment {
- *   inner class TypeB(val name: String): VariableSegment {
+ * class TypeA(val name: String): Segment.Static {
+ *   inner class TypeB(val name: String): Segment.Variable {
  *
  *   }
  * }
@@ -78,3 +74,11 @@ data class SegmentList<S>(override val segments: List<S>): Route<S> {
 fun <S> route(vararg segments: S): Route<S> {
     return SegmentList(segments.toList())
 }
+
+sealed interface Segment {
+    val name: String
+    data class Static(override val name: String): Segment
+    data class Variable(override val name: String): Segment
+}
+fun static(name: String): Segment = Segment.Static(name)
+fun variable(name: String): Segment = Segment.Variable(name)
