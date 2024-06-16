@@ -67,11 +67,11 @@ fun PaintedDogsApp(
                         Text(stack.value.segments.lastOrNull() ?: "Painted Dogs")
                     },
                     actions = {
-                        IconButton(onClick = { navController.navigateTo(route("users/123/profile")) }) {
+                        IconButton(onClick = { navController.navigateTo(route("users", "TODO", "profile")) }) {
                             Icon(Icons.Default.AccountBox, contentDescription = "Profile")
 //                            Icon(painter = painterResource(Res.drawable.profile), contentDescription = "Profile")
                         }
-                        IconButton(onClick = { navController.navigateTo(route("funds/search")) }) {
+                        IconButton(onClick = { navController.navigateTo(route("funds", "search")) }) {
                             Icon(Icons.Default.Search, contentDescription = "Search")
 //                            Icon(painter = painterResource(Res.drawable.profile), contentDescription = "Profile")
                         }
@@ -79,7 +79,7 @@ fun PaintedDogsApp(
                 )
             },
             floatingActionButton = {
-                IconButton(onClick = { navController.navigateTo(route("funds/create")) }) {
+                IconButton(onClick = { navController.navigateTo(route("funds", "create")) }) {
                     Icon(Icons.Default.AddCircle, contentDescription = "Create Fund")
 //                    Icon(painter = painterResource(Res.drawable.funds), contentDescription = "Create Fund")
                 }
