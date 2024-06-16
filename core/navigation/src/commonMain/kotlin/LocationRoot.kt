@@ -22,7 +22,8 @@ fun <K, V> LocationRoot(
 
     val currentLocation by navController.currentLocation.collectAsState()
     Box(modifier = modifier) {
-        locationRootScope.locations[currentLocation]?.invoke(navController)
+        val currentContent = locationRootScope.locations[currentLocation]
+        currentContent?.invoke(navController) ?: throw IllegalArgumentException("No content for location $currentLocation")
     }
 }
 
