@@ -11,6 +11,9 @@ import org.pointyware.painteddogs.feature.funds.ui.ContributionHistoryScreen
 import org.pointyware.painteddogs.feature.profiles.di.ProfileDependencies
 import org.pointyware.painteddogs.feature.profiles.ui.UserProfileView
 
+val profileRoute = route("users", "\$id")
+val profileFundsRoute = route("users", "\$id", "funds")
+
 /**
  * Sets up all routes for profile navigation and defines navigation callbacks.
  */
@@ -22,7 +25,7 @@ fun LocationRootScope<Route<String>, Any>.profileRouting(
     val profileDependencies = remember { di.get<ProfileDependencies>() }
 
     // a user needs to control how they appear to others
-    location(route("users", "\$id")) {
+    location(profileRoute) {
         val viewModel = remember { profileDependencies.getProfileViewModel() }
         val mapper = remember { profileDependencies.getProfileUiStateMapper() }
         val state = viewModel.state.collectAsState()
@@ -35,7 +38,7 @@ fun LocationRootScope<Route<String>, Any>.profileRouting(
         )
     }
     // a user can see all their current and past collections
-    location(route("users", "\$id", "funds")) {
+    location(profileFundsRoute) {
         val viewModel = remember { profileDependencies.getContributionHistoryViewModel() }
         val mapper = remember { profileDependencies.getContributionHistoryUiStateMapper()}
         val state = viewModel.state.collectAsState()
