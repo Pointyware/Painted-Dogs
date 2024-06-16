@@ -20,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.core.navigation.LocationRoot
 import org.pointyware.painteddogs.core.navigation.route
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
@@ -67,7 +68,8 @@ fun PaintedDogsApp(
                         Text(stack.value.segments.lastOrNull() ?: "Painted Dogs")
                     },
                     actions = {
-                        IconButton(onClick = { navController.navigateTo(route("users", "TODO", "profile")) }) {
+                        val userId: Uuid = Uuid.v4() // TODO: get actual user/id from active user
+                        IconButton(onClick = { navController.navigateTo(route("users", userId.toString(), "profile")) }) {
                             Icon(Icons.Default.AccountBox, contentDescription = "Profile")
 //                            Icon(painter = painterResource(Res.drawable.profile), contentDescription = "Profile")
                         }
