@@ -44,6 +44,7 @@ fun PaintedDogsApp(
     PaintedDogsTheme(
         isDark = isDarkTheme
     ) {
+        val currentLocation = navController.currentLocation.collectAsState()
         Scaffold(
             modifier = modifier,
             topBar = {
@@ -64,8 +65,7 @@ fun PaintedDogsApp(
                         }
                     },
                     title = {
-                        val stack = navController.currentLocation.collectAsState()
-                        Text(stack.value.segments.lastOrNull() ?: "Painted Dogs")
+                        Text(currentLocation.value.segments.lastOrNull() ?: "Painted Dogs")
                     },
                     actions = {
                         val userId: Uuid = Uuid.v4() // TODO: get actual user/id from active user
@@ -81,9 +81,20 @@ fun PaintedDogsApp(
                 )
             },
             floatingActionButton = {
-                IconButton(onClick = { navController.navigateTo(route("funds", "create")) }) {
-                    Icon(Icons.Default.AddCircle, contentDescription = "Create Fund")
-//                    Icon(painter = painterResource(Res.drawable.funds), contentDescription = "Create Fund")
+                when (currentLocation.value) {
+                    route<String>(),
+                    route("funds") -> {
+                        IconButton(onClick = {
+                            navController.navigateTo(
+                                route(
+                                    "funds",
+                                    "create"
+                                )
+                            )
+                        }) {
+                            Icon(Icons.Default.AddCircle, contentDescription = "Create Fund")
+                        }
+                    }
                 }
             },
             floatingActionButtonPosition = FabPosition.End,
@@ -97,21 +108,18 @@ fun PaintedDogsApp(
 //                        onClick = { navController.navigateTo(route("funds")) }
 //                    ) {
 //                        Icon(Icons.Default.Build, contentDescription = "Create Fund")
-////                        Icon(painter = painterResource(Res.drawable.funds), contentDescription = "Funds")
 //                    }
 //                    IconButton(
 //                        modifier = Modifier.weight(1f),
 //                        onClick = { navController.navigateTo(route("rides")) }
 //                    ) {
 //                        Icon(Icons.Default.Call, contentDescription = "Rides")
-////                        Icon(painter = painterResource(Res.drawable.rides), contentDescription = "Rides")
 //                    }
 //                    IconButton(
 //                        modifier = Modifier.weight(1f),
 //                        onClick = { navController.navigateTo(route("social")) }
 //                    ) {
 //                        Icon(Icons.Default.Person, contentDescription = "Social")
-////                        Icon(painter = painterResource(Res.drawable.social), contentDescription = "Social")
 //                    }
 //                }
 //            }
