@@ -66,7 +66,7 @@ fun featureFundsLocalModule() = module {
 }
 
 fun featureFundsRemoteModule() = module {
-    single<FundApi> { GCloudFundApi() }
+    single<FundApi> { GCloudFundApi(get()) }
 }
 
 fun featureFundsUiModule() = module {
