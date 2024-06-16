@@ -5,7 +5,7 @@ import org.pointyware.painteddogs.core.entities.Uuid
 /**
  *
  */
-class User(
+open class User(
     val id: Uuid,
     val username: String
 ) {
