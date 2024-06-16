@@ -15,6 +15,13 @@ import org.pointyware.painteddogs.feature.funds.ui.FundDetailsScreen
 import org.pointyware.painteddogs.feature.funds.ui.FundInfoScreen
 import ui.FundSearchView
 
+val fundsRoute = route("funds")
+val createFundsRoute = route("funds", "create")
+val searchFundsRoute = route("funds", "search")
+val fundDetailsRoute = route("funds", "\$collectionId")
+val contributeRoute = route("funds", "\$collectionId", "contribute")
+val viewContributionRoute = route("funds", "\$collectionId", "contributions", "\$contributionId")
+
 /**
  *
  */
@@ -25,7 +32,7 @@ fun LocationRootScope<Route<String>, Any>.fundsRouting(
     val fundsDependencies = remember { di.get<FundDependencies>() }
 
     // we need to make a collection before anyone can contribute
-    location(route("funds", "create")) { navController ->
+    location(createFundsRoute) { navController ->
 
         val detailViewModel = remember { fundsDependencies.getFundDetailsViewModel() }
         val mapper = remember { fundsDependencies.getFundDetailsUiStateMapper() }
@@ -41,7 +48,7 @@ fun LocationRootScope<Route<String>, Any>.fundsRouting(
         )
     }
     // a user needs to find a collection to contribute to
-    location(route("funds", "search")) {
+    location(searchFundsRoute) {
         val searchViewModel = remember { fundsDependencies.getFundSearchViewModel() }
         val mapper = remember { fundsDependencies.getFundSearchUiStateMapper() }
         val state = searchViewModel.state.collectAsState()
@@ -53,7 +60,7 @@ fun LocationRootScope<Route<String>, Any>.fundsRouting(
         )
     }
     // a user needs to see the details of a collection before deciding to contribute
-    location(route("funds", "\$collectionId")) {
+    location(fundDetailsRoute) {
         val fundInfoViewModel = remember { fundsDependencies.getFundInfoViewModel() }
         val mapper = remember { fundsDependencies.getFundInfoUiStateMapper() }
         val state = fundInfoViewModel.state.collectAsState()
@@ -63,7 +70,7 @@ fun LocationRootScope<Route<String>, Any>.fundsRouting(
         )
     }
     // a user needs to determine how much they want to contribute
-    location(route("funds", "\$collectionId", "contribute")) {
+    location(contributeRoute) {
         val contributionDetailsViewModel = remember { fundsDependencies.getContributionDetailsViewModel() }
         val mapper = remember { fundsDependencies.getContributionDetailsUiStateMapper() }
         val state = contributionDetailsViewModel.state.collectAsState()
@@ -73,7 +80,7 @@ fun LocationRootScope<Route<String>, Any>.fundsRouting(
         )
     }
     // we need to show the user the details of their contribution after server confirmation
-    location(route("funds", "\$collectionId", "contributions", "\$contributionId")) {
+    location(viewContributionRoute) {
         val contributionInfoScreen = remember { fundsDependencies.getContributionInfoViewModel() }
         val mapper = remember { fundsDependencies.getContributionInfoUiStateMapper() }
         val state = contributionInfoScreen.state.collectAsState()
