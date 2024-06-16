@@ -9,6 +9,7 @@ import org.pointyware.painteddogs.core.navigation.Route
 import org.pointyware.painteddogs.core.navigation.route
 import org.pointyware.painteddogs.shared.di.HomeDependencies
 
+val homeRoute = route<String>()
 /**
  * Sets up all routes for home navigation.
  */
@@ -17,7 +18,7 @@ fun LocationRootScope<Route<String>, Any>.homeRouting() {
     val di = remember { getKoin() }
     val profileDependencies = remember { di.get<HomeDependencies>() }
 
-    location(route()) {
+    location(homeRoute) {
         val homeViewModel = remember { profileDependencies.getHomeViewModel() }
         val mapper = remember { profileDependencies.getHomeUiStateMapper() }
         val state = homeViewModel.state.collectAsState()

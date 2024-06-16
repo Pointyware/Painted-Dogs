@@ -5,16 +5,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.AddCircle
-import androidx.compose.material.icons.filled.Build
-import androidx.compose.material.icons.filled.Call
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,9 +20,11 @@ import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.core.navigation.LocationRoot
 import org.pointyware.painteddogs.core.navigation.route
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
+import org.pointyware.painteddogs.feature.funds.navigation.fundsRoute
 import org.pointyware.painteddogs.feature.funds.navigation.fundsRouting
 import org.pointyware.painteddogs.feature.profiles.navigation.profileRouting
 import org.pointyware.painteddogs.shared.di.AppDependencies
+import org.pointyware.painteddogs.shared.home.homeRoute
 import org.pointyware.painteddogs.shared.home.homeRouting
 
 /**
@@ -82,8 +80,8 @@ fun PaintedDogsApp(
             },
             floatingActionButton = {
                 when (currentLocation.value) {
-                    route<String>(),
-                    route("funds") -> {
+                    homeRoute,
+                    fundsRoute -> {
                         IconButton(onClick = {
                             navController.navigateTo(
                                 route(
