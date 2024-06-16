@@ -45,6 +45,22 @@ private class LocationRootScopeImpl<K, V> : LocationRootScope<K, V> {
 /**
  * Supporting interface for LocationRootScope to allow type-safe or string paths with
  * `LocationRootScope<Route<Any>, Any>` or `LocationRootScope<String, Any>`.
+ *
+ * ```kotlin
+ * interface StaticSegment { }
+ * interface VariableSegment<K> {
+ *   val value: K
+ * }
+ * class TypeA(val name: String): StaticSegment {
+ *   inner class TypeB(val name: String): VariableSegment {
+ *
+ *   }
+ * }
+ * ```
+ *
+ * ```kotlin
+ * val route = TypeA("some").TypeB("userId")
+ * ```
  */
 interface Route<S> {
     val segments: List<S>
