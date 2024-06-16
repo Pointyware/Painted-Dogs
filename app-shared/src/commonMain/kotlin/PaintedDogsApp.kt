@@ -69,11 +69,9 @@ fun PaintedDogsApp(
                         val userId: Uuid = Uuid.v4() // TODO: get actual user/id from active user
                         IconButton(onClick = { navController.navigateTo(route("users", userId.toString(), "profile")) }) {
                             Icon(Icons.Default.AccountBox, contentDescription = "Profile")
-//                            Icon(painter = painterResource(Res.drawable.profile), contentDescription = "Profile")
                         }
                         IconButton(onClick = { navController.navigateTo(route("funds", "search")) }) {
                             Icon(Icons.Default.Search, contentDescription = "Search")
-//                            Icon(painter = painterResource(Res.drawable.profile), contentDescription = "Profile")
                         }
                     },
                 )
