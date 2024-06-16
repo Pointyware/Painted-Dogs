@@ -23,6 +23,7 @@ fun <K, V> LocationRoot(
     val currentLocation by navController.currentLocation.collectAsState()
     Box(modifier = modifier) {
         val currentContent = locationRootScope.locations[currentLocation]
+        // TODO: replace with "routing" function when type-safe navigation is implemented; location(route(...)) allows variables in paths, while navigating to a route requires matching variables (or defaults) in the route
         currentContent?.invoke(navController) ?: throw IllegalArgumentException("No content for location $currentLocation")
     }
 }
