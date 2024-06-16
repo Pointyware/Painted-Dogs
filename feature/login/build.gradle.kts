@@ -5,6 +5,8 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.compose.compiler)
 }
 
 kotlin {
@@ -33,7 +35,12 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(project(":feature:profiles"))
+
             implementation(libs.koin.core)
+
+            implementation(compose.ui)
+            implementation(compose.material3)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
