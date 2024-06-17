@@ -6,7 +6,7 @@
 - Route: The directions a user must take to reach a location.
 - Router: The system that takes a Route and displays the Content at the Location.
 
-String list router
+## String list router
 ```kotlin
 Root {
     location(route("funds", "create")) { navController, args ->
@@ -19,8 +19,12 @@ Root {
 }
 ```
 
-Class list router
+## Class list router
 ```kotlin
+object Funds {
+    object Create
+}
+
 Root {
     location(route(Funds, Create)) { navController, args ->
         // content
@@ -44,4 +48,18 @@ class Router {
         
     }
 }
+```
+
+## Typed Key Routes
+```kotlin
+val home = route<Unit>("home")
+
+val fundsRoute = route<Unit>("funds")
+val createFundsRoute = route("funds", "create")
+val searchFundsRoute = route("funds", "search")
+val fundDetailsRoute = route<FundArg>("funds", "\$fundId")
+val contributeRoute = route<Unit>("funds", "\$fundId", "contribute")
+val viewContributionRoute = route<ContributionArg>("funds", "\$fundId", "contributions", "\$contributionId")
+
+val typedRoute = route(static("funds"), variable<Uuid>("fundId"))
 ```
