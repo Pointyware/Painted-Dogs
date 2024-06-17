@@ -12,7 +12,7 @@ import kotlin.reflect.KClass
  */
 @Composable
 fun <K: Any, V> TypeRouter(
-    navController: StackNavigationController<*, V>,
+    navController: StackNavigationController<K, V>,
 
     modifier: Modifier = Modifier,
     content: @Composable TypeRouterScope<K, V>.() -> Unit,
@@ -34,17 +34,17 @@ fun <K: Any, V> TypeRouter(
 interface TypeRouterScope<K: Any, V> {
     val locations: Map<KClass<K>, @Composable (StackNavigationController<K, V>, K?) -> Unit>
 
-    fun location(type: KClass<K>, content: @Composable (StackNavigationController<*, V>, K?) -> Unit)
+    fun location(type: KClass<K>, content: @Composable (StackNavigationController<K, V>, K?) -> Unit)
 }
 
 class TypeRouterScopeImpl<K: Any, V>(): TypeRouterScope<K, V> {
-    private val _locations = mutableMapOf<KClass<K>, @Composable (StackNavigationController<*, V>, K?) -> Unit>()
-    override val locations: Map<KClass<K>, (StackNavigationController<*, V>, K?) -> Unit>
+    private val _locations = mutableMapOf<KClass<K>, @Composable (StackNavigationController<K, V>, K?) -> Unit>()
+    override val locations: Map<KClass<K>, (StackNavigationController<K, V>, K?) -> Unit>
         get() = _locations
 
     override fun location(
         type: KClass<K>,
-        content: @Composable (StackNavigationController<*, V>, K?) -> Unit
+        content: @Composable (StackNavigationController<K, V>, K?) -> Unit
     ) {
         _locations[type] = content
     }
