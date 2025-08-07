@@ -1,9 +1,10 @@
 package org.pointyware.painteddogs.feature.funds.viewmodels
 
 import kotlinx.coroutines.test.runTest
-import org.pointyware.painteddogs.assertions.assert
-import org.pointyware.painteddogs.assertions.assume
-import org.pointyware.painteddogs.assertions.runTestWith
+import org.pointyware.kass.assertions.assertThat
+import org.pointyware.kass.assertions.assumeThat
+import org.pointyware.kass.assertions.objects.ObjectStatements.isEqualTo
+import org.pointyware.kass.assertions.runScenarioWith
 import org.pointyware.painteddogs.feature.funds.interactors.SearchCollectionsUseCaseImpl
 import org.pointyware.painteddogs.feature.funds.test.TestFundRepositoryImpl
 import kotlin.test.Test
@@ -20,17 +21,17 @@ class FundSearchViewModelTest {
 
         // then the expected use case is invoked with the expected arguments
 
-        runTestWith(viewModel) {
-            assume().that(subject.state.value).isEqualTo(
+        runScenarioWith(listOf(viewModel)) {
+            assumeThat(subject.state.value, isEqualTo(
                 FundSearchUiState("", false, emptyList())
-            )
+            ))
 
             subject.onSearchQueryChanged("puppy")
 //            subject on SearchEvent.SearchQueryChanged("puppy")
 
-            assert().that(subject.state.value).isEqualTo(
+            assertThat(subject.state.value, isEqualTo(
                 FundSearchUiState("puppy", false, emptyList())
-            )
+            ))
         }
     }
 }

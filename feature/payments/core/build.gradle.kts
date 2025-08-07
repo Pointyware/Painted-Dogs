@@ -1,41 +1,22 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
 }
 
 kotlin {
-    @OptIn(ExperimentalKotlinGradlePluginApi::class)
-    compilerOptions {
-        apiVersion = KotlinVersion.KOTLIN_2_0
-    }
     jvm {
-
     }
     androidTarget {
-
     }
-    val framework = XCFramework()
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64(),
-    ).forEach {
-        it.binaries.framework {
-            baseName = "assertions"
-            isStatic = true
-            framework.add(this)
-        }
-    }
+//    iosX64()
+//    iosArm64()
+//    iosSimulatorArm64()
 
     applyDefaultHierarchyTemplate()
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(libs.kotlin.test)
+                implementation(project(":core:entities"))
             }
         }
         val commonTest by getting {
@@ -56,10 +37,6 @@ kotlin {
         }
         val jvmTest by getting {
             dependsOn(jvmSharedTest)
-            dependencies {
-                implementation(libs.truth)
-                implementation(libs.mockk)
-            }
         }
 
         val androidMain by getting {
@@ -72,8 +49,8 @@ kotlin {
 }
 
 android {
-    namespace = "org.pointyware.painteddogs.assertions"
-    compileSdk = 34
+    namespace = "org.pointyware.painteddogs.feature.payments.core"
+    compileSdk = 36
     defaultConfig {
         minSdk = 21
     }

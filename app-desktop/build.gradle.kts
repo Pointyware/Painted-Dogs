@@ -1,38 +1,15 @@
 plugins {
     alias(libs.plugins.kotlinJvm)
+    alias(libs.plugins.composeHelper)
     alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.compose.compiler)
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+kotlin {
+    jvmToolchain(21)
 }
 
 dependencies {
-    implementation(projects.core.ads.client)
-    implementation(projects.core.analytics)
-    implementation(projects.core.data)
-    implementation(projects.core.entities)
-    implementation(projects.core.interactors)
-    implementation(projects.core.local)
-    implementation(projects.core.navigation)
-    implementation(projects.core.remote)
-    implementation(projects.core.ui)
-    implementation(projects.core.viewModels)
-
-    implementation(projects.feature.chat)
-    implementation(projects.feature.funds)
-    implementation(projects.feature.events)
-    implementation(projects.feature.groups)
-    implementation(projects.feature.login)
-    implementation(projects.feature.payments)
-    implementation(projects.feature.profiles)
-
     implementation(projects.appShared)
-
-    implementation(libs.kotlinx.dateTime)
-    implementation(libs.koin.core)
 
     implementation(compose.desktop.currentOs)
     implementation(compose.ui)
@@ -49,6 +26,6 @@ compose.resources {
 
 compose.desktop {
     application {
-        mainClass = "org.pointyware.painteddogs.desktop.MainKt"
+        mainClass = "org.pointyware.painteddogs.MainKt"
     }
 }

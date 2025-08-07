@@ -2,7 +2,6 @@ package org.pointyware.painteddogs.feature.funds.ui
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.runComposeUiTest
-import io.mockative.Mock
 import org.pointyware.painteddogs.core.viewmodels.SimpleTestViewModelImpl
 import org.pointyware.painteddogs.feature.funds.EndToEndTest
 import org.pointyware.painteddogs.feature.funds.UiTest
@@ -23,7 +22,7 @@ import kotlin.test.Test
 @EndToEndTest
 class FundSearchViewE2ETest {
 
-    @Mock
+//    @Mock
     private lateinit var fakeViewModel: FundSearchViewModel
 
     @BeforeTest

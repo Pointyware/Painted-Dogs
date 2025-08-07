@@ -1,46 +1,20 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.composeHelper)
     alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
 }
 
 kotlin {
-    @OptIn(ExperimentalKotlinGradlePluginApi::class)
-    compilerOptions {
-        apiVersion = KotlinVersion.KOTLIN_2_0
-    }
     jvm {
     }
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        instrumentedTestVariant {
-            sourceSetTree.set(KotlinSourceSetTree.test)
+    }
+//    iosX64()
+//    iosArm64()
+//    iosSimulatorArm64()
 
-            dependencies {
-                implementation(libs.androidx.composeTest)
-                debugImplementation(libs.androidx.composeManifest)
-            }
-        }
-    }
-    val framework = XCFramework()
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64(),
-    ).forEach {
-        it.binaries.framework {
-            baseName = "feature_rides"
-            isStatic = true
-            framework.add(this)
-        }
-    }
 
     applyDefaultHierarchyTemplate()
     sourceSets {
@@ -69,11 +43,10 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
-                implementation(project(":assertions"))
-
                 implementation(libs.kotlin.test)
                 implementation(libs.koin.test)
                 implementation(libs.kotlinx.coroutinesTest)
+                implementation(libs.pointyware.kass)
 
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.uiTest)
@@ -118,17 +91,6 @@ kotlin {
                 implementation(libs.koin.test)
             }
         }
-
-        val iosMain by getting {
-            dependencies {
-            }
-        }
-
-        val iosTest by getting {
-            dependencies {
-
-            }
-        }
     }
 }
 
@@ -142,7 +104,7 @@ dependencies {
 
 android {
     namespace = "org.pointyware.painteddogs.feature.rides"
-    compileSdk = 34
+    compileSdk = 36
     defaultConfig {
         minSdk = 21
     }

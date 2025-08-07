@@ -11,9 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import kotlinx.datetime.Instant
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.Uuid
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 
 data class FundSearchViewState(
     val query: String = "",
@@ -75,6 +76,7 @@ data class FundSearchListItemState(
 /**
  * @see toDateString
  */
+@OptIn(ExperimentalTime::class)
 fun Fund.toFundSearchListItemState(): FundSearchListItemState {
     return FundSearchListItemState(
         id = id,
@@ -89,6 +91,7 @@ private const val NULL_DATE_STRING = "-"
 /**
  *
  */
+@OptIn(ExperimentalTime::class)
 fun Instant?.toDateString(): String {
     return when(this) {
         null -> NULL_DATE_STRING

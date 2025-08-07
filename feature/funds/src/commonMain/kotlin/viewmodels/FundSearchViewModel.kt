@@ -59,6 +59,7 @@ class FundSearchViewModelImpl(
             job = scope.launch(block = block)
         }
     }
+//    private val atomicJobContainer: JobContainer
 
     private var queryJobContainer: JobContainer = JobContainer(viewModelScope)
     override fun onSubmitQuery(query: String) {

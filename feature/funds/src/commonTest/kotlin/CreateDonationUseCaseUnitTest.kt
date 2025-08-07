@@ -1,8 +1,14 @@
 package org.pointyware.painteddogs.feature.funds
 
 import kotlinx.coroutines.runBlocking
-import org.pointyware.painteddogs.assertions.assert
-import org.pointyware.painteddogs.assertions.assume
+import org.pointyware.kass.assertions.assertThat
+import org.pointyware.kass.assertions.assumeThat
+import org.pointyware.kass.assertions.collections.CollectionStatements.isNotIn
+import org.pointyware.kass.assertions.objects.ObjectStatements.isEqualTo
+import org.pointyware.kass.assertions.objects.ObjectStatements.isNull
+import org.pointyware.kass.assertions.primitive.NumberStatements.isAtMost
+import org.pointyware.kass.assertions.primitive.NumberStatements.isGreaterThan
+import org.pointyware.kass.assertions.result.ResultStatements.isFailure
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.Uuid
@@ -88,7 +94,7 @@ class CreateDonationUseCaseUnitTest {
         /*
         Given a title, description, and target amount
          */
-        assume().that(given.targetAmount.amount).isGreaterThan(0L)
+        assumeThat(given.targetAmount.amount, isGreaterThan(0L))
 
         /*
         When the use case is invoked
@@ -104,10 +110,10 @@ class CreateDonationUseCaseUnitTest {
             5. The collection has the correct target amount
             6. The collection is saved to the repository
          */
-        assert().that(result.id).isNotIn(setOf(Uuid.nil(), Uuid.max()))
-        assert().that(result.title).isEqualTo(given.title)
-        assert().that(result.description).isEqualTo(given.description)
-        assert().that(result.target).isEqualTo(given.targetAmount)
+        assertThat(result.id, isNotIn(setOf(Uuid.nil(), Uuid.max())))
+        assertThat(result.title, isEqualTo(given.title))
+        assertThat(result.description, isEqualTo(given.description))
+        assertThat(result.target, isEqualTo(given.targetAmount))
     }
 
     // @Theory
@@ -115,19 +121,21 @@ class CreateDonationUseCaseUnitTest {
         /*
         Given a title, description, and target amount
          */
-        assume().that(given.targetAmount.amount).isAtMost(0L)
+        assumeThat(given.targetAmount.amount, isAtMost(0L))
 
         /*
         When the use case is invoked
          */
-        val result: Fund? = runBlocking { service.invoke(given.title, given.description, given.targetAmount).getOrNull() }
+        val result: Fund? = runBlocking {
+            service.invoke(given.title, given.description, given.targetAmount).getOrNull()
+        }
 
         /*
         Then a new donation collection is not created and saved
             1. The result is null
             2. The collection is not saved to the repository
          */
-        assert().that(result).isNull()
+        assertThat(result, isNull())
     }
 }
 
@@ -152,7 +160,7 @@ class CreateDonationUseCaseParameterizedUnitTest {
         /*
         Given a title, description, and target amount
          */
-        assume().that(given.targetAmount.amount).isAtMost(0L)
+        assumeThat(given.targetAmount.amount, isAtMost(0L))
 
         /*
         When the use case is invoked
@@ -164,7 +172,7 @@ class CreateDonationUseCaseParameterizedUnitTest {
             1. The result is a failure
             2. The collection is not saved to the repository
          */
-        assert().that(result).isFailure()
+        assertThat(result, isFailure())
     }
 
     // @ParameterizedTest
@@ -178,7 +186,7 @@ class CreateDonationUseCaseParameterizedUnitTest {
         /*
         Given a title, description, and target amount
          */
-        assume().that(given.targetAmount.amount).isAtMost(0L)
+        assumeThat(given.targetAmount.amount, isAtMost(0L))
 
         /*
         When the use case is invoked
@@ -190,7 +198,7 @@ class CreateDonationUseCaseParameterizedUnitTest {
             1. The result is a failure
             2. The collection is not saved to the repository
          */
-        assert().that(result).isFailure()
+        assertThat(result, isFailure())
     }
 }
 class CreateDonationUseCaseParameterizedMethodUnitTest {
@@ -228,7 +236,7 @@ class CreateDonationUseCaseParameterizedMethodUnitTest {
         /*
         Given a title, description, and target amount
          */
-        assume().that(given.targetAmount.amount).isAtMost(0L)
+        assumeThat(given.targetAmount.amount, isAtMost(0L))
 
         /*
         When the use case is invoked
@@ -240,6 +248,6 @@ class CreateDonationUseCaseParameterizedMethodUnitTest {
             1. The result is a failure
             2. The collection is not saved to the repository
          */
-        assert().that(result).isFailure()
+        assertThat(result, isFailure())
     }
 }

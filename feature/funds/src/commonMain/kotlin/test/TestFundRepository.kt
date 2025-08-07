@@ -4,6 +4,7 @@ import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.feature.funds.data.FundRepository
+import kotlin.time.ExperimentalTime
 
 /**
  * Defines test extensions for the [FundRepository] interface.
@@ -15,6 +16,7 @@ interface TestFundRepository: FundRepository {
 /**
  * Provides in-memory storage of collections for testing purposes.
  */
+@OptIn(ExperimentalTime::class)
 class TestFundRepositoryImpl: TestFundRepository {
 
     var collections: MutableMap<Uuid, Fund> = mutableMapOf()

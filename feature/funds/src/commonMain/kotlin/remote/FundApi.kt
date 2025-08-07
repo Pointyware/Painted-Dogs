@@ -4,6 +4,7 @@ import kotlinx.coroutines.delay
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.Uuid
+import kotlin.time.ExperimentalTime
 
 interface FundApi {
     suspend fun startDonationDrive(
@@ -18,6 +19,7 @@ interface FundApi {
     suspend fun delete(fund: Fund): Result<Unit>
 }
 
+@OptIn(ExperimentalTime::class)
 class TestFundApi(
     private val defaultDelay: Long = 1000,
     initialFundList: List<Fund> = emptyList()

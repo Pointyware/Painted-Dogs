@@ -1,6 +1,7 @@
 package org.pointyware.painteddogs.core.entities
 
-import kotlinx.datetime.Instant
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 
 /**
  * Represents a collection of donations.
@@ -10,6 +11,7 @@ import kotlinx.datetime.Instant
  * @param start The start date of the collection.
  * @param end The end date of the collection.
  */
+@OptIn(ExperimentalTime::class)
 data class Fund(
     val id: Uuid,
     val title: String,

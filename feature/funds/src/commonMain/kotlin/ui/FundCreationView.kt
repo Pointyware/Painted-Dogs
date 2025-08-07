@@ -14,7 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import kotlinx.datetime.Instant
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.pointyware.painteddogs.core.ui.components.DateSelectorRow
 import org.pointyware.painteddogs.core.ui.components.DateSelectorRowState
@@ -49,6 +50,7 @@ fun rememberFundCreationViewState(
 /**
  *
  */
+@OptIn(ExperimentalTime::class)
 @Composable
 fun FundCreationView(
     state: FundCreationViewState = rememberFundCreationViewState(),
