@@ -8,20 +8,28 @@ android {
     namespace = "org.pointyware.painteddogs.android"
     compileSdk = 34
     defaultConfig {
-        applicationId = "org.pointyware.painteddogs.android"
+        applicationId = "org.pointyware.painteddogs"
         minSdk = 21
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
     }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+    signingConfigs {
+        val keystoreReleasePass: String? by project
+        val keystoreReleasePaintedDogsPass: String? by project
+        keystoreReleasePass ?: throw IllegalStateException("Please set keystoreReleasePass as a gradle property")
+        keystoreReleasePaintedDogsPass ?: throw IllegalStateException("Please set keystoreReleasePaintedDogsPass as a gradle property")
+        create("release") {
+            storeFile = rootProject.file("release.keystore")
+            storePassword = keystoreReleasePass
+            keyAlias = "painteddogs"
+            keyPassword = keystoreReleasePaintedDogsPass
         }
     }
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
@@ -30,6 +38,12 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }
 

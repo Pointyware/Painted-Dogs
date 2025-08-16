@@ -1,0 +1,81 @@
+name: "Build and Tag Release Candidate"
+on:
+  push:
+    branches:
+      - main
+    paths-ignore: # Only run checks on changes to code
+      - "**/docs/*"
+      - "*/README.md"
+
+jobs:
+  build:
+    name: "Create Release Candidate"
+    runs-on: [ubuntu-22.04]
+    env:
+      ACCOUNT_ID: "TSampley@gmail.com" # TODO: create/use service account
+      APP_ID: "org.pointyware.painteddogs"
+      BUNDLE_ID: "org.pointyware.painteddogs"
+      PROJECT_ID: "painted-dogs-prod"
+    outputs:
+      BUNDLE_NAME: ${{ steps.build.outputs.bundle_name }}
+      BUNDLE_PATH: ${{ steps.build.outputs.bundle_path }}
+
+    steps:
+      - name: "Setup - Checkout Project"
+        uses: actions/checkout@v4
+      - name: "Setup - Java 17"
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '17'
+      - name: "Setup - Gradle"
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: "Setup - Keystore"
+        env:
+          RELEASE_KEYSTORE: ${{ secrets.RELEASE_KEYSTORE }}
+        run: |
+          echo "$RELEASE_KEYSTORE" | base64 --decode > release.keystore
+
+      - name: "Build - Release"
+        id: build
+        env:
+          ALIAS_PASS: ${{ secrets.ALIAS_PASS }}
+          KEYSTORE_PASS: ${{ secrets.KEYSTORE_PASS }}
+          GENERATED_OUTPUT_NAME: app-android-release.aab
+          GENERATED_OUTPUT_PATH: app-android/build/outputs/bundle/release
+          FINAL_OUTPUT_NAME: "app-android-rc-${{ github.sha }}"
+          FINAL_OUTPUT_PATH: outputs
+        run: |
+          ./gradlew buildRelease \
+            -DkeystoreReleasePass="$KEYSTORE_PASS" \
+            -DkeystoreReleasePaintedDogsPass="$ALIAS_PASS" \
+            -DbuildSuffix="$BUILD_SUFFIX" \
+          && \
+            mkdir -p "$FINAL_OUTPUT_PATH"
+          && \
+            mv "$GENERATED_OUTPUT_PATH/$GENERATED_OUTPUT_NAME" \
+              "$FINAL_OUTPUT_PATH/$FINAL_OUTPUT_NAME" \
+          && \
+            echo "bundle_name=$FINAL_OUTPUT_NAME" >> "$GITHUB_OUTPUT" \
+          && \
+            echo "bundle_path=$FINAL_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
+
+      - name: "Setup - Google Cloud Auth"
+        id: gcloud-auth
+        uses: google-github-actions/auth@v2
+        with:
+          project_id: $PROJECT_ID
+          service-account: github-action-service-account@painted-dogs-prod
+          token-format: access_token
+          access_token_scopes: "https://www.googleapis.com/auth/cloud-platform"
+
+      - name: "Distribute - Google Play"
+        env:
+          TOKEN: ${{ steps.gcloud-auth.outputs.access_token }}
+        run: |
+          BINARY="$FINAL_OUTPUT_PATH/$FINAL_OUTPUT_NAME"
+          echo "Uploading $BINARY to Google Play"
+          java GoogleDistribution --bundle="$BINARY"
+#          java AppleDistribution --artifact="$APPLE_ARTIFACT"
+#          java DesktopDistribution --jar="$JAR"
