@@ -8,9 +8,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import org.pointyware.painteddogs.core.entities.Uuid
 
 data class FundRowState(
-    val fundId: String,
+    val fundId: Uuid,
     val title: String,
     val description: String,
 )
@@ -22,7 +23,7 @@ data class FundRowState(
 fun FundRow(
     state: FundRowState,
     modifier: Modifier = Modifier,
-    onTap: (String) -> Unit,
+    onTap: (Uuid) -> Unit,
 ) {
     Row(
         modifier = modifier

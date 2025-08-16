@@ -53,7 +53,7 @@ fun featureFundsViewModelsModule() = module {
     factory<FundSearchViewModel> { FundSearchViewModelImpl(get()) }
     factory<FundDetailsViewModel> {
         FundDetailsViewModelImpl(
-            navController = get<StackNavigationController<Route<String>, Any>>(),
+            navController = get<StackNavigationController>(),
             createFundUseCase = get()
         )
     }

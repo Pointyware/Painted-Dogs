@@ -11,41 +11,42 @@ import kotlin.reflect.KClass
  * Routes a user to content for a given instance's type.
  */
 @Composable
-fun <K: Any, V> TypeRouter(
-    navController: StackNavigationController<K, V>,
+fun TypeRouter(
+    navController: StackNavigationController,
 
     modifier: Modifier = Modifier,
-    content: @Composable TypeRouterScope<K, V>.() -> Unit,
+    content: @Composable TypeRouterScope.() -> Unit,
 ) {
     // TODO: remove navigation callbacks in "routing" functions when type-safe navigation is implemented
-    val typeRouterScope = TypeRouterScopeImpl<K, V>()
+    val typeRouterScope = TypeRouterScopeImpl()
     typeRouterScope.content()
 
     val currentLocation by navController.currentLocation.collectAsState()
     Box(modifier = modifier) {
-        val locationArgument = currentLocation ?: Unit
+        val locationArgument = currentLocation
         val currentType = locationArgument::class
         val currentContent = typeRouterScope.locations[currentType]
         @Suppress("UNCHECKED_CAST")
-        currentContent?.invoke(navController, locationArgument as? K) ?: throw IllegalArgumentException("No content for location $currentLocation")
+        currentContent?.invoke(navController, locationArgument) ?: throw IllegalArgumentException("No content for location $currentLocation")
     }
 }
 
-interface TypeRouterScope<K: Any, V> {
-    val locations: Map<KClass<K>, @Composable (StackNavigationController<K, V>, K?) -> Unit>
+interface TypeRouterScope {
+    val locations: Map<KClass<*>, @Composable (StackNavigationController, Any?) -> Unit>
 
-    fun location(type: KClass<K>, content: @Composable (StackNavigationController<K, V>, K?) -> Unit)
+    fun <K:Any> location(type: KClass<K>, content: @Composable (StackNavigationController, K?) -> Unit)
 }
 
-class TypeRouterScopeImpl<K: Any, V>(): TypeRouterScope<K, V> {
-    private val _locations = mutableMapOf<KClass<K>, @Composable (StackNavigationController<K, V>, K?) -> Unit>()
-    override val locations: Map<KClass<K>, (StackNavigationController<K, V>, K?) -> Unit>
+class TypeRouterScopeImpl(): TypeRouterScope {
+    private val _locations = mutableMapOf<KClass<*>, @Composable (StackNavigationController, Any?) -> Unit>()
+    override val locations: Map<KClass<*>, @Composable (StackNavigationController, Any?) -> Unit>
         get() = _locations
 
-    override fun location(
+    override fun <K:Any> location(
         type: KClass<K>,
-        content: @Composable (StackNavigationController<K, V>, K?) -> Unit
+        content: @Composable (StackNavigationController, K?) -> Unit
     ) {
-        _locations[type] = content
+        @Suppress("UNCHECKED_CAST")
+        _locations[type] = content as @Composable (StackNavigationController, Any?) -> Unit
     }
 }

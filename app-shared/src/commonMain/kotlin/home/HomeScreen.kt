@@ -5,6 +5,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.feature.funds.ui.FundRow
 import org.pointyware.painteddogs.feature.funds.ui.FundRowState
 
@@ -21,7 +22,7 @@ data class HomeScreenState(
 fun HomeScreen(
     state: HomeScreenState,
     modifier: Modifier = Modifier,
-    onFundSelected: (String) -> Unit,
+    onFundSelected: (Uuid) -> Unit,
 ) {
     Column(
         modifier = modifier
