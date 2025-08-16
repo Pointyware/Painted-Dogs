@@ -18,9 +18,9 @@ version = libs.versions.paintedDogs.get()
 
 kotlin {
     dependencies {
-        implementation(project(":core:entities"))
-        implementation(project(":core:ads:server"))
-        implementation(project(":core:analytics:server"))
+        implementation(projects.core.entities)
+        implementation(projects.core.ads.server)
+        implementation(projects.core.analytics.server)
 
         implementation(libs.koin.ktor)
 

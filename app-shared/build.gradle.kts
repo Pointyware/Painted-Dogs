@@ -9,13 +9,11 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.painteddogs.koin)
     alias(libs.plugins.painteddogs.kmp)
+    alias(libs.plugins.painteddogs.coreProjects)
+    alias(libs.plugins.painteddogs.compose)
 }
 
 kotlin {
-    @OptIn(ExperimentalKotlinGradlePluginApi::class)
-    compilerOptions {
-        apiVersion = KotlinVersion.KOTLIN_2_0
-    }
     jvm {
 
     }
@@ -39,30 +37,13 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:common"))
-                implementation(project(":core:ads:client"))
-                implementation(project(":core:analytics"))
-                implementation(project(":core:data"))
-                implementation(project(":core:entities"))
-                implementation(project(":core:interactors"))
-                implementation(project(":core:local"))
-                implementation(project(":core:navigation"))
-                implementation(project(":core:remote"))
-                implementation(project(":core:ui"))
-                implementation(project(":core:view-models"))
-
-                implementation(project(":feature:chat"))
-                implementation(project(":feature:funds"))
-                implementation(project(":feature:events"))
-                implementation(project(":feature:groups"))
-                implementation(project(":feature:login"))
-                implementation(project(":feature:payments"))
-                implementation(project(":feature:profiles"))
-
-                implementation(compose.ui)
-                implementation(compose.material3)
-                implementation(compose.components.resources)
-                implementation(compose.components.uiToolingPreview) // fleet support
+                implementation(projects.feature.chat)
+                implementation(projects.feature.funds)
+                implementation(projects.feature.events)
+                implementation(projects.feature.groups)
+                implementation(projects.feature.login)
+                implementation(projects.feature.payments)
+                implementation(projects.feature.profiles)
 
                 implementation(libs.kotlinx.dateTime)
                 implementation(libs.kotlinx.coroutines)
@@ -73,7 +54,7 @@ kotlin {
             dependencies {
                 implementation(libs.kotlin.test)
 
-                implementation(project(":assertions"))
+                implementation(libs.pointyware.kass)
             }
         }
 

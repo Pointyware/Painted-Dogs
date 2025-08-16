@@ -8,28 +8,35 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
-import kotlin.reflect.KClass
 
 
 /**
  * Gives the ability to navigate amongst locations within a space, back to previous locations, and forward to locations that have been navigated back from.
+ *
+ * @param K The type of the keys that identify locations in the space.
+ * @param A The type of the arguments that can be passed when navigating to a location.
  */
-interface StackNavigationController {
+interface StackNavigationController<K, A> {
+
+    /**
+     * The space that the controller is navigating within.
+     */
+    val space: Space<K>
 
     /**
      * Navigate to a new location in the space, passing the given arguments.
      */
-    fun <K:Any> navigateTo(route: KClass<K>, arguments: K? = null)
+    fun navigateTo(location: @UnsafeVariance K, arguments: A? = null)
 
     /**
      * The current location in the space.
      */
-    val currentLocation: StateFlow<KClass<*>>
+    val currentLocation: StateFlow<K>
 
     /**
      * A list of locations that the user has navigated through.
      */
-    val backList: StateFlow<List<KClass<*>>>
+    val backList: StateFlow<List<K>>
 
     /**
      * Go back to the previous location in the [backList].
@@ -39,42 +46,46 @@ interface StackNavigationController {
     /**
      * A list of locations that the user has navigated back from. This gets reset when the user navigates forward to a new location.
      */
-    val forwardList: StateFlow<List<KClass<*>>>
+    val forwardList: StateFlow<List<K>>
     /**
      * Go forward to the next location in [forwardList].
      */
     fun goForward()
 
-    data class Frame<K:Any>(
-        val location: KClass<K>,
-        val arguments: K?,
+    data class Frame<K, A>(
+        val location: K,
+        val arguments: A?,
         // options
     )
 
-    val currentFrame: StateFlow<Frame<*>>
+    val currentFrame: StateFlow<Frame<K, A>>
 
 }
 
-class StackNavigationControllerImpl(
-    private val initialLocation: KClass<*>,
+class StackNavigationControllerImpl<K: Any?, A: Any?>(
+    initialLocation: K,
     private val stateScope: CoroutineScope = CoroutineScope(Dispatchers.Main),
-): StackNavigationController {
+): StackNavigationController<K, A> {
 
-    internal data class State(
-        val backList: List<StackNavigationController.Frame<*>>,
-        val forwardList: List<StackNavigationController.Frame<*>>,
-        val frame: StackNavigationController.Frame<*>,
+    internal data class State<K, A>(
+        val backList: List<StackNavigationController.Frame<K, A>>,
+        val forwardList: List<StackNavigationController.Frame<K, A>>,
+        val frame: StackNavigationController.Frame<K, A>,
     )
-    private val mutableState = MutableStateFlow(State(emptyList(), emptyList(), StackNavigationController.Frame(initialLocation, null)))
+    private val mutableState = MutableStateFlow(State(emptyList(), emptyList(), StackNavigationController.Frame<K, A>(initialLocation, null)))
 
-    override val currentLocation: StateFlow<KClass<*>>
+    private val _space = AggregateSpace<K>()
+    override val space: Space<K>
+        get() = _space
+
+    override val currentLocation: StateFlow<K>
         get() = mutableState.value.frame.location.let { currentValue ->
             mutableState.map { it.frame.location }
                 .stateIn(stateScope, SharingStarted.WhileSubscribed(), currentValue)
         }
 
 
-    override val backList: StateFlow<List<KClass<*>>>
+    override val backList: StateFlow<List<K>>
         get() = mutableState.value.let { currentValue ->
             mutableState.map { it.backList.map { it.location } }
                 .stateIn(stateScope, SharingStarted.WhileSubscribed(), currentValue.backList.map { it.location })
@@ -93,7 +104,7 @@ class StackNavigationControllerImpl(
         }
     }
 
-    override val forwardList: StateFlow<List<KClass<*>>>
+    override val forwardList: StateFlow<List<K>>
         get() = mutableState.value.let { currentValue ->
             mutableState.map { it.forwardList.map { it.location } }
                 .stateIn(stateScope, SharingStarted.WhileSubscribed(), currentValue.forwardList.map { it.location })
@@ -112,25 +123,25 @@ class StackNavigationControllerImpl(
         }
     }
 
-    override val currentFrame: StateFlow<StackNavigationController.Frame<*>>
+    override val currentFrame: StateFlow<StackNavigationController.Frame<K, A>>
         get() = mutableState.value.frame.let { currentValue ->
             mutableState.map { it.frame }
                 .stateIn(stateScope, SharingStarted.WhileSubscribed(), currentValue)
         }
 
-    override fun <K:Any> navigateTo(route: KClass<K>, arguments: K?) {
+    override fun navigateTo(location: K, arguments: A?) {
         mutableState.update {
             it.copy(
                 backList = it.backList + it.frame,
                 forwardList = emptyList(),
-                frame = StackNavigationController.Frame(route, arguments),
+                frame = StackNavigationController.Frame(location, arguments),
             )
         }
     }
 }
 
-fun StackNavigationController(
-    initialLocation: KClass<*>,
-): StackNavigationController {
+fun <K, A> StackNavigationController(
+    initialLocation: K,
+): StackNavigationController<K, A> {
     return StackNavigationControllerImpl(initialLocation)
 }

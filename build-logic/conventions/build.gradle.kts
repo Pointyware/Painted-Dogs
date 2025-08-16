@@ -26,5 +26,17 @@ gradlePlugin {
             version = "0.1.0"
             implementationClass = "org.pointyware.painteddogs.buildlogic.KmpTargetsConventionPlugin"
         }
+
+        create("compose-convention") {
+            id = "org.pointyware.painteddogs.compose-convention"
+            version = "0.1.0"
+            implementationClass = "org.pointyware.painteddogs.buildlogic.ComposeConventionPlugin"
+        }
+
+        create("core-projects-convention") {
+            id = "org.pointyware.painteddogs.core-projects-convention"
+            version = "0.1.0"
+            implementationClass = "org.pointyware.painteddogs.buildlogic.CoreProjectsConventionPlugin"
+        }
     }
 }

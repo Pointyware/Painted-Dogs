@@ -43,7 +43,7 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
-                implementation(project(":assertions"))
+                implementation(libs.pointyware.kass)
                 implementation(libs.kotlin.test)
             }
         }

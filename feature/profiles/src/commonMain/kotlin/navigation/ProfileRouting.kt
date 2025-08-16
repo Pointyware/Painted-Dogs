@@ -5,56 +5,63 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import org.koin.mp.KoinPlatform.getKoin
 import org.pointyware.painteddogs.core.entities.Uuid
+import org.pointyware.painteddogs.core.navigation.LocationRootScope
+import org.pointyware.painteddogs.core.navigation.Path
+import org.pointyware.painteddogs.core.navigation.StaticRoute
+import org.pointyware.painteddogs.core.navigation.emptyPath
+import org.pointyware.painteddogs.core.navigation.pathArgumentPlaceholder
+import org.pointyware.painteddogs.feature.funds.navigation.getFundInfoPath
 import org.pointyware.painteddogs.core.navigation.TypeRouterScope
 import org.pointyware.painteddogs.feature.funds.navigation.Funds
 import org.pointyware.painteddogs.feature.funds.ui.ContributionHistoryScreen
 import org.pointyware.painteddogs.feature.profiles.di.ProfileDependencies
 import org.pointyware.painteddogs.feature.profiles.ui.UserProfileView
 
+val usersRoute = StaticRoute("users", Unit)
+val userProfileRoute = usersRoute.variable<Uuid>("user-$pathArgumentPlaceholder")
+val userFundsRoute = userProfileRoute.fixed("funds")
+val userContributionsRoute = userProfileRoute.fixed("contribs")
 
+fun getUserProfilePath(userId: Uuid): Path {
+    return userProfileRoute.provide(userId) { usersRoute -> usersRoute.skip { emptyPath() } }
+}
 data class Profile(val id: Uuid) {
     inner class Funds
     inner class Contributions
-}
+fun getUserFundsPath(userId: Uuid): Path = userFundsRoute.skip { it.provide(userId) { userProfileRoute -> userProfileRoute.skip { emptyPath() }}}
+fun getUserContributionsPath(userId: Uuid): Path = userContributionsRoute.skip { it.provide(userId) { it.skip { emptyPath()}} }
+
 /**
  * Sets up all routes for profile navigation and defines navigation callbacks.
  */
 @Composable
-fun TypeRouterScope.profileRouting(
+fun LocationRootScope<Any, Any>.profileRouting(
     onLogout: () -> Unit,
 ) {
     val di = remember { getKoin() }
     val profileDependencies = remember { di.get<ProfileDependencies>() }
 
     // a user needs to control how they appear to others
-    location(Profile::class) { navController, _ ->
+    location(userProfileRoute) {
         val viewModel = remember { profileDependencies.getProfileViewModel() }
         val mapper = remember { profileDependencies.getProfileUiStateMapper() }
         val state = viewModel.state.collectAsState()
         UserProfileView(
             state = mapper.map(state.value),
             onEditProfile = viewModel::onEditProfile,
-            onViewCollections = { userId ->
-                val arg = Profile(id = userId).Funds()
-                navController.navigateTo(Profile.Funds::class, arg)
-            },
-            onViewContributions = { userId ->
-                val arg = Profile(id = userId).Contributions()
-                navController.navigateTo(Profile.Contributions::class, arg)
-            },
+            onViewCollections = { userId -> it.navigateTo(getUserFundsPath(userId)) },
+            onViewContributions = { userId -> it.navigateTo(getUserContributionsPath(userId)) },
             onLogout = onLogout,
         )
     }
     // a user can see all their current and past collections
-    location(Profile.Funds::class) { navController, _ ->
+    location(userFundsRoute) {
         val viewModel = remember { profileDependencies.getContributionHistoryViewModel() }
         val mapper = remember { profileDependencies.getContributionHistoryUiStateMapper()}
         val state = viewModel.state.collectAsState()
         ContributionHistoryScreen(
             state = mapper.map(state.value),
-            onViewFund = { fundId ->
-                val arg = Funds.FundDetails(fundId)
-                navController.navigateTo(Funds.FundDetails::class, arg) },
+            onViewFund = { fundId -> it.navigateTo(getFundInfoPath(fundId)) },
         )
     }
 }

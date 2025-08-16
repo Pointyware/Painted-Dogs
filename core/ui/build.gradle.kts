@@ -37,8 +37,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:common"))
-                implementation(project(":core:entities"))
+                implementation(projects.core.common)
+                implementation(projects.core.entities)
 
                 implementation(compose.ui)
                 implementation(compose.material3)
@@ -51,7 +51,7 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
-                implementation(project(":assertions"))
+                implementation(libs.pointyware.kass)
 
                 implementation(libs.kotlin.test)
                 implementation(libs.koin.test)

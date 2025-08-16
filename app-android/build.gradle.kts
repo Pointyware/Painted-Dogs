@@ -9,7 +9,7 @@ android {
     namespace = "org.pointyware.painteddogs.android"
     compileSdk = 34
     defaultConfig {
-        applicationId = "org.pointyware.painteddogs"
+        applicationId = "org.pointyware.painteddogs.android"
         minSdk = 21
         targetSdk = 34
         versionCode = 2
@@ -49,10 +49,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:entities"))
-    implementation(project(":core:ui"))
+    implementation(projects.core.entities)
+    implementation(projects.core.ui)
 
-    implementation(project(":app-shared"))
+    implementation(projects.appShared)
 
     implementation(libs.androidx.activityCompose)
     implementation(libs.androidx.composeMaterial3)

@@ -17,6 +17,8 @@ plugins {
 
     alias(libs.plugins.painteddogs.koin).apply(false)
     alias(libs.plugins.painteddogs.kmp).apply(false)
+    alias(libs.plugins.painteddogs.coreProjects).apply(false)
+    alias(libs.plugins.painteddogs.compose).apply(false)
     alias(libs.plugins.artifactRegistry).apply(false)
 }
 

@@ -7,7 +7,7 @@ plugins {
 
 kotlin {
     dependencies {
-        implementation(project(":core:entities"))
+        implementation(projects.core.entities)
 
         implementation(libs.koin.ktor)
 
