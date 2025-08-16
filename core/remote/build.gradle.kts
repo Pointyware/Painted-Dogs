@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
@@ -6,19 +8,15 @@ plugins {
 }
 
 kotlin {
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    compilerOptions {
+        apiVersion = KotlinVersion.KOTLIN_2_0
+    }
     jvm {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
+
     }
     androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
+
     }
     val framework = XCFramework()
     listOf(
@@ -38,6 +36,11 @@ kotlin {
         val commonMain by getting {
             dependencies {
 
+                implementation(libs.koin.core)
+
+                api(libs.ktor.client.core)
+                api(libs.ktor.client.contentNegotiation)
+                api(libs.ktor.client.serialization)
             }
         }
         val commonTest by getting {
@@ -48,6 +51,10 @@ kotlin {
 
         val jvmSharedMain by creating {
             dependsOn(commonMain)
+
+            dependencies {
+                implementation(libs.ktor.client.okhttp)
+            }
         }
         val jvmSharedTest by creating {
             dependsOn(commonTest)
@@ -69,6 +76,15 @@ kotlin {
         }
         val androidUnitTest by getting {
             dependsOn(jvmSharedTest)
+        }
+
+        val nativeMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.cio)
+            }
+        }
+        val nativeTest by getting {
+
         }
     }
 }

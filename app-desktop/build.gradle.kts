@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlinJvm)
     alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.compose.compiler)
 }
 
 java {
@@ -9,14 +10,45 @@ java {
 }
 
 dependencies {
+    implementation(project(":core:ads:client"))
+    implementation(project(":core:analytics"))
+    implementation(project(":core:data"))
+    implementation(project(":core:entities"))
+    implementation(project(":core:interactors"))
+    implementation(project(":core:local"))
+    implementation(project(":core:navigation"))
+    implementation(project(":core:remote"))
+    implementation(project(":core:ui"))
+    implementation(project(":core:view-models"))
+
+    implementation(project(":feature:chat"))
+    implementation(project(":feature:funds"))
+    implementation(project(":feature:events"))
+    implementation(project(":feature:groups"))
+    implementation(project(":feature:login"))
+    implementation(project(":feature:payments"))
+    implementation(project(":feature:profiles"))
+
+    implementation(project(":app-shared"))
+
+    implementation(libs.kotlinx.dateTime)
+    implementation(libs.koin.core)
+
     implementation(compose.desktop.currentOs)
     implementation(compose.ui)
     implementation(compose.preview)
     implementation(compose.material3)
+    implementation(compose.components.resources)
+}
+
+compose.resources {
+    publicResClass = true
+    packageOfResClass = "org.pointyware.painteddogs.desktop"
+    generateResClass = always
 }
 
 compose.desktop {
     application {
-        mainClass = "org.pointyware.painteddogs.MainKt"
+        mainClass = "org.pointyware.painteddogs.desktop.MainKt"
     }
 }

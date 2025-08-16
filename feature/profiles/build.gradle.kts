@@ -1,24 +1,24 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.compose.compiler)
 }
 
 kotlin {
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    compilerOptions {
+        apiVersion = KotlinVersion.KOTLIN_2_0
+    }
     jvm {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
+
     }
     androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
+
     }
     val framework = XCFramework()
     listOf(
@@ -37,7 +37,17 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":core:common"))
+                implementation(project(":core:entities"))
+                implementation(project(":core:navigation"))
+                implementation(project(":core:ui"))
 
+                implementation(project(":feature:funds"))
+
+                implementation(libs.koin.core)
+
+                implementation(compose.ui)
+                implementation(compose.material3)
             }
         }
         val commonTest by getting {

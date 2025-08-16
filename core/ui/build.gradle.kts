@@ -1,25 +1,24 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.compose.compiler)
 }
 
 kotlin {
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    compilerOptions {
+        apiVersion = KotlinVersion.KOTLIN_2_0
+    }
     jvm {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
+
     }
     androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
+
     }
     val framework = XCFramework()
     listOf(
@@ -38,16 +37,29 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":core:common"))
+                implementation(project(":core:entities"))
+
                 implementation(compose.ui)
                 implementation(compose.material3)
+                implementation(compose.components.uiToolingPreview) // fleet support
+
+                implementation(libs.kotlinx.dateTime)
+                implementation(libs.kotlinx.coroutines)
+                implementation(libs.koin.core)
             }
         }
         val commonTest by getting {
             dependencies {
+                implementation(project(":assertions"))
+
                 implementation(libs.kotlin.test)
+                implementation(libs.koin.test)
+                implementation(libs.kotlinx.coroutinesTest)
 
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.uiTest)
+                implementation(libs.mockative)
             }
         }
 
@@ -61,6 +73,7 @@ kotlin {
         val jvmMain by getting {
             dependsOn(jvmSharedMain)
             dependencies {
+                implementation(compose.preview) // android/desktop support
                 implementation(compose.desktop.currentOs)
             }
         }
@@ -74,6 +87,9 @@ kotlin {
 
         val androidMain by getting {
             dependsOn(jvmSharedMain)
+            dependencies {
+                implementation(libs.androidx.composePreview)
+            }
         }
         val androidUnitTest by getting {
             dependsOn(jvmSharedTest)

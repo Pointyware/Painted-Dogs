@@ -1,0 +1,84 @@
+package org.pointyware.painteddogs.core.navigation
+
+import androidx.compose.foundation.layout.Box
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+
+/**
+ * A composable that provides a location-based navigation root.
+ */
+@Composable
+fun <K, V> LocationRoot(
+    navController: StackNavigationController<K, V>,
+
+    modifier: Modifier = Modifier,
+    content: @Composable LocationRootScope<K, V>.() -> Unit,
+) {
+    // TODO: remove navigation callbacks in "routing" functions when type-safe navigation is implemented
+    val locationRootScope = LocationRootScopeImpl<K, V>()
+    locationRootScope.content()
+
+    val currentLocation by navController.currentLocation.collectAsState()
+    Box(modifier = modifier) {
+        val currentContent = locationRootScope.locations[currentLocation]
+        // TODO: replace with "routing" function when type-safe navigation is implemented; location(route(...)) allows variables in paths, while navigating to a route requires matching variables (or defaults) in the route
+        currentContent?.invoke(navController) ?: throw IllegalArgumentException("No content for location $currentLocation")
+    }
+}
+
+interface LocationRootScope<K, V> {
+    @Composable
+    fun location(key: K, content: @Composable (StackNavigationController<K, V>) -> Unit)
+}
+
+private class LocationRootScopeImpl<K, V> : LocationRootScope<K, V> {
+
+    val locations = mutableMapOf<K, @Composable (StackNavigationController<K, V>) -> Unit>()
+    @Composable
+    override fun location(key: K, content: @Composable (StackNavigationController<K, V>) -> Unit) {
+        locations[key] = content
+    }
+}
+
+/**
+ * Supporting interface for LocationRootScope to allow type-safe or string paths with
+ * `LocationRootScope<Route<Any>, Any>` or `LocationRootScope<String, Any>`.
+ *
+ * ```kotlin
+ * class TypeA(val name: String): Segment.Static {
+ *   inner class TypeB(val name: String): Segment.Variable {
+ *
+ *   }
+ * }
+ * ```
+ *
+ * ```kotlin
+ * val route = TypeA("some").TypeB("userId")
+ * ```
+ */
+interface Route<S> {
+    val segments: List<S>
+}
+
+data class SegmentList<S>(override val segments: List<S>): Route<S> {
+    operator fun plus(segment: S): SegmentList<S> {
+        return SegmentList(segments + segment)
+    }
+}
+
+/**
+ * Replace `location("some/path") {` with `location(route("some", "path")) {`
+ */
+fun <S> route(vararg segments: S): Route<S> {
+    return SegmentList(segments.toList())
+}
+
+sealed interface Segment {
+    val name: String
+    data class Static(override val name: String): Segment
+    data class Variable(override val name: String): Segment
+}
+fun static(name: String): Segment = Segment.Static(name)
+fun variable(name: String): Segment = Segment.Variable(name)

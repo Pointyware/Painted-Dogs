@@ -1,17 +1,24 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.compose.compiler)
 }
 
 kotlin {
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    compilerOptions {
+        apiVersion = KotlinVersion.KOTLIN_2_0
+    }
+    jvm {
+
+    }
     androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
+
     }
     val framework = XCFramework()
     listOf(
@@ -26,10 +33,14 @@ kotlin {
         }
     }
 
-    // TODO: replace
     sourceSets {
         commonMain.dependencies {
-            //put your multiplatform dependencies here
+            implementation(project(":feature:profiles"))
+
+            implementation(libs.koin.core)
+
+            implementation(compose.ui)
+            implementation(compose.material3)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
