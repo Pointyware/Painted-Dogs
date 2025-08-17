@@ -29,6 +29,7 @@ kotlin {
 
                 implementation(compose.ui)
                 implementation(compose.material3)
+                implementation(libs.compose.navigation)
             }
         }
         val commonTest by getting {

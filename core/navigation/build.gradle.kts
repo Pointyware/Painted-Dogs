@@ -24,6 +24,8 @@ kotlin {
                 implementation(compose.ui)
                 implementation(compose.material3)
                 implementation(libs.koin.core)
+
+                implementation(libs.kotlinx.serialization)
             }
         }
         val commonTest by getting {

@@ -2,11 +2,14 @@
 
 package org.pointyware.painteddogs.feature.profiles.navigation
 
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
+import kotlinx.serialization.Serializable
 import org.koin.mp.KoinPlatform.getKoin
-import org.pointyware.painteddogs.core.navigation.LocationRootScope
+import org.pointyware.painteddogs.core.navigation.Destination
 import org.pointyware.painteddogs.core.navigation.Path
 import org.pointyware.painteddogs.core.navigation.StaticRoute
 import org.pointyware.painteddogs.core.navigation.emptyPath
@@ -26,44 +29,53 @@ val userContributionsRoute = userProfileRoute.fixed("contribs")
 fun getUserProfilePath(userId: Uuid): Path {
     return userProfileRoute.provide(userId) { usersRoute -> usersRoute.skip { emptyPath() } }
 }
-data class Profile(val id: Uuid) {
-    inner class Funds
+@Serializable
+data class Profile(val id: Uuid): Destination {
+    @Serializable
+    inner class Funds: Destination
     inner class Contributions
 }
+
+@Deprecated("Replace with Profile.Funds")
 fun getUserFundsPath(userId: Uuid): Path = userFundsRoute.skip { it.provide(userId) { userProfileRoute -> userProfileRoute.skip { emptyPath() }}}
 fun getUserContributionsPath(userId: Uuid): Path = userContributionsRoute.skip { it.provide(userId) { it.skip { emptyPath()}} }
 
 /**
  * Sets up all routes for profile navigation and defines navigation callbacks.
  */
-@Composable
-fun LocationRootScope<Any, Any>.ProfileRouting(
+fun NavGraphBuilder.profileRouting(
+    navController: NavController,
     onLogout: () -> Unit,
 ) {
-    val di = remember { getKoin() }
-    val profileDependencies = remember { di.get<ProfileDependencies>() }
 
     // a user needs to control how they appear to others
-    location(userProfileRoute) {
+    composable<Profile> {
+        val di = remember { getKoin() }
+        val profileDependencies = remember { di.get<ProfileDependencies>() }
+
         val viewModel = remember { profileDependencies.getProfileViewModel() }
         val mapper = remember { profileDependencies.getProfileUiStateMapper() }
         val state = viewModel.state.collectAsState()
         UserProfileView(
             state = mapper.map(state.value),
             onEditProfile = viewModel::onEditProfile,
-            onViewCollections = { userId -> it.navigateTo(getUserFundsPath(userId)) },
-            onViewContributions = { userId -> it.navigateTo(getUserContributionsPath(userId)) },
+            onViewCollections = { userId -> navController.navigate(getUserFundsPath(userId)) },
+            onViewContributions = { userId -> navController.navigate(getUserContributionsPath(userId)) },
             onLogout = onLogout,
         )
     }
+
     // a user can see all their current and past collections
-    location(userFundsRoute) {
+    composable<Profile.Funds> {
+        val di = remember { getKoin() }
+        val profileDependencies = remember { di.get<ProfileDependencies>() }
+
         val viewModel = remember { profileDependencies.getContributionHistoryViewModel() }
         val mapper = remember { profileDependencies.getContributionHistoryUiStateMapper()}
         val state = viewModel.state.collectAsState()
         ContributionHistoryScreen(
             state = mapper.map(state.value),
-            onViewFund = { fundId -> it.navigateTo(getFundInfoPath(fundId)) },
+            onViewFund = { fundId -> navController.navigate(getFundInfoPath(fundId)) },
         )
     }
 }

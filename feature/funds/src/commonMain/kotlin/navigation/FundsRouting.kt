@@ -34,6 +34,7 @@ val contributionDetailsRoute = fundInfoRoute.fixed("contribute")
 fun getFundsCreationPath() = createFundsRoute.skip { it.skip { emptyPath() }}
 fun getFundsSearchPath() = searchFundsRoute.skip { it.skip { emptyPath() }}
 @OptIn(ExperimentalUuidApi::class)
+@Deprecated("Replace with typed routes")
 fun getFundInfoPath(fundId: kotlin.uuid.Uuid): Destination = FundInfo(fundId)
 fun getContributionsPath(fundId: Uuid) = contributionsRoute.skip { it.provide(fundId) { it.skip { emptyPath()}}}
 fun getContributionInfoPath(fundId: Uuid, contributionId: Uuid): Path {

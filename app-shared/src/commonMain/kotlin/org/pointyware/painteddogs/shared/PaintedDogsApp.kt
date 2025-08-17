@@ -29,6 +29,7 @@ import org.pointyware.painteddogs.feature.funds.navigation.getFundsCreationPath
 import org.pointyware.painteddogs.feature.funds.navigation.getFundsSearchPath
 import org.pointyware.painteddogs.feature.profiles.navigation.ProfileRouting
 import org.pointyware.painteddogs.feature.profiles.navigation.getUserProfilePath
+import org.pointyware.painteddogs.feature.profiles.navigation.profileRouting
 import org.pointyware.painteddogs.shared.di.AppDependencies
 import org.pointyware.painteddogs.shared.home.homeRouting
 import kotlin.uuid.ExperimentalUuidApi
@@ -148,15 +149,17 @@ fun PaintedDogsApp(
                 }
             ) {
                 homeRouting(navCon)
+
+                profileRouting(
+                    navCon,
+                    onLogout = ::logout
+                )
             }
             LocationRoot(
                 navController = navController,
                 modifier = Modifier.padding(paddingValues),
             ) {
 
-                ProfileRouting(
-                    onLogout = ::logout
-                )
 
                 fundsRouting()
 
