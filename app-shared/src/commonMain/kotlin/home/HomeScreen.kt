@@ -5,9 +5,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.feature.funds.ui.FundRow
 import org.pointyware.painteddogs.feature.funds.ui.FundRowState
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 data class HomeScreenState(
     val isLoading: Boolean = false,
@@ -18,6 +19,7 @@ data class HomeScreenState(
 /**
  * Main view shown when there is no active navigation.
  */
+@OptIn(ExperimentalUuidApi::class)
 @Composable
 fun HomeScreen(
     state: HomeScreenState,

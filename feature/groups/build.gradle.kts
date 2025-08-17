@@ -1,35 +1,17 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
 }
 
 kotlin {
-    @OptIn(ExperimentalKotlinGradlePluginApi::class)
-    compilerOptions {
-        apiVersion = KotlinVersion.KOTLIN_2_0
-    }
     jvm {
-
     }
     androidTarget {
+    }
+//    iosX64()
+//    iosArm64()
+//    iosSimulatorArm64()
 
-    }
-    val framework = XCFramework()
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64(),
-    ).forEach {
-        it.binaries.framework {
-            baseName = "feature_groups"
-            isStatic = true
-            framework.add(this)
-        }
-    }
 
     applyDefaultHierarchyTemplate()
     sourceSets {
@@ -69,7 +51,7 @@ kotlin {
 
 android {
     namespace = "org.pointyware.painteddogs.feature.groups"
-    compileSdk = 34
+    compileSdk = 36
     defaultConfig {
         minSdk = 21
     }

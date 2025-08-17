@@ -1,35 +1,17 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
 }
 
 kotlin {
-    @OptIn(ExperimentalKotlinGradlePluginApi::class)
-    compilerOptions {
-        apiVersion = KotlinVersion.KOTLIN_2_0
-    }
     jvm {
-
     }
     androidTarget {
+    }
+//    iosX64()
+//    iosArm64()
+//    iosSimulatorArm64()
 
-    }
-    val framework = XCFramework()
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64(),
-    ).forEach {
-        it.binaries.framework {
-            baseName = "core_remote"
-            isStatic = true
-            framework.add(this)
-        }
-    }
 
     applyDefaultHierarchyTemplate()
     sourceSets {
@@ -38,9 +20,9 @@ kotlin {
 
                 implementation(libs.koin.core)
 
-                api(libs.ktor.client.core)
-                api(libs.ktor.client.contentNegotiation)
-                api(libs.ktor.client.serialization)
+                api(libs.ktor.clientCore)
+                api(libs.ktor.clientContentNegotiation)
+                api(libs.ktor.serializationKotlinxJson)
             }
         }
         val commonTest by getting {
@@ -53,7 +35,7 @@ kotlin {
             dependsOn(commonMain)
 
             dependencies {
-                implementation(libs.ktor.client.okhttp)
+                implementation(libs.ktor.clientOkhttp)
             }
         }
         val jvmSharedTest by creating {
@@ -78,20 +60,20 @@ kotlin {
             dependsOn(jvmSharedTest)
         }
 
-        val nativeMain by getting {
-            dependencies {
-                implementation(libs.ktor.client.cio)
-            }
-        }
-        val nativeTest by getting {
-
-        }
+//        val nativeMain by getting {
+//            dependencies {
+//                implementation(libs.ktor.client.cio)
+//            }
+//        }
+//        val nativeTest by getting {
+//
+//        }
     }
 }
 
 android {
     namespace = "org.pointyware.painteddogs.core.remote"
-    compileSdk = 34
+    compileSdk = 36
     defaultConfig {
         minSdk = 21
     }

@@ -1,36 +1,17 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
 }
 
 kotlin {
-    @OptIn(ExperimentalKotlinGradlePluginApi::class)
-    compilerOptions {
-        apiVersion = KotlinVersion.KOTLIN_2_0
-    }
-    jvmToolchain(21)
     jvm {
-
     }
     androidTarget {
+    }
+//    iosX64()
+//    iosArm64()
+//    iosSimulatorArm64()
 
-    }
-    val framework = XCFramework()
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64(),
-    ).forEach {
-        it.binaries.framework {
-            baseName = "core_common"
-            isStatic = true
-            framework.add(this)
-        }
-    }
 
     applyDefaultHierarchyTemplate()
     sourceSets {
@@ -49,17 +30,35 @@ kotlin {
             }
         }
 
+        val jvmSharedMain by creating {
+            dependsOn(commonMain)
+        }
+        val jvmSharedTest by creating {
+            dependsOn(commonTest)
+        }
+
         val jvmMain by getting {
+            dependsOn(jvmSharedMain)
             dependencies {
                 implementation(libs.kotlinx.coroutinesSwing)
             }
+        }
+        val jvmTest by getting {
+            dependsOn(jvmSharedTest)
+        }
+
+        val androidMain by getting {
+            dependsOn(jvmSharedMain)
+        }
+        val androidUnitTest by getting {
+            dependsOn(jvmSharedTest)
         }
     }
 }
 
 android {
     namespace = "org.pointyware.painteddogs.core.common"
-    compileSdk = 34
+    compileSdk = 36
     defaultConfig {
         minSdk = 21
     }

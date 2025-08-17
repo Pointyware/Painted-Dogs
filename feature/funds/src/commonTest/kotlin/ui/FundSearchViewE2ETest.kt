@@ -2,7 +2,6 @@ package org.pointyware.painteddogs.feature.funds.ui
 
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.runComposeUiTest
-import io.mockative.Mock
 import org.pointyware.painteddogs.core.viewmodels.SimpleTestViewModelImpl
 import org.pointyware.painteddogs.feature.funds.EndToEndTest
 import org.pointyware.painteddogs.feature.funds.UiTest
@@ -14,16 +13,17 @@ import ui.FundSearchViewState
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
+import kotlin.uuid.ExperimentalUuidApi
 
 /**
  *
  */
-@OptIn(ExperimentalTestApi::class)
+@OptIn(ExperimentalTestApi::class, ExperimentalUuidApi::class)
 @UiTest
 @EndToEndTest
 class FundSearchViewE2ETest {
 
-    @Mock
+//    @Mock
     private lateinit var fakeViewModel: FundSearchViewModel
 
     @BeforeTest

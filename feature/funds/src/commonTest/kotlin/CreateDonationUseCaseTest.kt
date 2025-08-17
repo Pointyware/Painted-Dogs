@@ -1,7 +1,11 @@
 package org.pointyware.painteddogs.feature.funds
 
 import kotlinx.coroutines.test.runTest
-import org.pointyware.painteddogs.assertions.assert
+import org.pointyware.kass.assertions.assertThat
+import org.pointyware.kass.assertions.objects.ObjectStatements.isEqualTo
+import org.pointyware.kass.assertions.objects.ObjectStatements.isNotNull
+import org.pointyware.kass.assertions.result.ResultStatements.isFailure
+import org.pointyware.kass.assertions.result.ResultStatements.isSuccess
 import org.pointyware.painteddogs.core.entities.Fund
 import org.pointyware.painteddogs.core.entities.StringArgumentException
 import org.pointyware.painteddogs.core.entities.usDollars
@@ -12,7 +16,9 @@ import org.pointyware.painteddogs.feature.funds.test.TestFundRepositoryImpl
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertTrue
+import kotlin.uuid.ExperimentalUuidApi
 
+@OptIn(ExperimentalUuidApi::class)
 @UnitTest
 class CreateDonationUseCaseTest {
 
@@ -34,12 +40,12 @@ class CreateDonationUseCaseTest {
 
         val result = service.invoke(given.title, given.description, given.targetAmount)
 
-        assert().that(result).isSuccess()
+        assertThat(result, isSuccess())
         with(result.getOrThrow()) {
-            assert().that(id).isNotNull()
-            assert().that(title).isEqualTo(given.title)
-            assert().that(description).isEqualTo(given.description)
-            assert().that(target).isEqualTo(given.targetAmount)
+            assertThat(id, isNotNull())
+            assertThat(title, isEqualTo(given.title))
+            assertThat(description, isEqualTo(given.description))
+            assertThat(target, isEqualTo(given.targetAmount))
         }
     }
 
@@ -56,7 +62,7 @@ class CreateDonationUseCaseTest {
 
         assertTrue(result.isFailure)
         with(result.exceptionOrNull()!!) {
-            assert().that(this::class).isEqualTo(StringArgumentException.LengthArgumentException.AtMost::class)
+            assertThat(this::class, isEqualTo(StringArgumentException.LengthArgumentException.AtMost::class))
         }
     }
 
@@ -73,7 +79,7 @@ class CreateDonationUseCaseTest {
 
         assertTrue(result.isFailure)
         with(result.exceptionOrNull()!!) {
-            assert().that(this::class).isEqualTo(StringArgumentException.LengthArgumentException.AtMost::class)
+            assertThat(this::class, isEqualTo(StringArgumentException.LengthArgumentException.AtMost::class))
         }
     }
 
@@ -89,7 +95,7 @@ class CreateDonationUseCaseTest {
 
         assertTrue(result.isFailure)
         with(result.exceptionOrNull()!!) {
-            assert().that(this::class).isEqualTo(StringArgumentException.BlankStringArgumentException::class)
+            assertThat(this::class, isEqualTo(StringArgumentException.BlankStringArgumentException::class))
         }
     }
 
@@ -105,7 +111,7 @@ class CreateDonationUseCaseTest {
 
         assertTrue(result.isFailure)
         with(result.exceptionOrNull()!!) {
-            assert().that(this::class).isEqualTo(StringArgumentException.BlankStringArgumentException::class)
+            assertThat(this::class, isEqualTo(StringArgumentException.BlankStringArgumentException::class))
         }
     }
 
@@ -121,7 +127,7 @@ class CreateDonationUseCaseTest {
 
         val result = service.invoke(given.title, given.description, given.targetAmount)
 
-        assert().that(result).isFailure()
-        assert().that(result).isEqualTo(fakeResult)
+        assertThat(result, isFailure())
+        assertThat(result, isEqualTo(fakeResult))
     }
 }

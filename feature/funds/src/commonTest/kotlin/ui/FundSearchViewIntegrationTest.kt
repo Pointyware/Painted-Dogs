@@ -7,11 +7,12 @@ import org.pointyware.painteddogs.feature.funds.UxTest
 import ui.FundSearchView
 import ui.FundSearchViewState
 import kotlin.test.Test
+import kotlin.uuid.ExperimentalUuidApi
 
 /**
  *
  */
-@OptIn(ExperimentalTestApi::class)
+@OptIn(ExperimentalTestApi::class, ExperimentalUuidApi::class)
 @UxTest
 class FundSearchViewIntegrationTest {
     @Test

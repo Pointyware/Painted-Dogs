@@ -8,8 +8,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import org.pointyware.painteddogs.core.entities.Uuid
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
+@OptIn(ExperimentalUuidApi::class)
 data class FundRowState(
     val fundId: Uuid,
     val title: String,
@@ -19,6 +21,7 @@ data class FundRowState(
 /**
  * Displays basic information about a fund in a row format.
  */
+@OptIn(ExperimentalUuidApi::class)
 @Composable
 fun FundRow(
     state: FundRowState,

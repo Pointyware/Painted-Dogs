@@ -1,10 +1,12 @@
 package org.pointyware.painteddogs.core.entities
 
-import kotlinx.datetime.Instant
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 
 /**
  *
  */
+@OptIn(ExperimentalTime::class)
 interface Event {
     val start: Instant
     val end: Instant

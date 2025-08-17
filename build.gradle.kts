@@ -1,43 +1,48 @@
-import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
-import org.jetbrains.dokka.gradle.DokkaTask
-import java.net.URL
-
 plugins {
     //trick: for the same plugin versions in all sub-modules
     alias(libs.plugins.androidApplication).apply(false)
     alias(libs.plugins.androidLibrary).apply(false)
+    alias(libs.plugins.composeHelper).apply(false)
     alias(libs.plugins.composeMultiplatform).apply(false)
-    alias(libs.plugins.compose.compiler).apply(false)
     alias(libs.plugins.kotlinAndroid).apply(false)
     alias(libs.plugins.kotlinMultiplatform).apply(false)
     alias(libs.plugins.kotlinJvm).apply(false)
+    alias(libs.plugins.serialization) apply false
 
     // apply dokka now
     alias(libs.plugins.dokka)
 
-    alias(libs.plugins.painteddogs.koin).apply(false)
-    alias(libs.plugins.painteddogs.kmp).apply(false)
-    alias(libs.plugins.painteddogs.coreProjects).apply(false)
-    alias(libs.plugins.painteddogs.compose).apply(false)
-    alias(libs.plugins.artifactRegistry).apply(false)
-}
-
-tasks.dokkaHtmlMultiModule {
-    moduleName.set("Painted Dogs")
+//    alias(libs.plugins.painteddogs.koin).apply(false)
+//    alias(libs.plugins.painteddogs.kmp).apply(false)
+//    alias(libs.plugins.painteddogs.coreProjects).apply(false)
+//    alias(libs.plugins.painteddogs.compose).apply(false)
 }
 
 subprojects {
     apply(plugin = "org.jetbrains.dokka")
+}
 
-    tasks.withType<DokkaTask>().configureEach {
+dependencies {
+    dokka(projects.core)
+    dokka(projects.core.entities)
+    dokka(projects.core.data)
+    dokka(projects.core.remote)
+    dokka(projects.core.local)
+    dokka(projects.core.interactors)
+    dokka(projects.core.viewModels)
+    dokka(projects.core.ui)
+    dokka(projects.core.ads)
+    dokka(projects.core.analytics)
 
-        dokkaSourceSets.configureEach {
-
-            sourceLink {
-                localDirectory.set(projectDir.resolve("src"))
-                remoteUrl.set(URL("https://github.com/Pointyware/Painted-Dogs/tree/main/src"))
-                remoteLineSuffix.set("#L")
-            }
-        }
-    }
+    dokka(projects.feature)
+    dokka(projects.feature.collections)
+    dokka(projects.feature.collections.core)
+    dokka(projects.feature.collections.crowdfunding)
+    dokka(projects.feature.chat)
+    dokka(projects.feature.events)
+    dokka(projects.feature.payments)
+    dokka(projects.feature.payments.core)
+    dokka(projects.feature.login)
+    dokka(projects.feature.profiles)
+    dokka(projects.feature.groups)
 }

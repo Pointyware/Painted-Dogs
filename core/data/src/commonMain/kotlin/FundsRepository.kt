@@ -1,11 +1,13 @@
 package org.pointyware.painteddogs.core.data
 
 import org.pointyware.painteddogs.core.entities.Fund
-import org.pointyware.painteddogs.core.entities.Uuid
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 /**
  * Defines the interface for a repository that manages funds.
  */
+@OptIn(ExperimentalUuidApi::class)
 interface FundsRepository {
     suspend fun getFund(collectionId: Uuid): Result<Fund>
     suspend fun getFunds(): Result<List<Fund>>
@@ -17,4 +19,5 @@ interface FundsRepository {
 /**
  * @param fundId The ID of the fund that was requested.
  */
+@OptIn(ExperimentalUuidApi::class)
 data class FundNotFoundException(val fundId: Uuid): Throwable("Fund not found: $fundId")

@@ -1,10 +1,12 @@
 package org.pointyware.painteddogs.feature.funds.viewmodels
 
-import org.pointyware.painteddogs.core.entities.Uuid
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 /**
  *
  */
+@OptIn(ExperimentalUuidApi::class)
 class FundInfoUiState(
     val id: Uuid,
     val title: String

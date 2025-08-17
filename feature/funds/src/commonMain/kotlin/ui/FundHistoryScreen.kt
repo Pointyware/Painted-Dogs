@@ -5,7 +5,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import org.pointyware.painteddogs.core.entities.Uuid
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 data class FundHistoryScreenState(
     val collections: List<FundRowState> = emptyList()
@@ -13,6 +14,7 @@ data class FundHistoryScreenState(
 /**
  * TODO: replace/move to :feature:collections module; rename FundHistoryScreen
  */
+@OptIn(ExperimentalUuidApi::class)
 @Composable
 fun FundHistoryScreen(
     state: FundHistoryScreenState,

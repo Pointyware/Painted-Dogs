@@ -1,10 +1,13 @@
 package org.pointyware.painteddogs.feature.profiles.viewmodels
 
-import org.pointyware.painteddogs.core.entities.Uuid
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
+
 
 /**
  *
  */
+@OptIn(ExperimentalUuidApi::class)
 data class ProfileUiState(
     val id: Uuid,
     val username: String,

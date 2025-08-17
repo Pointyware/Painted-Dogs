@@ -1,12 +1,21 @@
-*.iml
+# Mac/iOS
 .DS_Store
-.gradle
-.idea
-.kotlin
-build
-captures
-.externalNativeBuild
-.cxx
-local.properties
 xcuserdata
+
+# IDE
+*.iml
+.idea
+/build
+captures
+.cxx
+.kotlin
+.externalNativeBuild
+
+# Gradle
+.gradle
+local.properties
+
+## Release Information
 /release.keystore
+/app-android/debug/app-android-debug.aab
+/app-android/release/app-android-release.aab

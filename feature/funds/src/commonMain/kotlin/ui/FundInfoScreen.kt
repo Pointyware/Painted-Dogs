@@ -5,8 +5,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import org.pointyware.painteddogs.core.entities.Uuid
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
+@OptIn(ExperimentalUuidApi::class)
 data class FundInfoScreenState(
     val id: Uuid,
     val title: String,
@@ -15,6 +17,7 @@ data class FundInfoScreenState(
 /**
  *
  */
+@OptIn(ExperimentalUuidApi::class)
 @Composable
 fun FundInfoScreen(
     state: FundInfoScreenState,

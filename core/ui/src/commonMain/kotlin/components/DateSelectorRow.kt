@@ -15,12 +15,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.pointyware.painteddogs.core.ui.PopularDevicePreviews
-import org.pointyware.painteddogs.core.ui.design.DateFormat
+import org.pointyware.painteddogs.core.ui.design.LocalDateFormat
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 
+@OptIn(ExperimentalTime::class)
 data class DateSelectorRowState(
     val date: Instant?,
 )
@@ -31,7 +33,7 @@ data class DateSelectorRowState(
  * The user can also click on the date to change it.
  * When no date is selected, a button to select a date is displayed.
  */
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalTime::class)
 @Composable
 fun DateSelectorRow(
     state: DateSelectorRowState,
@@ -42,7 +44,7 @@ fun DateSelectorRow(
         var datePickerOpen by remember { mutableStateOf(false) }
         // Date
         state.date?.let { localDateTime ->
-            val formattedDate = DateFormat.current.format(localDateTime)
+            val formattedDate = LocalDateFormat.current.format(localDateTime)
             Text(
                 text = formattedDate,
                 modifier = Modifier.clickable {
@@ -81,6 +83,7 @@ fun DateSelectorRow(
     }
 }
 
+@OptIn(ExperimentalTime::class)
 @Preview
 @Composable
 fun DateSelectorRowPreview() {

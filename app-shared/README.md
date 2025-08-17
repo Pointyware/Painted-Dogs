@@ -1,2 +1,1 @@
-# Module :assertions
-Defines multiplatform assertion functions.
+# Module App - Shared

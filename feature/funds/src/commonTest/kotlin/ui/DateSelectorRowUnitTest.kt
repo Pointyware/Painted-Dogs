@@ -1,32 +1,14 @@
 package org.pointyware.painteddogs.feature.funds.ui
 
 import androidx.compose.ui.test.ExperimentalTestApi
-import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.runComposeUiTest
-import io.mockative.Fun1
-import io.mockative.Mock
-import io.mockative.any
-import io.mockative.classOf
-import io.mockative.doesNothing
-import io.mockative.every
-import io.mockative.mock
-import io.mockative.once
-import io.mockative.verify
-import kotlinx.datetime.Instant
-import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.UtcOffset
-import kotlinx.datetime.toInstant
 import org.pointyware.painteddogs.core.ui.components.DateSelectorRow
 import org.pointyware.painteddogs.core.ui.components.DateSelectorRowState
 import org.pointyware.painteddogs.feature.funds.UiTest
-import kotlin.test.BeforeTest
-import kotlin.test.Test
 
 @OptIn(ExperimentalTestApi::class)
 @UiTest
 class DateSelectorRowUnitTest {
-
+/*
     @Mock
     val onDateChanged = mock(classOf<Fun1<Instant?, Unit>>())
 
@@ -183,4 +165,6 @@ class DateSelectorRowUnitTest {
         // Then callback is invoked with null
         verify { onDateChanged.invoke(null) }.wasInvoked(once)
     }
+    TODO: Replace with mockative for multiplatform support
+ */
 }

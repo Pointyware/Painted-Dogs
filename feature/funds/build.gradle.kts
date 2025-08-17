@@ -1,21 +1,16 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.composeHelper)
     alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.serialization)
 }
 
 kotlin {
-    @OptIn(ExperimentalKotlinGradlePluginApi::class)
-    compilerOptions {
-        apiVersion = KotlinVersion.KOTLIN_2_0
-    }
     jvm {
     }
     androidTarget {
@@ -24,23 +19,14 @@ kotlin {
             sourceSetTree.set(KotlinSourceSetTree.test)
 
             dependencies {
-                implementation(libs.androidx.composeTest)
-                debugImplementation(libs.androidx.composeManifest)
+                implementation(libs.androidx.ui.test.junit4)
+                debugImplementation(libs.androidx.ui.test.manifest)
             }
         }
     }
-    val framework = XCFramework()
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64(),
-    ).forEach {
-        it.binaries.framework {
-            baseName = "feature_funds"
-            isStatic = true
-            framework.add(this)
-        }
-    }
+//    iosX64()
+//    iosArm64()
+//    iosSimulatorArm64()
 
     applyDefaultHierarchyTemplate()
     sourceSets {
@@ -48,11 +34,11 @@ kotlin {
             dependencies {
                 implementation(projects.core.common)
                 implementation(projects.core.entities)
-                implementation(projects.core.interactors)
-                implementation(projects.core.data)
                 implementation(projects.core.local)
                 implementation(projects.core.remote)
-                implementation(projects.core.ui)
+                implementation(projects.core.data)
+                implementation(projects.core.interactors)
+                implementation(projects.core.viewModels)
                 implementation(projects.core.navigation)
                 implementation(projects.core.ui)
 
@@ -60,11 +46,14 @@ kotlin {
 
                 implementation(libs.kotlinx.dateTime)
                 implementation(libs.kotlinx.coroutines)
+                implementation(libs.kotlinx.serialization.json)
+
                 implementation(libs.koin.core)
 
                 implementation(compose.runtime)
                 implementation(compose.material3)
                 implementation(compose.components.uiToolingPreview) // fleet support
+                implementation(libs.compose.navigation)
             }
         }
         val commonTest by getting {
@@ -109,7 +98,7 @@ kotlin {
             dependencies {
                 implementation(libs.koin.core)
                 implementation(libs.koin.android)
-                implementation(libs.androidx.composePreview)
+                implementation(libs.androidx.uiToolingPreview)
             }
         }
         val androidUnitTest by getting {
@@ -119,16 +108,16 @@ kotlin {
             }
         }
 
-        val iosMain by getting {
-            dependencies {
-            }
-        }
-
-        val iosTest by getting {
-            dependencies {
-
-            }
-        }
+//        val iosMain by getting {
+//            dependencies {
+//            }
+//        }
+//
+//        val iosTest by getting {
+//            dependencies {
+//
+//            }
+//        }
     }
 }
 
@@ -142,7 +131,7 @@ dependencies {
 
 android {
     namespace = "org.pointyware.painteddogs.feature.funds"
-    compileSdk = 34
+    compileSdk = 36
     defaultConfig {
         minSdk = 21
     }

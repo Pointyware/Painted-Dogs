@@ -6,8 +6,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import org.pointyware.painteddogs.core.entities.Uuid
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
+@OptIn(ExperimentalUuidApi::class)
 data class ContributionDetailsScreenState(
     val id: Uuid,
     val title: String,
@@ -17,6 +19,7 @@ data class ContributionDetailsScreenState(
 /**
  * Displays options for making a new contribution to an existing collection.
  */
+@OptIn(ExperimentalUuidApi::class)
 @Composable
 fun ContributionDetailsScreen(
     state: ContributionDetailsScreenState,

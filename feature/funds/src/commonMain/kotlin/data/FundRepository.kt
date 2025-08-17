@@ -2,11 +2,13 @@ package org.pointyware.painteddogs.feature.funds.data
 
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund
-import org.pointyware.painteddogs.core.entities.Uuid
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 /**
  * Defines the interface for a repository that manages funds.
  */
+@OptIn(ExperimentalUuidApi::class)
 interface FundRepository {
     /**
      * Creates a new fund with the given title, description, and target amount.

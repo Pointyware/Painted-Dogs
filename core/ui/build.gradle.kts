@@ -1,37 +1,19 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.composeHelper)
     alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.compose.compiler)
 }
 
 kotlin {
-    @OptIn(ExperimentalKotlinGradlePluginApi::class)
-    compilerOptions {
-        apiVersion = KotlinVersion.KOTLIN_2_0
-    }
     jvm {
-
     }
     androidTarget {
+    }
+//    iosX64()
+//    iosArm64()
+//    iosSimulatorArm64()
 
-    }
-    val framework = XCFramework()
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64(),
-    ).forEach {
-        it.binaries.framework {
-            baseName = "core_ui"
-            isStatic = true
-            framework.add(this)
-        }
-    }
 
     applyDefaultHierarchyTemplate()
     sourceSets {
@@ -42,6 +24,7 @@ kotlin {
 
                 implementation(compose.ui)
                 implementation(compose.material3)
+                implementation(compose.materialIconsExtended)
                 implementation(compose.components.uiToolingPreview) // fleet support
 
                 implementation(libs.kotlinx.dateTime)
@@ -88,7 +71,8 @@ kotlin {
         val androidMain by getting {
             dependsOn(jvmSharedMain)
             dependencies {
-                implementation(libs.androidx.composePreview)
+                implementation(libs.androidx.uiTooling)
+                implementation(libs.androidx.uiToolingPreview)
             }
         }
         val androidUnitTest by getting {
@@ -99,7 +83,7 @@ kotlin {
 
 android {
     namespace = "org.pointyware.painteddogs.core.ui"
-    compileSdk = 34
+    compileSdk = 36
     defaultConfig {
         minSdk = 21
     }

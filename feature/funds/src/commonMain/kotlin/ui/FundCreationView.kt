@@ -14,10 +14,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import kotlinx.datetime.Instant
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.pointyware.painteddogs.core.ui.components.DateSelectorRow
 import org.pointyware.painteddogs.core.ui.components.DateSelectorRowState
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 
 data class FundCreationViewState(
     val title: String,
@@ -49,6 +50,7 @@ fun rememberFundCreationViewState(
 /**
  *
  */
+@OptIn(ExperimentalTime::class)
 @Composable
 fun FundCreationView(
     state: FundCreationViewState = rememberFundCreationViewState(),
@@ -135,6 +137,7 @@ fun FundCreationView(
     }
 }
 
+@OptIn(ExperimentalTime::class)
 @Preview
 @Composable
 fun FundCreationViewPreview() {

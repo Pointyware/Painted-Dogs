@@ -3,7 +3,9 @@ package org.pointyware.painteddogs.feature.funds.remote
 import kotlinx.coroutines.delay
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund
-import org.pointyware.painteddogs.core.entities.Uuid
+import kotlin.time.ExperimentalTime
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 interface FundApi {
     suspend fun startDonationDrive(
@@ -18,6 +20,7 @@ interface FundApi {
     suspend fun delete(fund: Fund): Result<Unit>
 }
 
+@OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
 class TestFundApi(
     private val defaultDelay: Long = 1000,
     initialFundList: List<Fund> = emptyList()
@@ -33,7 +36,7 @@ class TestFundApi(
         description: String,
         targetAmount: CurrencyAmount
     ): Result<Fund> {
-        val newId = Uuid.v4()
+        val newId = Uuid.random()
         delay(defaultDelay)
         if (targetAmount.amount < 0) return Result.failure(IllegalArgumentException("Target amount must be greater than 0"))
         return Result.success(Fund(newId, title, description, targetAmount, null, null))
