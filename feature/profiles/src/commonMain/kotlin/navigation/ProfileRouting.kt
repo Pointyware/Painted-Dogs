@@ -1,10 +1,11 @@
+@file:OptIn(ExperimentalUuidApi::class)
+
 package org.pointyware.painteddogs.feature.profiles.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import org.koin.mp.KoinPlatform.getKoin
-import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.core.navigation.LocationRootScope
 import org.pointyware.painteddogs.core.navigation.Path
 import org.pointyware.painteddogs.core.navigation.StaticRoute
@@ -14,6 +15,8 @@ import org.pointyware.painteddogs.feature.funds.navigation.getFundInfoPath
 import org.pointyware.painteddogs.feature.funds.ui.ContributionHistoryScreen
 import org.pointyware.painteddogs.feature.profiles.di.ProfileDependencies
 import org.pointyware.painteddogs.feature.profiles.ui.UserProfileView
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 val usersRoute = StaticRoute("users", Unit)
 val userProfileRoute = usersRoute.variable<Uuid>("user-$pathArgumentPlaceholder")
@@ -34,7 +37,7 @@ fun getUserContributionsPath(userId: Uuid): Path = userContributionsRoute.skip {
  * Sets up all routes for profile navigation and defines navigation callbacks.
  */
 @Composable
-fun LocationRootScope<Any, Any>.profileRouting(
+fun LocationRootScope<Any, Any>.ProfileRouting(
     onLogout: () -> Unit,
 ) {
     val di = remember { getKoin() }

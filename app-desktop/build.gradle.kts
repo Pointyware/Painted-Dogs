@@ -16,6 +16,8 @@ dependencies {
     implementation(compose.preview)
     implementation(compose.material3)
     implementation(compose.components.resources)
+
+    implementation(libs.koin.core)
 }
 
 compose.resources {
@@ -26,6 +28,6 @@ compose.resources {
 
 compose.desktop {
     application {
-        mainClass = "org.pointyware.painteddogs.MainKt"
+        mainClass = "org.pointyware.painteddogs.desktop.MainKt"
     }
 }
