@@ -15,6 +15,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.pointyware.painteddogs.core.ui.PopularDevicePreviews
+import org.pointyware.painteddogs.core.ui.design.LocalDateFormat
+import kotlin.time.Clock
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
 
@@ -40,7 +44,7 @@ fun DateSelectorRow(
         var datePickerOpen by remember { mutableStateOf(false) }
         // Date
         state.date?.let { localDateTime ->
-            val formattedDate = DateFormat.current.format(localDateTime)
+            val formattedDate = LocalDateFormat.current.format(localDateTime)
             Text(
                 text = formattedDate,
                 modifier = Modifier.clickable {
@@ -79,6 +83,7 @@ fun DateSelectorRow(
     }
 }
 
+@OptIn(ExperimentalTime::class)
 @Preview
 @Composable
 fun DateSelectorRowPreview() {
