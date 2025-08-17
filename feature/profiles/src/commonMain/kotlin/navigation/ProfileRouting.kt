@@ -11,8 +11,6 @@ import org.pointyware.painteddogs.core.navigation.StaticRoute
 import org.pointyware.painteddogs.core.navigation.emptyPath
 import org.pointyware.painteddogs.core.navigation.pathArgumentPlaceholder
 import org.pointyware.painteddogs.feature.funds.navigation.getFundInfoPath
-import org.pointyware.painteddogs.core.navigation.TypeRouterScope
-import org.pointyware.painteddogs.feature.funds.navigation.Funds
 import org.pointyware.painteddogs.feature.funds.ui.ContributionHistoryScreen
 import org.pointyware.painteddogs.feature.profiles.di.ProfileDependencies
 import org.pointyware.painteddogs.feature.profiles.ui.UserProfileView
@@ -28,6 +26,7 @@ fun getUserProfilePath(userId: Uuid): Path {
 data class Profile(val id: Uuid) {
     inner class Funds
     inner class Contributions
+}
 fun getUserFundsPath(userId: Uuid): Path = userFundsRoute.skip { it.provide(userId) { userProfileRoute -> userProfileRoute.skip { emptyPath() }}}
 fun getUserContributionsPath(userId: Uuid): Path = userContributionsRoute.skip { it.provide(userId) { it.skip { emptyPath()}} }
 
