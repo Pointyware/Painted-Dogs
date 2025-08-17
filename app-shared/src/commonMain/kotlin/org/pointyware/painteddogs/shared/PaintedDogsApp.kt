@@ -21,12 +21,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import org.pointyware.painteddogs.core.navigation.navTypeMap
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import org.pointyware.painteddogs.feature.funds.navigation.Funds
-import org.pointyware.painteddogs.feature.funds.navigation.fundsRouting
 import org.pointyware.painteddogs.feature.profiles.navigation.getUserProfilePath
 import org.pointyware.painteddogs.feature.profiles.navigation.profileRouting
 import org.pointyware.painteddogs.shared.di.AppDependencies
+import org.pointyware.painteddogs.shared.home.Home
 import org.pointyware.painteddogs.shared.home.homeRouting
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
@@ -124,7 +125,7 @@ fun PaintedDogsApp(
                 modifier = Modifier
                     .padding(paddingValues)
                     .fillMaxSize(),
-                startDestination = Unit,
+                startDestination = Home,
                 enterTransition = {
                     // Animation used for the entering new Screen
                     EnterTransition.None
@@ -144,7 +145,8 @@ fun PaintedDogsApp(
                 sizeTransform = {
                     //
                     null
-                }
+                },
+                typeMap = navTypeMap()
             ) {
                 homeRouting(navCon)
 
@@ -153,7 +155,7 @@ fun PaintedDogsApp(
                     onLogout = ::logout
                 )
 
-                fundsRouting(navCon)
+//                fundsRouting(navCon)
             }
         }
     }
