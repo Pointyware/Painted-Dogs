@@ -31,11 +31,21 @@ kotlin {
 
                 implementation(projects.core.common)
                 implementation(projects.core.entities)
+                implementation(projects.core.local)
+                implementation(projects.core.remote)
                 implementation(projects.core.data)
                 implementation(projects.core.interactors)
                 implementation(projects.core.viewModels)
                 implementation(projects.core.navigation)
                 implementation(projects.core.ui)
+
+                implementation(projects.feature.profiles)
+                implementation(projects.feature.funds)
+                implementation(projects.feature.payments)
+                implementation(projects.feature.login)
+                implementation(projects.feature.chat)
+                implementation(projects.feature.events)
+                implementation(projects.feature.groups)
 
                 // UI
                 implementation(compose.ui)
