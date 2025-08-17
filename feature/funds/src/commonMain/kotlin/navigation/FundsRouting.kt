@@ -11,13 +11,13 @@ import org.pointyware.painteddogs.core.navigation.Path
 import org.pointyware.painteddogs.core.navigation.StaticRoute
 import org.pointyware.painteddogs.core.navigation.emptyPath
 import org.pointyware.painteddogs.core.navigation.pathArgumentPlaceholder
-import org.pointyware.painteddogs.core.navigation.TypeRouterScope
 import org.pointyware.painteddogs.feature.funds.ContributionDetailsScreen
 import org.pointyware.painteddogs.feature.funds.ContributionInfoScreen
 import org.pointyware.painteddogs.feature.funds.di.FundDependencies
 import org.pointyware.painteddogs.feature.funds.ui.FundDetailsScreen
 import org.pointyware.painteddogs.feature.funds.ui.FundInfoScreen
 import ui.FundSearchView
+import kotlin.uuid.ExperimentalUuidApi
 
 val fundsRoute = StaticRoute("funds", Unit)
 val createFundsRoute = fundsRoute.fixed("create")
@@ -45,6 +45,7 @@ fun getContributionDetailsPath(fundId: Uuid) = contributionDetailsRoute.skip { i
 /**
  *
  */
+@OptIn(ExperimentalUuidApi::class)
 @Composable
 fun LocationRootScope<Any, Any>.fundsRouting(
 ) {
