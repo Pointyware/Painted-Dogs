@@ -3,19 +3,19 @@
 ## Concepts
 - Content: A collection of UI components that are meant to display or collect information for the user.
 - Location: A specific place in the app that hosts some Content.
-- Route: The directions a user can take to reach a set of Locations expressed by placeholders.
-- Path: A Route with all placeholders filled in, representing a specific Location.
+- org.pointyware.painteddogs.core.navigation.Route: The directions a user can take to reach a set of Locations expressed by placeholders.
+- Path: A org.pointyware.painteddogs.core.navigation.Route with all placeholders filled in, representing a specific Location.
 - Arguments: The values that fill in the placeholders in a Path.
-- Router: The system that takes a Route and displays the Content at the Location.
+- Router: The system that takes a org.pointyware.painteddogs.core.navigation.Route and displays the Content at the Location.
 
 ## String list router
 ```kotlin
 Root {
-    location(route("funds", "create")) { navController, args ->
+    location(org.pointyware.painteddogs.core.navigation.route("funds", "create")) { navController, args ->
         // content
-        navController.navigate(route("funds", "$fundId"))
+        navController.navigate(org.pointyware.painteddogs.core.navigation.route("funds", "$fundId"))
     }
-    location(route("funds", "$fundId")) { navController, args ->
+    location(org.pointyware.painteddogs.core.navigation.route("funds", "$fundId")) { navController, args ->
         // content
     }
 }
@@ -28,11 +28,11 @@ object Funds {
 }
 
 Root {
-    location(route(Funds, Create)) { navController, args ->
+    location(org.pointyware.painteddogs.core.navigation.route(Funds, Create)) { navController, args ->
         // content
         navController.navigate(viewFundRoute.provide(fundId))
     }
-    location(route(Funds, variable<Uuid>)) { navController, args ->
+    location(org.pointyware.painteddogs.core.navigation.route(Funds, org.pointyware.painteddogs.core.navigation.variable<Uuid>)) { navController, args ->
         // content
     }
 }
@@ -41,12 +41,12 @@ interface VariableSegment<K> {
     val type: KClass<K>
 }
 
-fun route(vararg parts: Any): Route {
-    return Route(parts.toList())
+fun org.pointyware.painteddogs.core.navigation.route(vararg parts: Any): org.pointyware.painteddogs.core.navigation.Route {
+    return org.pointyware.painteddogs.core.navigation.Route(parts.toList())
 }
 
 class Router {
-    fun route(A, B, C) {
+    fun org.pointyware.painteddogs.core.navigation.route(A, B, C) {
         
     }
 }
@@ -54,14 +54,14 @@ class Router {
 
 ## Typed Key Routes
 ```kotlin
-val home = route<Unit>("home")
+val home = org.pointyware.painteddogs.core.navigation.route<Unit>("home")
 
-val fundsRoute = route<Unit>("funds")
-val createFundsRoute = route("funds", "create")
-val searchFundsRoute = route("funds", "search")
-val fundDetailsRoute = route<FundArg>("funds", "\$fundId")
-val contributeRoute = route<Unit>("funds", "\$fundId", "contribute")
-val viewContributionRoute = route<ContributionArg>("funds", "\$fundId", "contributions", "\$contributionId")
+val fundsRoute = org.pointyware.painteddogs.core.navigation.route<Unit>("funds")
+val createFundsRoute = org.pointyware.painteddogs.core.navigation.route("funds", "create")
+val searchFundsRoute = org.pointyware.painteddogs.core.navigation.route("funds", "search")
+val fundDetailsRoute = org.pointyware.painteddogs.core.navigation.route<FundArg>("funds", "\$fundId")
+val contributeRoute = org.pointyware.painteddogs.core.navigation.route<Unit>("funds", "\$fundId", "contribute")
+val viewContributionRoute = org.pointyware.painteddogs.core.navigation.route<ContributionArg>("funds", "\$fundId", "contributions", "\$contributionId")
 
-val typedRoute = route(static("funds"), variable<Uuid>("fundId"))
+val typedRoute = org.pointyware.painteddogs.core.navigation.route(org.pointyware.painteddogs.core.navigation.static("funds"), org.pointyware.painteddogs.core.navigation.variable<Uuid>("fundId"))
 ```

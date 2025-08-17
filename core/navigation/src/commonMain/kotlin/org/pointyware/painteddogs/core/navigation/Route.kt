@@ -1,18 +1,18 @@
-
+package org.pointyware.painteddogs.core.navigation
 /**
  * Supporting interface for LocationRootScope to allow type-safe or string paths with
- * `LocationRootScope<Route<Any>, Any>` or `LocationRootScope<String, Any>`.
+ * `LocationRootScope<org.pointyware.painteddogs.core.navigation.Route<Any>, Any>` or `LocationRootScope<String, Any>`.
  *
  * ```kotlin
- * class TypeA(val name: String): Segment.Static {
- *   inner class TypeB(val name: String): Segment.Variable {
+ * class TypeA(val name: String): org.pointyware.painteddogs.core.navigation.Segment.Static {
+ *   inner class TypeB(val name: String): org.pointyware.painteddogs.core.navigation.Segment.Variable {
  *
  *   }
  * }
  * ```
  *
  * ```kotlin
- * val route = TypeA("some").TypeB("userId")
+ * val org.pointyware.painteddogs.core.navigation.route = TypeA("some").TypeB("userId")
  * ```
  */
 interface Route<S> {
@@ -26,7 +26,7 @@ data class SegmentList<S>(override val segments: List<S>): Route<S> {
 }
 
 /**
- * Replace `location("some/path") {` with `location(route("some", "path")) {`
+ * Replace `location("some/path") {` with `location(org.pointyware.painteddogs.core.navigation.route("some", "path")) {`
  */
 fun <S> route(vararg segments: S): Route<S> {
     return SegmentList(segments.toList())

@@ -23,7 +23,7 @@ fun <K, V> LocationRoot(
     val currentLocation by navController.currentLocation.collectAsState()
     Box(modifier = modifier) {
         val currentContent = locationRootScope.locations[currentLocation]
-        // TODO: replace with "routing" function when type-safe navigation is implemented; location(route(...)) allows variables in paths, while navigating to a route requires matching variables (or defaults) in the route
+        // TODO: replace with "routing" function when type-safe navigation is implemented; location(org.pointyware.painteddogs.core.navigation.route(...)) allows variables in paths, while navigating to a org.pointyware.painteddogs.core.navigation.route requires matching variables (or defaults) in the org.pointyware.painteddogs.core.navigation.route
         currentContent?.invoke(navController) ?: throw IllegalArgumentException("No content for location $currentLocation")
     }
 }

@@ -38,7 +38,7 @@ class DynamicRoute<V, P>(
      */
     val parameterName: String,
     /**
-     * The route leading to this branch in navigation.
+     * The org.pointyware.painteddogs.core.navigation.route leading to this branch in navigation.
      */
     val parent: P
 ) {
