@@ -1,5 +1,8 @@
 package org.pointyware.painteddogs.shared
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -16,6 +19,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import org.pointyware.painteddogs.core.navigation.LocationRoot
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import org.pointyware.painteddogs.feature.funds.navigation.fundsRoute
@@ -118,6 +124,37 @@ fun PaintedDogsApp(
 //                }
 //            }
         ) { paddingValues ->
+            val navCon = rememberNavController()
+            NavHost(
+                navController = navCon,
+                modifier = Modifier.fillMaxSize(),
+                startDestination = Unit,
+                enterTransition = {
+                    // Animation used for the entering new Screen
+                    EnterTransition.None
+                },
+                exitTransition = {
+                    // Animation used for the existing Screen being replaced
+                    ExitTransition.None
+                },
+                popEnterTransition = {
+                    // Animation used for the previous Screen being revealed
+                    EnterTransition.None
+                },
+                popExitTransition = {
+                    // Animation used for the latest Screen being removed
+                    ExitTransition.None
+                },
+                sizeTransform = {
+                    //
+                    null
+                }
+            ) {
+                composable<Unit> {
+                    // TODO: transfer LocationRoot extensions to NavGraphBuilder
+                    Text("Hi There, Cutie")
+                }
+            }
             LocationRoot(
                 navController = navController,
                 modifier = Modifier.padding(paddingValues),
