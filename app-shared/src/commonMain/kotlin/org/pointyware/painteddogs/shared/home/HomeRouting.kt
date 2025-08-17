@@ -13,7 +13,7 @@ import org.pointyware.painteddogs.shared.di.HomeDependencies
 import kotlin.uuid.ExperimentalUuidApi
 
 @Serializable
-object Home: Destination
+data object Home: Destination
 /**
  * Sets up all routes for home navigation.
  */
