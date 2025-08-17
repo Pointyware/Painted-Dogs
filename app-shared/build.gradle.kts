@@ -64,7 +64,7 @@ kotlin {
                 implementation(libs.ktor.clientCore)
 
                 // KotlinX
-                implementation(libs.kotlinx.coroutinesCore)
+                implementation(libs.kotlinx.coroutines)
             }
         }
 
