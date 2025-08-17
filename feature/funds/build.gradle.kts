@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.composeHelper)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.serialization)
 }
 
 kotlin {
@@ -45,6 +46,8 @@ kotlin {
 
                 implementation(libs.kotlinx.dateTime)
                 implementation(libs.kotlinx.coroutines)
+                implementation(libs.kotlinx.serialization.json)
+
                 implementation(libs.koin.core)
 
                 implementation(compose.runtime)

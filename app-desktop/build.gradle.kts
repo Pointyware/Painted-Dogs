@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlinJvm)
     alias(libs.plugins.composeHelper)
     alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.serialization)
 }
 
 kotlin {
@@ -18,6 +19,8 @@ dependencies {
     implementation(compose.components.resources)
 
     implementation(libs.koin.core)
+
+    implementation(libs.kotlinx.serialization.json)
 }
 
 compose.resources {

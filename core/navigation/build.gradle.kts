@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeHelper)
     alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.serialization)
 }
 
 kotlin {
@@ -23,6 +24,8 @@ kotlin {
 
                 implementation(compose.ui)
                 implementation(compose.material3)
+                implementation(libs.compose.navigation)
+
                 implementation(libs.koin.core)
 
                 implementation(libs.kotlinx.serialization.json)
