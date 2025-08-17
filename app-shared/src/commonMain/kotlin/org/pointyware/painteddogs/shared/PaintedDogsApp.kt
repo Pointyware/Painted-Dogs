@@ -21,8 +21,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import org.jetbrains.compose.resources.stringResource
 import org.pointyware.painteddogs.core.navigation.navTypeMap
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
+import org.pointyware.painteddogs.feature.funds.navigation.FundInfo
 import org.pointyware.painteddogs.feature.funds.navigation.Funds
 import org.pointyware.painteddogs.feature.funds.navigation.fundsRouting
 import org.pointyware.painteddogs.feature.profiles.navigation.UserProfile
@@ -69,7 +71,13 @@ fun PaintedDogsApp(
                         }
                     },
                     title = {
-                        Text(currentLocation.value.toString() ?: "Painted Dogs")
+                        val location = currentLocation.value
+                        val titleRes = when(location) {
+                            Home -> Res.string.app_name
+                            FundInfo -> Res.string.app_name
+                            else -> null
+                        }
+                        Text(titleRes?.let { stringResource(it) } ?: "Generated: $location")
                     },
                     actions = {
                         val userId: Uuid = Uuid.random() // TODO: get actual user/id from active user
