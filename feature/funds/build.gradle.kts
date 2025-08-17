@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
 
 plugins {
@@ -11,10 +10,6 @@ plugins {
 }
 
 kotlin {
-    @OptIn(ExperimentalKotlinGradlePluginApi::class)
-    compilerOptions {
-        apiVersion = KotlinVersion.KOTLIN_2_0
-    }
     jvm {
     }
     androidTarget {
