@@ -8,7 +8,7 @@ import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
 import org.koin.mp.KoinPlatform.getKoin
 import org.pointyware.painteddogs.core.navigation.Destination
-import org.pointyware.painteddogs.feature.funds.navigation.Funds
+import org.pointyware.painteddogs.feature.funds.navigation.FundInfo
 import org.pointyware.painteddogs.shared.di.HomeDependencies
 import kotlin.uuid.ExperimentalUuidApi
 
@@ -30,7 +30,7 @@ fun NavGraphBuilder.homeRouting(
         val state = homeViewModel.state.collectAsState()
         HomeScreen(
             state = mapper.map(state.value),
-            onFundSelected = { fundId -> navController.navigate(Funds.Info(fundId)) },
+            onFundSelected = { fundId -> navController.navigate(FundInfo(fundId)) },
         )
     }
 }

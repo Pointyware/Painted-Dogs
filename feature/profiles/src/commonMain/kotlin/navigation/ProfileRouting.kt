@@ -12,7 +12,7 @@ import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
 import org.koin.mp.KoinPlatform.getKoin
 import org.pointyware.painteddogs.core.navigation.Destination
-import org.pointyware.painteddogs.feature.funds.navigation.Funds
+import org.pointyware.painteddogs.feature.funds.navigation.FundInfo
 import org.pointyware.painteddogs.feature.funds.ui.ContributionHistoryScreen
 import org.pointyware.painteddogs.feature.profiles.di.ProfileDependencies
 import org.pointyware.painteddogs.feature.profiles.ui.UserProfileView
@@ -24,15 +24,17 @@ data class UserProfile(val userId: String): Destination {
     constructor(id: Uuid): this(id.toString())
 
     fun funds() = UserFunds
-
 }
+
 @Serializable
 data class UserContributions(val userId: String) {
     constructor(id: Uuid): this(id.toString())
 }
 
 @Serializable
-class UserFunds(val userId: String): Destination
+class UserFunds(val userId: String): Destination {
+    constructor(id: Uuid): this(id.toString())
+}
 
 /**
  * Sets up all routes for profile navigation and defines navigation callbacks.
@@ -53,8 +55,8 @@ fun NavGraphBuilder.profileRouting(
         UserProfileView(
             state = mapper.map(state.value),
             onEditProfile = viewModel::onEditProfile,
-            onViewCollections = { userId -> navController.navigate(Funds.Info(userId)) },
-            onViewContributions = { userId -> navController.navigate(Funds.Contributions(userId)) },
+            onViewCollections = { userId -> navController.navigate(UserFunds(userId)) },
+            onViewContributions = { userId -> navController.navigate(UserContributions(userId)) },
             onLogout = onLogout,
         )
     }
@@ -69,7 +71,7 @@ fun NavGraphBuilder.profileRouting(
         val state = viewModel.state.collectAsState()
         ContributionHistoryScreen(
             state = mapper.map(state.value),
-            onViewFund = { fundId -> navController.navigate(Funds.Info(fundId)) },
+            onViewFund = { fundId -> navController.navigate(FundInfo(fundId)) },
         )
     }
 
