@@ -25,7 +25,7 @@ import org.pointyware.painteddogs.core.navigation.navTypeMap
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import org.pointyware.painteddogs.feature.funds.navigation.Funds
 import org.pointyware.painteddogs.feature.funds.navigation.fundsRouting
-import org.pointyware.painteddogs.feature.profiles.navigation.Profile
+import org.pointyware.painteddogs.feature.profiles.navigation.UserProfile
 import org.pointyware.painteddogs.feature.profiles.navigation.profileRouting
 import org.pointyware.painteddogs.shared.di.AppDependencies
 import org.pointyware.painteddogs.shared.home.Home
@@ -73,7 +73,7 @@ fun PaintedDogsApp(
                     },
                     actions = {
                         val userId: Uuid = Uuid.random() // TODO: get actual user/id from active user
-                        IconButton(onClick = { navController.navigateTo(Profile(userId)) }) {
+                        IconButton(onClick = { navController.navigateTo(UserProfile(userId)) }) {
                             Icon(Icons.Default.AccountBox, contentDescription = "Profile")
                         }
                         IconButton(onClick = { navController.navigateTo(Funds.Search) }) {

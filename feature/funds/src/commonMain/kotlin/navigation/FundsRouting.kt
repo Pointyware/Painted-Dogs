@@ -28,18 +28,30 @@ data object Funds {
 
     @OptIn(ExperimentalUuidApi::class)
     @Serializable
-    data class Info(val uuid: Uuid): Destination {
-        @Serializable
-        inner class Contributions() {
-            @Serializable
-            inner class Details()
-            @Serializable
-            inner class Info(
-                val uuid: Uuid
-            )
-        }
+    data class Info(val fundId: String): Destination {
+        constructor(id: Uuid): this(id.toString())
+    }
+    @OptIn(ExperimentalUuidApi::class)
+    @Serializable
+    class Contributions(val fundId: String) {
+        constructor(id: Uuid): this(id.toString())
     }
 }
+
+@OptIn(ExperimentalUuidApi::class)
+@Serializable
+data class FundInfo(
+    val uuid: String
+) {
+    constructor(id: Uuid): this(id.toString())
+}
+
+@OptIn(ExperimentalUuidApi::class)
+@Serializable
+data class FundDetails(val fundId: String) {
+    constructor(id: Uuid): this(id.toString())
+}
+
 /**
  *
  */
@@ -91,11 +103,11 @@ fun NavGraphBuilder.fundsRouting(
         val state = fundInfoViewModel.state.collectAsState()
         FundInfoScreen(
             state = mapper.map(state.value),
-            onContribute = { fundId -> navController.navigate(Funds.Info(fundId).Contributions().Details()) },
+            onContribute = { fundId -> navController.navigate(FundDetails(fundId)) },
         )
     }
     // a user needs to determine how much they want to contribute
-    composable<Funds.Info.Contributions.Details> {
+    composable<FundDetails> {
         val di = remember { getKoin() }
         val fundsDependencies = remember { di.get<FundDependencies>() }
 
@@ -108,7 +120,7 @@ fun NavGraphBuilder.fundsRouting(
         )
     }
     // we need to show the user the details of their contribution after server confirmation
-    composable<Funds.Info.Contributions.Info> {
+    composable<FundInfo> {
         val di = remember { getKoin() }
         val fundsDependencies = remember { di.get<FundDependencies>() }
 

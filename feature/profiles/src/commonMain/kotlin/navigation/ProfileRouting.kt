@@ -2,6 +2,8 @@
 
 package org.pointyware.painteddogs.feature.profiles.navigation
 
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.navigation.NavController
@@ -10,8 +12,6 @@ import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
 import org.koin.mp.KoinPlatform.getKoin
 import org.pointyware.painteddogs.core.navigation.Destination
-import org.pointyware.painteddogs.core.navigation.StaticRoute
-import org.pointyware.painteddogs.core.navigation.pathArgumentPlaceholder
 import org.pointyware.painteddogs.feature.funds.navigation.Funds
 import org.pointyware.painteddogs.feature.funds.ui.ContributionHistoryScreen
 import org.pointyware.painteddogs.feature.profiles.di.ProfileDependencies
@@ -19,22 +19,20 @@ import org.pointyware.painteddogs.feature.profiles.ui.UserProfileView
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
-val usersRoute = StaticRoute("users", Unit)
-val userProfileRoute = usersRoute.variable<Uuid>("user-$pathArgumentPlaceholder")
-val userFundsRoute = userProfileRoute.fixed("funds")
-val userContributionsRoute = userProfileRoute.fixed("contribs")
-
 @Serializable
-data class Profile(val id: String): Destination {
+data class UserProfile(val userId: String): Destination {
     constructor(id: Uuid): this(id.toString())
 
-    fun funds() = ProfileFunds
-
-    inner class Contributions
+    fun funds() = UserFunds
 
 }
 @Serializable
-class ProfileFunds(val profile: String): Destination
+data class UserContributions(val userId: String) {
+    constructor(id: Uuid): this(id.toString())
+}
+
+@Serializable
+class UserFunds(val userId: String): Destination
 
 /**
  * Sets up all routes for profile navigation and defines navigation callbacks.
@@ -45,7 +43,7 @@ fun NavGraphBuilder.profileRouting(
 ) {
 
     // a user needs to control how they appear to others
-    composable<Profile> {
+    composable<UserProfile> {
         val di = remember { getKoin() }
         val profileDependencies = remember { di.get<ProfileDependencies>() }
 
@@ -56,13 +54,13 @@ fun NavGraphBuilder.profileRouting(
             state = mapper.map(state.value),
             onEditProfile = viewModel::onEditProfile,
             onViewCollections = { userId -> navController.navigate(Funds.Info(userId)) },
-            onViewContributions = { userId -> navController.navigate(Funds.Info(userId).Contributions()) },
+            onViewContributions = { userId -> navController.navigate(Funds.Contributions(userId)) },
             onLogout = onLogout,
         )
     }
 
     // a user can see all their current and past collections
-    composable<ProfileFunds> {
+    composable<UserFunds> {
         val di = remember { getKoin() }
         val profileDependencies = remember { di.get<ProfileDependencies>() }
 
@@ -73,5 +71,13 @@ fun NavGraphBuilder.profileRouting(
             state = mapper.map(state.value),
             onViewFund = { fundId -> navController.navigate(Funds.Info(fundId)) },
         )
+    }
+
+    composable<UserContributions> {
+        Button(
+            onClick = { navController.popBackStack() }
+        ) {
+            Text("go back")
+        }
     }
 }
