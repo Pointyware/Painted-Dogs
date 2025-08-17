@@ -29,10 +29,13 @@ kotlin {
             dependencies {
 //                api(projects)
 
-                implementation(projects.core.ui)
-                implementation(projects.core.viewModels)
+                implementation(projects.core.common)
+                implementation(projects.core.entities)
                 implementation(projects.core.data)
                 implementation(projects.core.interactors)
+                implementation(projects.core.viewModels)
+                implementation(projects.core.navigation)
+                implementation(projects.core.ui)
 
                 // UI
                 implementation(compose.ui)
