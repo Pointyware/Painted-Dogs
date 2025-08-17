@@ -50,6 +50,7 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.material3)
                 implementation(compose.components.uiToolingPreview) // fleet support
+                implementation(libs.compose.navigation)
             }
         }
         val commonTest by getting {

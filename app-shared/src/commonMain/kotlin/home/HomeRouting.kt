@@ -5,12 +5,14 @@ import androidx.compose.runtime.remember
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import kotlinx.serialization.Serializable
 import org.koin.mp.KoinPlatform.getKoin
 import org.pointyware.painteddogs.core.navigation.Destination
-import org.pointyware.painteddogs.feature.funds.navigation.getFundInfoPath
+import org.pointyware.painteddogs.feature.funds.navigation.Funds
 import org.pointyware.painteddogs.shared.di.HomeDependencies
 import kotlin.uuid.ExperimentalUuidApi
 
+@Serializable
 object Home: Destination
 /**
  * Sets up all routes for home navigation.
@@ -28,7 +30,7 @@ fun NavGraphBuilder.homeRouting(
         val state = homeViewModel.state.collectAsState()
         HomeScreen(
             state = mapper.map(state.value),
-            onFundSelected = { fundId -> navController.navigate(getFundInfoPath(fundId)) },
+            onFundSelected = { fundId -> navController.navigate(Funds.Info(fundId)) },
         )
     }
 }

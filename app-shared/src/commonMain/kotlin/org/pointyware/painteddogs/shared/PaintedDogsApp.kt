@@ -21,13 +21,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import org.pointyware.painteddogs.core.navigation.LocationRoot
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
-import org.pointyware.painteddogs.feature.funds.navigation.fundsRoute
+import org.pointyware.painteddogs.feature.funds.navigation.Funds
 import org.pointyware.painteddogs.feature.funds.navigation.fundsRouting
-import org.pointyware.painteddogs.feature.funds.navigation.getFundsCreationPath
-import org.pointyware.painteddogs.feature.funds.navigation.getFundsSearchPath
-import org.pointyware.painteddogs.feature.profiles.navigation.ProfileRouting
 import org.pointyware.painteddogs.feature.profiles.navigation.getUserProfilePath
 import org.pointyware.painteddogs.feature.profiles.navigation.profileRouting
 import org.pointyware.painteddogs.shared.di.AppDependencies
@@ -78,7 +74,7 @@ fun PaintedDogsApp(
                         IconButton(onClick = { navController.navigateTo(getUserProfilePath(userId)) }) {
                             Icon(Icons.Default.AccountBox, contentDescription = "Profile")
                         }
-                        IconButton(onClick = { navController.navigateTo(getFundsSearchPath()) }) {
+                        IconButton(onClick = { navController.navigateTo(Funds.Search) }) {
                             Icon(Icons.Default.Search, contentDescription = "Search")
                         }
                     },
@@ -86,9 +82,9 @@ fun PaintedDogsApp(
             },
             floatingActionButton = {
                 when (currentLocation.value) {
-                    fundsRoute -> {
+                    Funds -> {
                         IconButton(onClick = {
-                            navController.navigateTo(getFundsCreationPath())
+                            navController.navigateTo(Funds.Create)
                         }) {
                             Icon(Icons.Default.AddCircle, contentDescription = "Create Fund")
                         }
@@ -125,7 +121,9 @@ fun PaintedDogsApp(
             val navCon = rememberNavController()
             NavHost(
                 navController = navCon,
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .padding(paddingValues)
+                    .fillMaxSize(),
                 startDestination = Unit,
                 enterTransition = {
                     // Animation used for the entering new Screen
@@ -154,16 +152,8 @@ fun PaintedDogsApp(
                     navCon,
                     onLogout = ::logout
                 )
-            }
-            LocationRoot(
-                navController = navController,
-                modifier = Modifier.padding(paddingValues),
-            ) {
 
-
-                fundsRouting()
-
-                // Add more routing here
+                fundsRouting(navCon)
             }
         }
     }

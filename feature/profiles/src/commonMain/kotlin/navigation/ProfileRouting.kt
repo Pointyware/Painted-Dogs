@@ -14,7 +14,7 @@ import org.pointyware.painteddogs.core.navigation.Path
 import org.pointyware.painteddogs.core.navigation.StaticRoute
 import org.pointyware.painteddogs.core.navigation.emptyPath
 import org.pointyware.painteddogs.core.navigation.pathArgumentPlaceholder
-import org.pointyware.painteddogs.feature.funds.navigation.getFundInfoPath
+import org.pointyware.painteddogs.feature.funds.navigation.Funds
 import org.pointyware.painteddogs.feature.funds.ui.ContributionHistoryScreen
 import org.pointyware.painteddogs.feature.profiles.di.ProfileDependencies
 import org.pointyware.painteddogs.feature.profiles.ui.UserProfileView
@@ -75,7 +75,7 @@ fun NavGraphBuilder.profileRouting(
         val state = viewModel.state.collectAsState()
         ContributionHistoryScreen(
             state = mapper.map(state.value),
-            onViewFund = { fundId -> navController.navigate(getFundInfoPath(fundId)) },
+            onViewFund = { fundId -> navController.navigate(Funds.Info(fundId)) },
         )
     }
 }
