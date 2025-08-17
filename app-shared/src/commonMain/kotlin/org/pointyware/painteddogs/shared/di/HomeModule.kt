@@ -2,7 +2,6 @@ package org.pointyware.painteddogs.shared.di
 
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
-import org.pointyware.painteddogs.shared.home.Home
 import org.pointyware.painteddogs.shared.home.HomeUiStateMapper
 import org.pointyware.painteddogs.shared.home.HomeViewModel
 import org.pointyware.painteddogs.shared.home.HomeViewModelImpl
