@@ -51,10 +51,10 @@ dependencies {
 
     implementation(libs.androidx.activityCompose)
     implementation(libs.androidx.composeMaterial3)
-    debugImplementation(libs.androidx.composeTooling)
-    implementation(libs.androidx.composePreview)
+    debugImplementation(libs.androidx.uiTooling)
+    implementation(libs.androidx.uiToolingPreview)
 
-    androidTestDebugImplementation(libs.androidx.composeManifest)
+    androidTestDebugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.kotlinx.coroutinesAndroid)
     implementation(libs.koin.core)
     implementation(libs.koin.android)

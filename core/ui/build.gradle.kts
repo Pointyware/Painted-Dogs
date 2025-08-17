@@ -70,7 +70,8 @@ kotlin {
         val androidMain by getting {
             dependsOn(jvmSharedMain)
             dependencies {
-                implementation(libs.androidx.composePreview)
+                implementation(libs.androidx.uiTooling)
+                implementation(libs.androidx.uiToolingPreview)
             }
         }
         val androidUnitTest by getting {

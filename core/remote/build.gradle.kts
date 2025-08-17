@@ -20,9 +20,9 @@ kotlin {
 
                 implementation(libs.koin.core)
 
-                api(libs.ktor.client.core)
-                api(libs.ktor.client.contentNegotiation)
-                api(libs.ktor.client.serialization)
+                api(libs.ktor.clientCore)
+                api(libs.ktor.clientContentNegotiation)
+                api(libs.ktor.serializationKotlinxJson)
             }
         }
         val commonTest by getting {
@@ -35,7 +35,7 @@ kotlin {
             dependsOn(commonMain)
 
             dependencies {
-                implementation(libs.ktor.client.okhttp)
+                implementation(libs.ktor.clientOkhttp)
             }
         }
         val jvmSharedTest by creating {

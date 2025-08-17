@@ -1,13 +1,12 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSetTree
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.composeHelper)
     alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
 }
 
@@ -24,23 +23,14 @@ kotlin {
             sourceSetTree.set(KotlinSourceSetTree.test)
 
             dependencies {
-                implementation(libs.androidx.composeTest)
-                debugImplementation(libs.androidx.composeManifest)
+                implementation(libs.androidx.ui.test.junit4)
+                debugImplementation(libs.androidx.ui.test.manifest)
             }
         }
     }
-    val framework = XCFramework()
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64(),
-    ).forEach {
-        it.binaries.framework {
-            baseName = "feature_funds"
-            isStatic = true
-            framework.add(this)
-        }
-    }
+//    iosX64()
+//    iosArm64()
+//    iosSimulatorArm64()
 
     applyDefaultHierarchyTemplate()
     sourceSets {
@@ -109,7 +99,7 @@ kotlin {
             dependencies {
                 implementation(libs.koin.core)
                 implementation(libs.koin.android)
-                implementation(libs.androidx.composePreview)
+                implementation(libs.androidx.uiToolingPreview)
             }
         }
         val androidUnitTest by getting {
@@ -119,16 +109,16 @@ kotlin {
             }
         }
 
-        val iosMain by getting {
-            dependencies {
-            }
-        }
-
-        val iosTest by getting {
-            dependencies {
-
-            }
-        }
+//        val iosMain by getting {
+//            dependencies {
+//            }
+//        }
+//
+//        val iosTest by getting {
+//            dependencies {
+//
+//            }
+//        }
     }
 }
 
@@ -142,7 +132,7 @@ dependencies {
 
 android {
     namespace = "org.pointyware.painteddogs.feature.funds"
-    compileSdk = 34
+    compileSdk = 36
     defaultConfig {
         minSdk = 21
     }
