@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.androidLibrary).apply(false)
     alias(libs.plugins.composeHelper).apply(false)
     alias(libs.plugins.composeMultiplatform).apply(false)
-    alias(libs.plugins.compose.compiler).apply(false)
     alias(libs.plugins.kotlinAndroid).apply(false)
     alias(libs.plugins.kotlinMultiplatform).apply(false)
     alias(libs.plugins.kotlinJvm).apply(false)
@@ -12,11 +11,10 @@ plugins {
     // apply dokka now
     alias(libs.plugins.dokka)
 
-    alias(libs.plugins.painteddogs.koin).apply(false)
-    alias(libs.plugins.painteddogs.kmp).apply(false)
-    alias(libs.plugins.painteddogs.coreProjects).apply(false)
-    alias(libs.plugins.painteddogs.compose).apply(false)
-    alias(libs.plugins.artifactRegistry).apply(false)
+//    alias(libs.plugins.painteddogs.koin).apply(false)
+//    alias(libs.plugins.painteddogs.kmp).apply(false)
+//    alias(libs.plugins.painteddogs.coreProjects).apply(false)
+//    alias(libs.plugins.painteddogs.compose).apply(false)
 }
 
 subprojects {
