@@ -38,11 +38,11 @@ kotlin {
             dependencies {
                 implementation(projects.core.common)
                 implementation(projects.core.entities)
-                implementation(projects.core.interactors)
-                implementation(projects.core.data)
                 implementation(projects.core.local)
                 implementation(projects.core.remote)
-                implementation(projects.core.ui)
+                implementation(projects.core.data)
+                implementation(projects.core.interactors)
+                implementation(projects.core.viewModels)
                 implementation(projects.core.navigation)
                 implementation(projects.core.ui)
 
