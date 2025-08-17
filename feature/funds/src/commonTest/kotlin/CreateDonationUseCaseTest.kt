@@ -16,7 +16,9 @@ import org.pointyware.painteddogs.feature.funds.test.TestFundRepositoryImpl
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertTrue
+import kotlin.uuid.ExperimentalUuidApi
 
+@OptIn(ExperimentalUuidApi::class)
 @UnitTest
 class CreateDonationUseCaseTest {
 

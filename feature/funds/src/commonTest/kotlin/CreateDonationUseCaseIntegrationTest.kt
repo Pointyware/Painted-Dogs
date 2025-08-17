@@ -19,10 +19,12 @@ import org.pointyware.painteddogs.feature.funds.remote.FundApi
 import org.pointyware.painteddogs.feature.funds.remote.TestFundApi
 import kotlin.test.BeforeTest
 import kotlin.test.Test
+import kotlin.uuid.ExperimentalUuidApi
 
 /**
  *
  */
+@OptIn(ExperimentalUuidApi::class)
 class CreateDonationUseCaseIntegrationTest {
 
     private lateinit var testDispatcher: TestDispatcher

@@ -6,6 +6,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import org.koin.mp.KoinPlatform.getKoin
 import org.pointyware.painteddogs.core.entities.Uuid
+import org.pointyware.painteddogs.core.navigation.Destination
 import org.pointyware.painteddogs.core.navigation.LocationRootScope
 import org.pointyware.painteddogs.core.navigation.Path
 import org.pointyware.painteddogs.core.navigation.StaticRoute
@@ -22,14 +23,18 @@ import kotlin.uuid.ExperimentalUuidApi
 val fundsRoute = StaticRoute("funds", Unit)
 val createFundsRoute = fundsRoute.fixed("create")
 val searchFundsRoute = fundsRoute.fixed("search")
+@Deprecated("Repalce with Destination")
 val fundInfoRoute = fundsRoute.variable<Uuid>("fund-$pathArgumentPlaceholder")
+@OptIn(ExperimentalUuidApi::class)
+data class FundInfo(val uuid: kotlin.uuid.Uuid): Destination
 val contributionsRoute = fundInfoRoute.fixed("contributions")
 val contributionInfoRoute = contributionsRoute.variable<Uuid>("contrib-$pathArgumentPlaceholder")
 val contributionDetailsRoute = fundInfoRoute.fixed("contribute")
 
 fun getFundsCreationPath() = createFundsRoute.skip { it.skip { emptyPath() }}
 fun getFundsSearchPath() = searchFundsRoute.skip { it.skip { emptyPath() }}
-fun getFundInfoPath(fundId: Uuid) = fundInfoRoute.provide(fundId) { it.skip { emptyPath()}}
+@OptIn(ExperimentalUuidApi::class)
+fun getFundInfoPath(fundId: kotlin.uuid.Uuid): Destination = FundInfo(fundId)
 fun getContributionsPath(fundId: Uuid) = contributionsRoute.skip { it.provide(fundId) { it.skip { emptyPath()}}}
 fun getContributionInfoPath(fundId: Uuid, contributionId: Uuid): Path {
     return contributionInfoRoute.provide(contributionId) { contributionsRoute ->

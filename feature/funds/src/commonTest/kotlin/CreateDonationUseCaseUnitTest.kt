@@ -17,8 +17,8 @@ import org.pointyware.painteddogs.feature.funds.data.FundRepository
 import org.pointyware.painteddogs.feature.funds.interactors.CreateFundUseCase
 import org.pointyware.painteddogs.feature.funds.interactors.CreateFundUseCaseImpl
 import org.pointyware.painteddogs.feature.funds.test.TestFundRepositoryImpl
-import kotlin.jvm.JvmField
 import kotlin.test.BeforeTest
+import kotlin.uuid.ExperimentalUuidApi
 
 
 fun generateString(length: Int): String {
@@ -44,6 +44,7 @@ data class DonationParams(
  *
  */
 //@RunWith(Theories::class)
+@OptIn(ExperimentalUuidApi::class)
 class CreateDonationUseCaseUnitTest {
 
     companion object {

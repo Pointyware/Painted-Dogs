@@ -3,11 +3,13 @@ package org.pointyware.painteddogs.core.data.test
 import org.pointyware.painteddogs.core.data.FundNotFoundException
 import org.pointyware.painteddogs.core.data.FundsRepository
 import org.pointyware.painteddogs.core.entities.Fund
-import org.pointyware.painteddogs.core.entities.Uuid
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 /**
  * A simple implementation of [FundsRepository] that stores data in memory.
  */
+@OptIn(ExperimentalUuidApi::class)
 class TestFundsRepository(
     var defaultDelay: Long = 0
 ): FundsRepository, BaseTestRepository {

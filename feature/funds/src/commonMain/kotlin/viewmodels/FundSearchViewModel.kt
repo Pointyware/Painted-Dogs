@@ -2,7 +2,6 @@ package org.pointyware.painteddogs.feature.funds.viewmodels
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,6 +10,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.pointyware.painteddogs.core.entities.usDollars
 import org.pointyware.painteddogs.feature.funds.interactors.SearchCollectionsUseCase
+import kotlin.uuid.ExperimentalUuidApi
 
 /**
  * ViewModel for searching donations/collections.
@@ -30,6 +30,7 @@ interface FundSearchViewModel {
 /**
  *
  */
+@OptIn(ExperimentalUuidApi::class)
 class FundSearchViewModelImpl(
     private val searchCollectionsUseCase: SearchCollectionsUseCase,
     // TODO: Fund->CollectionUiStateMapper impls for different contexts

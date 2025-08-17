@@ -4,12 +4,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund
-import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.feature.funds.local.FundCache
 import org.pointyware.painteddogs.feature.funds.remote.FundApi
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 /**
  */
+@OptIn(ExperimentalUuidApi::class)
 class OfflineFirstFundRepository(
     private val localDataSource: FundCache,
     private val remoteDataSource: FundApi,

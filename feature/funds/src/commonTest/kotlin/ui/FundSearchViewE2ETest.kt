@@ -13,11 +13,12 @@ import ui.FundSearchViewState
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
+import kotlin.uuid.ExperimentalUuidApi
 
 /**
  *
  */
-@OptIn(ExperimentalTestApi::class)
+@OptIn(ExperimentalTestApi::class, ExperimentalUuidApi::class)
 @UiTest
 @EndToEndTest
 class FundSearchViewE2ETest {

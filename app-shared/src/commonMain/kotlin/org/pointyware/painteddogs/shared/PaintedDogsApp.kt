@@ -20,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import org.pointyware.painteddogs.core.navigation.LocationRoot
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
@@ -31,7 +30,6 @@ import org.pointyware.painteddogs.feature.funds.navigation.getFundsSearchPath
 import org.pointyware.painteddogs.feature.profiles.navigation.ProfileRouting
 import org.pointyware.painteddogs.feature.profiles.navigation.getUserProfilePath
 import org.pointyware.painteddogs.shared.di.AppDependencies
-import org.pointyware.painteddogs.shared.home.homeRoute
 import org.pointyware.painteddogs.shared.home.homeRouting
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
@@ -87,7 +85,6 @@ fun PaintedDogsApp(
             },
             floatingActionButton = {
                 when (currentLocation.value) {
-                    homeRoute,
                     fundsRoute -> {
                         IconButton(onClick = {
                             navController.navigateTo(getFundsCreationPath())
@@ -150,16 +147,12 @@ fun PaintedDogsApp(
                     null
                 }
             ) {
-                composable<Unit> {
-                    // TODO: transfer LocationRoot extensions to NavGraphBuilder
-                    Text("Hi There, Cutie")
-                }
+                homeRouting(navCon)
             }
             LocationRoot(
                 navController = navController,
                 modifier = Modifier.padding(paddingValues),
             ) {
-                homeRouting()
 
                 ProfileRouting(
                     onLogout = ::logout

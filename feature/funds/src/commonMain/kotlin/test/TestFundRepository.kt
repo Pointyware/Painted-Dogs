@@ -2,9 +2,10 @@ package org.pointyware.painteddogs.feature.funds.test
 
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund
-import org.pointyware.painteddogs.core.entities.Uuid
 import org.pointyware.painteddogs.feature.funds.data.FundRepository
 import kotlin.time.ExperimentalTime
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 /**
  * Defines test extensions for the [FundRepository] interface.
@@ -16,7 +17,7 @@ interface TestFundRepository: FundRepository {
 /**
  * Provides in-memory storage of collections for testing purposes.
  */
-@OptIn(ExperimentalTime::class)
+@OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
 class TestFundRepositoryImpl: TestFundRepository {
 
     var collections: MutableMap<Uuid, Fund> = mutableMapOf()
@@ -26,7 +27,7 @@ class TestFundRepositoryImpl: TestFundRepository {
         startDonationDriveResponse?.let { return it }
 
         val donationDrive = Fund(
-            id = Uuid.v4(),
+            id = Uuid.random(),
             title = title,
             description = description,
             target = targetAmount,

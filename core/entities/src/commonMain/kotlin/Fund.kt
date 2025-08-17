@@ -2,6 +2,8 @@ package org.pointyware.painteddogs.core.entities
 
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 /**
  * Represents a collection of donations.
@@ -11,7 +13,7 @@ import kotlin.time.Instant
  * @param start The start date of the collection.
  * @param end The end date of the collection.
  */
-@OptIn(ExperimentalTime::class)
+@OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
 data class Fund(
     val id: Uuid,
     val title: String,

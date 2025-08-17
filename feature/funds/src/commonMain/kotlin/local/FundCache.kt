@@ -1,8 +1,10 @@
 package org.pointyware.painteddogs.feature.funds.local
 
 import org.pointyware.painteddogs.core.entities.Fund
-import org.pointyware.painteddogs.core.entities.Uuid
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
+@OptIn(ExperimentalUuidApi::class)
 interface FundCache {
     fun save(it: Fund)
     fun findById(id: Uuid): Fund?
@@ -10,6 +12,7 @@ interface FundCache {
     suspend fun delete(fund: Fund): Result<Unit>
 }
 
+@OptIn(ExperimentalUuidApi::class)
 class InMemoryFundCache : FundCache {
 
     /**

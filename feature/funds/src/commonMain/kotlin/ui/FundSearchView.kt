@@ -12,9 +12,10 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import org.pointyware.painteddogs.core.entities.Fund
-import org.pointyware.painteddogs.core.entities.Uuid
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 data class FundSearchViewState(
     val query: String = "",
@@ -27,6 +28,7 @@ data class FundSearchViewState(
  * Displays a modular view with a single search input field, submission button,  and a list of
  * search results.
  */
+@OptIn(ExperimentalUuidApi::class)
 @Composable
 fun FundSearchView(
     state: FundSearchViewState,
@@ -65,6 +67,7 @@ fun FundSearchView(
  * Contains basic information about a fund that is displayed in a search result.
  * @see toFundSearchListItemState
  */
+@OptIn(ExperimentalUuidApi::class)
 data class FundSearchListItemState(
     val id: Uuid,
     val title: String,
@@ -76,7 +79,7 @@ data class FundSearchListItemState(
 /**
  * @see toDateString
  */
-@OptIn(ExperimentalTime::class)
+@OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
 fun Fund.toFundSearchListItemState(): FundSearchListItemState {
     return FundSearchListItemState(
         id = id,
