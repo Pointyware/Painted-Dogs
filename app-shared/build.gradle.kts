@@ -10,6 +10,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeHelper)
     alias(libs.plugins.kotlinxKover)
+    alias(libs.plugins.serialization)
 }
 
 kotlin {

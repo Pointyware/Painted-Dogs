@@ -25,7 +25,7 @@ kotlin {
                 implementation(compose.material3)
                 implementation(libs.koin.core)
 
-                implementation(libs.kotlinx.serialization)
+                implementation(libs.kotlinx.serialization.json)
             }
         }
         val commonTest by getting {
