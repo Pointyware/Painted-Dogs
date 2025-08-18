@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - task/44-android-signing
     paths-ignore: # Only run checks on changes to code
       - "**/docs/*"
       - "*/README.md"
@@ -12,7 +13,7 @@ jobs:
     name: "Create Release Candidate"
     runs-on: [ubuntu-22.04]
     env:
-      ACCOUNT_ID: "TSampley@gmail.com" # TODO: create/use service account
+      ACCOUNT_ID: "TSampley@pointyware.org" # TODO: create/use service account
       APP_ID: "org.pointyware.painteddogs"
       BUNDLE_ID: "org.pointyware.painteddogs"
       PROJECT_ID: "painted-dogs-prod"
@@ -23,13 +24,13 @@ jobs:
     steps:
       - name: "Setup - Checkout Project"
         uses: actions/checkout@v4
-      - name: "Setup - Java 17"
-        uses: actions/setup-java@v4
+      - name: "Setup - Java 21"
+        uses: actions/setup-java@v4.7.1
         with:
           distribution: 'temurin' # See 'Supported distributions' for available options
-          java-version: '17'
+          java-version: '21'
       - name: "Setup - Gradle"
-        uses: gradle/actions/setup-gradle@v3
+        uses: gradle/actions/setup-gradle@v3.5
 
       - name: "Setup - Keystore"
         env:
