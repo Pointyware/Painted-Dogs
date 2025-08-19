@@ -14,6 +14,8 @@ object GeometryTokens {
     val dpMedium = 8.dp
     val dpLarge = 16.dp
     val dpExtraLarge = 32.dp
+
+    val dpMinimumAccessible = 48.dp
 }
 
 /**
