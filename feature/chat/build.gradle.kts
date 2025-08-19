@@ -19,13 +19,17 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(projects.core.navigation)
                 implementation(projects.core.viewModels)
                 implementation(projects.core.ui)
 
                 implementation(compose.ui)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
-                implementation(compose.components.uiToolingPreview) // fleet support
+                implementation(compose.components.resources)
+                implementation(libs.compose.viewModels)
+                implementation(libs.compose.navigation)
+                implementation(libs.compose.backhandler)
 
                 implementation(libs.kotlinx.dateTime)
                 implementation(libs.kotlinx.coroutines)
@@ -74,9 +78,15 @@ kotlin {
 }
 
 android {
-    namespace = "org.pointyware.painteddogs.feature.chat"
+    namespace = "org.pointyware.painteddogs.chat"
     compileSdk = 36
     defaultConfig {
         minSdk = 21
     }
+}
+
+compose.resources {
+    publicResClass = true
+    packageOfResClass = "org.pointyware.painteddogs.chat"
+    generateResClass = auto
 }
