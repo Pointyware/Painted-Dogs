@@ -49,9 +49,9 @@ jobs:
           FINAL_OUTPUT_PATH: outputs
         run: |
           ./gradlew buildRelease \
-            -DkeystoreReleasePass="$KEYSTORE_PASS" \
-            -DkeystoreReleasePaintedDogsPass="$ALIAS_PASS" \
-            -DbuildSuffix="$BUILD_SUFFIX" \
+            -PkeystoreReleasePass="$KEYSTORE_PASS" \
+            -PkeystoreReleasePaintedDogsPass="$ALIAS_PASS" \
+            -PbuildSuffix="$BUILD_SUFFIX" \
           && \
             mkdir -p "$FINAL_OUTPUT_PATH"
           && \
