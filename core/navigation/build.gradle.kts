@@ -71,6 +71,6 @@ android {
     namespace = "org.pointyware.painteddogs.core.navigation"
     compileSdk = 36
     defaultConfig {
-        minSdk = 21
+        minSdk = 24
     }
 }

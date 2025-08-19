@@ -133,6 +133,6 @@ android {
     namespace = "org.pointyware.painteddogs.feature.funds"
     compileSdk = 36
     defaultConfig {
-        minSdk = 21
+        minSdk = 24
     }
 }

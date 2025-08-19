@@ -59,6 +59,6 @@ android {
     namespace = "org.pointyware.painteddogs.core.analytics"
     compileSdk = 36
     defaultConfig {
-        minSdk = 21
+        minSdk = 24
     }
 }

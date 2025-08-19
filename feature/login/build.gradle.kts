@@ -34,6 +34,6 @@ android {
     namespace = "org.pointyware.painteddogs.feature.login"
     compileSdk = 36
     defaultConfig {
-        minSdk = 21
+        minSdk = 24
     }
 }

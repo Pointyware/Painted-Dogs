@@ -14,7 +14,7 @@ android {
     compileSdk = 36
     defaultConfig {
         applicationId = "org.pointyware.painteddogs.android"
-        minSdk = 21
+        minSdk = 24
         versionCode = 2
         versionName = "1.1"
     }
