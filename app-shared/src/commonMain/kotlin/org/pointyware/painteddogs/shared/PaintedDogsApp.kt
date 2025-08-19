@@ -29,13 +29,11 @@ import org.pointyware.painteddogs.chat.navigation.chatRouting
 import org.pointyware.painteddogs.core.navigation.navTypeMap
 import org.pointyware.painteddogs.core.ui.design.GeometryTokens
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
-import org.pointyware.painteddogs.feature.funds.navigation.FundInfo
 import org.pointyware.painteddogs.feature.funds.navigation.Funds
 import org.pointyware.painteddogs.feature.funds.navigation.fundsRouting
 import org.pointyware.painteddogs.feature.profiles.navigation.UserProfile
 import org.pointyware.painteddogs.feature.profiles.navigation.profileRouting
 import org.pointyware.painteddogs.shared.di.AppDependencies
-import org.pointyware.painteddogs.shared.home.Home
 import org.pointyware.painteddogs.shared.home.homeRouting
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
@@ -78,11 +76,12 @@ fun PaintedDogsApp(
                     },
                     title = {
                         val location = currentLocation.value
-                        val titleRes = when(location) {
-                            Home -> Res.string.app_name
-                            FundInfo -> Res.string.app_name
-                            else -> null
-                        }
+                        val titleRes = Res.string.app_name
+//                        when(location) {
+//                            Home -> Res.string.app_name
+//                            FundInfo -> Res.string.app_name
+//                            else -> null
+//                        }
                         Text(titleRes?.let { stringResource(it) } ?: "Generated: $location")
                     },
                     actions = {
