@@ -1,18 +1,22 @@
 package org.pointyware.painteddogs.chat.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.painterResource
 import org.pointyware.painteddogs.chat.Res
 import org.pointyware.painteddogs.chat.outline_person_24
+import org.pointyware.painteddogs.core.ui.design.GeometryTokens
 
 /**
  *
@@ -33,11 +37,16 @@ fun ChatRowView(
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(GeometryTokens.dpMedium)
     ) {
         Image(
+            modifier = Modifier
+                .background(MaterialTheme.colorScheme.primary,
+                    MaterialTheme.shapes.medium)
+                .size(GeometryTokens.dpMinimumAccessible)
+                .padding(GeometryTokens.dpMedium),
             painter = painterResource(Res.drawable.outline_person_24),
             contentDescription = "Profile Image", // TODO: replace with name
-            modifier = Modifier.size(48.dp)
         )
         Column(
             modifier = Modifier.weight(1f)
