@@ -4,6 +4,10 @@ import org.pointyware.painteddogs.chat.entities.ChatRecord
 import org.pointyware.painteddogs.chat.entities.Participant
 
 object ChatHistoryDummyData {
+    val userTaush = Participant(
+        name = "Taush",
+        userId = "uuid-for-me"
+    )
     val userSarah = Participant(
         name = "Sarah",
         userId = "uuid-for-sarah"
@@ -20,29 +24,33 @@ object ChatHistoryDummyData {
         name = "Afton",
         userId = "uuid-for-afton"
     )
+
+    val chatSarahAbby = ChatRecord(
+        id = "someId",
+        participants = listOf(
+            userSarah,
+            userAbby
+        ),
+        excerpt = "When are we going to discuss global takeover?"
+    )
+    val chatLinkAfton = ChatRecord(
+        id = "antoehrId",
+        participants = listOf(
+            userLink,
+            userAfton
+        ),
+        excerpt = "Coffee when?",
+    )
+    val chatSarah = ChatRecord(
+        "direct-message",
+        listOf(
+            userSarah
+        ),
+        excerpt = "I finally updated my resume!",
+    )
     val chatHistory = listOf(
-        ChatRecord(
-            id = "someId",
-            participants = listOf(
-                userSarah,
-                userAbby
-            ),
-            excerpt = "When are we going to discuss global takeover?"
-        ),
-        ChatRecord(
-            id = "antoehrId",
-            participants = listOf(
-                userLink,
-                userAfton
-            ),
-            excerpt = "Coffee when?",
-        ),
-        ChatRecord(
-            "direct-message",
-            listOf(
-                userSarah
-            ),
-            excerpt = "I finally updated my resume!",
-        )
+        chatSarahAbby,
+        chatLinkAfton,
+        chatSarah
     )
 }
