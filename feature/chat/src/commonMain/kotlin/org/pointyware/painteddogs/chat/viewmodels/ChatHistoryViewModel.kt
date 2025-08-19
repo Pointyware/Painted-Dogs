@@ -11,8 +11,7 @@ class ChatHistoryViewModel(
 ): ViewModel() {
 
 
-    val _chatList = MutableStateFlow<List<ChatRecord>>(emptyList())
+    val _chatList = MutableStateFlow(ChatHistoryDummyData.chatHistory)
     val chatList: StateFlow<List<ChatRecord>> get() = _chatList.asStateFlow()
-
 
 }
