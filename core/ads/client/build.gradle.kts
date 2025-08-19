@@ -43,6 +43,10 @@ kotlin {
 
         val jvmMain by getting {
             dependsOn(jvmSharedMain)
+            dependencies {
+                implementation(compose.preview) // android/desktop support
+                implementation(compose.desktop.currentOs)
+            }
         }
         val jvmTest by getting {
             dependsOn(jvmSharedTest)
@@ -54,12 +58,22 @@ kotlin {
 
         val androidMain by getting {
             dependsOn(jvmSharedMain)
+            dependencies {
+                implementation(libs.koin.core)
+                implementation(libs.koin.android)
+                implementation(libs.androidx.composePreview)
+            }
         }
         val androidUnitTest by getting {
             dependsOn(jvmSharedTest)
+            dependencies {
+                implementation(libs.koin.test)
+            }
         }
+
     }
 }
+
 
 android {
     namespace = "org.pointyware.painteddogs.core.ads.client"

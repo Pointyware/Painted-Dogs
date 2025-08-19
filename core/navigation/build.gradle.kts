@@ -20,11 +20,14 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":core:ui"))
+
                 implementation(libs.kotlinx.coroutines)
 
                 implementation(compose.ui)
                 implementation(compose.material3)
                 implementation(libs.compose.navigation)
+                implementation(compose.components.resources)
 
                 implementation(libs.koin.core)
 

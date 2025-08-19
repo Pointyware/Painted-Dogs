@@ -44,10 +44,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.core.entities)
-    implementation(projects.core.ui)
-
-    implementation(projects.appShared)
+    implementation(project(":core:entities"))
 
     implementation(libs.androidx.activityCompose)
     implementation(libs.androidx.composeMaterial3)
