@@ -19,12 +19,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.resources.stringResource
 import org.pointyware.painteddogs.chat.navigation.ChatHistory
 import org.pointyware.painteddogs.chat.navigation.chatRouting
 import org.pointyware.painteddogs.core.navigation.navTypeMap
+import org.pointyware.painteddogs.core.ui.design.GeometryTokens
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import org.pointyware.painteddogs.feature.funds.navigation.FundInfo
 import org.pointyware.painteddogs.feature.funds.navigation.Funds
@@ -57,6 +59,7 @@ fun PaintedDogsApp(
             modifier = modifier,
             topBar = {
                 CenterAlignedTopAppBar(
+                    modifier = Modifier.shadow(elevation = GeometryTokens.dpMedium),
 //                    colors = TopAppBarColors(
 //                        containerColor =
 //                        navigationIconContentColor =
