@@ -21,7 +21,8 @@ fun PaintedDogsTheme(
     content: @Composable ()->Unit,
 ) {
     CompositionLocalProvider(
-        LocalDateFormat provides SimpleDateFormatter
+        LocalDateFormat provides SimpleDateFormatter,
+        LocalGeometry provides DefaultLocalGeometry
     ) {
         MaterialTheme(
             colorScheme = if (isDark) darkColors else lightColors,
