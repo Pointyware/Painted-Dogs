@@ -14,7 +14,8 @@ android {
     compileSdk = 36
     defaultConfig {
         applicationId = "org.pointyware.painteddogs.android"
-        minSdk = 21
+        minSdk = 24
+        targetSdk = 36
         versionCode = 2
         versionName = "1.1"
     }
@@ -44,7 +45,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:entities"))
+    implementation(projects.core.entities)
+    implementation(projects.core.ui)
+    implementation(projects.appShared)
 
     implementation(libs.androidx.activityCompose)
     implementation(libs.androidx.composeMaterial3)

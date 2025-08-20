@@ -75,6 +75,6 @@ android {
     namespace = "org.pointyware.painteddogs.core.remote"
     compileSdk = 36
     defaultConfig {
-        minSdk = 21
+        minSdk = 24
     }
 }

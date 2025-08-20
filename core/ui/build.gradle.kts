@@ -85,6 +85,6 @@ android {
     namespace = "org.pointyware.painteddogs.core.ui"
     compileSdk = 36
     defaultConfig {
-        minSdk = 21
+        minSdk = 24
     }
 }

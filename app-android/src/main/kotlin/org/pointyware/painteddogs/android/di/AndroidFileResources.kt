@@ -1,6 +1,6 @@
 package org.pointyware.painteddogs.android.di
 
-import org.pointyware.painteddogs.shared.entities.SharedFileResources
+import org.pointyware.painteddogs.shared.data.SharedFileResources
 
 /**
  * Binds the file resources for the Android platform.
