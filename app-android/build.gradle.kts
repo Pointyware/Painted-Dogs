@@ -46,6 +46,7 @@ android {
 
 dependencies {
     implementation(projects.core.entities)
+    implementation(projects.core.ui)
     implementation(projects.appShared)
 
     implementation(libs.androidx.activityCompose)
