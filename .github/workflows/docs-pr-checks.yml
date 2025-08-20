@@ -9,7 +9,7 @@ on:
       - main
     paths: # Only run checks on changes to documentation
       - "**/docs/*"
-      - "*/README.md"
+      - "**/README.md"
 
 jobs:
   build:
