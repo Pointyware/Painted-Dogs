@@ -47,7 +47,7 @@ jobs:
           FINAL_OUTPUT_NAME: "app-android-rc-${{ github.sha }}"
           FINAL_OUTPUT_PATH: outputs
         run: |
-          ./gradlew buildRelease \
+          ./gradlew :app-android:bundleRelease \
             -PkeystoreReleasePass="$KEYSTORE_PASS" \
             -PkeystoreReleasePaintedDogsPass="$ALIAS_PASS" \
             -PbuildSuffix="$BUILD_SUFFIX" \
