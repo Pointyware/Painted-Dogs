@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: "Create Release Candidate"
-    runs-on: [ubuntu-22.04]
+    runs-on: [mac-latest]
     env:
       ACCOUNT_ID: "TSampley@pointyware.org" # TODO: create/use service account
       APP_ID: "org.pointyware.painteddogs.android"
