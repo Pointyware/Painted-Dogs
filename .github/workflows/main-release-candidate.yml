@@ -64,8 +64,7 @@ jobs:
       - name: "Decode GCloud Service Account Key Json"
         run: |
           echo ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY }} > gcloud-service-account-key.json
-          base64 --help
-          base64 --decode --input gcloud-service-account-key.json --output gcloud-service-account-key.json
+          base64 --decode --output gcloud-service-account-key.json gcloud-service-account-key.json
 
       - name: "Setup - Google Cloud Auth"
         id: gcloud-auth
