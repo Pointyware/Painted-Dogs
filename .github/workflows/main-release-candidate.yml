@@ -62,9 +62,10 @@ jobs:
             echo "bundle_path=$FINAL_OUTPUT_PATH" >> "$GITHUB_OUTPUT"
 
       - name: "Decode GCloud Service Account Key Json"
+        env:
+          GCLOUD_SERVICE_ACCOUNT_KEY: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY }}
         run: |
-          echo "${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY }}" |\
-            base64 --decode > gcloud-service-account-key.json
+          echo "$GCLOUD_SERVICE_ACCOUNT_KEY" | base64 --decode > gcloud-service-account-key.json
 
       - name: "Setup - Google Cloud Auth"
         id: gcloud-auth
