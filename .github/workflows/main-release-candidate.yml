@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: "Create Release Candidate"
-    runs-on: [mac-latest]
+    runs-on: [ubuntu-24.04]
     env:
       ACCOUNT_ID: "TSampley@pointyware.org" # TODO: create/use service account
       APP_ID: "org.pointyware.painteddogs.android"
@@ -63,9 +63,9 @@ jobs:
 
       - name: "Decode GCloud Service Account Key Json"
         env:
-          GCLOUD_SERVICE_ACCOUNT_KEY: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY }}
+          GCLOUD_SERVICE_ACCOUNT_KEY: '${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY }}'
         run: |
-          echo "$GCLOUD_SERVICE_ACCOUNT_KEY" | base64 --decode > gcloud-service-account-key.json
+          echo $GCLOUD_SERVICE_ACCOUNT_KEY | base64 --decode > gcloud-service-account-key.json
 
       - name: "Setup - Google Cloud Auth"
         id: gcloud-auth
