@@ -72,8 +72,8 @@ jobs:
         uses: google-github-actions/auth@v2
         with:
           project_id: $PROJECT_ID
-          service-account: github-action-service-account@painted-dogs-prod
-          token-format: access_token
+          service_account: github-action-service-account@painted-dogs-prod
+          token_format: access_token
           access_token_scopes: "https://www.googleapis.com/auth/cloud-platform"
           credentials_json: gcloud-service-account-key.json
 
