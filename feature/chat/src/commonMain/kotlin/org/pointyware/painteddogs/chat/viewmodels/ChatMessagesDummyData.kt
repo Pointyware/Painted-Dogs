@@ -13,7 +13,7 @@ object ChatMessagesDummyData {
         ChatHistoryDummyData.chatSarahAbby.id to listOf(
             Message(
                 ChatHistoryDummyData.userTaush,
-                "When are we going to discuss global domination?",
+                "When is the next PCD meeting?",
                 start
             ),
             Message(

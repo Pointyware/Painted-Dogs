@@ -31,7 +31,7 @@ object ChatHistoryDummyData {
             userSarah,
             userAbby
         ),
-        excerpt = "When are we going to discuss global takeover?"
+        excerpt = "When is the next PCD meeting?"
     )
     val chatLinkAfton = ChatRecord(
         id = "antoehrId",
