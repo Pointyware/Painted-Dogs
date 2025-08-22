@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.chat.ui
+package org.pointyware.painteddogs.chat
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,6 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.navigation.NavController
 import org.pointyware.painteddogs.chat.navigation.Chat
+import org.pointyware.painteddogs.chat.ui.ChatRowView
+import org.pointyware.painteddogs.chat.ui.ChatRowViewState
+import org.pointyware.painteddogs.chat.ui.ParticipantImage
+import org.pointyware.painteddogs.chat.ui.ParticipantViewState
 import org.pointyware.painteddogs.chat.viewmodels.ChatHistoryViewModel
 import org.pointyware.painteddogs.core.ui.design.LocalGeometry
 

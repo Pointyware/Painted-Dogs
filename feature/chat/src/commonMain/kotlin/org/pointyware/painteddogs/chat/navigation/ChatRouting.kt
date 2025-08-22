@@ -7,8 +7,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
-import org.pointyware.painteddogs.chat.ui.ChatHistoryScreen
-import org.pointyware.painteddogs.chat.ui.ChatScreen
+import org.pointyware.painteddogs.chat.ChatHistoryScreen
+import org.pointyware.painteddogs.chat.ChatScreen
 import org.pointyware.painteddogs.chat.viewmodels.ChatHistoryViewModel
 import org.pointyware.painteddogs.chat.viewmodels.ChatViewModel
 import org.pointyware.painteddogs.core.navigation.Destination
