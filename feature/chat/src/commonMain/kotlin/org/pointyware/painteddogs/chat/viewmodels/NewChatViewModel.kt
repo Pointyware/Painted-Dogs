@@ -1,0 +1,73 @@
+package org.pointyware.painteddogs.chat.viewmodels
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import org.pointyware.painteddogs.chat.entities.Participant
+import org.pointyware.painteddogs.chat.interactors.AddParticipantUseCase
+import org.pointyware.painteddogs.chat.interactors.CreateChatUseCase
+
+/**
+ *
+ */
+class NewChatViewModel(
+    private val createChatUseCase: CreateChatUseCase,
+    private val addParticipantUseCase: AddParticipantUseCase,
+): ViewModel() {
+
+    private val _editorState = MutableStateFlow(ChatCreatorUiState("", emptyList()))
+    val editorState: StateFlow<ChatCreatorUiState> get() = _editorState.asStateFlow()
+
+    /**
+     *
+     */
+    fun onSetTitle(title: String) {
+        _editorState.update {
+            it.copy(title = title)
+        }
+    }
+
+    /**
+     *
+     */
+    fun onAddParticipant(participant: Participant) {
+        val state = editorState.value
+        viewModelScope.launch {
+            addParticipantUseCase.invoke(participant.userId, state.participants)
+                .onSuccess { newList ->
+                    _editorState.update { it.copy(participants = newList) }
+                }
+                .onFailure {
+                    TODO("Update")
+                }
+        }
+        _editorState.update {
+            it.copy(participants = it.participants + participant)
+        }
+    }
+
+    /**
+     *
+     */
+    fun onCreateChat() {
+        val state = editorState.value
+        viewModelScope.launch {
+            createChatUseCase.invoke(state.title, state.participants)
+                .onSuccess {
+                    TODO("trigger navigation to new chat")
+                }
+                .onFailure {
+                    TODO("display error information")
+                }
+        }
+    }
+}
+
+data class ChatCreatorUiState(
+    val title: String,
+    val participants: List<Participant>
+)
