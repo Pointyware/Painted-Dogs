@@ -10,6 +10,7 @@ import kotlinx.serialization.Serializable
 import org.koin.mp.KoinPlatform.getKoin
 import org.pointyware.painteddogs.chat.ChatHistoryScreen
 import org.pointyware.painteddogs.chat.ChatScreen
+import org.pointyware.painteddogs.chat.NewChatScreen
 import org.pointyware.painteddogs.chat.viewmodels.ChatHistoryViewModel
 import org.pointyware.painteddogs.chat.viewmodels.ChatViewModel
 import org.pointyware.painteddogs.chat.viewmodels.NewChatViewModel
@@ -50,7 +51,10 @@ fun NavGraphBuilder.chatRouting(
         val koin = remember { getKoin() }
         val newChatViewModel = remember { NewChatViewModel(koin.get(), koin.get()) }
 
-        // TODO: Add New Chat Screen
+        NewChatScreen(
+            newChatViewModel,
+            navController
+        )
     }
 
     composable<Chat> {
