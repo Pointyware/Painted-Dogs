@@ -47,6 +47,8 @@ fun NavGraphBuilder.chatRouting(
     }
 
     composable<NewChat> {
+        val koin = remember { getKoin() }
+        val newChatViewModel = remember { NewChatViewModel(koin.get(), koin.get()) }
 
         // TODO: Add New Chat Screen
     }
