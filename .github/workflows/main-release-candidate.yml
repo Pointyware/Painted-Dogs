@@ -61,7 +61,7 @@ jobs:
         uses: google-github-actions/auth@v2
         with:
           project_id: "painted-dogs-prod-425222"
-          service_account: 109439308481907711102
+          service_account: 758084049237-compute@developer.gserviceaccount.com
           token_format: access_token
           access_token_scopes: "https://www.googleapis.com/auth/cloud-platform"
           credentials_json: '${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY }}'
