@@ -7,10 +7,12 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
+import org.koin.mp.KoinPlatform.getKoin
 import org.pointyware.painteddogs.chat.ChatHistoryScreen
 import org.pointyware.painteddogs.chat.ChatScreen
 import org.pointyware.painteddogs.chat.viewmodels.ChatHistoryViewModel
 import org.pointyware.painteddogs.chat.viewmodels.ChatViewModel
+import org.pointyware.painteddogs.chat.viewmodels.NewChatViewModel
 import org.pointyware.painteddogs.core.navigation.Destination
 import kotlin.uuid.ExperimentalUuidApi
 
@@ -20,6 +22,9 @@ import kotlin.uuid.ExperimentalUuidApi
  */
 @Serializable
 data object ChatHistory: Destination
+
+@Serializable
+data object NewChat: Destination
 
 /**
  * An individual chat session.
@@ -39,6 +44,11 @@ fun NavGraphBuilder.chatRouting(
             viewModel = chatViewModel,
             navController = navController
         )
+    }
+
+    composable<NewChat> {
+
+        // TODO: Add New Chat Screen
     }
 
     composable<Chat> {
