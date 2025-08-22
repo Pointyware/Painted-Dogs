@@ -11,11 +11,6 @@ jobs:
   build:
     name: "Create Release Candidate"
     runs-on: [ubuntu-24.04]
-    env:
-      ACCOUNT_ID: "TSampley@pointyware.org" # TODO: create/use service account
-      APP_ID: "org.pointyware.painteddogs.android"
-      BUNDLE_ID: "org.pointyware.painteddogs.android"
-      PROJECT_ID: "painted-dogs-prod"
     outputs:
       BUNDLE_NAME: ${{ steps.build.outputs.bundle_name }}
       BUNDLE_PATH: ${{ steps.build.outputs.bundle_path }}
@@ -65,8 +60,8 @@ jobs:
         id: gcloud-auth
         uses: google-github-actions/auth@v2
         with:
-          project_id: $PROJECT_ID
-          service_account: github-action-service-account@painted-dogs-prod
+          project_id: "painted-dogs-prod-425222"
+          service_account: 758084049237-compute@developer.gserviceaccount.com
           token_format: access_token
           access_token_scopes: "https://www.googleapis.com/auth/cloud-platform"
           credentials_json: '${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY }}'
