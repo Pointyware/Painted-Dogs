@@ -2,14 +2,18 @@ package org.pointyware.painteddogs.chat.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.pointyware.painteddogs.chat.entities.Participant
 import org.pointyware.painteddogs.chat.interactors.AddParticipantUseCase
 import org.pointyware.painteddogs.chat.interactors.CreateChatUseCase
+import org.pointyware.painteddogs.core.navigation.Destination
 
 /**
  *
@@ -19,8 +23,10 @@ class NewChatViewModel(
     private val addParticipantUseCase: AddParticipantUseCase,
 ): ViewModel() {
 
+    private val _navEvent = Channel<Destination>()
+    val navEvent: Flow<Destination> = _navEvent.consumeAsFlow()
     private val _editorState = MutableStateFlow(ChatCreatorUiState("", emptyList()))
-    val editorState: StateFlow<ChatCreatorUiState> get() = _editorState.asStateFlow()
+    val editorState: StateFlow<ChatCreatorUiState> = _editorState.asStateFlow()
 
     /**
      *

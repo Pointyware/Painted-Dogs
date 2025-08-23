@@ -9,6 +9,7 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,7 +26,11 @@ fun NewChatScreen(
 ) {
     val state by viewModel.editorState.collectAsState()
 
-    // TODO: observe chat creation state and respond by navigating to newly created chat
+    LaunchedEffect(viewModel) {
+        viewModel.navEvent.collect { destination ->
+            navController.navigate(destination)
+        }
+    }
     Box {
         Column(
             modifier = Modifier
