@@ -17,14 +17,23 @@ import org.pointyware.painteddogs.chat.viewmodels.NewChatViewModel
 import org.pointyware.painteddogs.core.navigation.Destination
 import kotlin.uuid.ExperimentalUuidApi
 
-
+sealed interface ChatDestination: Destination {
+    @Serializable
+    data object History: ChatDestination
+    @Serializable
+    data object New: ChatDestination
+    @Serializable
+    data class Session(val id: String): ChatDestination
+}
 /**
  * A list of a user's chat history.
  */
+@Deprecated("Poorly organized", ReplaceWith("ChatDestination.History"))
 @Serializable
 data object ChatHistory: Destination
 
 @Serializable
+@Deprecated("Poorly organized", ReplaceWith("ChatDestination.New"))
 data object NewChat: Destination
 
 /**
@@ -32,6 +41,7 @@ data object NewChat: Destination
  * @param id The unique ID of the specific chat.
  */
 @Serializable
+@Deprecated("Poorly organized", ReplaceWith("ChatDestination.Session"))
 data class Chat(val id: String): Destination
 
 
