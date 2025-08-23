@@ -66,8 +66,8 @@ class NewChatViewModel(
         val state = editorState.value
         viewModelScope.launch {
             createChatUseCase.invoke(state.title, state.participants)
-                .onSuccess {
-                    TODO("trigger navigation to new chat")
+                .onSuccess { chatId ->
+                    _navEvent.send(ChatDestination.Session(chatId))
                 }
                 .onFailure {
                     TODO("display error information")
