@@ -70,7 +70,7 @@ class NewChatViewModel(
                     _navEvent.send(ChatDestination.Session(chatId))
                 }
                 .onFailure {
-                    TODO("display error information")
+                    _error.value = it
                 }
         }
     }
