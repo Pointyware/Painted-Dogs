@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import org.pointyware.painteddogs.chat.entities.ChatRecord
+import org.pointyware.painteddogs.chat.interactors.ChatPreview
 
 class ChatHistoryViewModel(
 
@@ -12,6 +12,6 @@ class ChatHistoryViewModel(
 
 
     val _chatList = MutableStateFlow(ChatHistoryDummyData.chatHistory)
-    val chatList: StateFlow<List<ChatRecord>> get() = _chatList.asStateFlow()
+    val chatList: StateFlow<List<ChatPreview>> get() = _chatList.asStateFlow()
 
 }

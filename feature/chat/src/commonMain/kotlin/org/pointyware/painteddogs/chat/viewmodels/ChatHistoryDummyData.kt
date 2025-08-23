@@ -1,7 +1,7 @@
 package org.pointyware.painteddogs.chat.viewmodels
 
-import org.pointyware.painteddogs.chat.entities.ChatRecord
 import org.pointyware.painteddogs.chat.entities.Participant
+import org.pointyware.painteddogs.chat.interactors.ChatPreview
 
 object ChatHistoryDummyData {
     val userTaush = Participant(
@@ -25,24 +25,27 @@ object ChatHistoryDummyData {
         userId = "uuid-for-afton"
     )
 
-    val chatSarahAbby = ChatRecord(
+    val chatSarahAbby = ChatPreview(
         id = "someId",
+        title = "Democracy",
         participants = listOf(
             userSarah,
             userAbby
         ),
         excerpt = "When is the next PCD meeting?"
     )
-    val chatLinkAfton = ChatRecord(
+    val chatLinkAfton = ChatPreview(
         id = "antoehrId",
+        title = "Coffee",
         participants = listOf(
             userLink,
             userAfton
         ),
         excerpt = "Coffee when?",
     )
-    val chatSarah = ChatRecord(
+    val chatSarah = ChatPreview(
         "direct-message",
+        title = "Resume",
         listOf(
             userSarah
         ),
