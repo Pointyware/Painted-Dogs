@@ -46,7 +46,7 @@ fun NewChatScreen(
             LazyColumn {
                 items(state.participants) {
                     Text(
-                        text = it.label
+                        text = it.username
                     )
                 }
             }

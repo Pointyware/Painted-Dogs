@@ -4,7 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.withContext
 import org.pointyware.painteddogs.chat.data.ChatLog
 import org.pointyware.painteddogs.chat.data.ChatRepository
-import org.pointyware.painteddogs.chat.entities.Participant
+import org.pointyware.painteddogs.chat.entities.Contact
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
@@ -17,7 +17,7 @@ class FakeChatRepository(
 
     override suspend fun createChat(
         title: String,
-        participantList: List<Participant>
+        participantList: List<Contact>
     ): Result<String> = withContext(dataScope.coroutineContext) {
         val id = Uuid.random().toString()
         val newChat = ChatLog(id, title, TODO(""), messages = TODO())

@@ -1,7 +1,7 @@
 package org.pointyware.painteddogs.chat.interactors
 
 import org.pointyware.painteddogs.chat.data.ContactRepository
-import org.pointyware.painteddogs.chat.entities.Participant
+import org.pointyware.painteddogs.chat.entities.Contact
 
 /**
  *
@@ -9,10 +9,10 @@ import org.pointyware.painteddogs.chat.entities.Participant
 class AddParticipantUseCase(
     private val contactRepository: ContactRepository
 ) {
-    suspend fun invoke(id: String, list: List<Participant>): Result<List<Participant>> {
+    suspend fun invoke(id: String, list: List<Contact>): Result<List<Contact>> {
         return contactRepository.getContactById(id)
             .mapCatching {
-                val newParticipant = Participant(it.username, userId = it.id)
+                val newParticipant = Contact(id = it.id, it.username)
                 if (list.contains(newParticipant)) throw IllegalArgumentException("Participant already in list")
                 list + newParticipant
             }

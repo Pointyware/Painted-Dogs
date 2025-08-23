@@ -1,6 +1,6 @@
 package org.pointyware.painteddogs.chat.interactors
 
-import org.pointyware.painteddogs.chat.entities.Participant
+import org.pointyware.painteddogs.chat.entities.Contact
 
 /**
  *
@@ -8,6 +8,6 @@ import org.pointyware.painteddogs.chat.entities.Participant
 data class ChatPreview(
     val id: String,
     val title: String,
-    val participants: List<Participant>,
+    val participants: List<Contact>,
     val excerpt: String
 )

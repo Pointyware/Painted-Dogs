@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.pointyware.painteddogs.chat.entities.Participant
+import org.pointyware.painteddogs.chat.entities.Contact
 import org.pointyware.painteddogs.chat.interactors.AddParticipantUseCase
 import org.pointyware.painteddogs.chat.interactors.CreateChatUseCase
 import org.pointyware.painteddogs.chat.navigation.ChatDestination
@@ -43,10 +43,10 @@ class NewChatViewModel(
     /**
      *
      */
-    fun onAddParticipant(participant: Participant) {
+    fun onAddParticipant(participant: Contact) {
         val state = editorState.value
         viewModelScope.launch {
-            addParticipantUseCase.invoke(participant.userId, state.participants)
+            addParticipantUseCase.invoke(participant.id, state.participants)
                 .onSuccess { newList ->
                     _editorState.update { it.copy(participants = newList) }
                 }
@@ -85,5 +85,5 @@ class NewChatViewModel(
 
 data class ChatCreatorUiState(
     val title: String,
-    val participants: List<Participant>
+    val participants: List<Contact>
 )

@@ -44,7 +44,7 @@ fun ChatHistoryScreen(
                     state = ChatRowViewState(
                         participants = chatRecord.participants.map { participant ->
                             ParticipantViewState(
-                                label = participant.label,
+                                label = participant.username,
                                 image = ParticipantImage.NoProfileImage // TODO: get from entity and load image if necessary
                             )
                         },
