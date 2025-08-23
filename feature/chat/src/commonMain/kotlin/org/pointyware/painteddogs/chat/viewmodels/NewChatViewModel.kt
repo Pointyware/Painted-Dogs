@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 import org.pointyware.painteddogs.chat.entities.Participant
 import org.pointyware.painteddogs.chat.interactors.AddParticipantUseCase
 import org.pointyware.painteddogs.chat.interactors.CreateChatUseCase
+import org.pointyware.painteddogs.chat.navigation.ChatDestination
 import org.pointyware.painteddogs.core.navigation.Destination
 
 /**
@@ -27,6 +28,8 @@ class NewChatViewModel(
     val navEvent: Flow<Destination> = _navEvent.consumeAsFlow()
     private val _editorState = MutableStateFlow(ChatCreatorUiState("", emptyList()))
     val editorState: StateFlow<ChatCreatorUiState> = _editorState.asStateFlow()
+    private val _error = MutableStateFlow<Throwable?>(null)
+    val error: StateFlow<Throwable?> = _error.asStateFlow()
 
     /**
      *
@@ -70,6 +73,13 @@ class NewChatViewModel(
                     TODO("display error information")
                 }
         }
+    }
+
+    /**
+     * Called when the user has acknowledged the error and attempts to dismiss it.
+     */
+    fun onClearError() {
+        _error.value = null
     }
 }
 
