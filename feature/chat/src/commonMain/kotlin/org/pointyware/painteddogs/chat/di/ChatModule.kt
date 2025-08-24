@@ -2,8 +2,10 @@ package org.pointyware.painteddogs.chat.di
 
 import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.module
+import org.pointyware.painteddogs.chat.data.AuthRepository
 import org.pointyware.painteddogs.chat.data.ChatRepository
 import org.pointyware.painteddogs.chat.data.ContactRepository
+import org.pointyware.painteddogs.chat.data.fake.FakeAuthRepository
 import org.pointyware.painteddogs.chat.data.fake.FakeChatRepository
 import org.pointyware.painteddogs.chat.data.fake.FakeContactRepository
 import org.pointyware.painteddogs.chat.interactors.AddParticipantUseCase
@@ -30,6 +32,11 @@ fun chatModule() = module {
     single<ContactRepository> {
         FakeContactRepository(
 //            get(qualifier = dataQualifier)
+        )
+    }
+    single<AuthRepository> {
+        FakeAuthRepository(
+
         )
     }
 }
