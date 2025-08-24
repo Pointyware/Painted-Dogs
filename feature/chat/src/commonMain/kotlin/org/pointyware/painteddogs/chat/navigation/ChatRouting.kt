@@ -32,10 +32,6 @@ sealed interface ChatDestination: Destination {
 @Serializable
 data object ChatHistory: Destination
 
-@Serializable
-@Deprecated("Poorly organized", ReplaceWith("ChatDestination.New"))
-data object NewChat: Destination
-
 /**
  * An individual chat session.
  * @param id The unique ID of the specific chat.
