@@ -2,6 +2,7 @@ package org.pointyware.painteddogs.chat.data.fake
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.withContext
+import org.pointyware.painteddogs.chat.data.ChatHeader
 import org.pointyware.painteddogs.chat.data.ChatLog
 import org.pointyware.painteddogs.chat.data.ChatRepository
 import org.pointyware.painteddogs.chat.entities.Contact
@@ -29,5 +30,12 @@ class FakeChatRepository(
         return chatList.find { it.id == id }?.let {
             Result.success(it)
         } ?: Result.failure(IllegalArgumentException("No chat log with id: $id"))
+    }
+
+    override suspend fun getChatList(): Result<List<ChatHeader>> {
+        val list = chatList.map { log ->
+            ChatHeader(log.id, log.title, log.participants.map { it.id} )
+        }
+        return Result.success(list)
     }
 }
