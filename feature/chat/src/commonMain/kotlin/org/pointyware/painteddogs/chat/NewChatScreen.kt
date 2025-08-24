@@ -1,6 +1,7 @@
 package org.pointyware.painteddogs.chat
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -99,7 +100,12 @@ fun NewChatScreen(
                 ) {
                     LazyColumn {
                         items(capture.contacts) {
-                            ContactRow(value = it)
+                            ContactRow(
+                                value = it,
+                                modifier = Modifier.clickable {
+                                    viewModel.onAddParticipant(it)
+                                }
+                            )
                         }
                     }
                 }
