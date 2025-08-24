@@ -43,7 +43,12 @@ fun NavGraphBuilder.chatRouting(
     navController: NavController
 ) {
     composable<ChatDestination.History> {
-        val chatViewModel = remember { ChatHistoryViewModel() }
+        val koin = remember { getKoin() }
+        val chatViewModel = remember { ChatHistoryViewModel(koin.get()) }
+
+        LaunchedEffect(Unit) {
+            chatViewModel.onInit()
+        }
         ChatHistoryScreen(
             viewModel = chatViewModel,
             navController = navController
