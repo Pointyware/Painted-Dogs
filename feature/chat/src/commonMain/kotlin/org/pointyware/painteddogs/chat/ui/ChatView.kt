@@ -8,8 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Dialog
+import org.pointyware.painteddogs.chat.interactors.ChatLogItem
 import org.pointyware.painteddogs.chat.viewmodels.ChatUiState
 import org.pointyware.painteddogs.core.ui.design.GeometryTokens
+import org.pointyware.painteddogs.core.ui.design.LocalDateFormat
 import org.pointyware.painteddogs.core.ui.design.LocalGeometry
 import kotlin.time.ExperimentalTime
 
@@ -31,6 +33,7 @@ fun ChatView(
             )
         }
     }
+    val dateTime = LocalDateFormat.current
     when (state) {
         is ChatUiState.Loading -> {
             Text("Loading")
@@ -46,13 +49,27 @@ fun ChatView(
                 verticalArrangement = Arrangement.spacedBy(GeometryTokens.dpMedium),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                items(state.messages) { message ->
-                    ChatLogMessage(
-                        state = ChatLogElementState.Message(
-                            content = message.content,
-                            timeStamp = message.timeSent.toString(),
-                            isSender = false
-                        )
+                items(state.elements) { element ->
+                    ChatLogElement(
+                        state = when (element) {
+                            is ChatLogItem.TimeDivider -> {
+                                ChatLogElementState.TimeDivider(
+                                    dateTime.format(element.day)
+                                )
+                            }
+                            is ChatLogItem.Author -> {
+                                ChatLogElementState.Author(
+                                    element.contact.username
+                                )
+                            }
+                            is ChatLogItem.Message -> {
+                                ChatLogElementState.Message(
+                                    element.content,
+                                    dateTime.format(element.timeStamp),
+                                    element.isSender
+                                )
+                            }
+                        }
                     )
                 }
             }
