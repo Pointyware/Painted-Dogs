@@ -21,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.navigation.NavController
 import org.jetbrains.compose.resources.stringResource
-import org.pointyware.painteddogs.chat.navigation.Chat
 import org.pointyware.painteddogs.chat.navigation.ChatDestination
 import org.pointyware.painteddogs.chat.ui.ChatRowView
 import org.pointyware.painteddogs.chat.ui.ChatRowViewState
@@ -56,7 +55,7 @@ fun ChatHistoryScreen(
                         excerpt = chatRecord.excerpt,
                     ),
                     modifier = Modifier.fillMaxWidth().clickable {
-                        navController.navigate(Chat(chatRecord.id))
+                        navController.navigate(ChatDestination.Session(chatRecord.id))
                     }
                 )
                 HorizontalDivider(

@@ -24,7 +24,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.resources.stringResource
-import org.pointyware.painteddogs.chat.navigation.ChatHistory
+import org.pointyware.painteddogs.chat.navigation.ChatDestination
 import org.pointyware.painteddogs.chat.navigation.chatRouting
 import org.pointyware.painteddogs.core.navigation.navTypeMap
 import org.pointyware.painteddogs.core.ui.design.GeometryTokens
@@ -138,7 +138,7 @@ fun PaintedDogsApp(
                 modifier = Modifier
                     .padding(paddingValues)
                     .fillMaxSize(),
-                startDestination = ChatHistory,
+                startDestination = ChatDestination.History,
                 enterTransition = {
                     // Animation used for the entering new Screen
                     EnterTransition.None

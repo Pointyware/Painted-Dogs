@@ -18,34 +18,31 @@ import org.pointyware.painteddogs.core.navigation.Destination
 import kotlin.uuid.ExperimentalUuidApi
 
 sealed interface ChatDestination: Destination {
+    /**
+     * Screen listing a user's chat history.
+     */
     @Serializable
     data object History: ChatDestination
+
+    /**
+     * Screen for creating a new chat session.
+     */
     @Serializable
     data object New: ChatDestination
+
+    /**
+     * Screen for an individual chat session.
+     * @param id The unique ID of the specific chat.
+     */
     @Serializable
     data class Session(val id: String): ChatDestination
 }
-/**
- * A list of a user's chat history.
- */
-@Deprecated("Poorly organized", ReplaceWith("ChatDestination.History"))
-@Serializable
-data object ChatHistory: Destination
-
-/**
- * An individual chat session.
- * @param id The unique ID of the specific chat.
- */
-@Serializable
-@Deprecated("Poorly organized", ReplaceWith("ChatDestination.Session"))
-data class Chat(val id: String): Destination
-
 
 @OptIn(ExperimentalUuidApi::class)
 fun NavGraphBuilder.chatRouting(
     navController: NavController
 ) {
-    composable<ChatHistory> {
+    composable<ChatDestination.History> {
         val chatViewModel = remember { ChatHistoryViewModel() }
         ChatHistoryScreen(
             viewModel = chatViewModel,
@@ -63,8 +60,8 @@ fun NavGraphBuilder.chatRouting(
         )
     }
 
-    composable<Chat> {
-        val route = it.toRoute<Chat>()
+    composable<ChatDestination.Session> {
+        val route = it.toRoute<ChatDestination.Session>()
         val messagesViewModel = remember { ChatViewModel() }
 
         LaunchedEffect(route.id) {
