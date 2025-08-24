@@ -22,12 +22,12 @@ fun chatModule() = module {
     factoryOf(::LoadContactListUseCase)
     factoryOf(::LoadMessagesUseCase)
 
-    factory<ChatRepository> {
+    single<ChatRepository> {
         FakeChatRepository(
             get(qualifier = dataQualifier)
         )
     }
-    factory<ContactRepository> {
+    single<ContactRepository> {
         FakeContactRepository(
 //            get(qualifier = dataQualifier)
         )
