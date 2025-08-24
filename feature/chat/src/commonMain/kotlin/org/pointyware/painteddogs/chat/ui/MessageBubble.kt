@@ -25,10 +25,27 @@ fun MessageBubble(
     state: MessageBubbleState,
     modifier: Modifier = Modifier
 ) {
-    Text(
-        text = state.content,
-        modifier = modifier.padding(LocalGeometry.current.paddingMedium)
-    )
+    Row(
+        modifier = modifier
+            .padding(end = GeometryTokens.dpMedium),
+        horizontalArrangement = Arrangement.Start
+    ) {
+        Surface(
+            modifier = Modifier,
+            shape = MaterialTheme.shapes.medium,
+            color = MaterialTheme.colorScheme.primaryContainer,
+            shadowElevation = GeometryTokens.dpMedium,
+        ) {
+            Text(
+                text = state.content,
+                modifier = modifier.padding(LocalGeometry.current.paddingMedium)
+            )
+        }
+        Spacer(modifier = Modifier
+            .fillMaxWidth(.1f)
+            .weight(1f)
+        )
+    }
 }
 
 @Composable
