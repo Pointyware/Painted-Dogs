@@ -57,7 +57,7 @@ fun NavGraphBuilder.chatRouting(
         )
     }
 
-    composable<NewChat> {
+    composable<ChatDestination.New> {
         val koin = remember { getKoin() }
         val newChatViewModel = remember { NewChatViewModel(koin.get(), koin.get()) }
 

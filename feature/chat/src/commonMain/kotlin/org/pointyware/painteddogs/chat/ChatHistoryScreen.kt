@@ -13,11 +13,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.navigation.NavController
 import org.pointyware.painteddogs.chat.navigation.Chat
-import org.pointyware.painteddogs.chat.navigation.NewChat
+import org.pointyware.painteddogs.chat.navigation.ChatDestination
 import org.pointyware.painteddogs.chat.ui.ChatRowView
 import org.pointyware.painteddogs.chat.ui.ChatRowViewState
 import org.pointyware.painteddogs.chat.ui.ParticipantImage
@@ -62,7 +63,8 @@ fun ChatHistoryScreen(
         }
 
         FloatingActionButton(
-            onClick = { navController.navigate(NewChat) }
+            modifier = Modifier.align(Alignment.BottomEnd),
+            onClick = { navController.navigate(ChatDestination.New) }
         ) {
             Text(text = "New Chat")
         }
