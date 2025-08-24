@@ -47,11 +47,11 @@ fun ChatView(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 items(state.messages) { message ->
-                    MessageBubble(
-                        MessageBubbleState(
+                    ChatLogMessage(
+                        state = ChatLogElementState.Message(
                             content = message.content,
                             timeStamp = message.timeSent.toString(),
-                            author = message.sender.username,
+                            isSender = false
                         )
                     )
                 }
