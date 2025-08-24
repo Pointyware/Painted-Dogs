@@ -27,7 +27,7 @@ fun MessageBubble(
 ) {
     Row(
         modifier = modifier
-            .padding(end = GeometryTokens.dpMedium),
+            .padding(end = GeometryTokens.dpExtraLarge),
         horizontalArrangement = Arrangement.Start
     ) {
         Surface(
