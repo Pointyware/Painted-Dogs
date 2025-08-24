@@ -25,6 +25,12 @@ class FakeContactRepository: ContactRepository {
         return Result.success(Unit)
     }
 
+    override suspend fun getContacts(): Result<List<Contact>> {
+        return Result.success(
+            contactMap.values.sortedBy { it.username }
+        )
+    }
+
     override suspend fun getContactById(id: String): Result<Contact> {
         return contactMap[id]?.let {
             Result.success(it)
