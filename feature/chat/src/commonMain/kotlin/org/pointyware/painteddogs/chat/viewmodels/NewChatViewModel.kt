@@ -51,7 +51,7 @@ class NewChatViewModel(
                     _editorState.update { it.copy(participants = newList) }
                 }
                 .onFailure {
-                    TODO("Update")
+                    _error.value = it
                 }
         }
         _editorState.update {
