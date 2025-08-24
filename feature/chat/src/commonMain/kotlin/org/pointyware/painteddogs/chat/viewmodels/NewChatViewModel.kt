@@ -58,9 +58,6 @@ class NewChatViewModel(
                     _error.value = it
                 }
         }
-        _editorState.update {
-            it.copy(participants = it.participants + participant)
-        }
         _contactState.value = ContactsUiState.Closed
     }
 
