@@ -1,7 +1,6 @@
 package org.pointyware.painteddogs.chat.ui
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -117,16 +116,19 @@ fun ChatLogMessage(
             Arrangement.Start
         }
     }
-    val contactModifier =
-        if (state.isSender) {
-            Modifier.myMessage()
-        } else {
-            Modifier.otherMessage()
-        }
+    val background = if (state.isSender) {
+        MaterialTheme.colorScheme.secondaryContainer
+    } else {
+        MaterialTheme.colorScheme.tertiaryContainer
+    }
+    val paddingMod = if (state.isSender) {
+        Modifier.padding(start = GeometryTokens.dpExtraLarge)
+    } else {
+        Modifier.padding(end = GeometryTokens.dpExtraLarge)
+    }
     Row(
         modifier = modifier
-            .then(contactModifier)
-            .padding(end = GeometryTokens.dpExtraLarge)
+            .then(paddingMod)
             .clickable(onClick = { expanded = !expanded}),
         horizontalArrangement = arrangement,
     ) {
@@ -139,7 +141,7 @@ fun ChatLogMessage(
         Surface(
             modifier = Modifier,
             shape = MaterialTheme.shapes.medium,
-            color = MaterialTheme.colorScheme.primaryContainer,
+            color = background,
             shadowElevation = GeometryTokens.dpSmall,
         ) {
             Column(
@@ -165,20 +167,4 @@ fun ChatLogMessage(
             )
         }
     }
-}
-
-@Composable
-fun Modifier.otherMessage(): Modifier {
-    return this.background(
-        MaterialTheme.colorScheme.secondaryContainer,
-        MaterialTheme.shapes.medium)
-        .padding(end = GeometryTokens.dpExtraLarge)
-}
-
-@Composable
-fun Modifier.myMessage(): Modifier {
-    return this.background(
-        MaterialTheme.colorScheme.tertiaryContainer,
-        MaterialTheme.shapes.medium)
-        .padding(start = GeometryTokens.dpExtraLarge)
 }
