@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.chat.inter
+package org.pointyware.painteddogs.chat.interactors
 
 import org.pointyware.painteddogs.chat.data.ChatLog
 import org.pointyware.painteddogs.chat.data.ChatRepository
@@ -10,7 +10,7 @@ class LoadMessagesUseCase(
 ) {
 
     suspend fun invoke(chatId: String): Result<ChatLog> {
-        chatRepository.getChat(chatId).mapCatching { header ->
+        return chatRepository.getChat(chatId).mapCatching { header ->
             val contacts = header.contactIds.map {
                 contactRepository.getContactById(it).getOrThrow()
             }
@@ -18,7 +18,7 @@ class LoadMessagesUseCase(
                 id = header.id,
                 title = header.title,
                 participants = contacts,
-                messages = chatRepository.getChatMessages(chatId),
+                messages = chatRepository.getChatMessages(chatId).getOrThrow(),
             )
         }
     }

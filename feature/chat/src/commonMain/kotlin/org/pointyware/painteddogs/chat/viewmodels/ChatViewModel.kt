@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.pointyware.painteddogs.chat.data.ChatMessage
-import org.pointyware.painteddogs.chat.inter.LoadMessagesUseCase
+import org.pointyware.painteddogs.chat.interactors.LoadMessagesUseCase
 
 sealed interface ChatUiState {
     data class Loaded(
