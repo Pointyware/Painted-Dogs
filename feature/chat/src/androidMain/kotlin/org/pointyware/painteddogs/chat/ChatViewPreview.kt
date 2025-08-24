@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import org.pointyware.painteddogs.chat.data.ChatMessage
+import org.pointyware.painteddogs.chat.interactors.ChatLogItem
 import org.pointyware.painteddogs.chat.ui.ChatView
 import org.pointyware.painteddogs.chat.viewmodels.ChatUiState
 import org.pointyware.painteddogs.chat.viewmodels.ContactDummyData
@@ -20,31 +20,35 @@ fun ChatViewPreview() {
     PaintedDogsTheme {
         ChatView(
             state = ChatUiState.Loaded(
-                chatId = "id",
-                messages = listOf(
-                    ChatMessage(
-                        id = "0",
-                        sender = ContactDummyData.userLink,
+                elements = listOf(
+                    ChatLogItem.TimeDivider(
+                        Clock.System.now() - 1.hours
+                    ),
+                    ChatLogItem.Author(
+                        contact = ContactDummyData.userLink
+                    ),
+                    ChatLogItem.Message(
                         content = "Hi, how are you doing?",
-                        timeSent = Clock.System.now() - 1.hours
+                        timeStamp = Clock.System.now() - 1.hours,
+                        isSender = false
                     ),
-                    ChatMessage(
-                        id = "0",
-                        sender = ContactDummyData.userLink,
+                    ChatLogItem.Message(
+                        isSender = true,
                         content = "Good",
-                        timeSent = Clock.System.now() - .5.hours
+                        timeStamp = Clock.System.now() - .5.hours
                     ),
-                    ChatMessage(
-                        id = "0",
-                        sender = ContactDummyData.userLink,
+                    ChatLogItem.Message(
+                        isSender = true,
                         content = "How are you?",
-                        timeSent = Clock.System.now() - .25.hours
+                        timeStamp = Clock.System.now() - .25.hours
                     ),
-                    ChatMessage(
-                        id = "0",
-                        sender = ContactDummyData.userLink,
+                    ChatLogItem.Author(
+                        contact = ContactDummyData.userLink
+                    ),
+                    ChatLogItem.Message(
+                        isSender = false,
                         content = "That's good to hear! I'm just reaching out to talk to you about your cars extended warranty!",
-                        timeSent = Clock.System.now() - .25.hours
+                        timeStamp = Clock.System.now() - .25.hours
                     )
                 )
             ),
