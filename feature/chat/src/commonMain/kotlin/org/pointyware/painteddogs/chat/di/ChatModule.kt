@@ -8,6 +8,7 @@ import org.pointyware.painteddogs.chat.data.fake.FakeChatRepository
 import org.pointyware.painteddogs.chat.data.fake.FakeContactRepository
 import org.pointyware.painteddogs.chat.interactors.AddParticipantUseCase
 import org.pointyware.painteddogs.chat.interactors.CreateChatUseCase
+import org.pointyware.painteddogs.chat.interactors.GetChatListUseCase
 import org.pointyware.painteddogs.chat.interactors.GetChatPreview
 import org.pointyware.painteddogs.chat.interactors.LoadContactListUseCase
 import org.pointyware.painteddogs.core.data.di.dataQualifier
@@ -15,6 +16,7 @@ import org.pointyware.painteddogs.core.data.di.dataQualifier
 fun chatModule() = module {
     factoryOf(::AddParticipantUseCase)
     factoryOf(::CreateChatUseCase)
+    factoryOf(::GetChatListUseCase)
     factoryOf(::GetChatPreview)
     factoryOf(::LoadContactListUseCase)
 
