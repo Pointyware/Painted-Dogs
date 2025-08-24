@@ -1,11 +1,21 @@
 package org.pointyware.painteddogs.chat.data.fake
 
+import kotlinx.coroutines.runBlocking
 import org.pointyware.painteddogs.chat.data.ContactRepository
 import org.pointyware.painteddogs.chat.entities.Contact
+import org.pointyware.painteddogs.chat.viewmodels.ChatHistoryDummyData
 
 class FakeContactRepository: ContactRepository {
 
     val contactMap = mutableMapOf<String, Contact>()
+    init {
+        runBlocking {
+            addContact(ChatHistoryDummyData.userAbby)
+            addContact(ChatHistoryDummyData.userAfton)
+            addContact(ChatHistoryDummyData.userLink)
+            addContact(ChatHistoryDummyData.userSarah)
+        }
+    }
 
     override suspend fun addContact(contact: Contact): Result<Unit> {
         if (contactMap.containsKey(contact.id)) {
