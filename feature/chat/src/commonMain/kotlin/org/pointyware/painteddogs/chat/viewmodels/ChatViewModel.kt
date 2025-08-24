@@ -32,9 +32,9 @@ class ChatViewModel(
         viewModelScope.launch {
             delay(500)
             loadMessagesUseCase.invoke(id)
-                .onSuccess { messages ->
+                .onSuccess { items ->
                     _messages.value = ChatUiState.Loaded(
-                        elements = messages
+                        elements = items
                     )
                 }
                 .onFailure { throwable ->
@@ -50,5 +50,9 @@ class ChatViewModel(
 
     fun onClearError() {
         _error.value = null
+    }
+
+    fun onSendMessage(newMessage: String) {
+        TODO("Not yet implemented")
     }
 }

@@ -21,6 +21,7 @@ fun ChatScreen(
         state = chatMessages,
         error = error,
         modifier = Modifier.fillMaxSize(),
+        onSendMessage = { viewModel.onSendMessage(it) },
         onClearError = { viewModel.onClearError() }
     )
 }
