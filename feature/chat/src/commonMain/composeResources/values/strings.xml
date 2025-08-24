@@ -7,4 +7,7 @@
     <!--  New Chat  -->
     <string name="label_chat_title">Chat Title</string>
     <string name="acc_add_contact">Add Contact</string>
+
+    <!--  Chat Session  -->
+    <string name="acc_send">Send</string>
 </resources>
