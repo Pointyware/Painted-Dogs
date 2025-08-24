@@ -112,12 +112,10 @@ data class ChatCreatorUiState(
     val participants: List<Contact>
 )
 
-sealed class ContactsUiState(
-    val isOpen: Boolean = false
-) {
-    data object Closed: ContactsUiState()
-    data object Loading: ContactsUiState(isOpen = true)
+sealed interface ContactsUiState {
+    data object Closed: ContactsUiState
+    data object Loading: ContactsUiState
     data class Loaded(
         val contacts: List<Contact>
-    ): ContactsUiState(isOpen = true)
+    ): ContactsUiState
 }
