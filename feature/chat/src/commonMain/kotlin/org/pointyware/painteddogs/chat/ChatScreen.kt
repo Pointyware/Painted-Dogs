@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.chat.ui
+package org.pointyware.painteddogs.chat
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,6 +10,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
+import org.pointyware.painteddogs.chat.ui.MessageBubble
+import org.pointyware.painteddogs.chat.ui.MessageBubbleState
 import org.pointyware.painteddogs.chat.viewmodels.ChatUiState
 import org.pointyware.painteddogs.chat.viewmodels.ChatViewModel
 import org.pointyware.painteddogs.core.ui.design.GeometryTokens

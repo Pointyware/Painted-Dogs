@@ -7,25 +7,41 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
-import org.pointyware.painteddogs.chat.ui.ChatHistoryScreen
-import org.pointyware.painteddogs.chat.ui.ChatScreen
+import org.koin.mp.KoinPlatform.getKoin
+import org.pointyware.painteddogs.chat.ChatHistoryScreen
+import org.pointyware.painteddogs.chat.ChatScreen
+import org.pointyware.painteddogs.chat.NewChatScreen
 import org.pointyware.painteddogs.chat.viewmodels.ChatHistoryViewModel
 import org.pointyware.painteddogs.chat.viewmodels.ChatViewModel
+import org.pointyware.painteddogs.chat.viewmodels.NewChatViewModel
 import org.pointyware.painteddogs.core.navigation.Destination
 import kotlin.uuid.ExperimentalUuidApi
 
-
+sealed interface ChatDestination: Destination {
+    @Serializable
+    data object History: ChatDestination
+    @Serializable
+    data object New: ChatDestination
+    @Serializable
+    data class Session(val id: String): ChatDestination
+}
 /**
  * A list of a user's chat history.
  */
+@Deprecated("Poorly organized", ReplaceWith("ChatDestination.History"))
 @Serializable
 data object ChatHistory: Destination
+
+@Serializable
+@Deprecated("Poorly organized", ReplaceWith("ChatDestination.New"))
+data object NewChat: Destination
 
 /**
  * An individual chat session.
  * @param id The unique ID of the specific chat.
  */
 @Serializable
+@Deprecated("Poorly organized", ReplaceWith("ChatDestination.Session"))
 data class Chat(val id: String): Destination
 
 
@@ -38,6 +54,16 @@ fun NavGraphBuilder.chatRouting(
         ChatHistoryScreen(
             viewModel = chatViewModel,
             navController = navController
+        )
+    }
+
+    composable<NewChat> {
+        val koin = remember { getKoin() }
+        val newChatViewModel = remember { NewChatViewModel(koin.get(), koin.get()) }
+
+        NewChatScreen(
+            newChatViewModel,
+            navController
         )
     }
 

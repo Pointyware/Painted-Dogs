@@ -8,7 +8,7 @@ import kotlin.time.Instant
  */
 @OptIn(ExperimentalTime::class)
 data class Message(
-    val participant: Participant,
+    val participant: Contact,
     val content: String,
     val time: Instant
 )
