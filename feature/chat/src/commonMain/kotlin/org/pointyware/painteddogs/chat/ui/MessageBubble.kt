@@ -1,7 +1,6 @@
 package org.pointyware.painteddogs.chat.ui
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -66,20 +65,4 @@ fun MessageBubble(
             .weight(1f)
         )
     }
-}
-
-@Composable
-fun Modifier.otherMessage(): Modifier {
-    return this.background(
-        MaterialTheme.colorScheme.secondaryContainer,
-        MaterialTheme.shapes.medium)
-        .padding(end = GeometryTokens.dpExtraLarge)
-}
-
-@Composable
-fun Modifier.myMessage(): Modifier {
-    return this.background(
-        MaterialTheme.colorScheme.tertiaryContainer,
-        MaterialTheme.shapes.medium)
-        .padding(start = GeometryTokens.dpExtraLarge)
 }
