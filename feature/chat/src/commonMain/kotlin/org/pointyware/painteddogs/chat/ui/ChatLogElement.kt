@@ -24,14 +24,13 @@ import androidx.compose.ui.Modifier
 import org.pointyware.painteddogs.core.ui.design.GeometryTokens
 import org.pointyware.painteddogs.core.ui.design.LocalGeometry
 import kotlin.time.ExperimentalTime
-import kotlin.time.Instant
 
 sealed interface ChatLogElementState {
     /**
      * A time divider is inserted at the beginning of each day.
      */
     @OptIn(ExperimentalTime::class)
-    class TimeDivider(val day: Instant): ChatLogElementState
+    class TimeDivider(val day: String): ChatLogElementState
 
     /**
      * An author indicator is inserted before the first message of a given author.
@@ -85,7 +84,7 @@ fun ChatLogTimeDivider(
         HorizontalDivider(
             modifier = Modifier.fillMaxWidth()
         )
-        Text(text = state.day.toString())
+        Text(text = state.day)
     }
 }
 
