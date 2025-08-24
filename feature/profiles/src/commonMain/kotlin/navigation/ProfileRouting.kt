@@ -19,6 +19,32 @@ import org.pointyware.painteddogs.feature.profiles.ui.UserProfileView
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
+sealed interface ProfileDestination: Destination {
+    /**
+     * Screen for the current user's profile information.
+     */
+    @Serializable
+    data object User
+
+    /**
+     * Screen for an external user's profile information.
+     */
+    @Serializable
+    data class Contact(val id: String)
+
+    /**
+     * Screen for any user's contributions.
+     */
+    @Serializable
+    data class Contributions(val userId: String)
+
+    /**
+     * Screen for any user's funds.
+     */
+    @Serializable
+    data class Funds(val userId: String)
+}
+@Deprecated("Poor organization", ReplaceWith("ProfileDestination.User"))
 @Serializable
 data class UserProfile(val userId: String): Destination {
     constructor(id: Uuid): this(id.toString())
@@ -26,11 +52,13 @@ data class UserProfile(val userId: String): Destination {
     fun funds() = UserFunds
 }
 
+@Deprecated("Poor organization", ReplaceWith("ProfileDestination.Contributions"))
 @Serializable
 data class UserContributions(val userId: String) {
     constructor(id: Uuid): this(id.toString())
 }
 
+@Deprecated("Poor organization", ReplaceWith("ProfileDestination.Funds"))
 @Serializable
 class UserFunds(val userId: String): Destination {
     constructor(id: Uuid): this(id.toString())
