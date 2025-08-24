@@ -1,8 +1,13 @@
 package org.pointyware.painteddogs.chat.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -10,7 +15,9 @@ import org.pointyware.painteddogs.core.ui.design.GeometryTokens
 import org.pointyware.painteddogs.core.ui.design.LocalGeometry
 
 data class MessageBubbleState(
-    val content: String
+    val content: String,
+    val timeStamp: String,
+    val author: String
 )
 
 @Composable

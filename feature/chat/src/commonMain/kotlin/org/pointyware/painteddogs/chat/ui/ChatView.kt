@@ -11,7 +11,9 @@ import androidx.compose.ui.window.Dialog
 import org.pointyware.painteddogs.chat.viewmodels.ChatUiState
 import org.pointyware.painteddogs.core.ui.design.GeometryTokens
 import org.pointyware.painteddogs.core.ui.design.LocalGeometry
+import kotlin.time.ExperimentalTime
 
+@OptIn(ExperimentalTime::class)
 @Composable
 fun ChatView(
     state: ChatUiState,
@@ -47,7 +49,9 @@ fun ChatView(
                 items(state.messages) { message ->
                     MessageBubble(
                         MessageBubbleState(
-                            message.content
+                            content = message.content,
+                            timeStamp = message.timeSent.toString(),
+                            author = message.sender.username,
                         )
                     )
                 }
