@@ -11,6 +11,7 @@ import org.pointyware.painteddogs.chat.interactors.CreateChatUseCase
 import org.pointyware.painteddogs.chat.interactors.GetChatListUseCase
 import org.pointyware.painteddogs.chat.interactors.GetChatPreview
 import org.pointyware.painteddogs.chat.interactors.LoadContactListUseCase
+import org.pointyware.painteddogs.chat.interactors.LoadMessagesUseCase
 import org.pointyware.painteddogs.core.data.di.dataQualifier
 
 fun chatModule() = module {
@@ -19,6 +20,7 @@ fun chatModule() = module {
     factoryOf(::GetChatListUseCase)
     factoryOf(::GetChatPreview)
     factoryOf(::LoadContactListUseCase)
+    factoryOf(::LoadMessagesUseCase)
 
     factory<ChatRepository> {
         FakeChatRepository(

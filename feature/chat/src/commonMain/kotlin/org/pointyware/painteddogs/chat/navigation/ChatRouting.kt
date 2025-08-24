@@ -67,7 +67,8 @@ fun NavGraphBuilder.chatRouting(
 
     composable<ChatDestination.Session> {
         val route = it.toRoute<ChatDestination.Session>()
-        val messagesViewModel = remember { ChatViewModel() }
+        val koin = remember { getKoin() }
+        val messagesViewModel = remember { ChatViewModel(koin.get()) }
 
         LaunchedEffect(route.id) {
             messagesViewModel.loadMessages(route.id)
