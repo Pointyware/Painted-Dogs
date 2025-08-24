@@ -43,7 +43,7 @@ fun ChatView(
                 modifier = modifier,
                 reverseLayout = true,
                 contentPadding = LocalGeometry.current.paddingSmall,
-                verticalArrangement = Arrangement.spacedBy(GeometryTokens.dpSmall),
+                verticalArrangement = Arrangement.spacedBy(GeometryTokens.dpMedium),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 items(state.messages) { message ->

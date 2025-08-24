@@ -28,13 +28,13 @@ fun MessageBubble(
     Row(
         modifier = modifier
             .padding(end = GeometryTokens.dpExtraLarge),
-        horizontalArrangement = Arrangement.Start
+        horizontalArrangement = Arrangement.Start,
     ) {
         Surface(
             modifier = Modifier,
             shape = MaterialTheme.shapes.medium,
             color = MaterialTheme.colorScheme.primaryContainer,
-            shadowElevation = GeometryTokens.dpMedium,
+            shadowElevation = GeometryTokens.dpSmall,
         ) {
             Text(
                 text = state.content,
