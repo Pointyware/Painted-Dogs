@@ -1,7 +1,9 @@
 package org.pointyware.painteddogs.chat
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
@@ -16,7 +18,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
+import org.pointyware.painteddogs.chat.ui.ContactRow
+import org.pointyware.painteddogs.chat.viewmodels.ContactsUiState
 import org.pointyware.painteddogs.chat.viewmodels.NewChatViewModel
 
 @Composable
@@ -60,8 +66,31 @@ fun NewChatScreen(
             }
         }
 
+        val contactState by viewModel.contactState.collectAsState()
+        when (val capture = contactState) {
+            ContactsUiState.Closed -> {}
+            ContactsUiState.Loading -> {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.Black.copy(alpha = 0.1f))
+                )
+            }
+            is ContactsUiState.Loaded -> {
+                Dialog(
+                    onDismissRequest = { viewModel.onCancelContact() }
+                ) {
+                    LazyColumn {
+                        items(capture.contacts) {
+                            ContactRow(value = it)
+                        }
+                    }
+                }
+            }
+        }
+
         FloatingActionButton(
-            onClick = { TODO("Open menu to select from contact") }
+            onClick = { viewModel.onOpenContacts() }
         ) {
             Text(
                 text = "Add Contact"
