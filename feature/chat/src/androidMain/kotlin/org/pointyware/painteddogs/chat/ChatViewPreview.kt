@@ -54,7 +54,8 @@ fun ChatViewPreview() {
             ),
             error = null,
             modifier = Modifier.fillMaxSize(),
-            onClearError = { }
+            onSendMessage = { },
+            onClearError = { },
         )
     }
 }
