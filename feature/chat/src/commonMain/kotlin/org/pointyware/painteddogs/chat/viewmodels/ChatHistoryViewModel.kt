@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import org.pointyware.painteddogs.chat.interactors.ChatPreview
 
 class ChatHistoryViewModel(
-
+    // TODO: inject use case to load history
 ): ViewModel() {
 
 
