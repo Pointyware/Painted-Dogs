@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
+    <!--  Chat History  -->
     <string name="acc_profile_image_prefix">Profile Image for </string>
     <string name="acc_new_chat">New Chat</string>
+
+    <!--  New Chat  -->
+    <string name="label_chat_title">Chat Title</string>
+    <string name="acc_add_contact">Add Contact</string>
 </resources>
