@@ -9,6 +9,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
 import org.pointyware.painteddogs.chat.ui.MessageBubble
 import org.pointyware.painteddogs.chat.ui.MessageBubbleState
@@ -23,6 +24,18 @@ fun ChatScreen(
     navController: NavController
 ) {
     val chatMessages by viewModel.messages.collectAsState()
+    val error by viewModel.error.collectAsState()
+
+    val errorCapture = error
+    if (errorCapture != null) {
+        Dialog(
+            onDismissRequest = { viewModel.onClearError() }
+        ) {
+            Text(
+                text = errorCapture.message ?: errorCapture.toString()
+            )
+        }
+    }
     when (val capture = chatMessages) {
         is ChatUiState.Loading -> {
             Text("Loading")

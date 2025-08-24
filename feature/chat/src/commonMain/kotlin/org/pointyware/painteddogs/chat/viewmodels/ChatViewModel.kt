@@ -40,6 +40,7 @@ class ChatViewModel(
                     )
                 }
                 .onFailure { throwable ->
+                    _error.value = throwable
                     if (throwable is IllegalArgumentException) {
                         _messages.value = ChatUiState.UnknownChat
                     } else {
@@ -47,5 +48,9 @@ class ChatViewModel(
                     }
                 }
         }
+    }
+
+    fun onClearError() {
+        _error.value = null
     }
 }
