@@ -112,6 +112,17 @@ fun NewChatScreen(
             }
         }
 
+        val errorState by viewModel.error.collectAsState()
+        errorState?.let { capture ->
+            Dialog(
+                onDismissRequest = { viewModel.onClearError() }
+            ) {
+                Text(
+                    text = capture.message ?: capture.toString()
+                )
+            }
+        }
+
         FloatingActionButton(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
