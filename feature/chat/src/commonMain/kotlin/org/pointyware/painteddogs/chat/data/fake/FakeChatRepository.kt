@@ -21,14 +21,14 @@ class FakeChatRepository(
         participantList: List<Contact>
     ): Result<String> = withContext(dataScope.coroutineContext) {
         val id = Uuid.random().toString()
-        val newChat = ChatLog(id, title, TODO(""), messages = TODO())
+        val newChat = ChatLog(id, title, participantList, messages = emptyList())
         chatList += newChat
         Result.success(id)
     }
 
-    override suspend fun getChat(id: String): Result<ChatLog> {
+    override suspend fun getChat(id: String): Result<ChatHeader> {
         return chatList.find { it.id == id }?.let {
-            Result.success(it)
+            Result.success(ChatHeader(it.id, it.title, it.participants.map { it.id} ))
         } ?: Result.failure(IllegalArgumentException("No chat log with id: $id"))
     }
 
@@ -37,5 +37,14 @@ class FakeChatRepository(
             ChatHeader(log.id, log.title, log.participants.map { it.id} )
         }
         return Result.success(list)
+    }
+
+    override suspend fun getExcerpt(id: String): Result<String> {
+        return chatList.find { it.id == id }?.let { log ->
+            val excerpt = log.messages.lastOrNull()?.let { message ->
+                "${message.sender.username}: ${message.content}"
+            } ?: ""
+            Result.success(excerpt)
+        } ?: Result.failure(IllegalArgumentException("No chat log with id: $id"))
     }
 }
