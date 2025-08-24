@@ -2,7 +2,7 @@ package org.pointyware.painteddogs.chat.viewmodels
 
 import org.pointyware.painteddogs.chat.entities.Contact
 
-object ChatHistoryDummyData {
+object ContactDummyData {
     val userTaush = Contact(
         username = "Taush",
         id = "uuid-for-me"

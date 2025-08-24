@@ -7,11 +7,11 @@ import org.pointyware.painteddogs.chat.data.ChatLog
 import org.pointyware.painteddogs.chat.data.ChatMessage
 import org.pointyware.painteddogs.chat.data.ChatRepository
 import org.pointyware.painteddogs.chat.entities.Contact
-import org.pointyware.painteddogs.chat.viewmodels.ChatHistoryDummyData
-import org.pointyware.painteddogs.chat.viewmodels.ChatHistoryDummyData.userAbby
-import org.pointyware.painteddogs.chat.viewmodels.ChatHistoryDummyData.userAfton
-import org.pointyware.painteddogs.chat.viewmodels.ChatHistoryDummyData.userLink
-import org.pointyware.painteddogs.chat.viewmodels.ChatHistoryDummyData.userSarah
+import org.pointyware.painteddogs.chat.viewmodels.ContactDummyData
+import org.pointyware.painteddogs.chat.viewmodels.ContactDummyData.userAbby
+import org.pointyware.painteddogs.chat.viewmodels.ContactDummyData.userAfton
+import org.pointyware.painteddogs.chat.viewmodels.ContactDummyData.userLink
+import org.pointyware.painteddogs.chat.viewmodels.ContactDummyData.userSarah
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
@@ -39,25 +39,25 @@ class FakeChatRepository(
                 messages = listOf(
                     ChatMessage(
                         id = "0",
-                        ChatHistoryDummyData.userTaush,
+                        ContactDummyData.userTaush,
                         "When is the next PCD meeting?",
                         start
                     ),
                     ChatMessage(
                         id = "1",
-                        ChatHistoryDummyData.userSarah,
+                        ContactDummyData.userSarah,
                         "The system!",
                         start - 1.hours
                     ),
                     ChatMessage(
                         id = "2",
-                        ChatHistoryDummyData.userAbby,
+                        ContactDummyData.userAbby,
                         "I concur.",
                         start - 1.hours - 20.minutes
                     ),
                     ChatMessage(
                         id = "3",
-                        ChatHistoryDummyData.userSarah,
+                        ContactDummyData.userSarah,
                         "Democracy!",
                         start - 2.hours
                     ),
@@ -75,25 +75,25 @@ class FakeChatRepository(
                 messages = listOf(
                     ChatMessage(
                         id = "4",
-                        ChatHistoryDummyData.userAfton,
+                        ContactDummyData.userAfton,
                         "But the meeting can rice, perhaps?",
                         start - 2.minutes
                     ),
                     ChatMessage(
                         id = "5",
-                        ChatHistoryDummyData.userLink,
+                        ContactDummyData.userLink,
                         "My flight got delayed. Rice will not be meeting today.",
                         start - 1.hours
                     ),
                     ChatMessage(
                         id = "6",
-                        ChatHistoryDummyData.userAfton,
+                        ContactDummyData.userAfton,
                         "Lawyers can get bent.",
                         start - 1.5.hours
                     ),
                     ChatMessage(
                         id = "7",
-                        ChatHistoryDummyData.userLink,
+                        ContactDummyData.userLink,
                         "Rice and meetings, rice and meetings?",
                         start - 2.hours
                     ),
@@ -110,19 +110,19 @@ class FakeChatRepository(
                 messages = listOf(
                     ChatMessage(
                         id = "8",
-                        ChatHistoryDummyData.userTaush,
+                        ContactDummyData.userTaush,
                         "I finally finished my resume!",
                         start - 1.minutes
                     ),
                     ChatMessage(
                         id = "9",
-                        ChatHistoryDummyData.userSarah,
+                        ContactDummyData.userSarah,
                         "Hellooooo?",
                         start - 48.minutes
                     ),
                     ChatMessage(
                         id = "10",
-                        ChatHistoryDummyData.userSarah,
+                        ContactDummyData.userSarah,
                         "Is your resume ready?",
                         start - 5.hours
                     )

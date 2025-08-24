@@ -3,17 +3,17 @@ package org.pointyware.painteddogs.chat.data.fake
 import kotlinx.coroutines.runBlocking
 import org.pointyware.painteddogs.chat.data.ContactRepository
 import org.pointyware.painteddogs.chat.entities.Contact
-import org.pointyware.painteddogs.chat.viewmodels.ChatHistoryDummyData
+import org.pointyware.painteddogs.chat.viewmodels.ContactDummyData
 
 class FakeContactRepository: ContactRepository {
 
     val contactMap = mutableMapOf<String, Contact>()
     init {
         runBlocking {
-            addContact(ChatHistoryDummyData.userAbby)
-            addContact(ChatHistoryDummyData.userAfton)
-            addContact(ChatHistoryDummyData.userLink)
-            addContact(ChatHistoryDummyData.userSarah)
+            addContact(ContactDummyData.userAbby)
+            addContact(ContactDummyData.userAfton)
+            addContact(ContactDummyData.userLink)
+            addContact(ContactDummyData.userSarah)
         }
     }
 
