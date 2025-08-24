@@ -5,6 +5,11 @@ import org.pointyware.painteddogs.chat.entities.Contact
 interface ChatRepository {
     suspend fun createChat(title: String, participantList: List<Contact>): Result<String>
     suspend fun getChat(id: String): Result<ChatHeader>
+
+    /**
+     * Returns a list of [ChatHeader]s describing the users chat history. The list
+     * is sorted with the most recent chats first.
+     */
     suspend fun getChatList(): Result<List<ChatHeader>>
     suspend fun getExcerpt(id: String): Result<String>
 }
