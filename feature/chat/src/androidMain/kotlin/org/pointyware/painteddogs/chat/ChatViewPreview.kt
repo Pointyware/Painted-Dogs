@@ -50,7 +50,7 @@ fun ChatViewPreview() {
                         content = "That's good to hear! I'm just reaching out to talk to you about your cars extended warranty!",
                         timeStamp = Clock.System.now() - .25.hours
                     )
-                )
+                ).reversed()
             ),
             error = null,
             modifier = Modifier.fillMaxSize(),
