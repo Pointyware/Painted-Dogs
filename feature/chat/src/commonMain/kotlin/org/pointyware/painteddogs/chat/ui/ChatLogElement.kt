@@ -3,7 +3,6 @@ package org.pointyware.painteddogs.chat.ui
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -78,12 +77,12 @@ fun ChatLogTimeDivider(
 ) {
     Column (
         modifier = modifier,
-        horizontalAlignment = Alignment.Start
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Text(text = state.day)
         HorizontalDivider(
             modifier = Modifier.fillMaxWidth()
         )
-        Text(text = state.day)
     }
 }
 
@@ -92,14 +91,15 @@ fun ChatLogAuthor(
     state: ChatLogElementState.Author,
     modifier: Modifier = Modifier
 ) {
-    Box(
+    Row(
         modifier = modifier,
-        contentAlignment = Alignment.CenterStart
+        horizontalArrangement = Arrangement.spacedBy(GeometryTokens.dpMedium),
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        HorizontalDivider(
-            modifier = Modifier.fillMaxWidth()
-        )
         Text(text = state.username)
+        HorizontalDivider(
+            modifier = Modifier.weight(1f)
+        )
     }
 }
 
