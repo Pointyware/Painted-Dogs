@@ -24,19 +24,18 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.resources.stringResource
-import org.pointyware.painteddogs.chat.navigation.ChatHistory
+import org.pointyware.painteddogs.chat.navigation.ChatDestination
 import org.pointyware.painteddogs.chat.navigation.chatRouting
 import org.pointyware.painteddogs.core.navigation.navTypeMap
 import org.pointyware.painteddogs.core.ui.design.GeometryTokens
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import org.pointyware.painteddogs.feature.funds.navigation.Funds
 import org.pointyware.painteddogs.feature.funds.navigation.fundsRouting
-import org.pointyware.painteddogs.feature.profiles.navigation.UserProfile
+import org.pointyware.painteddogs.feature.profiles.navigation.ProfileDestination
 import org.pointyware.painteddogs.feature.profiles.navigation.profileRouting
 import org.pointyware.painteddogs.shared.di.AppDependencies
 import org.pointyware.painteddogs.shared.home.homeRouting
 import kotlin.uuid.ExperimentalUuidApi
-import kotlin.uuid.Uuid
 
 /**
  * The main entry point for the Painted Dogs app.
@@ -85,8 +84,7 @@ fun PaintedDogsApp(
                         Text(titleRes?.let { stringResource(it) } ?: "Generated: $location")
                     },
                     actions = {
-                        val userId: Uuid = Uuid.random() // TODO: get actual user/id from active user
-                        IconButton(onClick = { navController.navigate(UserProfile(userId)) }) {
+                        IconButton(onClick = { navController.navigate(ProfileDestination.User) }) {
                             Icon(Icons.Default.AccountBox, contentDescription = "Profile")
                         }
                         IconButton(onClick = { navController.navigate(Funds.Search) }) {
@@ -138,7 +136,7 @@ fun PaintedDogsApp(
                 modifier = Modifier
                     .padding(paddingValues)
                     .fillMaxSize(),
-                startDestination = ChatHistory,
+                startDestination = ChatDestination.History,
                 enterTransition = {
                     // Animation used for the entering new Screen
                     EnterTransition.None

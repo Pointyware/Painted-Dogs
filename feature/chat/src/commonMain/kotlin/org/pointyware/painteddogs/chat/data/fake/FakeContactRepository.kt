@@ -1,11 +1,21 @@
 package org.pointyware.painteddogs.chat.data.fake
 
+import kotlinx.coroutines.runBlocking
 import org.pointyware.painteddogs.chat.data.ContactRepository
 import org.pointyware.painteddogs.chat.entities.Contact
+import org.pointyware.painteddogs.chat.viewmodels.ContactDummyData
 
 class FakeContactRepository: ContactRepository {
 
     val contactMap = mutableMapOf<String, Contact>()
+    init {
+        runBlocking {
+            addContact(ContactDummyData.userAbby)
+            addContact(ContactDummyData.userAfton)
+            addContact(ContactDummyData.userLink)
+            addContact(ContactDummyData.userSarah)
+        }
+    }
 
     override suspend fun addContact(contact: Contact): Result<Unit> {
         if (contactMap.containsKey(contact.id)) {
@@ -13,6 +23,12 @@ class FakeContactRepository: ContactRepository {
         }
         contactMap.put(contact.id, contact)
         return Result.success(Unit)
+    }
+
+    override suspend fun getContacts(): Result<List<Contact>> {
+        return Result.success(
+            contactMap.values.sortedBy { it.username }
+        )
     }
 
     override suspend fun getContactById(id: String): Result<Contact> {

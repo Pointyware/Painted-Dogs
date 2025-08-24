@@ -9,7 +9,8 @@ class ChatLog(
     val id: String,
     val title: String,
     val participants: List<Contact>,
-    val messages: List<ChatMessage>
+    val messages: List<ChatMessage>,
+    // TODO: add timeCreated
 ) {
-
+    // TODO: add calculated property to return most recent message time or timeCreated if no messages
 }

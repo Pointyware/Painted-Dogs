@@ -11,8 +11,7 @@ class AddParticipantUseCase(
 ) {
     suspend fun invoke(id: String, list: List<Contact>): Result<List<Contact>> {
         return contactRepository.getContactById(id)
-            .mapCatching {
-                val newParticipant = Contact(id = it.id, it.username)
+            .mapCatching { newParticipant ->
                 if (list.contains(newParticipant)) throw IllegalArgumentException("Participant already in list")
                 list + newParticipant
             }

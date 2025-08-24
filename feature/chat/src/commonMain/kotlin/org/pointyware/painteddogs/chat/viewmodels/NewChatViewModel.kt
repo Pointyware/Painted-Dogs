@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 import org.pointyware.painteddogs.chat.entities.Contact
 import org.pointyware.painteddogs.chat.interactors.AddParticipantUseCase
 import org.pointyware.painteddogs.chat.interactors.CreateChatUseCase
+import org.pointyware.painteddogs.chat.interactors.LoadContactListUseCase
 import org.pointyware.painteddogs.chat.navigation.ChatDestination
 import org.pointyware.painteddogs.core.navigation.Destination
 
@@ -22,8 +23,11 @@ import org.pointyware.painteddogs.core.navigation.Destination
 class NewChatViewModel(
     private val createChatUseCase: CreateChatUseCase,
     private val addParticipantUseCase: AddParticipantUseCase,
+    private val loadContactListUseCase: LoadContactListUseCase
 ): ViewModel() {
 
+    private val _contactState = MutableStateFlow<ContactsUiState>(ContactsUiState.Closed)
+    val contactState: StateFlow<ContactsUiState> = _contactState.asStateFlow()
     private val _navEvent = Channel<Destination>()
     val navEvent: Flow<Destination> = _navEvent.consumeAsFlow()
     private val _editorState = MutableStateFlow(ChatCreatorUiState("", emptyList()))
@@ -51,12 +55,10 @@ class NewChatViewModel(
                     _editorState.update { it.copy(participants = newList) }
                 }
                 .onFailure {
-                    TODO("Update")
+                    _error.value = it
                 }
         }
-        _editorState.update {
-            it.copy(participants = it.participants + participant)
-        }
+        _contactState.value = ContactsUiState.Closed
     }
 
     /**
@@ -75,6 +77,28 @@ class NewChatViewModel(
         }
     }
 
+    fun onOpenContacts() {
+        _contactState.value = ContactsUiState.Loading
+        viewModelScope.launch {
+            loadContactListUseCase()
+                .onSuccess { contactList ->
+                    _contactState.update {
+                        ContactsUiState.Loaded(contactList)
+                    }
+                }
+                .onFailure {
+                    _error.value = it
+                    _contactState.update {
+                        ContactsUiState.Closed
+                    }
+                }
+        }
+    }
+
+    fun onCancelContact() {
+        _contactState.value = ContactsUiState.Closed
+    }
+
     /**
      * Called when the user has acknowledged the error and attempts to dismiss it.
      */
@@ -87,3 +111,11 @@ data class ChatCreatorUiState(
     val title: String,
     val participants: List<Contact>
 )
+
+sealed interface ContactsUiState {
+    data object Closed: ContactsUiState
+    data object Loading: ContactsUiState
+    data class Loaded(
+        val contacts: List<Contact>
+    ): ContactsUiState
+}
