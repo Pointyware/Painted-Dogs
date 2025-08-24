@@ -7,12 +7,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.pointyware.painteddogs.chat.entities.Message
+import org.pointyware.painteddogs.chat.data.ChatMessage
+import org.pointyware.painteddogs.chat.inter.LoadMessagesUseCase
 
 sealed interface ChatUiState {
     data class Loaded(
         val chatId: String,
-        val messages: List<Message>
+        val messages: List<ChatMessage>
     ): ChatUiState
 
     data object Loading: ChatUiState
@@ -20,7 +21,7 @@ sealed interface ChatUiState {
 }
 
 class ChatViewModel(
-
+    private val loadMessagesUseCase: LoadMessagesUseCase
 ): ViewModel() {
 
     private val _messages = MutableStateFlow<ChatUiState>(ChatUiState.Loading)
@@ -29,15 +30,15 @@ class ChatViewModel(
     fun loadMessages(id: String) {
         viewModelScope.launch {
             delay(500)
-            val messages = ChatMessagesDummyData.chatMessageMap[id]
-            _messages.value =
-                if (messages == null) {
-                    ChatUiState.UnknownChat
-                } else {
-                    ChatUiState.Loaded(
-                        chatId = id,
-                        messages = messages
+            loadMessagesUseCase.invoke(id)
+                .onSuccess { chatLog ->
+                    _messages.value = ChatUiState.Loaded(
+                        chatId = chatLog.id,
+                        messages = chatLog.messages,
                     )
+                }
+                .onFailure { throwable ->
+                    _messages.value = ChatUiState.UnknownChat
                 }
         }
     }

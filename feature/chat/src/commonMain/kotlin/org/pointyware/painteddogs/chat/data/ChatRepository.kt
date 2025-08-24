@@ -12,6 +12,7 @@ interface ChatRepository {
      */
     suspend fun getChatList(): Result<List<ChatHeader>>
     suspend fun getExcerpt(id: String): Result<String>
+    suspend fun getChatMessages(chatId: String): Result<List<ChatMessage>>
 }
 
 
@@ -32,6 +33,10 @@ class ChatRepositoryImpl(): ChatRepository {
     }
 
     override suspend fun getExcerpt(id: String): Result<String> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getChatMessages(chatId: String): Result<List<ChatMessage>> {
         TODO("Not yet implemented")
     }
 }
