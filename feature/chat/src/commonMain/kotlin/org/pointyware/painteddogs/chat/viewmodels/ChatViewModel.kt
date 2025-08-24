@@ -26,6 +26,8 @@ class ChatViewModel(
 
     private val _messages = MutableStateFlow<ChatUiState>(ChatUiState.Loading)
     val messages: StateFlow<ChatUiState> get() = _messages.asStateFlow()
+    private val _error = MutableStateFlow<Throwable?>(null)
+    val error: StateFlow<Throwable?> = _error.asStateFlow()
 
     fun loadMessages(id: String) {
         viewModelScope.launch {
@@ -38,7 +40,11 @@ class ChatViewModel(
                     )
                 }
                 .onFailure { throwable ->
-                    _messages.value = ChatUiState.UnknownChat
+                    if (throwable is IllegalArgumentException) {
+                        _messages.value = ChatUiState.UnknownChat
+                    } else {
+                        _error.value = throwable
+                    }
                 }
         }
     }
