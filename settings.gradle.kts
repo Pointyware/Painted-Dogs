@@ -32,6 +32,7 @@ include(
 
 include(
     ":feature",
+    ":feature:aid",
     ":feature:chat",
     ":feature:collections",
     ":feature:collections:core",
