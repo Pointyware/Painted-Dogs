@@ -2,7 +2,6 @@ package org.pointyware.painteddogs.android
 
 import android.app.Application
 import org.koin.core.context.startKoin
-import org.pointyware.painteddogs.android.di.androidModule
 import org.pointyware.painteddogs.shared.di.appModule
 
 /**
@@ -14,7 +13,6 @@ class PDApplication: Application() {
 
         startKoin {
             modules(
-                androidModule(),
                 appModule()
             )
         }
