@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <!--  General  -->
+    <string name="label_submit">Submit</string>
+
+    <!--  Temporal Scopes  -->
+    <string name="label_indefinite">Indefinite</string>
+    <string name="label_limited">Limited</string>
+    <string name="label_scheduled">Scheduled</string>
+    <string name="label_event">Event</string>
+    <string name="label_immediate">Immediate</string>
+
+    <!--  Resources  -->
+    <string name="label_food">Food</string>
+    <string name="label_housing">Housing</string>
+    <string name="label_funds">Funds</string>
+    <string name="label_skills">Skills</string>
+    <string name="label_protection">Protection</string>
+</resources>
