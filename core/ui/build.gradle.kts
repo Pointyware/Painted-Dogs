@@ -26,6 +26,7 @@ kotlin {
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
                 implementation(compose.components.uiToolingPreview) // fleet support
+                implementation(libs.compose.viewModels)
 
                 implementation(libs.kotlinx.dateTime)
                 implementation(libs.kotlinx.coroutines)
