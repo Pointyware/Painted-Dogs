@@ -5,50 +5,41 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 import org.jetbrains.compose.resources.stringResource
 import org.pointyware.painteddogs.aid.entities.TemporalScope
 import org.pointyware.painteddogs.aid.ui.TemporalSelector
-import org.pointyware.painteddogs.aid.viewmodels.OfferViewModel
+
+data class OfferScreenState(
+    val title: String,
+    val scope: TemporalScope,
+) {
+}
 
 @Composable
 fun OfferScreen(
-    viewModel: OfferViewModel,
-    navController: NavController
+    state: OfferScreenState,
+    onSelectTemporalScope: (TemporalScope)->Unit,
+    onChangeTitle: (String)->Unit,
+    onSubmit: ()->Unit
 ) {
-    val state by viewModel.state.collectAsState()
-
-    LaunchedEffect(Unit) {
-        viewModel.navEvent.collect { destination ->
-            navController.navigate(destination)
-        }
-    }
     Column(
         modifier = Modifier
     ) {
-        var scope by remember { mutableStateOf(TemporalScope.Indefinite) }
         TemporalSelector(
-            value = scope,
+            value = state.scope,
             modifier = Modifier,
-            onScopeSelected = { scope = it }
+            onScopeSelected = onSelectTemporalScope
         )
 
-        var title by remember { mutableStateOf(state.title) }
         TextField(
             modifier = Modifier,
-            value = title,
-            onValueChange = { title = it }
+            value = state.title,
+            onValueChange = onChangeTitle
         )
 
         Button(
-            onClick = { viewModel.onSubmit() }
+            onClick = onSubmit
         ) {
             Text(
                 text = stringResource(Res.string.label_submit)
