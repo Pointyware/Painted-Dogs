@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import org.pointyware.painteddogs.aid.entities.Resource
+import org.pointyware.painteddogs.aid.entities.ResourceExchange
 import org.pointyware.painteddogs.aid.entities.ResourceOffer
 import org.pointyware.painteddogs.aid.entities.ResourceRequest
 import org.pointyware.painteddogs.core.navigation.Destination
@@ -42,7 +43,7 @@ class MutualAidViewModel(
 
 data class MutualAidUiState(
     val resourceFilter: Set<Resource>,
-    val posts: List<Any>
+    val posts: List<ResourceExchange>
 ) {
 
     companion object {
