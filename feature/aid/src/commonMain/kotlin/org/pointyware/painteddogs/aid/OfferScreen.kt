@@ -2,7 +2,6 @@ package org.pointyware.painteddogs.aid
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
-import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -16,9 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import org.jetbrains.compose.resources.stringResource
 import org.pointyware.painteddogs.aid.entities.TemporalScope
+import org.pointyware.painteddogs.aid.ui.TemporalSelector
 import org.pointyware.painteddogs.aid.viewmodels.OfferScreenViewModel
-import selectedColors
-import unSelectedColors
 
 @Composable
 fun OfferScreen(
@@ -55,45 +53,6 @@ fun OfferScreen(
             Text(
                 text = stringResource(Res.string.label_submit)
             )
-        }
-    }
-}
-
-@Composable
-fun stringForScope(value: TemporalScope): String {
-    return stringResource(when (value) {
-        TemporalScope.Indefinite -> Res.string.label_indefinite
-        TemporalScope.Limited -> Res.string.label_limited
-        TemporalScope.Schedule -> Res.string.label_scheduled
-        TemporalScope.Event -> Res.string.label_event
-        TemporalScope.Immediate -> Res.string.label_immediate
-    })
-}
-
-@Composable
-fun TemporalSelector(
-    value: TemporalScope,
-    onScopeSelected: (TemporalScope)->Unit,
-    modifier: Modifier = Modifier,
-) {
-    SingleChoiceSegmentedButtonRow(
-        modifier = modifier
-    ) {
-        listOf(
-            TemporalScope.Indefinite,
-            TemporalScope.Limited,
-            TemporalScope.Schedule,
-            TemporalScope.Event,
-            TemporalScope.Immediate
-        ).forEach { scope ->
-            Button(
-                onClick = { onScopeSelected(scope) },
-                colors = if (value == scope) selectedColors() else unSelectedColors(),
-            ) {
-                Text(
-                    text = stringForScope(scope)
-                )
-            }
         }
     }
 }
