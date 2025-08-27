@@ -7,12 +7,13 @@ import org.pointyware.painteddogs.core.navigation.Destination
 /**
  * Mutual Aid navigation destinations.
  */
-sealed interface AidDestination: Destination {
+@Serializable
+open class AidDestination(): Destination {
     /**
      * The Mutual Aid notice board Screen with all requests and offers.
      */
     @Serializable
-    data object Board: AidDestination
+    data object Board: AidDestination()
 
     /**
      * The Screen where a user can offer a resource for the mutual aid network.
@@ -20,7 +21,7 @@ sealed interface AidDestination: Destination {
     @Serializable
     data class Offer(
         val resource: Resource
-    ): AidDestination
+    ): AidDestination()
 
     /**
      * The Screen where a user can request an offer for the mutual aid network.
@@ -28,5 +29,5 @@ sealed interface AidDestination: Destination {
     @Serializable
     data class Request(
         val resource: Resource
-    ): AidDestination
+    ): AidDestination()
 }

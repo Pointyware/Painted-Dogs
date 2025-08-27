@@ -16,6 +16,10 @@ import org.pointyware.painteddogs.shared.Res
 import org.pointyware.painteddogs.shared.label_aid
 import org.pointyware.painteddogs.shared.label_chat
 
+/**
+ * A [NavigationBar] containing a buttons for the [ChatDestination.History]
+ * and [AidDestination.Board].
+ */
 @Composable
 fun PaintedDogsBottomBar(
     navController: NavController
@@ -24,7 +28,7 @@ fun PaintedDogsBottomBar(
         NavigationBarItem(
             selected = false,
             onClick = {
-                navController.navigate(ChatDestination.History)
+                navController.navigate(ChatDestination())
             },
             icon = {
                 Icon(
@@ -41,7 +45,7 @@ fun PaintedDogsBottomBar(
         NavigationBarItem(
             selected = false,
             onClick = {
-                navController.navigate(AidDestination.Board)
+                navController.navigate(AidDestination())
             },
             icon = {
                 Icon(
