@@ -8,13 +8,17 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import org.pointyware.painteddogs.aid.entities.Resource
+import org.pointyware.painteddogs.aid.entities.ResourceOffer
+import org.pointyware.painteddogs.aid.entities.ResourceRequest
 import org.pointyware.painteddogs.core.navigation.Destination
 
 /**
  * Maintains the UI state for mutual aid views and responds to events to pass information
  * to the domain.
  */
-class MutualAidViewModel: ViewModel() {
+class MutualAidViewModel(
+
+): ViewModel() {
 
 
     private val _navEvent = Channel<Destination>()
@@ -23,9 +27,15 @@ class MutualAidViewModel: ViewModel() {
     val state: StateFlow<MutualAidUiState> = _state.asStateFlow()
 
 
+    fun onSetFilter(filter: Set<Resource>) {
 
+    }
 
-    fun onSubmit() {
+    fun onOfferClaim(resourceOffer: ResourceOffer) {
+
+    }
+
+    fun onRequestResponse(resourceRequest: ResourceRequest) {
 
     }
 }
