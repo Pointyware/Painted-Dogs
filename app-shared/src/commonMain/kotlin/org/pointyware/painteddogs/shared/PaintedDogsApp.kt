@@ -29,7 +29,6 @@ import kotlin.uuid.ExperimentalUuidApi
 @Composable
 fun PaintedDogsApp(
     isDarkTheme: Boolean,
-    modifier: Modifier = Modifier,
 ) {
     val navController = rememberNavController()
 
@@ -37,7 +36,6 @@ fun PaintedDogsApp(
         isDark = isDarkTheme
     ) {
         Scaffold(
-            modifier = modifier,
             topBar = { PaintedDogsTopBar(navController) },
             bottomBar = { PaintedDogsBottomBar(navController) }
         ) { paddingValues ->
