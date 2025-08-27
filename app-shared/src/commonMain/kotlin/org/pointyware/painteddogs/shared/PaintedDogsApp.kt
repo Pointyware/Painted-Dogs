@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -31,11 +29,10 @@ import org.pointyware.painteddogs.chat.navigation.chatRouting
 import org.pointyware.painteddogs.core.navigation.navTypeMap
 import org.pointyware.painteddogs.core.ui.design.GeometryTokens
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
-import org.pointyware.painteddogs.feature.funds.navigation.Funds
 import org.pointyware.painteddogs.feature.funds.navigation.fundsRouting
-import org.pointyware.painteddogs.feature.profiles.navigation.ProfileDestination
 import org.pointyware.painteddogs.feature.profiles.navigation.profileRouting
 import org.pointyware.painteddogs.shared.di.AppDependencies
+import org.pointyware.painteddogs.shared.home.Home
 import org.pointyware.painteddogs.shared.home.homeRouting
 import kotlin.uuid.ExperimentalUuidApi
 
@@ -86,12 +83,7 @@ fun PaintedDogsApp(
                         Text(titleRes?.let { stringResource(it) } ?: "Generated: $location")
                     },
                     actions = {
-                        IconButton(onClick = { navController.navigate(ProfileDestination.User) }) {
-                            Icon(Icons.Default.AccountBox, contentDescription = "Profile")
-                        }
-                        IconButton(onClick = { navController.navigate(Funds.Search) }) {
-                            Icon(Icons.Default.Search, contentDescription = "Search")
-                        }
+
                     },
                 )
             },
