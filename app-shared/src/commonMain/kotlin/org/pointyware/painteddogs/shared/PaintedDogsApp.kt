@@ -97,6 +97,28 @@ fun PaintedDogsApp(
                     },
                 )
             },
+            bottomBar = {
+                BottomAppBar {
+                    Button(
+                        onClick = {
+                            navController.navigate(ChatDestination.History)
+                        }
+                    ) {
+                        Text(
+                            text = stringResource(Res.string.label_chat)
+                        )
+                    }
+                    Button(
+                        onClick = {
+                            navController.navigate(AidDestination.Board)
+                        }
+                    ) {
+                        Text(
+                            text = stringResource(Res.string.label_aid)
+                        )
+                    }
+                }
+            },
             floatingActionButton = {
                 when (currentLocation.value) {
                     Funds -> {
