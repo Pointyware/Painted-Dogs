@@ -25,33 +25,35 @@ fun PaintedDogsBottomBar(
     onNavigateToAid: ()->Unit,
 ) {
     NavigationBar {
+        val chatString = stringResource(Res.string.label_chat)
         NavigationBarItem(
             selected = false,
             onClick = onNavigateToChat,
             icon = {
                 Icon(
                     imageVector = Icons.AutoMirrored.Default.Message,
-                    contentDescription = stringResource(Res.string.label_chat)
+                    contentDescription = chatString
                 )
             },
             label = {
                 Text(
-                    text = stringResource(Res.string.label_chat)
+                    text = chatString
                 )
             },
         )
+        val aidString = stringResource(Res.string.label_aid)
         NavigationBarItem(
             selected = false,
             onClick = onNavigateToAid,
             icon = {
                 Icon(
                     imageVector = Icons.Default.People,
-                    contentDescription = stringResource(Res.string.label_aid)
+                    contentDescription = aidString
                 )
             },
             label = {
                 Text(
-                    text = stringResource(Res.string.label_aid)
+                    text = aidString
                 )
             }
         )
