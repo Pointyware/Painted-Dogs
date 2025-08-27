@@ -39,7 +39,14 @@ fun PaintedDogsApp(
     ) {
         Scaffold(
             topBar = { PaintedDogsTopBar(navController) },
-            bottomBar = { PaintedDogsBottomBar(navController) }
+            bottomBar = { PaintedDogsBottomBar(
+                onNavigateToChat = {
+                    navController.navigate(ChatDestination())
+                },
+                onNavigateToAid = {
+                    navController.navigate(AidDestination())
+                }
+            ) }
         ) { paddingValues ->
             NavHost(
                 navController = navController,

@@ -8,7 +8,6 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
 import org.jetbrains.compose.resources.stringResource
 import org.pointyware.painteddogs.aid.navigation.AidDestination
 import org.pointyware.painteddogs.chat.navigation.ChatDestination
@@ -22,14 +21,13 @@ import org.pointyware.painteddogs.shared.label_chat
  */
 @Composable
 fun PaintedDogsBottomBar(
-    navController: NavController
+    onNavigateToChat: ()->Unit,
+    onNavigateToAid: ()->Unit,
 ) {
     NavigationBar {
         NavigationBarItem(
             selected = false,
-            onClick = {
-                navController.navigate(ChatDestination())
-            },
+            onClick = onNavigateToChat,
             icon = {
                 Icon(
                     imageVector = Icons.AutoMirrored.Default.Message,
@@ -44,9 +42,7 @@ fun PaintedDogsBottomBar(
         )
         NavigationBarItem(
             selected = false,
-            onClick = {
-                navController.navigate(AidDestination())
-            },
+            onClick = onNavigateToAid,
             icon = {
                 Icon(
                     imageVector = Icons.Default.People,
