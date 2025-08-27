@@ -9,6 +9,8 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
@@ -24,6 +26,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.resources.stringResource
+import org.pointyware.painteddogs.aid.navigation.AidDestination
+import org.pointyware.painteddogs.aid.navigation.aidRouting
 import org.pointyware.painteddogs.chat.navigation.ChatDestination
 import org.pointyware.painteddogs.chat.navigation.chatRouting
 import org.pointyware.painteddogs.core.navigation.navTypeMap
@@ -159,6 +163,7 @@ fun PaintedDogsApp(
                 },
                 typeMap = navTypeMap()
             ) {
+                aidRouting(navController)
                 chatRouting(navController)
 
                 homeRouting(navController)
