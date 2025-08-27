@@ -4,37 +4,22 @@ import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.filled.Message
-import androidx.compose.material.icons.filled.People
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import org.jetbrains.compose.resources.stringResource
-import org.pointyware.painteddogs.aid.navigation.AidDestination
 import org.pointyware.painteddogs.aid.navigation.aidRouting
 import org.pointyware.painteddogs.chat.navigation.ChatDestination
 import org.pointyware.painteddogs.chat.navigation.chatRouting
 import org.pointyware.painteddogs.core.navigation.navTypeMap
-import org.pointyware.painteddogs.core.ui.design.GeometryTokens
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import org.pointyware.painteddogs.feature.funds.navigation.fundsRouting
 import org.pointyware.painteddogs.feature.profiles.navigation.profileRouting
-import org.pointyware.painteddogs.shared.home.Home
 import org.pointyware.painteddogs.shared.home.homeRouting
+import org.pointyware.painteddogs.shared.ui.PaintedDogsBottomBar
+import org.pointyware.painteddogs.shared.ui.PaintedDogsTopBar
 import kotlin.uuid.ExperimentalUuidApi
 
 /**
@@ -51,78 +36,10 @@ fun PaintedDogsApp(
     PaintedDogsTheme(
         isDark = isDarkTheme
     ) {
-        val currentLocation = navController.currentBackStackEntryAsState()
         Scaffold(
             modifier = modifier,
-            topBar = {
-                CenterAlignedTopAppBar(
-                    modifier = Modifier.shadow(elevation = GeometryTokens.dpMedium),
-//                    colors = TopAppBarColors(
-//                        containerColor =
-//                        navigationIconContentColor =
-//                        titleContentColor =
-//                        actionIconContentColor =
-//                        scrolledContainerColor =
-//                    ),
-                    navigationIcon = {
-                        val stack = navController.currentBackStack.collectAsState()
-                        if (stack.value.isNotEmpty()) {
-                            IconButton(onClick = { navController.popBackStack() }) {
-                                Icon(Icons.AutoMirrored.Default.ArrowBack, contentDescription = "Profile")
-                            }
-                        }
-                    },
-                    title = {
-                        val location = currentLocation.value
-                        val titleRes = when(location) {
-                            Home -> Res.string.app_name
-                            else -> null
-                        }
-                        Text(titleRes?.let { stringResource(it) } ?: "Generated: $location")
-                    },
-                    actions = {
-
-                    },
-                )
-            },
-            bottomBar = {
-                NavigationBar {
-                    NavigationBarItem(
-                        selected = false,
-                        onClick = {
-                            navController.navigate(ChatDestination.History)
-                        },
-                        icon = {
-                            Icon(
-                                imageVector = Icons.AutoMirrored.Default.Message,
-                                contentDescription = stringResource(Res.string.label_chat)
-                            )
-                        },
-                        label = {
-                            Text(
-                                text = stringResource(Res.string.label_chat)
-                            )
-                        },
-                    )
-                    NavigationBarItem(
-                        selected = false,
-                        onClick = {
-                            navController.navigate(AidDestination.Board)
-                        },
-                        icon = {
-                            Icon(
-                                imageVector = Icons.Default.People,
-                                contentDescription = stringResource(Res.string.label_aid)
-                            )
-                        },
-                        label = {
-                            Text(
-                                text = stringResource(Res.string.label_aid)
-                            )
-                        }
-                    )
-                }
-            }
+            topBar = { PaintedDogsTopBar(navController) },
+            bottomBar = { PaintedDogsBottomBar(navController) }
         ) { paddingValues ->
             NavHost(
                 navController = navController,
