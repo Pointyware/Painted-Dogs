@@ -13,8 +13,7 @@ import org.pointyware.painteddogs.aid.ui.TemporalSelector
 data class OfferScreenState(
     val title: String,
     val scope: TemporalScope,
-) {
-}
+)
 
 @Composable
 fun OfferScreen(
