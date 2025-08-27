@@ -2,6 +2,7 @@ package org.pointyware.painteddogs.shared.di
 
 import org.koin.core.module.Module
 import org.koin.dsl.module
+import org.pointyware.painteddogs.aid.di.aidModule
 import org.pointyware.painteddogs.chat.di.chatModule
 import org.pointyware.painteddogs.core.data.di.dataModule
 import org.pointyware.painteddogs.core.entities.di.coreEntitiesModule
@@ -43,6 +44,7 @@ fun featureModule() = module {
         featureProfilesModule(),
         featurePaymentsModule(),
 
-        chatModule()
+        chatModule(),
+        aidModule()
     )
 }
