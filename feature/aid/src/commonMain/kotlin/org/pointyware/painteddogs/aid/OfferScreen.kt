@@ -16,11 +16,11 @@ import androidx.navigation.NavController
 import org.jetbrains.compose.resources.stringResource
 import org.pointyware.painteddogs.aid.entities.TemporalScope
 import org.pointyware.painteddogs.aid.ui.TemporalSelector
-import org.pointyware.painteddogs.aid.viewmodels.OfferScreenViewModel
+import org.pointyware.painteddogs.aid.viewmodels.OfferViewModel
 
 @Composable
 fun OfferScreen(
-    viewModel: OfferScreenViewModel,
+    viewModel: OfferViewModel,
     navController: NavController
 ) {
     val state by viewModel.state.collectAsState()
