@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
@@ -116,17 +115,6 @@ fun PaintedDogsApp(
                         Text(
                             text = stringResource(Res.string.label_aid)
                         )
-                    }
-                }
-            },
-            floatingActionButton = {
-                when (currentLocation.value) {
-                    Funds -> {
-                        IconButton(onClick = {
-                            navController.navigate(Funds.Create)
-                        }) {
-                            Icon(Icons.Default.AddCircle, contentDescription = "Create Fund")
-                        }
                     }
                 }
             },
