@@ -27,13 +27,6 @@ fun PaintedDogsTopBar(
     val currentLocation = navController.currentBackStackEntryAsState()
     CenterAlignedTopAppBar(
         modifier = Modifier.shadow(elevation = GeometryTokens.dpMedium),
-//                    colors = TopAppBarColors(
-//                        containerColor =
-//                        navigationIconContentColor =
-//                        titleContentColor =
-//                        actionIconContentColor =
-//                        scrolledContainerColor =
-//                    ),
         navigationIcon = {
             val stack = navController.currentBackStack.collectAsState()
             if (stack.value.isNotEmpty()) {
