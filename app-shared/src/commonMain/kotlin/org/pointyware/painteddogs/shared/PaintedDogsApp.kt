@@ -6,12 +6,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.Button
+import androidx.compose.material.icons.automirrored.filled.Message
+import androidx.compose.material.icons.filled.People
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -84,25 +86,41 @@ fun PaintedDogsApp(
                 )
             },
             bottomBar = {
-                BottomAppBar {
-                    Button(
+                NavigationBar {
+                    NavigationBarItem(
+                        selected = false,
                         onClick = {
                             navController.navigate(ChatDestination.History)
-                        }
-                    ) {
-                        Text(
-                            text = stringResource(Res.string.label_chat)
-                        )
-                    }
-                    Button(
+                        },
+                        icon = {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Default.Message,
+                                contentDescription = stringResource(Res.string.label_chat)
+                            )
+                        },
+                        label = {
+                            Text(
+                                text = stringResource(Res.string.label_chat)
+                            )
+                        },
+                    )
+                    NavigationBarItem(
+                        selected = false,
                         onClick = {
                             navController.navigate(AidDestination.Board)
+                        },
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Default.People,
+                                contentDescription = stringResource(Res.string.label_aid)
+                            )
+                        },
+                        label = {
+                            Text(
+                                text = stringResource(Res.string.label_aid)
+                            )
                         }
-                    ) {
-                        Text(
-                            text = stringResource(Res.string.label_aid)
-                        )
-                    }
+                    )
                 }
             }
         ) { paddingValues ->
