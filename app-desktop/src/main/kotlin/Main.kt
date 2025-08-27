@@ -1,6 +1,5 @@
 package org.pointyware.painteddogs.desktop
 
-import androidx.compose.runtime.remember
 import androidx.compose.ui.window.Tray
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
@@ -10,7 +9,6 @@ import org.koin.core.context.startKoin
 import org.pointyware.painteddogs.desktop.di.desktopModule
 import org.pointyware.painteddogs.shared.PaintedDogsApp
 import org.pointyware.painteddogs.shared.di.appModule
-import org.pointyware.painteddogs.shared.di.getDependencies
 
 fun main() = application {
 
@@ -21,8 +19,6 @@ fun main() = application {
         )
     }
 
-    val appDependencies = remember { getDependencies() }
-
     val state = rememberWindowState()
     Window(
         title = "My Application",
@@ -30,7 +26,6 @@ fun main() = application {
         onCloseRequest = this::exitApplication
     ) {
         PaintedDogsApp(
-            dependencies = appDependencies,
             isDarkTheme = false
         )
     }

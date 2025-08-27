@@ -31,7 +31,6 @@ import org.pointyware.painteddogs.core.ui.design.GeometryTokens
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import org.pointyware.painteddogs.feature.funds.navigation.fundsRouting
 import org.pointyware.painteddogs.feature.profiles.navigation.profileRouting
-import org.pointyware.painteddogs.shared.di.AppDependencies
 import org.pointyware.painteddogs.shared.home.Home
 import org.pointyware.painteddogs.shared.home.homeRouting
 import kotlin.uuid.ExperimentalUuidApi
@@ -42,7 +41,6 @@ import kotlin.uuid.ExperimentalUuidApi
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalUuidApi::class)
 @Composable
 fun PaintedDogsApp(
-    dependencies: AppDependencies,
     isDarkTheme: Boolean,
     modifier: Modifier = Modifier,
 ) {
@@ -74,12 +72,10 @@ fun PaintedDogsApp(
                     },
                     title = {
                         val location = currentLocation.value
-                        val titleRes = Res.string.app_name
-//                        when(location) {
-//                            Home -> Res.string.app_name
-//                            FundInfo -> Res.string.app_name
-//                            else -> null
-//                        }
+                        val titleRes = when(location) {
+                            Home -> Res.string.app_name
+                            else -> null
+                        }
                         Text(titleRes?.let { stringResource(it) } ?: "Generated: $location")
                     },
                     actions = {
