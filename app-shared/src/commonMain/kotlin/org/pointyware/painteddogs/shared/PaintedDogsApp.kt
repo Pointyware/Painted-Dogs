@@ -119,31 +119,6 @@ fun PaintedDogsApp(
                 }
             },
             floatingActionButtonPosition = FabPosition.End,
-//            bottomBar = {
-//                NavigationBar(
-////                    containerColor =
-////                    contentColor =
-//                ) {
-//                    IconButton(
-//                        modifier = Modifier.weight(1f),
-//                        onClick = { navController.navigateTo(route("funds")) }
-//                    ) {
-//                        Icon(Icons.Default.Build, contentDescription = "Create Fund")
-//                    }
-//                    IconButton(
-//                        modifier = Modifier.weight(1f),
-//                        onClick = { navController.navigateTo(route("rides")) }
-//                    ) {
-//                        Icon(Icons.Default.Call, contentDescription = "Rides")
-//                    }
-//                    IconButton(
-//                        modifier = Modifier.weight(1f),
-//                        onClick = { navController.navigateTo(route("social")) }
-//                    ) {
-//                        Icon(Icons.Default.Person, contentDescription = "Social")
-//                    }
-//                }
-//            }
         ) { paddingValues ->
             NavHost(
                 navController = navController,
