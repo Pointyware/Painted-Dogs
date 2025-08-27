@@ -9,7 +9,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import org.pointyware.painteddogs.aid.navigation.AidDestination
 import org.pointyware.painteddogs.aid.navigation.aidRouting
 import org.pointyware.painteddogs.chat.navigation.ChatDestination
 import org.pointyware.painteddogs.chat.navigation.chatRouting
@@ -44,7 +46,7 @@ fun PaintedDogsApp(
                 modifier = Modifier
                     .padding(paddingValues)
                     .fillMaxSize(),
-                startDestination = ChatDestination.History,
+                startDestination = ChatDestination(),
                 enterTransition = {
                     // Animation used for the entering new Screen
                     EnterTransition.None
@@ -67,8 +69,16 @@ fun PaintedDogsApp(
                 },
                 typeMap = navTypeMap()
             ) {
-                aidRouting(navController)
-                chatRouting(navController)
+                navigation<ChatDestination>(
+                    startDestination = ChatDestination.History
+                ) {
+                    chatRouting(navController)
+                }
+                navigation<AidDestination>(
+                    startDestination = AidDestination.Board
+                ) {
+                    aidRouting(navController)
+                }
 
                 homeRouting(navController)
 
