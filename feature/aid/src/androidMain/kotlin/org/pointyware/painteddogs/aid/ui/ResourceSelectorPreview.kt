@@ -1,5 +1,6 @@
 package org.pointyware.painteddogs.aid.ui
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -11,6 +12,7 @@ class ResourceSetProvider: PreviewParameterProvider<Set<Resource>> {
         get() = sequenceOf(
             setOf(Resource.Food),
             setOf(Resource.Protection),
+            setOf(Resource.Housing, Resource.Funds),
             Resource.entries.toSet()
         )
 }
@@ -20,8 +22,15 @@ class ResourceSetProvider: PreviewParameterProvider<Set<Resource>> {
 private fun ResourceSelectorPreview(
     @PreviewParameter(ResourceSetProvider::class) filter: Set<Resource>
 ) {
-    SingleResourceSelector(
-        value = filter.first(),
-        onResourceSelected = { },
-    )
+
+    Column {
+        SingleResourceSelector(
+            value = filter.first(),
+            onResourceSelected = { },
+        )
+        MultiResourceSelector(
+            values = filter,
+            onSelectionChanged = { },
+        )
+    }
 }
