@@ -70,7 +70,7 @@ fun AidBoardView(
             }
         }
         var resource by remember { mutableStateOf(Resource.Food) }
-        ResourceSelector(
+        SingleResourceSelector(
             value = resource,
             onResourceSelected = { resource = it },
             modifier = Modifier

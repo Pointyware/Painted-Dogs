@@ -1,16 +1,16 @@
 package org.pointyware.painteddogs.aid.ui
 
-import androidx.compose.material3.Button
+import androidx.compose.material3.MultiChoiceSegmentedButtonRow
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import org.pointyware.painteddogs.aid.entities.Resource
-import selectedColors
-import unSelectedColors
 
 @Composable
-fun ResourceSelector(
+fun SingleResourceSelector(
     value: Resource,
     onResourceSelected: (Resource) -> Unit,
     modifier: Modifier = Modifier,
@@ -18,16 +18,36 @@ fun ResourceSelector(
     SingleChoiceSegmentedButtonRow(
         modifier = modifier
     ) {
-        listOf(
-            Resource.Food,
-            Resource.Housing,
-            Resource.Funds,
-            Resource.Skills,
-            Resource.Protection
-        ).forEach { resource ->
-            Button(
+        val entries = Resource.entries
+        entries.forEachIndexed { index, resource ->
+            SegmentedButton(
+                selected = resource == value,
                 onClick = { onResourceSelected(resource) },
-                colors = if (value == resource) selectedColors() else unSelectedColors(),
+                shape = SegmentedButtonDefaults.itemShape(index = index, count = entries.size),
+            ) {
+                Text(
+                    text = stringForResource(resource)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun MultiResourceSelector(
+    values: Set<Resource>,
+    onSelectionChanged: (Set<Resource>)->Unit,
+    modifier: Modifier = Modifier
+) {
+    MultiChoiceSegmentedButtonRow(
+        modifier = modifier
+    ) {
+        val entries = Resource.entries
+        entries.forEachIndexed { index, resource ->
+            SegmentedButton(
+                checked = false,
+                onCheckedChange = { onSelectionChanged(values + resource) },
+                shape = SegmentedButtonDefaults.itemShape(index = index, count = entries.size),
             ) {
                 Text(
                     text = stringForResource(resource)

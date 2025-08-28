@@ -20,7 +20,7 @@ class ResourceSetProvider: PreviewParameterProvider<Set<Resource>> {
 private fun ResourceSelectorPreview(
     @PreviewParameter(ResourceSetProvider::class) filter: Set<Resource>
 ) {
-    ResourceSelector(
+    SingleResourceSelector(
         value = filter.first(),
         onResourceSelected = { },
     )
