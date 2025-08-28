@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
+import kotlinx.coroutines.flow.update
 import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.entities.ResourceExchange
 import org.pointyware.painteddogs.aid.entities.ResourceOffer
@@ -27,17 +28,20 @@ class MutualAidViewModel(
     private val _state = MutableStateFlow(MutualAidUiState.Default)
     val state: StateFlow<MutualAidUiState> = _state.asStateFlow()
 
-
-    fun onSetFilter(filter: Set<Resource>) {
-
-    }
-
     fun onOfferClaim(resourceOffer: ResourceOffer) {
 
     }
 
     fun onRequestResponse(resourceRequest: ResourceRequest) {
 
+    }
+
+    fun onResourceFilterChanged(resources: Set<Resource>) {
+        _state.update {
+            it.copy(
+                resourceFilter = resources
+            )
+        }
     }
 }
 

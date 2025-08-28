@@ -7,10 +7,12 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import org.pointyware.painteddogs.aid.ui.MutualAidScreen
+import org.pointyware.painteddogs.aid.ui.MutualAidScreenState
 import org.pointyware.painteddogs.aid.ui.OfferScreen
 import org.pointyware.painteddogs.aid.ui.OfferScreenState
 import org.pointyware.painteddogs.aid.ui.RequestScreen
 import org.pointyware.painteddogs.aid.ui.RequestScreenState
+import org.pointyware.painteddogs.aid.viewmodels.MutualAidViewModel
 import org.pointyware.painteddogs.aid.viewmodels.OfferViewModel
 import org.pointyware.painteddogs.aid.viewmodels.RequestViewModel
 import org.pointyware.painteddogs.core.ui.composeKoinViewModel
@@ -22,9 +24,23 @@ fun NavGraphBuilder.aidRouting(
     navController: NavController
 ) {
     composable<AidDestination.Board> {
+        val viewModel: MutualAidViewModel = composeKoinViewModel()
+        val state by viewModel.state.collectAsState()
+        LaunchedEffect(Unit) {
+            viewModel.navEvent.collect { destination ->
+                navController.navigate(destination)
+            }
+        }
         MutualAidScreen(
-            composeKoinViewModel(),
-            navController
+            state = state.let {
+                MutualAidScreenState(
+                    posts = it.posts,
+                    resources = it.resourceFilter
+                )
+            },
+            onOfferClaim = viewModel::onOfferClaim,
+            onRequestResponse = viewModel::onRequestResponse,
+            onResourceFilterChanged = viewModel::onResourceFilterChanged,
         )
     }
 
