@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.aid
+package org.pointyware.painteddogs.aid.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
@@ -7,8 +7,9 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.stringResource
+import org.pointyware.painteddogs.aid.Res
 import org.pointyware.painteddogs.aid.entities.TemporalScope
-import org.pointyware.painteddogs.aid.ui.SingleTemporalSelector
+import org.pointyware.painteddogs.aid.label_submit
 
 data class OfferScreenState(
     val title: String,

@@ -6,9 +6,9 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import org.pointyware.painteddogs.aid.MutualAidScreen
-import org.pointyware.painteddogs.aid.OfferScreen
-import org.pointyware.painteddogs.aid.OfferScreenState
+import org.pointyware.painteddogs.aid.ui.MutualAidScreen
+import org.pointyware.painteddogs.aid.ui.OfferScreen
+import org.pointyware.painteddogs.aid.ui.OfferScreenState
 import org.pointyware.painteddogs.aid.ui.RequestScreen
 import org.pointyware.painteddogs.aid.ui.RequestScreenState
 import org.pointyware.painteddogs.aid.viewmodels.OfferViewModel
