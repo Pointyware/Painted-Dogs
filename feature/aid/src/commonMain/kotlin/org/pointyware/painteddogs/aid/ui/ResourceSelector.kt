@@ -7,6 +7,7 @@ import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import org.pointyware.painteddogs.aid.entities.Resource
 
 @Composable
@@ -26,7 +27,9 @@ fun SingleResourceSelector(
                 shape = SegmentedButtonDefaults.itemShape(index = index, count = entries.size),
             ) {
                 Text(
-                    text = stringForResource(resource)
+                    text = stringForResource(resource),
+                    softWrap = false,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
         }
@@ -45,12 +48,14 @@ fun MultiResourceSelector(
         val entries = Resource.entries
         entries.forEachIndexed { index, resource ->
             SegmentedButton(
-                checked = false,
+                checked = resource in values,
                 onCheckedChange = { onSelectionChanged(values + resource) },
                 shape = SegmentedButtonDefaults.itemShape(index = index, count = entries.size),
             ) {
                 Text(
-                    text = stringForResource(resource)
+                    text = stringForResource(resource),
+                    softWrap = false,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
         }
