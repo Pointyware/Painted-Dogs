@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.stringResource
 import org.pointyware.painteddogs.aid.entities.TemporalScope
-import org.pointyware.painteddogs.aid.ui.TemporalSelector
+import org.pointyware.painteddogs.aid.ui.SingleTemporalSelector
 
 data class OfferScreenState(
     val title: String,
@@ -25,7 +25,7 @@ fun OfferScreen(
     Column(
         modifier = Modifier
     ) {
-        TemporalSelector(
+        SingleTemporalSelector(
             value = state.scope,
             modifier = Modifier,
             onScopeSelected = onSelectTemporalScope

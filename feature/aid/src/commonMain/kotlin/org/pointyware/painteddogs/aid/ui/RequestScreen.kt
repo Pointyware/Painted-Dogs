@@ -34,7 +34,7 @@ fun RequestScreen(
             .fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(GeometryTokens.dpMedium),
     ) {
-        TemporalSelector(
+        SingleTemporalSelector(
             value = state.temporalScope,
             onScopeSelected = onScopeSelected,
             modifier = Modifier.fillMaxWidth()

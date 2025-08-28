@@ -1,5 +1,6 @@
 package org.pointyware.painteddogs.aid.ui
 
+   import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -11,6 +12,8 @@ class TemporalScopeSetProvider: PreviewParameterProvider<Set<TemporalScope>> {
         get() = sequenceOf(
             setOf(TemporalScope.Indefinite),
             setOf(TemporalScope.Limited),
+            setOf(TemporalScope.Limited, TemporalScope.Schedule),
+            setOf(TemporalScope.Schedule, TemporalScope.Event),
             TemporalScope.entries.toSet()
         )
 }
@@ -20,8 +23,14 @@ class TemporalScopeSetProvider: PreviewParameterProvider<Set<TemporalScope>> {
 private fun TemporalSelectorPreview(
     @PreviewParameter(TemporalScopeSetProvider::class) filter: Set<TemporalScope>
 ) {
-    TemporalSelector(
-        value = filter.first(),
-        onScopeSelected = { },
-    )
+    Column {
+        SingleTemporalSelector(
+            value = filter.first(),
+            onScopeSelected = { },
+        )
+        MultiTemporalSelector(
+            values = filter,
+            onScopeSelected = { }
+        )
+    }
 }
