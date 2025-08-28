@@ -15,16 +15,16 @@ fun SingleTemporalSelector(
     value: TemporalScope,
     onScopeSelected: (TemporalScope)->Unit,
     modifier: Modifier = Modifier,
+    options: List<TemporalScope> = TemporalScope.entries
 ) {
     SingleChoiceSegmentedButtonRow(
         modifier = modifier
     ) {
-        val entries = TemporalScope.entries
-        entries.forEachIndexed { index, scope ->
+        options.forEachIndexed { index, scope ->
             SegmentedButton(
                 selected = scope == value,
                 onClick = { onScopeSelected(scope) },
-                shape = SegmentedButtonDefaults.itemShape(index, entries.size),
+                shape = SegmentedButtonDefaults.itemShape(index, options.size),
             ) {
                 Text(
                     text = stringForScope(scope),
@@ -41,16 +41,16 @@ fun MultiTemporalSelector(
     values: Set<TemporalScope>,
     onScopeSelected: (TemporalScope)->Unit,
     modifier: Modifier = Modifier,
+    options: List<TemporalScope> = TemporalScope.entries
 ) {
     MultiChoiceSegmentedButtonRow(
         modifier = modifier
     ) {
-        val entries = TemporalScope.entries
-        entries.forEachIndexed { index, scope ->
+        options.forEachIndexed { index, scope ->
             SegmentedButton(
                 checked = scope in values,
                 onCheckedChange = { onScopeSelected(scope) },
-                shape = SegmentedButtonDefaults.itemShape(index, entries.size),
+                shape = SegmentedButtonDefaults.itemShape(index, options.size),
             ) {
                 Text(
                     text = stringForScope(scope),
