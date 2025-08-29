@@ -10,18 +10,17 @@ import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.entities.ResourceExchange
 import org.pointyware.painteddogs.aid.entities.ResourceOffer
 import org.pointyware.painteddogs.aid.entities.ResourceRequest
-import org.pointyware.painteddogs.core.ui.design.LocalDateFormat
 import kotlin.time.ExperimentalTime
 
-data class MutualAidScreenState(
+data class ExchangeBoardScreenState(
     val posts: List<ResourceExchange>,
     val resources: Set<Resource>
 )
 
 @OptIn(ExperimentalTime::class)
 @Composable
-fun MutualAidScreen(
-    state: MutualAidScreenState,
+fun ExchangeBoardScreen(
+    state: ExchangeBoardScreenState,
     onOfferClaim: (ResourceOffer)->Unit,
     onRequestResponse: (ResourceRequest)->Unit,
     onResourceFilterChanged: (Set<Resource>)->Unit
@@ -36,20 +35,14 @@ fun MutualAidScreen(
                 when (post) {
                     is ResourceRequest -> {
                         ResourceRequestItem(
-                            ResourceRequestItemState(
-                                request = post,
-                                timePosted = LocalDateFormat.current.format(post.timePosted),
-                            ),
+                            ResourceRequestItemState(request = post),
                             onProvideResource = { onRequestResponse(post) },
                             modifier = Modifier,
                         )
                     }
                     is ResourceOffer -> {
                         ResourceOfferItem(
-                            state = ResourceOfferItemState(
-                                offer = post,
-                                timePosted = LocalDateFormat.current.format(post.timePosted),
-                            ),
+                            state = ResourceOfferItemState(offer = post),
                             onProvideResource = { onOfferClaim(post) },
                             modifier = Modifier
                         )

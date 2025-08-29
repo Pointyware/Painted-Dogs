@@ -13,16 +13,24 @@ import org.jetbrains.compose.resources.stringResource
 import org.pointyware.painteddogs.aid.Res
 import org.pointyware.painteddogs.aid.entities.ResourceRequest
 import org.pointyware.painteddogs.aid.label_provide
+import org.pointyware.painteddogs.core.ui.design.LocalDateFormat
 import org.pointyware.painteddogs.core.ui.design.LocalGeometry
+import kotlin.time.ExperimentalTime
 
 /**
  *
  */
+@OptIn(ExperimentalTime::class)
 data class ResourceRequestItemState(
-    val request: ResourceRequest,
-    val timePosted: String,
+    val request: ResourceRequest
 ) {
     val description: String get() = request.description
+
+    val timePosted: String
+        @Composable
+        get() {
+            return LocalDateFormat.current.format(request.timePosted)
+        }
 }
 
 /**
