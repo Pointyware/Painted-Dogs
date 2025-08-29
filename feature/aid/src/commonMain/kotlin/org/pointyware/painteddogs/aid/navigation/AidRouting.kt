@@ -6,8 +6,8 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import org.pointyware.painteddogs.aid.ui.MutualAidScreen
-import org.pointyware.painteddogs.aid.ui.MutualAidScreenState
+import org.pointyware.painteddogs.aid.ui.ExchangeBoardScreen
+import org.pointyware.painteddogs.aid.ui.ExchangeBoardScreenState
 import org.pointyware.painteddogs.aid.ui.OfferScreen
 import org.pointyware.painteddogs.aid.ui.OfferScreenState
 import org.pointyware.painteddogs.aid.ui.RequestScreen
@@ -31,9 +31,9 @@ fun NavGraphBuilder.aidRouting(
                 navController.navigate(destination)
             }
         }
-        MutualAidScreen(
+        ExchangeBoardScreen(
             state = state.let {
-                MutualAidScreenState(
+                ExchangeBoardScreenState(
                     posts = it.posts,
                     resources = it.resourceFilter
                 )
