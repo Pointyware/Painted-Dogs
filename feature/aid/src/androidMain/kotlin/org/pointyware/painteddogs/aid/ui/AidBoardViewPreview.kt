@@ -26,8 +26,6 @@ private fun AidBoardViewPreview() {
         minute = 40,
         second = 2
     )
-    val referenceDate = referenceDateTime.date
-    val referenceTime = referenceDateTime.time
     val nextDateTime = referenceDateTime.later(hour = 1, minute = 5)
 
     PaintedDogsTheme {
