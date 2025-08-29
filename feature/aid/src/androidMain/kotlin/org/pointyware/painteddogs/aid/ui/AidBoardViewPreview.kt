@@ -1,29 +1,53 @@
 package org.pointyware.painteddogs.aid.ui
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toInstant
 import org.pointyware.painteddogs.aid.entities.Resource
-import org.pointyware.painteddogs.aid.entities.ResourceExchange
+import org.pointyware.painteddogs.aid.entities.ResourceOffer
+import org.pointyware.painteddogs.aid.entities.ResourceRequest
+import org.pointyware.painteddogs.common.later
+import kotlin.time.ExperimentalTime
 
-data class AidBoardViewPreviewState(
-    override val posts: List<ResourceExchange>,
-    override val resources: Set<Resource>
-): AidBoardViewState {
-}
 
+@OptIn(ExperimentalTime::class)
 @Preview
 @Composable
 private fun AidBoardViewPreview() {
-    AidBoardView(
-        state = AidBoardViewPreviewState(
+    val timeZone = TimeZone.currentSystemDefault()
+    val referenceDateTime = LocalDateTime(
+        year = 2025,
+        month = 8,
+        day = 1,
+        hour = 20,
+        minute = 40,
+        second = 2
+    )
+    val referenceDate = referenceDateTime.date
+    val referenceTime = referenceDateTime.time
+    val nextDateTime = referenceDateTime.later(hour = 1, minute = 5)
+
+    ExchangeBoardScreen(
+        state = ExchangeBoardScreenState(
             posts = listOf(
+                ResourceOffer(
+                    category = Resource.Food,
+                    description = "Lots of rice",
+                    timePosted = referenceDateTime.toInstant(timeZone)
+                ),
+                ResourceRequest(
+                    category = Resource.Protection,
+                    description = "Escort to School",
+                    timePosted = nextDateTime.toInstant(timeZone)
+                ),
 
             ),
             resources = setOf()
         ),
         onOfferClaim = { },
         onRequestResponse = { },
-        modifier = Modifier
+        onResourceFilterChanged = { },
     )
 }
