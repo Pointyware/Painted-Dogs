@@ -9,6 +9,7 @@ import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.entities.ResourceOffer
 import org.pointyware.painteddogs.aid.entities.ResourceRequest
 import org.pointyware.painteddogs.common.later
+import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import kotlin.time.ExperimentalTime
 
 
@@ -29,25 +30,27 @@ private fun AidBoardViewPreview() {
     val referenceTime = referenceDateTime.time
     val nextDateTime = referenceDateTime.later(hour = 1, minute = 5)
 
-    ExchangeBoardScreen(
-        state = ExchangeBoardScreenState(
-            posts = listOf(
-                ResourceOffer(
-                    category = Resource.Food,
-                    description = "Lots of rice",
-                    timePosted = referenceDateTime.toInstant(timeZone)
-                ),
-                ResourceRequest(
-                    category = Resource.Protection,
-                    description = "Escort to School",
-                    timePosted = nextDateTime.toInstant(timeZone)
-                ),
+    PaintedDogsTheme {
+        ExchangeBoardScreen(
+            state = ExchangeBoardScreenState(
+                posts = listOf(
+                    ResourceOffer(
+                        category = Resource.Food,
+                        description = "Lots of rice",
+                        timePosted = referenceDateTime.toInstant(timeZone)
+                    ),
+                    ResourceRequest(
+                        category = Resource.Protection,
+                        description = "Escort to School",
+                        timePosted = nextDateTime.toInstant(timeZone)
+                    ),
 
+                    ),
+                resources = setOf()
             ),
-            resources = setOf()
-        ),
-        onOfferClaim = { },
-        onRequestResponse = { },
-        onResourceFilterChanged = { },
-    )
+            onOfferClaim = { },
+            onRequestResponse = { },
+            onResourceFilterChanged = { },
+        )
+    }
 }
