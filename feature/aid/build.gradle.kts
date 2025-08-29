@@ -20,6 +20,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(projects.core.common)
                 implementation(projects.core.data)
                 implementation(projects.core.navigation)
                 implementation(projects.core.viewModels)
