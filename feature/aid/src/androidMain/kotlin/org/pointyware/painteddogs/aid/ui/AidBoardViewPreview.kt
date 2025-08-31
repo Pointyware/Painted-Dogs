@@ -1,7 +1,8 @@
 package org.pointyware.painteddogs.aid.ui
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewDynamicColors
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
@@ -14,7 +15,8 @@ import kotlin.time.ExperimentalTime
 
 
 @OptIn(ExperimentalTime::class)
-@Preview
+@PreviewLightDark
+@PreviewDynamicColors
 @Composable
 private fun AidBoardViewPreview() {
     val timeZone = TimeZone.currentSystemDefault()
