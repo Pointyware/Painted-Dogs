@@ -9,6 +9,7 @@ import kotlin.time.Instant
 @OptIn(ExperimentalTime::class)
 class ResourceOffer(
     override val category: Resource,
+    override val scope: TemporalScope,
     override val description: String,
     override val timePosted: Instant,
 ): ResourceExchange {
