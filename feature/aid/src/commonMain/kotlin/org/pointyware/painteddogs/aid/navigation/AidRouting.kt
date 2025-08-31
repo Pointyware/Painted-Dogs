@@ -110,8 +110,7 @@ fun NavGraphBuilder.aidRouting(
     }
     composable<AidDestination.RequestDetail>(
         deepLinks = listOf(
-            navDeepLink(
-                route = AidDestination.RequestDetail::class,
+            navDeepLink<AidDestination.RequestDetail>(
                 basePath = "pdogs://"
             ) {
                 uriPattern = "pdogs://request/{requestId}"
@@ -125,8 +124,7 @@ fun NavGraphBuilder.aidRouting(
     }
     composable<AidDestination.OfferDetail>(
         deepLinks = listOf(
-            navDeepLink(
-                route = AidDestination.RequestDetail::class,
+            navDeepLink<AidDestination.OfferDetail>(
                 basePath = "pdogs://"
             ) {
                 uriPattern = "pdogs://offer/{offerId}"
