@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import org.pointyware.painteddogs.aid.entities.ResourceOffer
 import org.pointyware.painteddogs.aid.ui.ExchangeBoardScreen
 import org.pointyware.painteddogs.aid.ui.ExchangeBoardScreenState
 import org.pointyware.painteddogs.aid.ui.OfferScreen
@@ -21,7 +22,8 @@ import org.pointyware.painteddogs.core.ui.composeKoinViewModel
  * Routing logic for Mutual Aid screens.
  */
 fun NavGraphBuilder.aidRouting(
-    navController: NavController
+    navController: NavController,
+    onNavigateToOffer: (ResourceOffer)-> Unit
 ) {
     composable<AidDestination.Board> {
         val viewModel: MutualAidViewModel = composeKoinViewModel()
@@ -48,8 +50,8 @@ fun NavGraphBuilder.aidRouting(
         val viewModel: OfferViewModel = composeKoinViewModel()
         val state by viewModel.state.collectAsState()
         LaunchedEffect(Unit) {
-            viewModel.navEvent.collect { destination ->
-                navController.navigate(destination)
+            viewModel.onOfferCreated.collect {
+                onNavigateToOffer(it)
             }
         }
         OfferScreen(
