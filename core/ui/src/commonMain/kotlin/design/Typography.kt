@@ -25,7 +25,7 @@ object TextStyleTokens {
 val typography = Typography(
     displayLarge = TextStyle(
         fontSize = 48.sp,
-        fontWeight = TextStyleTokens.weightExtraHeavy
+        fontWeight = TextStyleTokens.weightHeavy
     ),
     headlineLarge = TextStyle(
         fontSize = 36.sp,
@@ -41,7 +41,7 @@ val typography = Typography(
     ),
     labelLarge = TextStyle(
         fontSize = 16.sp,
-        fontWeight = TextStyleTokens.weightMedium
+        fontWeight = TextStyleTokens.weightExtraHeavy
     ),
 
     displayMedium = TextStyle(
@@ -62,20 +62,20 @@ val typography = Typography(
     ),
     labelMedium = TextStyle(
         fontSize = 14.sp,
-        fontWeight = TextStyleTokens.weightMedium
+        fontWeight = TextStyleTokens.weightHeavy
     ),
 
     displaySmall = TextStyle(
         fontSize = 30.sp,
-        fontWeight = TextStyleTokens.weightMedium
+        fontWeight = TextStyleTokens.weightExtraLight
     ),
     headlineSmall = TextStyle(
         fontSize = 24.sp,
-        fontWeight = TextStyleTokens.weightMedium
+        fontWeight = TextStyleTokens.weightLight
     ),
     titleSmall = TextStyle(
         fontSize = 18.sp,
-        fontWeight = TextStyleTokens.weightMedium
+        fontWeight = TextStyleTokens.weightLight
     ),
     bodySmall = TextStyle(
         fontSize = 14.sp,
@@ -83,6 +83,6 @@ val typography = Typography(
     ),
     labelSmall = TextStyle(
         fontSize = 12.sp,
-        fontWeight = TextStyleTokens.weightExtraLight
+        fontWeight = TextStyleTokens.weightMedium
     ),
 )
