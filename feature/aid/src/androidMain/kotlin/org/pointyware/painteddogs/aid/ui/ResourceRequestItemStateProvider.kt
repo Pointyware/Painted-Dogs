@@ -7,12 +7,15 @@ import org.pointyware.painteddogs.aid.entities.TemporalScope
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.ExperimentalTime
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 
-@OptIn(ExperimentalTime::class)
+@OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
 private val resourceRequestItemStateSequence = sequenceOf(
     ResourceRequestItemState(
         request = ResourceRequest(
+            id = Uuid.random(),
             category = Resource.Food,
             scope = TemporalScope.Indefinite,
             description = "Some food item",
@@ -21,6 +24,7 @@ private val resourceRequestItemStateSequence = sequenceOf(
     ),
     ResourceRequestItemState(
         request = ResourceRequest(
+            id = Uuid.random(),
             category = Resource.Housing,
             scope = TemporalScope.Indefinite,
             description = "3 Beds",
@@ -29,6 +33,7 @@ private val resourceRequestItemStateSequence = sequenceOf(
     ),
     ResourceRequestItemState(
         request = ResourceRequest(
+            id = Uuid.random(),
             category = Resource.Funds,
             scope = TemporalScope.Indefinite,
             description = "50 for New Tire",
@@ -37,6 +42,7 @@ private val resourceRequestItemStateSequence = sequenceOf(
     ),
     ResourceRequestItemState(
         request = ResourceRequest(
+            id = Uuid.random(),
             category = Resource.Skills,
             scope = TemporalScope.Indefinite,
             description = "Budgeting",
@@ -45,6 +51,7 @@ private val resourceRequestItemStateSequence = sequenceOf(
     ),
     ResourceRequestItemState(
         request = ResourceRequest(
+            id = Uuid.random(),
             category = Resource.Protection,
             scope = TemporalScope.Indefinite,
             description = "Escort to School",

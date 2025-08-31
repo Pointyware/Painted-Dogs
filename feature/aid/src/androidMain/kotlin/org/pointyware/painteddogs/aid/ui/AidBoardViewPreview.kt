@@ -13,9 +13,11 @@ import org.pointyware.painteddogs.aid.entities.TemporalScope
 import org.pointyware.painteddogs.common.later
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import kotlin.time.ExperimentalTime
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 
-@OptIn(ExperimentalTime::class)
+@OptIn(ExperimentalTime::class, ExperimentalUuidApi::class)
 @PreviewLightDark
 @PreviewDynamicColors
 @Composable
@@ -36,42 +38,49 @@ private fun AidBoardViewPreview() {
             state = ExchangeBoardScreenState(
                 posts = listOf(
                     ResourceOffer(
+                        id = Uuid.random(),
                         category = Resource.Food,
                         scope = TemporalScope.Immediate,
                         description = "Lots of rice",
                         timePosted = referenceDateTime.toInstant(timeZone)
                     ),
                     ResourceRequest(
+                        id = Uuid.random(),
                         category = Resource.Protection,
                         scope = TemporalScope.Immediate,
                         description = "Escort to School",
                         timePosted = nextDateTime.toInstant(timeZone)
                     ),
                     ResourceRequest(
+                        id = Uuid.random(),
                         category = Resource.Protection,
                         scope = TemporalScope.Immediate,
                         description = "Escort to School",
                         timePosted = nextDateTime.toInstant(timeZone)
                     ),
                     ResourceOffer(
+                        id = Uuid.random(),
                         category = Resource.Food,
                         scope = TemporalScope.Immediate,
                         description = "Lots of rice",
                         timePosted = referenceDateTime.toInstant(timeZone)
                     ),
                     ResourceRequest(
+                        id = Uuid.random(),
                         category = Resource.Protection,
                         scope = TemporalScope.Immediate,
                         description = "Escort to School",
                         timePosted = nextDateTime.toInstant(timeZone)
                     ),
                     ResourceOffer(
+                        id = Uuid.random(),
                         category = Resource.Food,
                         scope = TemporalScope.Immediate,
                         description = "Lots of rice",
                         timePosted = referenceDateTime.toInstant(timeZone)
                     ),
                     ResourceOffer(
+                        id = Uuid.random(),
                         category = Resource.Food,
                         scope = TemporalScope.Immediate,
                         description = "Lots of rice",
