@@ -40,7 +40,7 @@ private fun AidBoardViewPreview() {
                     ResourceOffer(
                         id = Uuid.random(),
                         category = Resource.Food,
-                        scope = TemporalScope.Immediate,
+                        scope = TemporalScope.Indefinite,
                         description = "Lots of rice",
                         timePosted = referenceDateTime.toInstant(timeZone)
                     ),
@@ -54,35 +54,35 @@ private fun AidBoardViewPreview() {
                     ResourceRequest(
                         id = Uuid.random(),
                         category = Resource.Protection,
-                        scope = TemporalScope.Immediate,
+                        scope = TemporalScope.Schedule,
                         description = "Escort to School",
                         timePosted = nextDateTime.toInstant(timeZone)
                     ),
                     ResourceOffer(
                         id = Uuid.random(),
                         category = Resource.Food,
-                        scope = TemporalScope.Immediate,
+                        scope = TemporalScope.Limited,
                         description = "Lots of rice",
                         timePosted = referenceDateTime.toInstant(timeZone)
                     ),
                     ResourceRequest(
                         id = Uuid.random(),
                         category = Resource.Protection,
-                        scope = TemporalScope.Immediate,
+                        scope = TemporalScope.Limited,
                         description = "Escort to School",
                         timePosted = nextDateTime.toInstant(timeZone)
                     ),
                     ResourceOffer(
                         id = Uuid.random(),
                         category = Resource.Food,
-                        scope = TemporalScope.Immediate,
+                        scope = TemporalScope.Indefinite,
                         description = "Lots of rice",
                         timePosted = referenceDateTime.toInstant(timeZone)
                     ),
                     ResourceOffer(
                         id = Uuid.random(),
                         category = Resource.Food,
-                        scope = TemporalScope.Immediate,
+                        scope = TemporalScope.Indefinite,
                         description = "Lots of rice",
                         timePosted = referenceDateTime.toInstant(timeZone)
                     )
