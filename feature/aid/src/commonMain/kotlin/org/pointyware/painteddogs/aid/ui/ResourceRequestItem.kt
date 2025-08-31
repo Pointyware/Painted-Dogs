@@ -15,6 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
 import org.pointyware.painteddogs.aid.Res
+import org.pointyware.painteddogs.aid.entities.RequestImage
 import org.pointyware.painteddogs.aid.entities.ResourceRequest
 import org.pointyware.painteddogs.aid.label_provide
 import org.pointyware.painteddogs.core.ui.design.GeometryTokens
@@ -67,6 +68,7 @@ fun ResourceRequestItem(
                     text = state.description,
                     textAlign = TextAlign.End
                 )
+                RequestImage()
             }
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -76,6 +78,9 @@ fun ResourceRequestItem(
                     modifier = Modifier.weight(1f),
                     text = state.timePosted,
                     style = MaterialTheme.typography.labelSmall
+                )
+                TemporalImage(
+                    value = state.request.scope
                 )
                 Button(
                     onClick = onProvideResource

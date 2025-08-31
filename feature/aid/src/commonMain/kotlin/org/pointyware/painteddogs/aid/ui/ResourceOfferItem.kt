@@ -15,6 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
 import org.pointyware.painteddogs.aid.Res
+import org.pointyware.painteddogs.aid.entities.OfferImage
 import org.pointyware.painteddogs.aid.entities.ResourceOffer
 import org.pointyware.painteddogs.aid.label_claim
 import org.pointyware.painteddogs.core.ui.design.GeometryTokens
@@ -67,6 +68,7 @@ fun ResourceOfferItem(
                     text = state.description,
                     textAlign = TextAlign.End
                 )
+                OfferImage()
             }
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -76,6 +78,9 @@ fun ResourceOfferItem(
                     modifier = Modifier.weight(1f),
                     text = state.timePosted,
                     style = MaterialTheme.typography.labelSmall
+                )
+                TemporalImage(
+                    value = state.offer.scope
                 )
                 Button(
                     onClick = onClaimOffer
