@@ -12,7 +12,6 @@ import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.entities.ResourceExchange
 import org.pointyware.painteddogs.aid.entities.ResourceOffer
 import org.pointyware.painteddogs.aid.entities.ResourceRequest
-import org.pointyware.painteddogs.core.navigation.Destination
 
 /**
  * Maintains the UI state for mutual aid views and responds to events to pass information
@@ -23,8 +22,10 @@ class MutualAidViewModel(
 ): ViewModel() {
 
 
-    private val _navEvent = Channel<Destination>()
-    val navEvent: Flow<Destination> = _navEvent.consumeAsFlow()
+    private val _onClaimOffer = Channel<ResourceOffer>()
+    val onClaimOffer: Flow<ResourceOffer> = _onClaimOffer.consumeAsFlow()
+    private val _onProvideRequest = Channel<ResourceRequest>()
+    val onProvideRequest: Flow<ResourceRequest> = _onProvideRequest.consumeAsFlow()
     private val _state = MutableStateFlow(MutualAidUiState.Default)
     val state: StateFlow<MutualAidUiState> = _state.asStateFlow()
 
