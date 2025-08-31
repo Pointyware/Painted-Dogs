@@ -1,10 +1,12 @@
 package org.pointyware.painteddogs.aid.navigation
 
+import androidx.compose.material3.Text
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import androidx.navigation.toRoute
 import org.pointyware.painteddogs.aid.entities.ResourceOffer
 import org.pointyware.painteddogs.aid.entities.ResourceRequest
 import org.pointyware.painteddogs.aid.ui.ExchangeBoardScreen
@@ -17,10 +19,13 @@ import org.pointyware.painteddogs.aid.viewmodels.MutualAidViewModel
 import org.pointyware.painteddogs.aid.viewmodels.OfferViewModel
 import org.pointyware.painteddogs.aid.viewmodels.RequestViewModel
 import org.pointyware.painteddogs.core.ui.composeKoinViewModel
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 /**
  * Routing logic for Mutual Aid screens.
  */
+@OptIn(ExperimentalUuidApi::class)
 fun NavGraphBuilder.aidRouting(
     onSupportRequest: (ResourceRequest)->Unit,
     onClaimOffer: (ResourceOffer)->Unit,
@@ -90,5 +95,26 @@ fun NavGraphBuilder.aidRouting(
             onScopeSelected = viewModel::onTemporalScopeSelected,
             onSubmit = viewModel::onSubmit,
         )
+    }
+
+    composable<AidDestination.SupportDetail> {
+        val idString = it.toRoute<AidDestination.SupportDetail>().requestId
+        val hex = Uuid.parse(idString)
+        Text(text = "Support Detail: ${hex.toHexString()}")
+    }
+    composable<AidDestination.ClaimDetail> {
+        val idString = it.toRoute<AidDestination.ClaimDetail>().offerId
+        val hex = Uuid.parse(idString)
+        Text(text = "Claim Detail: ${hex.toHexString()}")
+    }
+    composable<AidDestination.RequestDetail> {
+        val idString = it.toRoute<AidDestination.RequestDetail>().requestId
+        val hex = Uuid.parse(idString)
+        Text(text = "Request: ${hex.toHexString()}")
+    }
+    composable<AidDestination.OfferDetail> {
+        val idString = it.toRoute<AidDestination.OfferDetail>().offerId
+        val hex = Uuid.parse(idString)
+        Text(text = "Offer: ${hex.toHexString()}")
     }
 }
