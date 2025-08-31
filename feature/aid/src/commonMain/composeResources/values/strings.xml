@@ -4,6 +4,8 @@
     <string name="label_submit">Submit</string>
     <string name="label_provide">Provide</string>
     <string name="label_claim">Claim</string>
+    <string name="label_request">Request</string>
+    <string name="label_offer">Offer</string>
 
     <!--  Temporal Scopes  -->
     <string name="label_indefinite">Indefinite</string>
