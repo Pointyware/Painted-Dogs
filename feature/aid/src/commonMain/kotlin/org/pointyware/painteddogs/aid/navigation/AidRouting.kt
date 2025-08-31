@@ -75,6 +75,11 @@ fun NavGraphBuilder.aidRouting(
     composable<AidDestination.Request> {
         val viewModel: RequestViewModel = composeKoinViewModel()
         val state by viewModel.state.collectAsState()
+        LaunchedEffect(Unit) {
+            viewModel.onRequestCreated.collect {
+                onNavigateToRequest(it)
+            }
+        }
         RequestScreen(
             state = state.let {
                 RequestScreenState(
