@@ -30,4 +30,13 @@ open class AidDestination(): Destination {
     data class Request(
         val resource: Resource
     ): AidDestination()
+
+    @Serializable
+    data class ClaimDetail(val offerId: String): AidDestination()
+    @Serializable
+    data class ProviderDetail(val requestId: String): AidDestination()
+    @Serializable
+    data class RequestDetail(val requestId: String): AidDestination()
+    @Serializable
+    data class OfferDetail(val offerId: String): AidDestination()
 }

@@ -86,7 +86,20 @@ fun PaintedDogsApp(
                 navigation<AidDestination>(
                     startDestination = AidDestination.Board
                 ) {
-                    aidRouting(navController)
+                    aidRouting(
+                        onClaimOffer = {
+                            navController.navigate(AidDestination.ClaimDetail(it.id.toString()))
+                        },
+                        onProvideRequest = {
+                            navController.navigate(AidDestination.ProviderDetail(it.id.toString()))
+                        },
+                        onNavigateToRequest = {
+                            navController.navigate(AidDestination.RequestDetail(it.id.toString()))
+                        },
+                        onNavigateToOffer = {
+                            navController.navigate(AidDestination.OfferDetail(it.id.toString()))
+                        }
+                    )
                 }
 
                 homeRouting(navController)
