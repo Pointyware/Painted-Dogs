@@ -14,15 +14,36 @@ import org.pointyware.painteddogs.aid.label_housing
 import org.pointyware.painteddogs.aid.label_immediate
 import org.pointyware.painteddogs.aid.label_indefinite
 import org.pointyware.painteddogs.aid.label_limited
+import org.pointyware.painteddogs.aid.label_offer
 import org.pointyware.painteddogs.aid.label_protection
+import org.pointyware.painteddogs.aid.label_request
 import org.pointyware.painteddogs.aid.label_scheduled
 import org.pointyware.painteddogs.aid.label_skills
+import org.pointyware.painteddogs.aid.outline_event_24
 import org.pointyware.painteddogs.aid.outline_food_24
 import org.pointyware.painteddogs.aid.outline_fund_24
 import org.pointyware.painteddogs.aid.outline_housing_24
+import org.pointyware.painteddogs.aid.outline_immediate_24
+import org.pointyware.painteddogs.aid.outline_indefinite_24
+import org.pointyware.painteddogs.aid.outline_offer_24
 import org.pointyware.painteddogs.aid.outline_protection_24
+import org.pointyware.painteddogs.aid.outline_request_24
+import org.pointyware.painteddogs.aid.outline_schedule_24
 import org.pointyware.painteddogs.aid.outline_skills_24
+import org.pointyware.painteddogs.aid.twotone_limited_24
 
+@Composable
+fun vectorForExchange(isRequest: Boolean): ImageVector {
+    return vectorResource(if (isRequest)
+        Res.drawable.outline_request_24
+    else Res.drawable.outline_offer_24)
+}
+@Composable
+fun stringForExchange(isRequest: Boolean): String {
+    return stringResource(if (isRequest)
+        Res.string.label_request
+    else Res.string.label_offer)
+}
 
 @Composable
 fun stringForScope(value: TemporalScope): String {
@@ -33,6 +54,20 @@ fun stringForScope(value: TemporalScope): String {
         TemporalScope.Event -> Res.string.label_event
         TemporalScope.Immediate -> Res.string.label_immediate
     })
+}
+
+private val scopeVectorMap = TemporalScope.entries.associateWith { key ->
+    when (key) {
+        TemporalScope.Indefinite -> Res.drawable.outline_indefinite_24
+        TemporalScope.Event -> Res.drawable.outline_event_24
+        TemporalScope.Immediate -> Res.drawable.outline_immediate_24
+        TemporalScope.Limited -> Res.drawable.twotone_limited_24
+        TemporalScope.Schedule -> Res.drawable.outline_schedule_24
+    }
+}
+@Composable
+fun vectorForScope(value: TemporalScope): ImageVector {
+    return vectorResource(scopeVectorMap[value]!!)
 }
 
 @Composable
