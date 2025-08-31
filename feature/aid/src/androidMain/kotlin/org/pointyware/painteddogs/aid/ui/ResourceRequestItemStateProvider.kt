@@ -58,3 +58,5 @@ class ResourceRequestItemStateProvider: PreviewParameterProvider<ResourceRequest
     override val values: Sequence<ResourceRequestItemState>
         get() = resourceRequestItemStateSequence
 }
+
+private val temporalScopes = TemporalScope.entries.asSequence()
