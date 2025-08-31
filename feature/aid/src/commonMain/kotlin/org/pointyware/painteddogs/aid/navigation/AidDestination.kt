@@ -6,6 +6,14 @@ import org.pointyware.painteddogs.core.navigation.Destination
 
 /**
  * Mutual Aid navigation destinations.
+ *
+ * Board --> DraftRequest
+ * Board --> DraftOffer
+ * Board --> SupportDetail
+ * Board --> ClaimDetail
+ *
+ * DraftRequest --> RequestDetail
+ * DraftOffer --> OfferDetail
  */
 @Serializable
 open class AidDestination(): Destination {
@@ -31,12 +39,33 @@ open class AidDestination(): Destination {
         val resource: Resource
     ): AidDestination()
 
+    /**
+     * Detail screen to define support parameters in response to
+     * a specific [org.pointyware.painteddogs.aid.entities.ResourceRequest]
+     * indicated by the given [requestId].
+     */
     @Serializable
     data class SupportDetail(val requestId: String): AidDestination()
+
+    /**
+     * Detail screen to define claim parameters in response to
+     * a specific [org.pointyware.painteddogs.aid.entities.ResourceOffer]
+     * indicated by the given [offerId].
+     */
     @Serializable
     data class ClaimDetail(val offerId: String): AidDestination()
+
+    /**
+     * Detail screen of a [org.pointyware.painteddogs.aid.entities.ResourceRequest]
+     * indicated by the given [requestId].
+     */
     @Serializable
     data class RequestDetail(val requestId: String): AidDestination()
+
+    /**
+     * Detail screen of a [org.pointyware.painteddogs.aid.entities.ResourceOffer]
+     * indicated by the given [offerId].
+     */
     @Serializable
     data class OfferDetail(val offerId: String): AidDestination()
 }
