@@ -1,6 +1,6 @@
 package org.pointyware.painteddogs.aid.ui
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -32,9 +32,13 @@ fun ExchangeBoardScreen(
     onRequestResponse: (ResourceRequest)->Unit,
     onResourceFilterChanged: (Set<Resource>)->Unit
 ) {
-    Box(
+    Column (
         modifier = Modifier.fillMaxSize()
     ) {
+        MultiResourceSelector(
+            values = state.resources,
+            onSelectionChanged = onResourceFilterChanged,
+        )
         LazyColumn(
             modifier = Modifier.fillMaxSize()
         ) {
@@ -69,9 +73,5 @@ fun ExchangeBoardScreen(
                 }
             }
         }
-        MultiResourceSelector(
-            values = state.resources,
-            onSelectionChanged = onResourceFilterChanged,
-        )
     }
 }
