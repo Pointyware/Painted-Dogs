@@ -49,6 +49,11 @@ fun ResourceOfferItem(
             modifier = Modifier.padding(LocalGeometry.current.paddingMedium),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
+            state.offer.category.let { resource ->
+                ResourceImage(
+                    resource = resource
+                )
+            }
             Text(
                 text = state.description
             )
