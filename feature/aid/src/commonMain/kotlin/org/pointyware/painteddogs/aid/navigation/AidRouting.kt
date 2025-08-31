@@ -22,7 +22,7 @@ import org.pointyware.painteddogs.core.ui.composeKoinViewModel
  * Routing logic for Mutual Aid screens.
  */
 fun NavGraphBuilder.aidRouting(
-    onProvideRequest: (ResourceRequest)->Unit,
+    onSupportRequest: (ResourceRequest)->Unit,
     onClaimOffer: (ResourceOffer)->Unit,
     onNavigateToRequest: (ResourceRequest)->Unit,
     onNavigateToOffer: (ResourceOffer)-> Unit,
@@ -32,7 +32,7 @@ fun NavGraphBuilder.aidRouting(
         val state by viewModel.state.collectAsState()
         LaunchedEffect(Unit) {
             viewModel.onProvideRequest.collect { request ->
-                onProvideRequest(request)
+                onSupportRequest(request)
             }
             viewModel.onClaimOffer.collect { offer ->
                 onClaimOffer(offer)
@@ -51,7 +51,7 @@ fun NavGraphBuilder.aidRouting(
         )
     }
 
-    composable<AidDestination.Offer> {
+    composable<AidDestination.DraftOffer> {
         val viewModel: OfferViewModel = composeKoinViewModel()
         val state by viewModel.state.collectAsState()
         LaunchedEffect(Unit) {
@@ -72,7 +72,7 @@ fun NavGraphBuilder.aidRouting(
         )
     }
 
-    composable<AidDestination.Request> {
+    composable<AidDestination.DraftRequest> {
         val viewModel: RequestViewModel = composeKoinViewModel()
         val state by viewModel.state.collectAsState()
         LaunchedEffect(Unit) {

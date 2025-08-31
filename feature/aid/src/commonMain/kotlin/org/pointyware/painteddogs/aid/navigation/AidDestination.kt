@@ -19,7 +19,7 @@ open class AidDestination(): Destination {
      * The Screen where a user can offer a resource for the mutual aid network.
      */
     @Serializable
-    data class Offer(
+    data class DraftOffer(
         val resource: Resource
     ): AidDestination()
 
@@ -27,14 +27,14 @@ open class AidDestination(): Destination {
      * The Screen where a user can request an offer for the mutual aid network.
      */
     @Serializable
-    data class Request(
+    data class DraftRequest(
         val resource: Resource
     ): AidDestination()
 
     @Serializable
-    data class ClaimDetail(val offerId: String): AidDestination()
+    data class SupportDetail(val requestId: String): AidDestination()
     @Serializable
-    data class ProviderDetail(val requestId: String): AidDestination()
+    data class ClaimDetail(val offerId: String): AidDestination()
     @Serializable
     data class RequestDetail(val requestId: String): AidDestination()
     @Serializable
