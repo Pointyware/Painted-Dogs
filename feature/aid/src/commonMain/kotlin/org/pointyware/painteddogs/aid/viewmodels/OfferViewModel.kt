@@ -11,9 +11,9 @@ import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.pointyware.painteddogs.aid.entities.Resource
+import org.pointyware.painteddogs.aid.entities.ResourceOffer
 import org.pointyware.painteddogs.aid.entities.TemporalScope
 import org.pointyware.painteddogs.aid.interactors.CreateOfferUseCase
-import org.pointyware.painteddogs.core.navigation.Destination
 import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class)
@@ -21,10 +21,12 @@ class OfferViewModel(
     private val createOfferUseCase: CreateOfferUseCase
 ): ViewModel() {
 
-    private val _navEvent = Channel<Destination>()
-    val navEvent: Flow<Destination> = _navEvent.consumeAsFlow()
+    private val _onOfferCreated = Channel<ResourceOffer>()
+    val onOfferCreated: Flow<ResourceOffer> = _onOfferCreated.consumeAsFlow()
     private val _state = MutableStateFlow(OfferUiState.Default)
     val state: StateFlow<OfferUiState> = _state.asStateFlow()
+    private val _error = MutableStateFlow<Throwable?>(null)
+    val error: StateFlow<Throwable?> = _error.asStateFlow()
 
     fun onSelectTemporalScope(value: TemporalScope) {
         _state.update {
@@ -38,14 +40,23 @@ class OfferViewModel(
         }
     }
 
+    fun onClearError() {
+        _error.value = null
+    }
+
     fun onSubmit() {
         viewModelScope.launch {
             val state = state.value
             createOfferUseCase.invoke(
                 description = "${state.title}||${state.detailUiState.description}",
                 scope = state.scope,
-                category = state.detailUiState.category
-            )
+                category = state.detailUiState.category)
+                .onSuccess { offer ->
+
+                }
+                .onFailure { throwable ->
+                    _error.value = throwable
+                }
         }
     }
 }
