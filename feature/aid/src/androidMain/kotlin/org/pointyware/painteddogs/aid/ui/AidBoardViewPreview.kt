@@ -9,6 +9,7 @@ import kotlinx.datetime.toInstant
 import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.entities.ResourceOffer
 import org.pointyware.painteddogs.aid.entities.ResourceRequest
+import org.pointyware.painteddogs.aid.entities.TemporalScope
 import org.pointyware.painteddogs.common.later
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import kotlin.time.ExperimentalTime
@@ -36,36 +37,43 @@ private fun AidBoardViewPreview() {
                 posts = listOf(
                     ResourceOffer(
                         category = Resource.Food,
+                        scope = TemporalScope.Immediate,
                         description = "Lots of rice",
                         timePosted = referenceDateTime.toInstant(timeZone)
                     ),
                     ResourceRequest(
                         category = Resource.Protection,
+                        scope = TemporalScope.Immediate,
                         description = "Escort to School",
                         timePosted = nextDateTime.toInstant(timeZone)
                     ),
                     ResourceRequest(
                         category = Resource.Protection,
+                        scope = TemporalScope.Immediate,
                         description = "Escort to School",
                         timePosted = nextDateTime.toInstant(timeZone)
                     ),
                     ResourceOffer(
                         category = Resource.Food,
+                        scope = TemporalScope.Immediate,
                         description = "Lots of rice",
                         timePosted = referenceDateTime.toInstant(timeZone)
                     ),
                     ResourceRequest(
                         category = Resource.Protection,
+                        scope = TemporalScope.Immediate,
                         description = "Escort to School",
                         timePosted = nextDateTime.toInstant(timeZone)
                     ),
                     ResourceOffer(
                         category = Resource.Food,
+                        scope = TemporalScope.Immediate,
                         description = "Lots of rice",
                         timePosted = referenceDateTime.toInstant(timeZone)
                     ),
                     ResourceOffer(
                         category = Resource.Food,
+                        scope = TemporalScope.Immediate,
                         description = "Lots of rice",
                         timePosted = referenceDateTime.toInstant(timeZone)
                     )
