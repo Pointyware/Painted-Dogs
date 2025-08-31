@@ -49,7 +49,8 @@ fun ResourceRequestItem(
     modifier: Modifier = Modifier
 ) {
     Surface(
-        modifier = modifier
+        modifier = modifier,
+        tonalElevation = GeometryTokens.dpSmall
     ) {
         Column(
             modifier = Modifier
