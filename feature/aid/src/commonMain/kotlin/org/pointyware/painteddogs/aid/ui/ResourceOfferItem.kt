@@ -53,7 +53,6 @@ fun ResourceOfferItem(
         Column(
             modifier = Modifier.padding(LocalGeometry.current.paddingMedium),
             verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalAlignment = Alignment.Start
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -65,13 +64,18 @@ fun ResourceOfferItem(
                 Text(
                     modifier = Modifier.weight(1f),
                     text = state.description,
-                    textAlign = TextAlign.Start
+                    textAlign = TextAlign.End
                 )
             }
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(GeometryTokens.dpMedium)
             ) {
+                Text(
+                    modifier = Modifier.weight(1f),
+                    text = state.timePosted,
+                    style = MaterialTheme.typography.labelSmall
+                )
                 Button(
                     onClick = onClaimOffer
                 ) {
@@ -79,12 +83,6 @@ fun ResourceOfferItem(
                         text = stringResource(Res.string.label_claim)
                     )
                 }
-                Text(
-                    modifier = Modifier.weight(1f),
-                    text = state.timePosted,
-                    style = MaterialTheme.typography.labelSmall,
-                    textAlign = TextAlign.End
-                )
             }
         }
     }

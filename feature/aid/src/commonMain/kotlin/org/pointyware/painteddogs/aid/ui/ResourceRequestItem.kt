@@ -53,7 +53,6 @@ fun ResourceRequestItem(
         Column(
             modifier = Modifier.padding(LocalGeometry.current.paddingMedium),
             verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalAlignment = Alignment.End
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
