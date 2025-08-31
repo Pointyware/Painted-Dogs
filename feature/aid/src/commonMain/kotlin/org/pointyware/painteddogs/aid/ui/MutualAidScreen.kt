@@ -1,5 +1,6 @@
 package org.pointyware.painteddogs.aid.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -33,7 +34,9 @@ fun ExchangeBoardScreen(
     onResourceFilterChanged: (Set<Resource>)->Unit
 ) {
     Column (
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .background(MaterialTheme.colorScheme.surface)
+            .fillMaxSize()
     ) {
         MultiResourceSelector(
             values = state.resources,
@@ -55,6 +58,7 @@ fun ExchangeBoardScreen(
                                 .padding(GeometryTokens.dpMedium)
                                 .clip(shape = MaterialTheme.shapes.medium)
                                 .fillMaxWidth()
+                                .animateItem()
                         )
                     }
                     is ResourceOffer -> {
@@ -68,6 +72,7 @@ fun ExchangeBoardScreen(
                                 .padding(GeometryTokens.dpLarge)
                                 .clip(shape = MaterialTheme.shapes.medium)
                                 .fillMaxWidth()
+                                .animateItem()
                         )
                     }
                 }
