@@ -123,7 +123,17 @@ fun NavGraphBuilder.aidRouting(
         val hex = Uuid.parse(idString)
         Text(text = "Request: ${hex.toHexString()}")
     }
-    composable<AidDestination.OfferDetail> {
+    composable<AidDestination.OfferDetail>(
+        deepLinks = listOf(
+            navDeepLink(
+                route = AidDestination.RequestDetail::class,
+                basePath = "pdogs://"
+            ) {
+                uriPattern = "pdogs://offer/{offerId}"
+                action = "android.intent.action.VIEW"
+            }
+        ),
+    )  {
         val idString = it.toRoute<AidDestination.OfferDetail>().offerId
         val hex = Uuid.parse(idString)
         Text(text = "Offer: ${hex.toHexString()}")

@@ -20,9 +20,9 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data
-                    android:scheme="pdogs"
-                    android:host="request" />
+                <data android:scheme="pdogs" />
+                <data android:host="request" />
+                <data android:host="offer" />
             </intent-filter>
         </activity>
     </application>
