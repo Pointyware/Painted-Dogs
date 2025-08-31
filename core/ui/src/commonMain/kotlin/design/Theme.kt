@@ -5,6 +5,7 @@ package org.pointyware.painteddogs.core.ui.design
  */
 
 import androidx.compose.material3.Button
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -17,6 +18,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
  */
 @Composable
 fun PaintedDogsTheme(
+    useDynamicColors: Boolean = true,
     isDark: Boolean = false,
     content: @Composable ()->Unit,
 ) {
@@ -25,13 +27,23 @@ fun PaintedDogsTheme(
         LocalGeometry provides DefaultLocalGeometry
     ) {
         MaterialTheme(
-            colorScheme = if (isDark) darkColors else lightColors,
+            colorScheme =
+                if (useDynamicColors) {
+                    dynamicColors(isDark)
+                } else { if (isDark) darkColors else lightColors },
             shapes = shapes,
             typography = typography,
             content = content
         )
     }
 }
+
+@Composable
+fun dynamicColors(isDark: Boolean) = if (isDark) dynamicDarkColors() else dynamicLightColors()
+@Composable
+expect fun dynamicLightColors(): ColorScheme
+@Composable
+expect fun dynamicDarkColors(): ColorScheme
 
 @Preview
 @Composable

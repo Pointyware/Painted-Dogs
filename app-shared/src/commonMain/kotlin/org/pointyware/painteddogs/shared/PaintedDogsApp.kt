@@ -30,11 +30,13 @@ import kotlin.uuid.ExperimentalUuidApi
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalUuidApi::class)
 @Composable
 fun PaintedDogsApp(
+    useDynamicColors: Boolean,
     isDarkTheme: Boolean,
 ) {
     val navController = rememberNavController()
 
     PaintedDogsTheme(
+        useDynamicColors = useDynamicColors,
         isDark = isDarkTheme
     ) {
         Scaffold(
