@@ -1,5 +1,6 @@
 package org.pointyware.painteddogs.aid.data.fake
 
+import kotlinx.coroutines.CoroutineScope
 import org.pointyware.painteddogs.aid.data.AidRepository
 import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.entities.ResourceOffer
@@ -11,7 +12,9 @@ import kotlin.time.ExperimentalTime
  *
  */
 @OptIn(ExperimentalTime::class)
-class FakeAidRepository : AidRepository {
+class FakeAidRepository(
+    private val dataScope: CoroutineScope
+): AidRepository {
     override suspend fun createOffer(
         description: String,
         category: Resource,
