@@ -61,6 +61,7 @@ fun ResourceRequestItem(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(GeometryTokens.dpMedium)
             ) {
+                RequestImage()
                 ResourceImage(
                     resource = state.request.category
                 )
@@ -69,7 +70,6 @@ fun ResourceRequestItem(
                     text = state.description,
                     textAlign = TextAlign.End
                 )
-                RequestImage()
             }
             Row(
                 verticalAlignment = Alignment.CenterVertically,

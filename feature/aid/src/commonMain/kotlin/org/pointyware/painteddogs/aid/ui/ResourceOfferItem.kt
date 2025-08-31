@@ -61,6 +61,7 @@ fun ResourceOfferItem(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(GeometryTokens.dpMedium)
             ) {
+                OfferImage()
                 ResourceImage(
                     resource = state.offer.category
                 )
@@ -69,7 +70,6 @@ fun ResourceOfferItem(
                     text = state.description,
                     textAlign = TextAlign.End
                 )
-                OfferImage()
             }
             Row(
                 verticalAlignment = Alignment.CenterVertically,
