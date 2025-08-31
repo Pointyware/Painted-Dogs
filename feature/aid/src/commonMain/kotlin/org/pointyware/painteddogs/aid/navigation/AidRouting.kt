@@ -3,10 +3,10 @@ package org.pointyware.painteddogs.aid.navigation
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import org.pointyware.painteddogs.aid.entities.ResourceOffer
+import org.pointyware.painteddogs.aid.entities.ResourceRequest
 import org.pointyware.painteddogs.aid.ui.ExchangeBoardScreen
 import org.pointyware.painteddogs.aid.ui.ExchangeBoardScreenState
 import org.pointyware.painteddogs.aid.ui.OfferScreen
@@ -22,15 +22,20 @@ import org.pointyware.painteddogs.core.ui.composeKoinViewModel
  * Routing logic for Mutual Aid screens.
  */
 fun NavGraphBuilder.aidRouting(
-    navController: NavController,
-    onNavigateToOffer: (ResourceOffer)-> Unit
+    onProvideRequest: (ResourceRequest)->Unit,
+    onClaimOffer: (ResourceOffer)->Unit,
+    onNavigateToRequest: (ResourceRequest)->Unit,
+    onNavigateToOffer: (ResourceOffer)-> Unit,
 ) {
     composable<AidDestination.Board> {
         val viewModel: MutualAidViewModel = composeKoinViewModel()
         val state by viewModel.state.collectAsState()
         LaunchedEffect(Unit) {
-            viewModel.navEvent.collect { destination ->
-                navController.navigate(destination)
+            viewModel.onProvideRequest.collect { request ->
+                onProvideRequest(request)
+            }
+            viewModel.onClaimOffer.collect { offer ->
+                onClaimOffer(offer)
             }
         }
         ExchangeBoardScreen(
