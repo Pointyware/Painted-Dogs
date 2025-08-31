@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.pointyware.painteddogs.aid.entities.ResourceOffer
+import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.entities.TemporalScope
 import org.pointyware.painteddogs.aid.interactors.CreateOfferUseCase
 import org.pointyware.painteddogs.core.navigation.Destination
@@ -42,13 +42,9 @@ class OfferViewModel(
         viewModelScope.launch {
             val state = state.value
             createOfferUseCase.invoke(
-                title = state.title,
-                description = "",
-                offer = ResourceOffer(
-                    TODO(),
-                    TODO(),
-                    TODO()
-                ),
+                description = "${state.title}||${state.detailUiState.description}",
+                scope = state.scope,
+                category = state.detailUiState.category
             )
         }
     }
@@ -57,27 +53,43 @@ class OfferViewModel(
 sealed interface DetailUiState {
 
     val description: String
+    val category: Resource
 
     data class FoodDetailUiState(
         override val description: String
-    ): DetailUiState
+    ): DetailUiState {
+        override val category: Resource
+            get() = Resource.Food
+    }
 
     data class HousingDetailUiState(
         override val description: String
 
-    ): DetailUiState
+    ): DetailUiState {
+        override val category: Resource
+            get() = Resource.Housing
+    }
 
     data class FundsDetailUiState(
         override val description: String
-    ): DetailUiState
+    ): DetailUiState {
+        override val category: Resource
+            get() = Resource.Funds
+    }
 
     data class SkillsDetailUiState(
         override val description: String
-    ): DetailUiState
+    ): DetailUiState {
+        override val category: Resource
+            get() = Resource.Skills
+    }
 
     data class ProtectionDetailUiState(
         override val description: String
-    ): DetailUiState
+    ): DetailUiState {
+        override val category: Resource
+            get() = Resource.Protection
+    }
 }
 data class OfferUiState(
     val title: String,
