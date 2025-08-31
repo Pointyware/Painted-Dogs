@@ -6,6 +6,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import androidx.navigation.navDeepLink
 import androidx.navigation.toRoute
 import org.pointyware.painteddogs.aid.entities.ResourceOffer
 import org.pointyware.painteddogs.aid.entities.ResourceRequest
@@ -107,7 +108,17 @@ fun NavGraphBuilder.aidRouting(
         val hex = Uuid.parse(idString)
         Text(text = "Claim Detail: ${hex.toHexString()}")
     }
-    composable<AidDestination.RequestDetail> {
+    composable<AidDestination.RequestDetail>(
+        deepLinks = listOf(
+            navDeepLink(
+                route = AidDestination.RequestDetail::class,
+                basePath = "pdogs://"
+            ) {
+                uriPattern = "pdogs://request/{requestId}"
+                action = "android.intent.action.VIEW"
+            }
+        ),
+    ) {
         val idString = it.toRoute<AidDestination.RequestDetail>().requestId
         val hex = Uuid.parse(idString)
         Text(text = "Request: ${hex.toHexString()}")
