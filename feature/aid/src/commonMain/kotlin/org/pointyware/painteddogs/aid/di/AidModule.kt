@@ -8,6 +8,7 @@ import org.pointyware.painteddogs.aid.data.fake.FakeAidRepository
 import org.pointyware.painteddogs.aid.viewmodels.MutualAidViewModel
 import org.pointyware.painteddogs.aid.viewmodels.OfferViewModel
 import org.pointyware.painteddogs.core.data.di.dataQualifier
+import kotlin.coroutines.CoroutineContext
 
 fun aidModule() = module {
     factoryOf(::MutualAidViewModel)
@@ -16,6 +17,7 @@ fun aidModule() = module {
 
     single<AidRepository> {
         FakeAidRepository(
+            get<CoroutineContext>(qualifier = dataQualifier),
             get<CoroutineScope>(qualifier = dataQualifier)
         )
     }
