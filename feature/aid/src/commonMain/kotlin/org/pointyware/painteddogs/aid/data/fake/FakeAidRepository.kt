@@ -21,7 +21,7 @@ import kotlin.uuid.Uuid
 class FakeAidRepository(
     private val dataContext: CoroutineContext,
     private val dataScope: CoroutineScope,
-    private val defaultDelay: Long = 800,
+    private val defaultDelay: Long = 400,
 ): AidRepository {
 
     // TODO: maintain offer and requests internally; search for matches on creation
