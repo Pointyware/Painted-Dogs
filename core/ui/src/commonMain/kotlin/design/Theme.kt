@@ -4,6 +4,7 @@ package org.pointyware.painteddogs.core.ui.design
  * Combines primitives to create a Painted Dogs theme
  */
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.Button
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
@@ -19,7 +20,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 fun PaintedDogsTheme(
     useDynamicColors: Boolean = true,
-    isDark: Boolean = false,
+    isDark: Boolean = isSystemInDarkTheme(),
     content: @Composable ()->Unit,
 ) {
     CompositionLocalProvider(

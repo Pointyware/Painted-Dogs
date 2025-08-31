@@ -16,8 +16,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             PaintedDogsTheme {
                 PaintedDogsApp(
-                    useDynamicColors = true,
-                    isDarkTheme = isSystemInDarkTheme()
+                    useDynamicColors = true, // TODO: make user optional
+
+                    isDarkTheme = isSystemInDarkTheme() // TODO: make user optional
                 )
             }
         }
