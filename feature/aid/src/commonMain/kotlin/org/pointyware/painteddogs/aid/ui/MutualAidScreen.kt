@@ -13,7 +13,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.dp
@@ -42,13 +41,13 @@ fun ExchangeBoardScreen(
     val padding = LocalGeometry.current.paddingMedium
     Column (
         modifier = Modifier
+            .background(MaterialTheme.colorScheme.surface)
             .padding(
                 top = padding.calculateTopPadding(),
                 start = padding.calculateStartPadding(layoutDirection),
                 end = padding.calculateEndPadding(layoutDirection),
                 bottom = 0.dp
             )
-            .background(MaterialTheme.colorScheme.surface)
             .fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(GeometryTokens.dpMedium)
     ) {
@@ -66,11 +65,11 @@ fun ExchangeBoardScreen(
                             ResourceRequestItemState(request = post),
                             onProvideResource = { onRequestResponse(post) },
                             modifier = Modifier
+                                .padding(LocalGeometry.current.paddingSmall)
                                 .shadow(
                                     elevation = 8.dp,
+                                    shape = MaterialTheme.shapes.large
                                 )
-                                .padding(GeometryTokens.dpLarge)
-                                .clip(shape = MaterialTheme.shapes.medium)
                                 .fillMaxWidth()
                                 .animateItem()
                         )
@@ -80,11 +79,11 @@ fun ExchangeBoardScreen(
                             state = ResourceOfferItemState(offer = post),
                             onClaimOffer = { onOfferClaim(post) },
                             modifier = Modifier
+                                .padding(LocalGeometry.current.paddingSmall)
                                 .shadow(
                                     elevation = 8.dp,
+                                    shape = MaterialTheme.shapes.large
                                 )
-                                .padding(GeometryTokens.dpLarge)
-                                .clip(shape = MaterialTheme.shapes.medium)
                                 .fillMaxWidth()
                                 .animateItem()
                         )

@@ -51,7 +51,8 @@ fun ResourceOfferItem(
         modifier = modifier
     ) {
         Column(
-            modifier = Modifier.padding(LocalGeometry.current.paddingMedium),
+            modifier = Modifier
+                .padding(LocalGeometry.current.paddingMedium),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Row(
