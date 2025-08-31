@@ -42,8 +42,32 @@ private fun AidBoardViewPreview() {
                         description = "Escort to School",
                         timePosted = nextDateTime.toInstant(timeZone)
                     ),
-
+                    ResourceRequest(
+                        category = Resource.Protection,
+                        description = "Escort to School",
+                        timePosted = nextDateTime.toInstant(timeZone)
                     ),
+                    ResourceOffer(
+                        category = Resource.Food,
+                        description = "Lots of rice",
+                        timePosted = referenceDateTime.toInstant(timeZone)
+                    ),
+                    ResourceRequest(
+                        category = Resource.Protection,
+                        description = "Escort to School",
+                        timePosted = nextDateTime.toInstant(timeZone)
+                    ),
+                    ResourceOffer(
+                        category = Resource.Food,
+                        description = "Lots of rice",
+                        timePosted = referenceDateTime.toInstant(timeZone)
+                    ),
+                    ResourceOffer(
+                        category = Resource.Food,
+                        description = "Lots of rice",
+                        timePosted = referenceDateTime.toInstant(timeZone)
+                    )
+                ),
                 resources = setOf()
             ),
             onOfferClaim = { },
