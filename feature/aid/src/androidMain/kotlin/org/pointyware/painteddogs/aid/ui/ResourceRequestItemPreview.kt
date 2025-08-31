@@ -28,7 +28,7 @@ private fun ResourceRequestItemPreview(
 
 
 @OptIn(ExperimentalTime::class)
-object ResourceRequestItemStateProvider: PreviewParameterProvider<ResourceRequestItemState> {
+class ResourceRequestItemStateProvider: PreviewParameterProvider<ResourceRequestItemState> {
     override val values: Sequence<ResourceRequestItemState>
         get() = sequenceOf(
             ResourceRequestItemState(
