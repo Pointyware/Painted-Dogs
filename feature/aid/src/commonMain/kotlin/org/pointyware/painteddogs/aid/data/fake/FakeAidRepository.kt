@@ -24,7 +24,8 @@ class FakeAidRepository(
     private val defaultDelay: Long = 400,
 ): AidRepository {
 
-    // TODO: maintain offer and requests internally; search for matches on creation
+    private val offerMap: MutableMap<Uuid, ResourceOffer> = mutableMapOf()
+    private val requestMap: MutableMap<Uuid, ResourceRequest> = mutableMapOf()
 
     override suspend fun createOffer(
         description: String,
@@ -32,13 +33,15 @@ class FakeAidRepository(
         scope: TemporalScope
     ): Result<ResourceOffer> = withContext(dataContext) {
         delay(defaultDelay)
-        Result.success(ResourceOffer(
+        val newOffer = ResourceOffer(
             category = category,
             timePosted = Clock.System.now(),
             scope = scope,
             description = description,
             id = Uuid.random()
-        ))
+        )
+        offerMap[newOffer.id] = newOffer
+        Result.success(newOffer)
     }
 
     override suspend fun createRequest(
@@ -47,12 +50,14 @@ class FakeAidRepository(
         scope: TemporalScope
     ): Result<ResourceRequest> = withContext(dataContext) {
         delay(defaultDelay)
-        Result.success(ResourceRequest(
+        val newRequest = ResourceRequest(
             category = category,
             timePosted = Clock.System.now(),
             scope = scope,
             description = description,
             id = Uuid.random()
-        ))
+        )
+        requestMap[newRequest.id] = newRequest
+        Result.success(newRequest)
     }
 }
