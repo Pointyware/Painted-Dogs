@@ -45,14 +45,6 @@ sealed interface AidDestination: Destination {
     ): AidDestination
 
     /**
-     * Detail screen to define claim parameters in response to
-     * a specific [org.pointyware.painteddogs.aid.entities.ResourceOffer]
-     * indicated by the given [offerId].
-     */
-    @Serializable
-    data class ClaimDetail(val offerId: String): AidDestination
-
-    /**
      * Detail screen of a [org.pointyware.painteddogs.aid.entities.ResourceRequest]
      * indicated by the given [requestId].
      */
@@ -66,3 +58,11 @@ sealed interface AidDestination: Destination {
     @Serializable
     data class OfferDetail(val offerId: String): AidDestination
 }
+
+/**
+ * Detail screen to define claim parameters in response to
+ * a specific [org.pointyware.painteddogs.aid.entities.ResourceOffer]
+ * indicated by the given [offerId].
+ */
+@Serializable
+data class ClaimDetail(val offerId: String): AidDestination

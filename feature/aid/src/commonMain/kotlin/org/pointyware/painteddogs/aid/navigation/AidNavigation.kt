@@ -18,7 +18,7 @@ fun NavController.navigateToSupportDetail(requestId: String) {
 }
 
 fun NavController.navigateToClaimDetail(offerId: String) {
-    navigate(AidDestination.ClaimDetail(offerId))
+    navigate(ClaimDetail(offerId))
 }
 
 fun NavController.navigateToRequestDetail(requestId: String) {
