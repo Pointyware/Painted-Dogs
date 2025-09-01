@@ -110,8 +110,8 @@ fun NavGraphBuilder.aidRouting(
         )
     }
 
-    composable<AidDestination.SupportDetail> {
-        val idString = it.toRoute<AidDestination.SupportDetail>().requestId
+    composable<SupportDetailDestination> {
+        val idString = it.toRoute<SupportDetailDestination>().requestId
         val hex = Uuid.parse(idString)
         Text(text = "Support Detail: ${hex.toHexString()}")
     }

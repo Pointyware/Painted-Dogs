@@ -5,7 +5,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import org.pointyware.painteddogs.aid.entities.Resource
 
 fun NavController.navigateToSupportDetail(requestId: String) {
-    navigate(AidDestination.SupportDetail(requestId))
+    navigate(SupportDetailDestination(requestId))
 }
 
 fun NavController.navigateToClaimDetail(offerId: String) {
