@@ -66,6 +66,7 @@ fun ResourceOfferItem(
                     resource = state.offer.category
                 )
                 Text(
+                    style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.weight(1f),
                     text = state.description,
                     textAlign = TextAlign.End

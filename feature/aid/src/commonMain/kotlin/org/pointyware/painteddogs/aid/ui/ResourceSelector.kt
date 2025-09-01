@@ -1,5 +1,6 @@
 package org.pointyware.painteddogs.aid.ui
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MultiChoiceSegmentedButtonRow
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
@@ -53,6 +54,7 @@ fun MultiResourceSelector(
                 shape = SegmentedButtonDefaults.itemShape(index = index, count = entries.size),
             ) {
                 Text(
+                    style = MaterialTheme.typography.labelSmall,
                     text = stringForResource(resource),
                     softWrap = false,
                     overflow = TextOverflow.Ellipsis
