@@ -4,7 +4,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
@@ -42,16 +41,10 @@ fun NavGraphBuilder.chatHistoryDestination(
         )
     }
 }
-@OptIn(ExperimentalUuidApi::class)
-fun NavGraphBuilder.chatRouting(
-    navController: NavController,
-    onNavigateToChatSession: (String) -> Unit,
-    onNavigateToNewChat: () -> Unit,
+
+fun NavGraphBuilder.newChatDestination(
+    onNavigateToChatSession: (String)->Unit,
 ) {
-    chatHistoryDestination(
-        onNavigateToChatSession = onNavigateToChatSession,
-        onNavigateToNewChat = onNavigateToNewChat
-    )
 
     composable<ChatDestination.New> {
         val koin = remember { getKoin() }
@@ -59,11 +52,23 @@ fun NavGraphBuilder.chatRouting(
 
         NewChatScreen(
             newChatViewModel,
-            navigateToChatDetails = { chatId ->
-                navController.navigate(ChatDestination.Session(chatId))
-            }
+            onNavigateToChatSession = onNavigateToChatSession
         )
     }
+}
+@OptIn(ExperimentalUuidApi::class)
+fun NavGraphBuilder.chatRouting(
+    onNavigateToNewChat: () -> Unit,
+    onNavigateToChatSession: (String) -> Unit,
+) {
+    chatHistoryDestination(
+        onNavigateToChatSession = onNavigateToChatSession,
+        onNavigateToNewChat = onNavigateToNewChat
+    )
+
+    newChatDestination(
+        onNavigateToChatSession = onNavigateToChatSession
+    )
 
     composable<ChatDestination.Session> {
         val route = it.toRoute<ChatDestination.Session>()

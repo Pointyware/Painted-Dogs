@@ -39,14 +39,14 @@ import org.pointyware.painteddogs.core.ui.design.LocalGeometry
 @Composable
 fun NewChatScreen(
     viewModel: NewChatViewModel,
-    navigateToChatDetails: (String)->Unit,
+    onNavigateToChatSession: (String)->Unit,
 ) {
     val state by viewModel.editorState.collectAsState()
     val geometry = LocalGeometry.current
 
     LaunchedEffect(viewModel) {
         viewModel.chatCreated.collect { chatId ->
-            navigateToChatDetails(chatId)
+            onNavigateToChatSession(chatId)
         }
     }
     Box {

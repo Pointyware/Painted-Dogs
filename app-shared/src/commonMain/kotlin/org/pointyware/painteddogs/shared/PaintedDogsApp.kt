@@ -98,8 +98,8 @@ fun PaintedDogsApp(
                 ) {
                     chatRouting(
                         navController,
-                        onNavigateToChatSession = navController::navigateToChatSession,
                         onNavigateToNewChat = navController::navigateToNewChat,
+                        onNavigateToChatSession = navController::navigateToChatSession,
                     )
                 }
                 navigation<AidDestination.Root>(
