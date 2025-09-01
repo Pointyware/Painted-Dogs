@@ -56,6 +56,23 @@ fun NavGraphBuilder.newChatDestination(
         )
     }
 }
+
+fun NavGraphBuilder.chatSessionDestination(
+
+) {
+    composable<ChatDestination.Session> {
+        val route = it.toRoute<ChatDestination.Session>()
+        val koin = remember { getKoin() }
+        val messagesViewModel = remember { ChatViewModel(koin.get()) }
+
+        LaunchedEffect(route.id) {
+            messagesViewModel.loadMessages(route.id)
+        }
+        ChatScreen(
+            viewModel = messagesViewModel,
+        )
+    }
+}
 @OptIn(ExperimentalUuidApi::class)
 fun NavGraphBuilder.chatRouting(
     onNavigateToNewChat: () -> Unit,
@@ -70,16 +87,7 @@ fun NavGraphBuilder.chatRouting(
         onNavigateToChatSession = onNavigateToChatSession
     )
 
-    composable<ChatDestination.Session> {
-        val route = it.toRoute<ChatDestination.Session>()
-        val koin = remember { getKoin() }
-        val messagesViewModel = remember { ChatViewModel(koin.get()) }
+    chatSessionDestination(
 
-        LaunchedEffect(route.id) {
-            messagesViewModel.loadMessages(route.id)
-        }
-        ChatScreen(
-            viewModel = messagesViewModel,
-        )
-    }
+    )
 }
