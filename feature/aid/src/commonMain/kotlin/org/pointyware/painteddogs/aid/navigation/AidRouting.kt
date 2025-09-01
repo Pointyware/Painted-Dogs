@@ -134,9 +134,9 @@ fun NavGraphBuilder.aidRouting(
         val hex = Uuid.parse(idString)
         Text(text = "Request: ${hex.toHexString()}")
     }
-    composable<AidDestination.OfferDetail>(
+    composable<OfferDetail>(
         deepLinks = listOf(
-            navDeepLink<AidDestination.OfferDetail>(
+            navDeepLink<OfferDetail>(
                 basePath = "pdogs://"
             ) {
                 uriPattern = "pdogs://offer/{offerId}"
@@ -144,7 +144,7 @@ fun NavGraphBuilder.aidRouting(
             }
         ),
     )  {
-        val idString = it.toRoute<AidDestination.OfferDetail>().offerId
+        val idString = it.toRoute<OfferDetail>().offerId
         val hex = Uuid.parse(idString)
         Text(text = "Offer: ${hex.toHexString()}")
     }

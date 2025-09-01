@@ -42,7 +42,7 @@ fun NavController.navigateToRequestDetail(requestId: String) {
 }
 
 fun NavController.navigateToOfferDetail(offerId: String) {
-    navigate(AidDestination.OfferDetail(offerId)) {
+    navigate(OfferDetail(offerId)) {
         popUpTo(graph.findStartDestination().id)
     }
 }
