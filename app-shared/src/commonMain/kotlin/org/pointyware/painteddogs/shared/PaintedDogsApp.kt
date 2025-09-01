@@ -43,12 +43,12 @@ fun PaintedDogsApp(
             topBar = { PaintedDogsTopBar(navController) },
             bottomBar = { PaintedDogsBottomBar(
                 onNavigateToChat = {
-                    navController.navigate(ChatDestination()) {
+                    navController.navigate(ChatDestination.Root) {
                         launchSingleTop = true
                     }
                 },
                 onNavigateToAid = {
-                    navController.navigate(AidDestination()) {
+                    navController.navigate(AidDestination.Root) {
                         launchSingleTop = true
                     }
                 }
@@ -59,7 +59,7 @@ fun PaintedDogsApp(
                 modifier = Modifier
                     .padding(paddingValues)
                     .fillMaxSize(),
-                startDestination = ChatDestination(),
+                startDestination = ChatDestination.Root,
                 enterTransition = {
                     // Animation used for the entering new Screen
                     EnterTransition.None
@@ -82,12 +82,12 @@ fun PaintedDogsApp(
                 },
                 typeMap = navTypeMap()
             ) {
-                navigation<ChatDestination>(
+                navigation<ChatDestination.Root>(
                     startDestination = ChatDestination.History
                 ) {
                     chatRouting(navController)
                 }
-                navigation<AidDestination>(
+                navigation<AidDestination.Root>(
                     startDestination = AidDestination.Board
                 ) {
                     aidRouting(
