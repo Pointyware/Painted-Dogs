@@ -43,10 +43,14 @@ fun PaintedDogsApp(
             topBar = { PaintedDogsTopBar(navController) },
             bottomBar = { PaintedDogsBottomBar(
                 onNavigateToChat = {
-                    navController.navigate(ChatDestination())
+                    navController.navigate(ChatDestination()) {
+                        launchSingleTop = true
+                    }
                 },
                 onNavigateToAid = {
-                    navController.navigate(AidDestination())
+                    navController.navigate(AidDestination()) {
+                        launchSingleTop = true
+                    }
                 }
             ) }
         ) { paddingValues ->
@@ -94,13 +98,21 @@ fun PaintedDogsApp(
                             navController.navigate(AidDestination.ClaimDetail(it.id.toString()))
                         },
                         onNavigateToRequest = {
-                            navController.navigate(AidDestination.RequestDetail(it.id.toString()))
+                            navController.navigate(AidDestination.RequestDetail(it.id.toString())) {
+                                popUpTo(route = AidDestination.Board)
+                            }
                         },
                         onNavigateToOffer = {
-                            navController.navigate(AidDestination.OfferDetail(it.id.toString()))
+                            navController.navigate(AidDestination.OfferDetail(it.id.toString())) {
+                                popUpTo(route = AidDestination.Board)
+                            }
                         },
                         onCreateOffer = { resource ->
-                            navController.navigate(AidDestination.DraftOffer(resource))
+                            navController.navigate(AidDestination.DraftOffer(resource)) {
+                                launchSingleTop = true
+                                restoreState = true
+                                popUpTo(route = AidDestination.Board)
+                            }
                         }
                     )
                 }
