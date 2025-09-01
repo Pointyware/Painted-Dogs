@@ -57,6 +57,7 @@ fun NavGraphBuilder.aidRouting(
             onOfferClaim = viewModel::onOfferClaim,
             onRequestResponse = viewModel::onRequestResponse,
             onResourceFilterChanged = viewModel::onResourceFilterChanged,
+            onResourceCategoryChanged = viewModel::onSetResourceCategory,
             onCreateOffer = onCreateOffer
         )
     }

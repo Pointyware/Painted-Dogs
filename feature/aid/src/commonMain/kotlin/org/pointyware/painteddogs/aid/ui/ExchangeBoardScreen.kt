@@ -38,7 +38,6 @@ import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.entities.ResourceExchange
 import org.pointyware.painteddogs.aid.entities.ResourceOffer
 import org.pointyware.painteddogs.aid.entities.ResourceRequest
-import org.pointyware.painteddogs.aid.label_resource
 import org.pointyware.painteddogs.core.ui.design.GeometryTokens
 import org.pointyware.painteddogs.core.ui.design.LocalGeometry
 import kotlin.time.ExperimentalTime
@@ -67,6 +66,7 @@ fun ExchangeBoardScreen(
     onOfferClaim: (ResourceOffer)->Unit,
     onRequestResponse: (ResourceRequest)->Unit,
     onResourceFilterChanged: (Set<Resource>)->Unit,
+    onResourceCategoryChanged: (Resource)->Unit,
     onCreateOffer: (Resource)->Unit
 ) {
     val layoutDirection = LocalLayoutDirection.current
@@ -122,7 +122,9 @@ fun ExchangeBoardScreen(
                     }
                 ) {
                     Text(
-                        text = stringResource(Res.string.label_resource)
+                        modifier = Modifier.weight(1f),
+                        style = MaterialTheme.typography.labelMedium,
+                        text = stringForResource(state.category)
                     )
                 }
                 IconButton(
@@ -146,10 +148,13 @@ fun ExchangeBoardScreen(
                 Resource.entries.forEach { resource ->
                     DropdownMenuItem(
                         text = {
-                            Text(text = stringForResource(resource))
+                            Text(
+                                style = MaterialTheme.typography.labelMedium,
+                                text = stringForResource(resource)
+                            )
                         },
                         onClick = {
-                            onCreateOffer(resource)
+                            onResourceCategoryChanged(resource)
                             menuOpen = false
                         },
                     )

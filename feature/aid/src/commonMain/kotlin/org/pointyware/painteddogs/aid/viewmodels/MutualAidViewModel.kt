@@ -29,6 +29,12 @@ class MutualAidViewModel(
     private val _state = MutableStateFlow(MutualAidUiState.Default)
     val state: StateFlow<MutualAidUiState> = _state.asStateFlow()
 
+    fun onSetResourceCategory(resource: Resource) {
+        _state.update {
+            it.copy(category = resource)
+        }
+    }
+
     fun onOfferClaim(resourceOffer: ResourceOffer) {
 
     }

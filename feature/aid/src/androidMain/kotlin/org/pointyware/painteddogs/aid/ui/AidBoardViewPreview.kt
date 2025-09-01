@@ -93,6 +93,7 @@ private fun AidBoardViewPreview() {
             onOfferClaim = { },
             onRequestResponse = { },
             onResourceFilterChanged = { },
+            onResourceCategoryChanged = { },
             onCreateOffer = { }
         )
     }
