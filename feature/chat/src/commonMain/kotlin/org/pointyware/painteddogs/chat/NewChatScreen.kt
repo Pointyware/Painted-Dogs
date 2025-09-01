@@ -29,7 +29,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.window.Dialog
-import androidx.navigation.NavController
 import org.jetbrains.compose.resources.stringResource
 import org.pointyware.painteddogs.chat.ui.ContactRow
 import org.pointyware.painteddogs.chat.viewmodels.ContactsUiState
@@ -39,14 +38,14 @@ import org.pointyware.painteddogs.core.ui.design.LocalGeometry
 @Composable
 fun NewChatScreen(
     viewModel: NewChatViewModel,
-    navController: NavController
+    navigateToChatDetails: (String)->Unit,
 ) {
     val state by viewModel.editorState.collectAsState()
     val geometry = LocalGeometry.current
 
     LaunchedEffect(viewModel) {
-        viewModel.navEvent.collect { destination ->
-            navController.navigate(destination)
+        viewModel.chatCreated.collect { chatId ->
+            navigateToChatDetails(chatId)
         }
     }
     Box {

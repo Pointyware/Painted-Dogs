@@ -19,9 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
-import androidx.navigation.NavController
 import org.jetbrains.compose.resources.stringResource
-import org.pointyware.painteddogs.chat.navigation.ChatDestination
 import org.pointyware.painteddogs.chat.ui.ChatRowView
 import org.pointyware.painteddogs.chat.ui.ChatRowViewState
 import org.pointyware.painteddogs.chat.ui.ParticipantImage
@@ -31,8 +29,9 @@ import org.pointyware.painteddogs.core.ui.design.LocalGeometry
 
 @Composable
 fun ChatHistoryScreen(
-    navController: NavController,
-    viewModel: ChatHistoryViewModel
+    viewModel: ChatHistoryViewModel,
+    onViewChatSession: (String)->Unit,
+    onCreateNewChat: ()->Unit,
 ) {
     val chatHistory by viewModel.chatList.collectAsState()
     val geometry = LocalGeometry.current
@@ -54,9 +53,7 @@ fun ChatHistoryScreen(
                         },
                         excerpt = chatRecord.excerpt,
                     ),
-                    modifier = Modifier.fillMaxWidth().clickable {
-                        navController.navigate(ChatDestination.Session(chatRecord.id))
-                    }
+                    modifier = Modifier.fillMaxWidth().clickable(onClick = { onViewChatSession(chatRecord.id) })
                 )
                 HorizontalDivider(
                     modifier = Modifier.padding(geometry.paddingSmall),
@@ -70,11 +67,7 @@ fun ChatHistoryScreen(
                 .align(Alignment.BottomEnd)
                 .padding(LocalGeometry.current.paddingSmall)
                 .safeContentPadding(),
-            onClick = {
-                navController.navigate(ChatDestination.New) {
-                    popUpTo(ChatDestination.History)
-                }
-            }
+            onClick = onCreateNewChat
         ) {
             Icon(
                 imageVector = Icons.Default.Create,

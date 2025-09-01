@@ -44,12 +44,20 @@ fun PaintedDogsApp(
             bottomBar = { PaintedDogsBottomBar(
                 onNavigateToChat = {
                     navController.navigate(ChatDestination.Root) {
-                        launchSingleTop = true
+                        popUpTo(ChatDestination.Root) {
+                            inclusive = true
+                            saveState = true
+                        }
+                        restoreState = true
                     }
                 },
                 onNavigateToAid = {
                     navController.navigate(AidDestination.Root) {
-                        launchSingleTop = true
+                        popUpTo<AidDestination.Root> {
+                            inclusive = true
+                            saveState = true
+                        }
+                        restoreState = true
                     }
                 }
             ) }
@@ -85,7 +93,9 @@ fun PaintedDogsApp(
                 navigation<ChatDestination.Root>(
                     startDestination = ChatDestination.History
                 ) {
-                    chatRouting(navController)
+                    chatRouting(
+                        navController
+                    )
                 }
                 navigation<AidDestination.Root>(
                     startDestination = AidDestination.Board

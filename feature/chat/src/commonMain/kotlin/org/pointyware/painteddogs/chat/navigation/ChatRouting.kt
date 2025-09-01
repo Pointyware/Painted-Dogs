@@ -28,7 +28,14 @@ fun NavGraphBuilder.chatRouting(
         }
         ChatHistoryScreen(
             viewModel = chatViewModel,
-            navController = navController
+            onViewChatSession = { chatId ->
+                navController.navigate(ChatDestination.Session(chatId))
+            },
+            onCreateNewChat = {
+                navController.navigate(ChatDestination.New) {
+                    launchSingleTop = true
+                }
+            }
         )
     }
 
@@ -38,7 +45,9 @@ fun NavGraphBuilder.chatRouting(
 
         NewChatScreen(
             newChatViewModel,
-            navController
+            navigateToChatDetails = { chatId ->
+                navController.navigate(ChatDestination.Session(chatId))
+            }
         )
     }
 
@@ -52,7 +61,6 @@ fun NavGraphBuilder.chatRouting(
         }
         ChatScreen(
             viewModel = messagesViewModel,
-            navController = navController
         )
     }
 }
