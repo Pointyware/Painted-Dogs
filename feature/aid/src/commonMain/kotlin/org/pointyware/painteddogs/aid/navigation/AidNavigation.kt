@@ -17,8 +17,15 @@ fun NavController.navigateToSupportDetail(requestId: String) {
     navigate(SupportDetailDestination(requestId))
 }
 
+/**
+ * Detail screen to define claim parameters in response to
+ * a specific [org.pointyware.painteddogs.aid.entities.ResourceOffer]
+ * indicated by the given [offerId].
+ */
+@Serializable
+data class ClaimDetailDestination(val offerId: String): AidDestination
 fun NavController.navigateToClaimDetail(offerId: String) {
-    navigate(ClaimDetail(offerId))
+    navigate(ClaimDetailDestination(offerId))
 }
 
 fun NavController.navigateToRequestDetail(requestId: String) {

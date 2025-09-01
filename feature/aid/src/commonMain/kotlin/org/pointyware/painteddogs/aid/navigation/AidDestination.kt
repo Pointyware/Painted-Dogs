@@ -59,10 +59,3 @@ sealed interface AidDestination: Destination {
     data class OfferDetail(val offerId: String): AidDestination
 }
 
-/**
- * Detail screen to define claim parameters in response to
- * a specific [org.pointyware.painteddogs.aid.entities.ResourceOffer]
- * indicated by the given [offerId].
- */
-@Serializable
-data class ClaimDetail(val offerId: String): AidDestination
