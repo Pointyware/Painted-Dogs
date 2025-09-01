@@ -13,6 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import org.pointyware.painteddogs.aid.navigation.AidDestination
+import org.pointyware.painteddogs.aid.navigation.AidRootDestination
 import org.pointyware.painteddogs.aid.navigation.aidRouting
 import org.pointyware.painteddogs.aid.navigation.navigateToClaimDetail
 import org.pointyware.painteddogs.aid.navigation.navigateToOfferDetail
@@ -60,7 +61,7 @@ fun PaintedDogsApp(
                     }
                 },
                 onNavigateToAid = {
-                    navController.navigate(AidDestination.Root) {
+                    navController.navigate(AidRootDestination) {
                         launchSingleTop = true
                         popUpTo(navController.graph.findStartDestination().id) {
                             saveState = true
@@ -106,7 +107,7 @@ fun PaintedDogsApp(
                         onNavigateToChatSession = navController::navigateToChatSession,
                     )
                 }
-                navigation<AidDestination.Root>(
+                navigation<AidRootDestination>(
                     startDestination = AidDestination.Board
                 ) {
                     aidRouting(

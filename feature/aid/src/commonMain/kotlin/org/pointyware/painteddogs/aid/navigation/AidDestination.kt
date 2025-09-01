@@ -18,11 +18,6 @@ import org.pointyware.painteddogs.core.navigation.Destination
 @Serializable
 sealed interface AidDestination: Destination {
     /**
-     *
-     */
-    @Serializable
-    data object Root: AidDestination
-    /**
      * The Mutual Aid notice board Screen with all requests and offers.
      */
     @Serializable
@@ -51,3 +46,9 @@ sealed interface AidDestination: Destination {
     @Serializable
     data class OfferDetail(val offerId: String): AidDestination
 }
+
+/**
+ * The navigation type for the root of the mutual aid nested navigation graph.
+ */
+@Serializable
+data object AidRootDestination: AidDestination
