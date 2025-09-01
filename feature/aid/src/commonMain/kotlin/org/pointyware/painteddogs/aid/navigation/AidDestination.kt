@@ -38,11 +38,3 @@ sealed interface AidDestination: Destination {
  */
 @Serializable
 data object AidRootDestination: AidDestination
-
-/**
- * The Screen where a user can offer a resource for the mutual aid network.
- */
-@Serializable
-data class DraftOffer(
-    val resource: Resource
-): AidDestination

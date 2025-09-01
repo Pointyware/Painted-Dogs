@@ -57,8 +57,19 @@ fun NavController.navigateToOfferDetail(offerId: String) {
     }
 }
 
+/**
+ * The Screen where a user can offer a resource for the mutual aid network.
+ */
+@Serializable
+data class DraftOfferDestination(
+    val resource: Resource
+): AidDestination
+
+/**
+ *
+ */
 fun NavController.navigateToOfferDraft(resource: Resource) {
-    navigate(DraftOffer(resource)) {
+    navigate(DraftOfferDestination(resource)) {
         launchSingleTop = true
         restoreState = true
         popUpTo(route = AidDestination.Board)

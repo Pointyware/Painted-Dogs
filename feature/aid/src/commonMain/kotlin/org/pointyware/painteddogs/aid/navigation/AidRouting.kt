@@ -62,8 +62,8 @@ fun NavGraphBuilder.aidRouting(
         )
     }
 
-    composable<DraftOffer> { navEntry ->
-        val route = navEntry.toRoute<DraftOffer>()
+    composable<DraftOfferDestination> { navEntry ->
+        val route = navEntry.toRoute<DraftOfferDestination>()
         val viewModel: OfferViewModel = composeKoinViewModel()
         val state by viewModel.state.collectAsState()
         val error by viewModel.error.collectAsState()
