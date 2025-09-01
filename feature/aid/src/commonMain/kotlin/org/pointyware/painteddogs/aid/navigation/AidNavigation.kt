@@ -29,7 +29,7 @@ fun NavController.navigateToClaimDetail(offerId: String) {
 }
 
 fun NavController.navigateToRequestDetail(requestId: String) {
-    navigate(AidDestination.RequestDetail(requestId)) {
+    navigate(RequestDetail(requestId)) {
         popUpTo(graph.findStartDestination().id)
     }
 }

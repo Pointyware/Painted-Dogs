@@ -45,13 +45,6 @@ sealed interface AidDestination: Destination {
     ): AidDestination
 
     /**
-     * Detail screen of a [org.pointyware.painteddogs.aid.entities.ResourceRequest]
-     * indicated by the given [requestId].
-     */
-    @Serializable
-    data class RequestDetail(val requestId: String): AidDestination
-
-    /**
      * Detail screen of a [org.pointyware.painteddogs.aid.entities.ResourceOffer]
      * indicated by the given [offerId].
      */
@@ -59,3 +52,9 @@ sealed interface AidDestination: Destination {
     data class OfferDetail(val offerId: String): AidDestination
 }
 
+/**
+ * Detail screen of a [org.pointyware.painteddogs.aid.entities.ResourceRequest]
+ * indicated by the given [requestId].
+ */
+@Serializable
+data class RequestDetail(val requestId: String): AidDestination
