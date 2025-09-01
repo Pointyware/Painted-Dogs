@@ -34,9 +34,15 @@ class OfferViewModel(
         }
     }
 
-    fun onChangeTitle(title: String) {
+    fun onChangeDescription(description: String) {
         _state.update {
-            it.copy(title = title)
+            it.copy(description = description)
+        }
+    }
+
+    fun onSetResourceCategory(resource: Resource) {
+        _state.update {
+            it.copy(category = resource)
         }
     }
 
@@ -48,9 +54,9 @@ class OfferViewModel(
         viewModelScope.launch {
             val state = state.value
             createOfferUseCase.invoke(
-                description = "${state.title}||${state.detailUiState.description}",
+                description = state.description,
                 scope = state.scope,
-                category = state.detailUiState.category)
+                category = state.category)
                 .onSuccess { offer ->
 
                 }
@@ -103,17 +109,15 @@ sealed interface DetailUiState {
     }
 }
 data class OfferUiState(
-    val title: String,
+    val description: String,
+    val category: Resource,
     val scope: TemporalScope,
-    val detailUiState: DetailUiState
 ) {
     companion object {
         val Default = OfferUiState(
-            title = "",
-            scope = TemporalScope.Indefinite,
-            detailUiState = DetailUiState.FoodDetailUiState(
-                ""
-            )
+            description = "",
+            category = Resource.Food,
+            scope = TemporalScope.Indefinite
         )
     }
 }

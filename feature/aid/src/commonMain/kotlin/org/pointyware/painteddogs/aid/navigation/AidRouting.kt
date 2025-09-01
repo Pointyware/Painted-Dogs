@@ -61,9 +61,11 @@ fun NavGraphBuilder.aidRouting(
     }
 
     composable<AidDestination.DraftOffer> {
+        val route = it.toRoute<AidDestination.DraftOffer>()
         val viewModel: OfferViewModel = composeKoinViewModel()
         val state by viewModel.state.collectAsState()
         LaunchedEffect(Unit) {
+            viewModel.onSetResourceCategory(route.resource)
             viewModel.onOfferCreated.collect {
                 onNavigateToOffer(it)
             }
@@ -71,12 +73,12 @@ fun NavGraphBuilder.aidRouting(
         OfferScreen(
             state = state.let {
                 OfferScreenState(
-                    title = it.title,
+                    description = it.description,
                     scope = it.scope,
                 )
             },
             onSelectTemporalScope = viewModel::onSelectTemporalScope,
-            onChangeTitle = viewModel::onChangeTitle,
+            onChangeDescription = viewModel::onChangeDescription,
             onSubmit = viewModel::onSubmit,
         )
     }

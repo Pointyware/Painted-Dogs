@@ -9,10 +9,11 @@ import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.stringResource
 import org.pointyware.painteddogs.aid.Res
 import org.pointyware.painteddogs.aid.entities.TemporalScope
+import org.pointyware.painteddogs.aid.label_description
 import org.pointyware.painteddogs.aid.label_submit
 
 data class OfferScreenState(
-    val title: String,
+    val description: String,
     val scope: TemporalScope,
 )
 
@@ -20,7 +21,7 @@ data class OfferScreenState(
 fun OfferScreen(
     state: OfferScreenState,
     onSelectTemporalScope: (TemporalScope)->Unit,
-    onChangeTitle: (String)->Unit,
+    onChangeDescription: (String)->Unit,
     onSubmit: ()->Unit
 ) {
     Column(
@@ -34,8 +35,13 @@ fun OfferScreen(
 
         TextField(
             modifier = Modifier,
-            value = state.title,
-            onValueChange = onChangeTitle
+            value = state.description,
+            onValueChange = onChangeDescription,
+            label = {
+                Text(
+                    text = stringResource(Res.string.label_description)
+                )
+            }
         )
 
         Button(
