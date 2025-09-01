@@ -87,7 +87,8 @@ private fun AidBoardViewPreview() {
                         timePosted = referenceDateTime.toInstant(timeZone)
                     )
                 ),
-                resources = setOf()
+                resources = setOf(),
+                category = Resource.Food
             ),
             onOfferClaim = { },
             onRequestResponse = { },
