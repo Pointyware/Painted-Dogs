@@ -14,26 +14,30 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import org.jetbrains.compose.resources.stringResource
+import org.pointyware.painteddogs.chat.interactors.ChatPreview
 import org.pointyware.painteddogs.chat.ui.ChatRowView
 import org.pointyware.painteddogs.chat.ui.ChatRowViewState
 import org.pointyware.painteddogs.chat.ui.ParticipantImage
 import org.pointyware.painteddogs.chat.ui.ParticipantViewState
-import org.pointyware.painteddogs.chat.viewmodels.ChatHistoryViewModel
 import org.pointyware.painteddogs.core.ui.design.LocalGeometry
 
+data class ChatHistoryScreenState(
+    val chats: List<ChatPreview>
+)
+
+/**
+ *
+ */
 @Composable
 fun ChatHistoryScreen(
-    viewModel: ChatHistoryViewModel,
+    state: ChatHistoryScreenState,
     onViewChatSession: (String)->Unit,
     onCreateNewChat: ()->Unit,
 ) {
-    val chatHistory by viewModel.chatList.collectAsState()
     val geometry = LocalGeometry.current
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -42,7 +46,7 @@ fun ChatHistoryScreen(
             modifier = Modifier.fillMaxWidth(),
             contentPadding = geometry.paddingMedium,
         ) {
-            items(chatHistory) { chatRecord ->
+            items(state.chats) { chatRecord ->
                 ChatRowView(
                     state = ChatRowViewState(
                         participants = chatRecord.participants.map { participant ->
