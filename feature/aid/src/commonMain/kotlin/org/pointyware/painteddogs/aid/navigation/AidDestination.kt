@@ -46,10 +46,3 @@ sealed interface AidDestination: Destination {
  */
 @Serializable
 data object AidRootDestination: AidDestination
-
-/**
- * Detail screen of a [org.pointyware.painteddogs.aid.entities.ResourceOffer]
- * indicated by the given [offerId].
- */
-@Serializable
-data class OfferDetail(val offerId: String): AidDestination
