@@ -28,8 +28,15 @@ fun NavController.navigateToClaimDetail(offerId: String) {
     navigate(ClaimDetailDestination(offerId))
 }
 
+/**
+ * Detail screen of a [org.pointyware.painteddogs.aid.entities.ResourceRequest]
+ * indicated by the given [requestId].
+ */
+@Serializable
+data class RequestDetailDestination(val requestId: String): AidDestination
+
 fun NavController.navigateToRequestDetail(requestId: String) {
-    navigate(RequestDetail(requestId)) {
+    navigate(RequestDetailDestination(requestId)) {
         popUpTo(graph.findStartDestination().id)
     }
 }
