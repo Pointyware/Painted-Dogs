@@ -16,6 +16,8 @@ import org.pointyware.painteddogs.aid.navigation.AidDestination
 import org.pointyware.painteddogs.aid.navigation.aidRouting
 import org.pointyware.painteddogs.chat.navigation.ChatDestination
 import org.pointyware.painteddogs.chat.navigation.chatRouting
+import org.pointyware.painteddogs.chat.navigation.navigateToChatSession
+import org.pointyware.painteddogs.chat.navigation.navigateToNewChat
 import org.pointyware.painteddogs.core.navigation.navTypeMap
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
 import org.pointyware.painteddogs.feature.funds.navigation.fundsRouting
@@ -95,7 +97,9 @@ fun PaintedDogsApp(
                     startDestination = ChatDestination.History
                 ) {
                     chatRouting(
-                        navController
+                        navController,
+                        onNavigateToChatSession = navController::navigateToChatSession,
+                        onNavigateToNewChat = navController::navigateToNewChat,
                     )
                 }
                 navigation<AidDestination.Root>(

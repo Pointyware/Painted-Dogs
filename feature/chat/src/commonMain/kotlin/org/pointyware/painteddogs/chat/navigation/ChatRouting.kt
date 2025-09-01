@@ -18,9 +18,10 @@ import org.pointyware.painteddogs.chat.viewmodels.ChatViewModel
 import org.pointyware.painteddogs.chat.viewmodels.NewChatViewModel
 import kotlin.uuid.ExperimentalUuidApi
 
-@OptIn(ExperimentalUuidApi::class)
-fun NavGraphBuilder.chatRouting(
-    navController: NavController
+
+fun NavGraphBuilder.chatHistoryDestination(
+    onNavigateToChatSession: (String)->Unit,
+    onNavigateToNewChat: ()->Unit,
 ) {
     composable<ChatDestination.History> {
         val koin = remember { getKoin() }
@@ -35,15 +36,22 @@ fun NavGraphBuilder.chatRouting(
                 chats = state
             ),
             onViewChatSession = { chatId ->
-                navController.navigate(ChatDestination.Session(chatId))
+                onNavigateToChatSession(chatId)
             },
-            onCreateNewChat = {
-                navController.navigate(ChatDestination.New) {
-                    launchSingleTop = true
-                }
-            }
+            onCreateNewChat = onNavigateToNewChat
         )
     }
+}
+@OptIn(ExperimentalUuidApi::class)
+fun NavGraphBuilder.chatRouting(
+    navController: NavController,
+    onNavigateToChatSession: (String) -> Unit,
+    onNavigateToNewChat: () -> Unit,
+) {
+    chatHistoryDestination(
+        onNavigateToChatSession = onNavigateToChatSession,
+        onNavigateToNewChat = onNavigateToNewChat
+    )
 
     composable<ChatDestination.New> {
         val koin = remember { getKoin() }
