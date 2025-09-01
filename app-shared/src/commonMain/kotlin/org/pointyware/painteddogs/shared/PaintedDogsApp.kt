@@ -14,6 +14,11 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import org.pointyware.painteddogs.aid.navigation.AidDestination
 import org.pointyware.painteddogs.aid.navigation.aidRouting
+import org.pointyware.painteddogs.aid.navigation.navigateToClaimDetail
+import org.pointyware.painteddogs.aid.navigation.navigateToOfferDetail
+import org.pointyware.painteddogs.aid.navigation.navigateToOfferDraft
+import org.pointyware.painteddogs.aid.navigation.navigateToRequestDetail
+import org.pointyware.painteddogs.aid.navigation.navigateToSupportDetail
 import org.pointyware.painteddogs.chat.navigation.ChatDestination
 import org.pointyware.painteddogs.chat.navigation.chatRouting
 import org.pointyware.painteddogs.chat.navigation.navigateToChatSession
@@ -106,28 +111,18 @@ fun PaintedDogsApp(
                 ) {
                     aidRouting(
                         onSupportRequest = {
-                            navController.navigate(AidDestination.SupportDetail(it.id.toString()))
+                            navController.navigateToSupportDetail(it.id.toString())
                         },
                         onClaimOffer = {
-                            navController.navigate(AidDestination.ClaimDetail(it.id.toString()))
+                            navController.navigateToClaimDetail(it.id.toString())
                         },
                         onNavigateToRequest = {
-                            navController.navigate(AidDestination.RequestDetail(it.id.toString())) {
-                                popUpTo(route = AidDestination.Board)
-                            }
+                            navController.navigateToRequestDetail(it.id.toString())
                         },
                         onNavigateToOffer = {
-                            navController.navigate(AidDestination.OfferDetail(it.id.toString())) {
-                                popUpTo(route = AidDestination.Board)
-                            }
+                            navController.navigateToOfferDetail(it.id.toString())
                         },
-                        onCreateOffer = { resource ->
-                            navController.navigate(AidDestination.DraftOffer(resource)) {
-                                launchSingleTop = true
-                                restoreState = true
-                                popUpTo(route = AidDestination.Board)
-                            }
-                        }
+                        onCreateOffer = navController::navigateToOfferDraft
                     )
                 }
 
