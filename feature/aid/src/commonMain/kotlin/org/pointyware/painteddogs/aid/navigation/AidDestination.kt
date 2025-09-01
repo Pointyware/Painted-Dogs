@@ -66,11 +66,3 @@ sealed interface AidDestination: Destination {
     @Serializable
     data class OfferDetail(val offerId: String): AidDestination
 }
-
-/**
- * Detail screen to define support parameters in response to
- * a specific [org.pointyware.painteddogs.aid.entities.ResourceRequest]
- * indicated by the given [requestId].
- */
-@Serializable
-data class SupportDetailDestination(val requestId: String): AidDestination
