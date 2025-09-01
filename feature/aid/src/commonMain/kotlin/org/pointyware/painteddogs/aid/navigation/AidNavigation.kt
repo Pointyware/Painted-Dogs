@@ -58,7 +58,7 @@ fun NavController.navigateToOfferDetail(offerId: String) {
 }
 
 fun NavController.navigateToOfferDraft(resource: Resource) {
-    navigate(AidDestination.DraftOffer(resource)) {
+    navigate(DraftOffer(resource)) {
         launchSingleTop = true
         restoreState = true
         popUpTo(route = AidDestination.Board)
