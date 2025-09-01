@@ -97,7 +97,6 @@ fun PaintedDogsApp(
                     startDestination = ChatDestination.History
                 ) {
                     chatRouting(
-                        navController,
                         onNavigateToNewChat = navController::navigateToNewChat,
                         onNavigateToChatSession = navController::navigateToChatSession,
                     )
