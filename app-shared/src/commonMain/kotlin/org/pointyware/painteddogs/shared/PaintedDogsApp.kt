@@ -98,6 +98,9 @@ fun PaintedDogsApp(
                         },
                         onNavigateToOffer = {
                             navController.navigate(AidDestination.OfferDetail(it.id.toString()))
+                        },
+                        onCreateOffer = { resource ->
+                            navController.navigate(AidDestination.DraftOffer(resource))
                         }
                     )
                 }

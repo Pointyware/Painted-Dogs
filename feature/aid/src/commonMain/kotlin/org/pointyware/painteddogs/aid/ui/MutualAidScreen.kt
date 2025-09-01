@@ -1,6 +1,7 @@
 package org.pointyware.painteddogs.aid.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.calculateEndPadding
@@ -10,8 +11,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.platform.LocalLayoutDirection
@@ -35,7 +43,8 @@ fun ExchangeBoardScreen(
     state: ExchangeBoardScreenState,
     onOfferClaim: (ResourceOffer)->Unit,
     onRequestResponse: (ResourceRequest)->Unit,
-    onResourceFilterChanged: (Set<Resource>)->Unit
+    onResourceFilterChanged: (Set<Resource>)->Unit,
+    onCreateOffer: (Resource)->Unit
 ) {
     val layoutDirection = LocalLayoutDirection.current
     val padding = LocalGeometry.current.paddingMedium
@@ -89,6 +98,26 @@ fun ExchangeBoardScreen(
                         )
                     }
                 }
+            }
+        }
+        var menuOpen by remember { mutableStateOf(false) }
+        DropdownMenu(
+            expanded = false,
+            onDismissRequest = { menuOpen = false },
+            modifier = Modifier.clickable {
+                menuOpen = true
+            }
+        ) {
+            Resource.entries.forEach { resource ->
+                DropdownMenuItem(
+                    text = {
+                        Text(text = stringForResource(resource))
+                    },
+                    onClick = {
+
+                        menuOpen = false
+                    },
+                )
             }
         }
     }

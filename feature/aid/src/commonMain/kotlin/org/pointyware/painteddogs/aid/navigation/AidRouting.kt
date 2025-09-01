@@ -8,6 +8,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navDeepLink
 import androidx.navigation.toRoute
+import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.entities.ResourceOffer
 import org.pointyware.painteddogs.aid.entities.ResourceRequest
 import org.pointyware.painteddogs.aid.ui.ExchangeBoardScreen
@@ -32,6 +33,7 @@ fun NavGraphBuilder.aidRouting(
     onClaimOffer: (ResourceOffer)->Unit,
     onNavigateToRequest: (ResourceRequest)->Unit,
     onNavigateToOffer: (ResourceOffer)-> Unit,
+    onCreateOffer: (Resource)->Unit,
 ) {
     composable<AidDestination.Board> {
         val viewModel: MutualAidViewModel = composeKoinViewModel()
@@ -54,6 +56,7 @@ fun NavGraphBuilder.aidRouting(
             onOfferClaim = viewModel::onOfferClaim,
             onRequestResponse = viewModel::onRequestResponse,
             onResourceFilterChanged = viewModel::onResourceFilterChanged,
+            onCreateOffer = onCreateOffer
         )
     }
 

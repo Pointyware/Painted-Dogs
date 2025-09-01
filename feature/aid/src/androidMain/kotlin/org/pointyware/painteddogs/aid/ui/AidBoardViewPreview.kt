@@ -92,6 +92,7 @@ private fun AidBoardViewPreview() {
             onOfferClaim = { },
             onRequestResponse = { },
             onResourceFilterChanged = { },
+            onCreateOffer = { }
         )
     }
 }
