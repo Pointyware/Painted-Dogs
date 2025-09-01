@@ -50,7 +50,8 @@ fun NavGraphBuilder.aidRouting(
             state = state.let {
                 ExchangeBoardScreenState(
                     posts = it.posts,
-                    resources = it.resourceFilter
+                    resources = it.resourceFilter,
+                    category = it.category
                 )
             },
             onOfferClaim = viewModel::onOfferClaim,

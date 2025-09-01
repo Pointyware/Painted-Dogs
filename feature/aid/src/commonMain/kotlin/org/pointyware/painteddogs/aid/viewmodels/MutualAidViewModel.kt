@@ -47,12 +47,14 @@ class MutualAidViewModel(
 }
 
 data class MutualAidUiState(
+    val category: Resource,
     val resourceFilter: Set<Resource>,
     val posts: List<ResourceExchange>
 ) {
 
     companion object {
         val Default = MutualAidUiState(
+            category = Resource.Food,
             resourceFilter = Resource.entries.toSet(),
             posts = emptyList()
         )
