@@ -37,6 +37,17 @@ data class ExchangeBoardScreenState(
     val resources: Set<Resource>
 )
 
+@Composable
+fun Modifier.cardStyle(): Modifier {
+    return this
+        .padding(LocalGeometry.current.paddingSmall)
+        .shadow(
+            elevation = 8.dp,
+            shape = MaterialTheme.shapes.large
+        )
+        .fillMaxWidth()
+}
+
 @OptIn(ExperimentalTime::class)
 @Composable
 fun ExchangeBoardScreen(
@@ -74,12 +85,7 @@ fun ExchangeBoardScreen(
                             ResourceRequestItemState(request = post),
                             onProvideResource = { onRequestResponse(post) },
                             modifier = Modifier
-                                .padding(LocalGeometry.current.paddingSmall)
-                                .shadow(
-                                    elevation = 8.dp,
-                                    shape = MaterialTheme.shapes.large
-                                )
-                                .fillMaxWidth()
+                                .cardStyle()
                                 .animateItem()
                         )
                     }
@@ -88,12 +94,7 @@ fun ExchangeBoardScreen(
                             state = ResourceOfferItemState(offer = post),
                             onClaimOffer = { onOfferClaim(post) },
                             modifier = Modifier
-                                .padding(LocalGeometry.current.paddingSmall)
-                                .shadow(
-                                    elevation = 8.dp,
-                                    shape = MaterialTheme.shapes.large
-                                )
-                                .fillMaxWidth()
+                                .cardStyle()
                                 .animateItem()
                         )
                     }
@@ -102,7 +103,7 @@ fun ExchangeBoardScreen(
         }
         var menuOpen by remember { mutableStateOf(false) }
         DropdownMenu(
-            expanded = false,
+            expanded = menuOpen,
             onDismissRequest = { menuOpen = false },
             modifier = Modifier.clickable {
                 menuOpen = true
