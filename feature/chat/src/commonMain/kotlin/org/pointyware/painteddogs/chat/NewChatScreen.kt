@@ -23,9 +23,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -55,10 +52,9 @@ fun NewChatScreen(
                 .padding(geometry.paddingSmall),
             verticalArrangement = Arrangement.spacedBy(geometry.marginMedium)
         ) {
-            var title by remember { mutableStateOf(state.title) }
             TextField(
-                value = title,
-                onValueChange = { title = it },
+                value = state.title,
+                onValueChange = { viewModel.onSetTitle(it) },
                 label = { Text(stringResource(Res.string.label_chat_title)) }
             )
             HorizontalDivider()
