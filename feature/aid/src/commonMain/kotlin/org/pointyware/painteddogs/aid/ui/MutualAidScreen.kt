@@ -114,7 +114,7 @@ fun ExchangeBoardScreen(
                         Text(text = stringForResource(resource))
                     },
                     onClick = {
-
+                        onCreateOffer(resource)
                         menuOpen = false
                     },
                 )
