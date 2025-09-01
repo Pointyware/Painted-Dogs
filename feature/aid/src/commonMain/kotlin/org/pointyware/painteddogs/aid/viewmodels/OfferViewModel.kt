@@ -58,7 +58,7 @@ class OfferViewModel(
                 scope = state.scope,
                 category = state.category)
                 .onSuccess { offer ->
-
+                    _onOfferCreated.send(offer)
                 }
                 .onFailure { throwable ->
                     _error.value = throwable

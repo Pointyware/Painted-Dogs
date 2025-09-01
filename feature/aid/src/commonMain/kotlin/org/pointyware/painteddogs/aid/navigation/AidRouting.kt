@@ -66,6 +66,7 @@ fun NavGraphBuilder.aidRouting(
         val route = navEntry.toRoute<AidDestination.DraftOffer>()
         val viewModel: OfferViewModel = composeKoinViewModel()
         val state by viewModel.state.collectAsState()
+        val error by viewModel.error.collectAsState()
         LaunchedEffect(Unit) {
             viewModel.onSetResourceCategory(route.resource)
             viewModel.onOfferCreated.collect {
@@ -84,6 +85,8 @@ fun NavGraphBuilder.aidRouting(
             onChangeDescription = viewModel::onChangeDescription,
             onSelectResourceCategory = viewModel::onSetResourceCategory,
             onSubmit = viewModel::onSubmit,
+            throwable = error,
+            onClearError = viewModel::onClearError,
         )
     }
 

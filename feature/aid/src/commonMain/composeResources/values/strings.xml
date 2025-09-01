@@ -8,6 +8,7 @@
     <string name="label_offer">Offer</string>
     <string name="label_description">Description</string>
     <string name="label_resource">Resource</string>
+    <string name="label_unknown_error">No Error Message</string>
 
     <string name="acc_dropdown">Dropdown</string>
 
