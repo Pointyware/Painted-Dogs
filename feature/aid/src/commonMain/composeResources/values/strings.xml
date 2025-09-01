@@ -7,6 +7,9 @@
     <string name="label_request">Request</string>
     <string name="label_offer">Offer</string>
     <string name="label_description">Description</string>
+    <string name="label_resource">Resource</string>
+
+    <string name="acc_dropdown">Dropdown</string>
 
     <!--  Temporal Scopes  -->
     <string name="label_indefinite">Indefinite</string>
