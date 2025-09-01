@@ -13,6 +13,10 @@ import org.pointyware.painteddogs.aid.entities.Resource
  */
 @Serializable
 data class SupportDetailDestination(val requestId: String): AidDestination
+
+/**
+ * Navigates to the [SupportDetailDestination].
+ */
 fun NavController.navigateToSupportDetail(requestId: String) {
     navigate(SupportDetailDestination(requestId))
 }
@@ -24,6 +28,10 @@ fun NavController.navigateToSupportDetail(requestId: String) {
  */
 @Serializable
 data class ClaimDetailDestination(val offerId: String): AidDestination
+
+/**
+ * Navigates to the [ClaimDetailDestination].
+ */
 fun NavController.navigateToClaimDetail(offerId: String) {
     navigate(ClaimDetailDestination(offerId))
 }
@@ -35,6 +43,9 @@ fun NavController.navigateToClaimDetail(offerId: String) {
 @Serializable
 data class RequestDetailDestination(val requestId: String): AidDestination
 
+/**
+ * Navigates to the [RequestDetailDestination].
+ */
 fun NavController.navigateToRequestDetail(requestId: String) {
     navigate(RequestDetailDestination(requestId)) {
         popUpTo(graph.findStartDestination().id)
@@ -49,7 +60,7 @@ fun NavController.navigateToRequestDetail(requestId: String) {
 data class OfferDetailDestination(val offerId: String): AidDestination
 
 /**
- *
+ * Navigates to the [OfferDetailDestination].
  */
 fun NavController.navigateToOfferDetail(offerId: String) {
     navigate(OfferDetailDestination(offerId)) {
@@ -66,7 +77,7 @@ data class DraftOfferDestination(
 ): AidDestination
 
 /**
- *
+ * Navigates to the [DraftOfferDestination].
  */
 fun NavController.navigateToOfferDraft(resource: Resource) {
     navigate(DraftOfferDestination(resource)) {
