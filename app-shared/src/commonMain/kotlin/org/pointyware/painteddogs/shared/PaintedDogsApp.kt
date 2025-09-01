@@ -8,6 +8,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
@@ -44,8 +45,8 @@ fun PaintedDogsApp(
             bottomBar = { PaintedDogsBottomBar(
                 onNavigateToChat = {
                     navController.navigate(ChatDestination.Root) {
-                        popUpTo(ChatDestination.Root) {
-                            inclusive = true
+                        launchSingleTop = true
+                        popUpTo(navController.graph.findStartDestination().id) {
                             saveState = true
                         }
                         restoreState = true
@@ -53,8 +54,8 @@ fun PaintedDogsApp(
                 },
                 onNavigateToAid = {
                     navController.navigate(AidDestination.Root) {
-                        popUpTo<AidDestination.Root> {
-                            inclusive = true
+                        launchSingleTop = true
+                        popUpTo(navController.graph.findStartDestination().id) {
                             saveState = true
                         }
                         restoreState = true
