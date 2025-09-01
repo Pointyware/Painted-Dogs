@@ -88,7 +88,7 @@ fun ExchangeBoardScreen(
             onSelectionChanged = onResourceFilterChanged,
         )
         LazyColumn(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.weight(1f)
         ) {
             items(state.posts) { post ->
                 when (post) {
@@ -117,12 +117,12 @@ fun ExchangeBoardScreen(
             var menuOpen by remember { mutableStateOf(false) }
             Row {
                 Button(
+                    modifier = Modifier.weight(1f),
                     onClick = {
                         onCreateOffer(state.category)
                     }
                 ) {
                     Text(
-                        modifier = Modifier.weight(1f),
                         style = MaterialTheme.typography.labelMedium,
                         text = stringForResource(state.category)
                     )
