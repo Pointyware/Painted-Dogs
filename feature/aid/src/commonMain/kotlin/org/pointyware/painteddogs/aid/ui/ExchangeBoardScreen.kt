@@ -3,7 +3,6 @@ package org.pointyware.painteddogs.aid.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.calculateEndPadding
@@ -21,6 +20,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -113,7 +113,7 @@ fun ExchangeBoardScreen(
                 }
             }
         }
-        Box {
+        Surface {
             var menuOpen by remember { mutableStateOf(false) }
             Row {
                 Button(
@@ -146,17 +146,24 @@ fun ExchangeBoardScreen(
                 }
             ) {
                 Resource.entries.forEach { resource ->
+                    val resourceString = stringForResource(resource)
                     DropdownMenuItem(
                         text = {
                             Text(
                                 style = MaterialTheme.typography.labelMedium,
-                                text = stringForResource(resource)
+                                text = resourceString
                             )
                         },
                         onClick = {
                             onResourceCategoryChanged(resource)
                             menuOpen = false
                         },
+                        trailingIcon = {
+                            Icon(
+                                imageVector = vectorForResource(resource),
+                                contentDescription = resourceString
+                            )
+                        }
                     )
                 }
             }
