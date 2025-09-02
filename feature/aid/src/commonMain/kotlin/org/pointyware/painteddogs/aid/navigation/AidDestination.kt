@@ -23,14 +23,6 @@ sealed interface AidDestination: Destination {
     @Serializable
     data object Board: AidDestination
 
-    /**
-     * The Screen where a user can request an offer for the mutual aid network.
-     */
-    @Serializable
-    data class DraftRequest(
-        val resource: Resource
-    ): AidDestination
-
 }
 
 /**
@@ -38,3 +30,11 @@ sealed interface AidDestination: Destination {
  */
 @Serializable
 data object AidRootDestination: AidDestination
+
+/**
+ * The Screen where a user can request an offer for the mutual aid network.
+ */
+@Serializable
+data class DraftRequest(
+    val resource: Resource
+): AidDestination

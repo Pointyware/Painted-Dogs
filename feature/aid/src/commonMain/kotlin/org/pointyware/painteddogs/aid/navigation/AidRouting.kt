@@ -90,7 +90,7 @@ fun NavGraphBuilder.aidRouting(
         )
     }
 
-    composable<AidDestination.DraftRequest> {
+    composable<DraftRequest> {
         val viewModel: RequestViewModel = composeKoinViewModel()
         val state by viewModel.state.collectAsState()
         LaunchedEffect(Unit) {
