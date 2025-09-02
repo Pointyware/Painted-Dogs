@@ -89,3 +89,9 @@ android {
         minSdk = 24
     }
 }
+
+compose.resources {
+    packageOfResClass = "org.pointyware.painteddogs.core.ui"
+    publicResClass = true
+    generateResClass = auto
+}
