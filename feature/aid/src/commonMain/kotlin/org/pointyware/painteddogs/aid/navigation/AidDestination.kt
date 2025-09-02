@@ -5,19 +5,9 @@ import org.pointyware.painteddogs.core.navigation.Destination
 
 /**
  * Mutual Aid navigation destinations.
- *
- * Board --> DraftRequest
- * Board --> DraftOffer
- * Board --> SupportDetail
- * Board --> ClaimDetail
- *
- * DraftRequest --> RequestDetail
- * DraftOffer --> OfferDetail
  */
 @Serializable
-sealed interface AidDestination: Destination {
-
-}
+sealed interface AidDestination: Destination
 
 /**
  * The navigation type for the root of the mutual aid nested navigation graph.
