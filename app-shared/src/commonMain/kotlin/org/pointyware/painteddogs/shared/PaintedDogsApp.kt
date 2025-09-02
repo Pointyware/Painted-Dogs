@@ -21,6 +21,7 @@ import org.pointyware.painteddogs.aid.navigation.navigateToOfferDraft
 import org.pointyware.painteddogs.aid.navigation.navigateToRequestDetail
 import org.pointyware.painteddogs.aid.navigation.navigateToSupportDetail
 import org.pointyware.painteddogs.chat.navigation.ChatDestination
+import org.pointyware.painteddogs.chat.navigation.ChatRootDestination
 import org.pointyware.painteddogs.chat.navigation.chatRouting
 import org.pointyware.painteddogs.chat.navigation.navigateToChatSession
 import org.pointyware.painteddogs.chat.navigation.navigateToNewChat
@@ -52,7 +53,7 @@ fun PaintedDogsApp(
             topBar = { PaintedDogsTopBar(navController) },
             bottomBar = { PaintedDogsBottomBar(
                 onNavigateToChat = {
-                    navController.navigate(ChatDestination.Root) {
+                    navController.navigate(ChatRootDestination) {
                         launchSingleTop = true
                         popUpTo(navController.graph.findStartDestination().id) {
                             saveState = true
@@ -76,7 +77,7 @@ fun PaintedDogsApp(
                 modifier = Modifier
                     .padding(paddingValues)
                     .fillMaxSize(),
-                startDestination = ChatDestination.Root,
+                startDestination = ChatRootDestination,
                 enterTransition = {
                     // Animation used for the entering new Screen
                     EnterTransition.None
@@ -99,7 +100,7 @@ fun PaintedDogsApp(
                 },
                 typeMap = navTypeMap()
             ) {
-                navigation<ChatDestination.Root>(
+                navigation<ChatRootDestination>(
                     startDestination = ChatDestination.History
                 ) {
                     chatRouting(

@@ -6,11 +6,6 @@ import org.pointyware.painteddogs.core.navigation.Destination
 @Serializable
 sealed interface ChatDestination: Destination {
     /**
-     *
-     */
-    @Serializable
-    data object Root: ChatDestination
-    /**
      * Screen listing a user's chat history.
      */
     @Serializable
@@ -29,3 +24,9 @@ sealed interface ChatDestination: Destination {
     @Serializable
     data class Session(val id: String): ChatDestination
 }
+
+/**
+ *
+ */
+@Serializable
+data object ChatRootDestination: ChatDestination
