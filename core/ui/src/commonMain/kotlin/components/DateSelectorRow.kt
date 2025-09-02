@@ -15,7 +15,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.pointyware.painteddogs.core.ui.PopularDevicePreviews
 import org.pointyware.painteddogs.core.ui.design.LocalDateFormat
 import kotlin.time.Clock
@@ -84,7 +83,7 @@ fun DateSelectorRow(
 }
 
 @OptIn(ExperimentalTime::class)
-@Preview
+//@Preview  // TODO: Move to android source sets
 @Composable
 fun DateSelectorRowPreview() {
     var state by remember { mutableStateOf(DateSelectorRowState(date = Clock.System.now()))}

@@ -12,7 +12,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * Extends the Material3 Theme with an [XPDateFormatter].
@@ -46,7 +45,7 @@ expect fun dynamicLightColors(): ColorScheme
 @Composable
 expect fun dynamicDarkColors(): ColorScheme
 
-@Preview
+//@Preview  // TODO: Move to android source sets
 @Composable
 fun PaintedDogsThemePreview() {
     PaintedDogsTheme {
