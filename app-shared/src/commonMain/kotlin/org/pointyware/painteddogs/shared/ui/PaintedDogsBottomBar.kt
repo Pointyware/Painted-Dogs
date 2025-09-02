@@ -16,7 +16,7 @@ import org.pointyware.painteddogs.shared.label_chat
 
 /**
  * A [NavigationBar] containing a buttons for the [ChatDestination.History]
- * and [org.pointyware.painteddogs.aid.navigation.Board].
+ * and [org.pointyware.painteddogs.aid.navigation.ExchangeBoardDestination].
  */
 @Composable
 fun PaintedDogsBottomBar(

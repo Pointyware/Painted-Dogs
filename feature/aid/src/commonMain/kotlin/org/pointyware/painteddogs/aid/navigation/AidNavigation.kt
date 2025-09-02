@@ -5,6 +5,24 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import kotlinx.serialization.Serializable
 import org.pointyware.painteddogs.aid.entities.Resource
 
+/**
+ * The Mutual Aid notice board Screen with all requests and offers.
+ */
+@Serializable
+data object ExchangeBoardDestination: AidDestination
+
+/**
+ * Navigate to the main [ExchangeBoardDestination] of the mutual aid tab.
+ */
+fun NavController.navigateToExchangeBoard() {
+    navigate(ExchangeBoardDestination) {
+        popUpTo(ExchangeBoardDestination) {
+            saveState = true
+            inclusive = true
+        }
+        restoreState = true
+    }
+}
 
 /**
  * Detail screen to define support parameters in response to
