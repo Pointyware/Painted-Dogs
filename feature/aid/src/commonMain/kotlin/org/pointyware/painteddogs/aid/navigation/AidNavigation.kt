@@ -83,6 +83,25 @@ fun NavController.navigateToOfferDraft(resource: Resource) {
     navigate(DraftOfferDestination(resource)) {
         launchSingleTop = true
         restoreState = true
-        popUpTo(route = AidDestination.Board)
+        popUpTo(graph.findStartDestination().id)
+    }
+}
+
+/**
+ * The Screen where a user can request an offer for the mutual aid network.
+ */
+@Serializable
+data class DraftRequestDestination(
+    val resource: Resource
+): AidDestination
+
+/**
+ *
+ */
+fun NavController.navigateToRequestDraft(resource: Resource) {
+    navigate(DraftRequestDestination(resource)) {
+        launchSingleTop = true
+        restoreState = true
+        popUpTo(graph.findStartDestination().id)
     }
 }
