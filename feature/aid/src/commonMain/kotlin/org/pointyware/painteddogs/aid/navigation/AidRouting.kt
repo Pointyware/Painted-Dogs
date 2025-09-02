@@ -35,7 +35,7 @@ fun NavGraphBuilder.aidRouting(
     onNavigateToOffer: (ResourceOffer)-> Unit,
     onCreateOffer: (Resource)->Unit,
 ) {
-    composable<AidDestination.Board> {
+    composable<Board> {
         val viewModel: MutualAidViewModel = composeKoinViewModel()
         val state by viewModel.state.collectAsState()
         LaunchedEffect(Unit) {

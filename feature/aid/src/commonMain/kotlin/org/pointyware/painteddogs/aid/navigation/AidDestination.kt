@@ -16,11 +16,6 @@ import org.pointyware.painteddogs.core.navigation.Destination
  */
 @Serializable
 sealed interface AidDestination: Destination {
-    /**
-     * The Mutual Aid notice board Screen with all requests and offers.
-     */
-    @Serializable
-    data object Board: AidDestination
 
 }
 
@@ -29,3 +24,9 @@ sealed interface AidDestination: Destination {
  */
 @Serializable
 data object AidRootDestination: AidDestination
+
+/**
+ * The Mutual Aid notice board Screen with all requests and offers.
+ */
+@Serializable
+data object Board: AidDestination

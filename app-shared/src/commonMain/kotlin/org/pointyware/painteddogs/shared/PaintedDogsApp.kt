@@ -12,8 +12,8 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import org.pointyware.painteddogs.aid.navigation.AidDestination
 import org.pointyware.painteddogs.aid.navigation.AidRootDestination
+import org.pointyware.painteddogs.aid.navigation.Board
 import org.pointyware.painteddogs.aid.navigation.aidRouting
 import org.pointyware.painteddogs.aid.navigation.navigateToClaimDetail
 import org.pointyware.painteddogs.aid.navigation.navigateToOfferDetail
@@ -108,7 +108,7 @@ fun PaintedDogsApp(
                     )
                 }
                 navigation<AidRootDestination>(
-                    startDestination = AidDestination.Board
+                    startDestination = Board
                 ) {
                     aidRouting(
                         onSupportRequest = {
