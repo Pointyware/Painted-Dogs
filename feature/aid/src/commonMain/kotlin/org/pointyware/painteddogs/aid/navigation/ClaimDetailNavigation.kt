@@ -24,6 +24,10 @@ data class ClaimDetailDestination(val offerId: String): AidDestination
 fun NavController.navigateToClaimDetail(offerId: String) {
     navigate(ClaimDetailDestination(offerId))
 }
+@OptIn(ExperimentalUuidApi::class)
+fun NavController.navigateToClaimDetail(offerUuid: Uuid) {
+    navigateToClaimDetail(offerUuid.toString())
+}
 
 @OptIn(ExperimentalUuidApi::class)
 fun NavGraphBuilder.claimDetailDestination() {

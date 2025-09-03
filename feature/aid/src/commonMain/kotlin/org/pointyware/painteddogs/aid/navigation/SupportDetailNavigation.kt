@@ -24,6 +24,10 @@ data class SupportDetailDestination(val requestId: String): AidDestination
 fun NavController.navigateToSupportDetail(requestId: String) {
     navigate(SupportDetailDestination(requestId))
 }
+@OptIn(ExperimentalUuidApi::class)
+fun NavController.navigateToSupportDetail(requestUuid: Uuid) {
+    navigateToSupportDetail(requestUuid.toString())
+}
 
 @OptIn(ExperimentalUuidApi::class)
 fun NavGraphBuilder.supportDetailDestination() {

@@ -2,8 +2,6 @@ package org.pointyware.painteddogs.aid.navigation
 
 import androidx.navigation.NavGraphBuilder
 import org.pointyware.painteddogs.aid.entities.Resource
-import org.pointyware.painteddogs.aid.entities.ResourceOffer
-import org.pointyware.painteddogs.aid.entities.ResourceRequest
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
@@ -12,10 +10,10 @@ import kotlin.uuid.Uuid
  */
 @OptIn(ExperimentalUuidApi::class)
 fun NavGraphBuilder.aidRouting(
-    onSupportRequest: (ResourceRequest)->Unit,
-    onClaimOffer: (ResourceOffer)->Unit,
+    onSupportRequest: (Uuid)->Unit,
+    onClaimOffer: (Uuid)->Unit,
     onNavigateToRequest: (Uuid)->Unit,
-    onNavigateToOffer: (ResourceOffer)-> Unit,
+    onNavigateToOffer: (Uuid)-> Unit,
     onCreateOffer: (Resource)->Unit,
 ) {
     exchangeBoardDestination(

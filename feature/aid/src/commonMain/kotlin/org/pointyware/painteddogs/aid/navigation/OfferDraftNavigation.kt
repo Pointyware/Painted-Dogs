@@ -10,11 +10,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
 import org.pointyware.painteddogs.aid.entities.Resource
-import org.pointyware.painteddogs.aid.entities.ResourceOffer
 import org.pointyware.painteddogs.aid.ui.OfferScreen
 import org.pointyware.painteddogs.aid.ui.OfferScreenState
 import org.pointyware.painteddogs.aid.viewmodels.OfferViewModel
 import org.pointyware.painteddogs.core.ui.composeKoinViewModel
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 
 /**
@@ -36,8 +37,9 @@ fun NavController.navigateToOfferDraft(resource: Resource) {
     }
 }
 
+@OptIn(ExperimentalUuidApi::class)
 fun NavGraphBuilder.offerDraftDestination(
-    onNavigateToOffer: (ResourceOffer)->Unit,
+    onNavigateToOffer: (Uuid)->Unit,
 ) {
 
     composable<DraftOfferDestination> { navEntry ->
@@ -48,7 +50,7 @@ fun NavGraphBuilder.offerDraftDestination(
         LaunchedEffect(Unit) {
             viewModel.onSetResourceCategory(route.resource)
             viewModel.onOfferCreated.collect {
-                onNavigateToOffer(it)
+                onNavigateToOffer(it.id)
             }
         }
         OfferScreen(

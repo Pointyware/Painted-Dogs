@@ -8,12 +8,12 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
 import org.pointyware.painteddogs.aid.entities.Resource
-import org.pointyware.painteddogs.aid.entities.ResourceOffer
-import org.pointyware.painteddogs.aid.entities.ResourceRequest
 import org.pointyware.painteddogs.aid.ui.ExchangeBoardScreen
 import org.pointyware.painteddogs.aid.ui.ExchangeBoardScreenState
 import org.pointyware.painteddogs.aid.viewmodels.MutualAidViewModel
 import org.pointyware.painteddogs.core.ui.composeKoinViewModel
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 
 /**
@@ -35,9 +35,10 @@ fun NavController.navigateToExchangeBoard() {
     }
 }
 
+@OptIn(ExperimentalUuidApi::class)
 fun NavGraphBuilder.exchangeBoardDestination(
-    onSupportRequest: (ResourceRequest)->Unit,
-    onClaimOffer: (ResourceOffer)->Unit,
+    onSupportRequest: (Uuid)->Unit,
+    onClaimOffer: (Uuid)->Unit,
     onCreateOffer: (Resource)->Unit
 ) {
     composable<ExchangeBoardDestination> {
@@ -45,10 +46,10 @@ fun NavGraphBuilder.exchangeBoardDestination(
         val state by viewModel.state.collectAsState()
         LaunchedEffect(Unit) {
             viewModel.onProvideRequest.collect { request ->
-                onSupportRequest(request)
+                onSupportRequest(request.id)
             }
             viewModel.onClaimOffer.collect { offer ->
-                onClaimOffer(offer)
+                onClaimOffer(offer.id)
             }
         }
         ExchangeBoardScreen(

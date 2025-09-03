@@ -28,6 +28,10 @@ fun NavController.navigateToOfferDetail(offerId: String) {
     }
 }
 @OptIn(ExperimentalUuidApi::class)
+fun NavController.navigateToOfferDetail(offerUuid: Uuid) {
+    navigateToOfferDetail(offerUuid.toString())
+}
+@OptIn(ExperimentalUuidApi::class)
 fun NavGraphBuilder.offerDetailDestination() {
     composable<OfferDetailDestination>(
         deepLinks = listOf(
