@@ -1,5 +1,7 @@
 package org.pointyware.painteddogs.aid.navigation
 
+import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import kotlinx.serialization.Serializable
 import org.pointyware.painteddogs.core.navigation.Destination
 
@@ -14,3 +16,13 @@ sealed interface AidDestination: Destination
  */
 @Serializable
 data object AidRootDestination: AidDestination
+
+fun NavController.navigateToAidRoot() {
+    navigate(AidRootDestination) {
+        launchSingleTop = true
+        popUpTo(graph.findStartDestination().id) {
+            saveState = true
+        }
+        restoreState = true
+    }
+}

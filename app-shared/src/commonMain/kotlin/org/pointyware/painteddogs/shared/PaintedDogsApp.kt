@@ -8,13 +8,13 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import org.pointyware.painteddogs.aid.navigation.AidRootDestination
 import org.pointyware.painteddogs.aid.navigation.ExchangeBoardDestination
 import org.pointyware.painteddogs.aid.navigation.aidRouting
+import org.pointyware.painteddogs.aid.navigation.navigateToAidRoot
 import org.pointyware.painteddogs.aid.navigation.navigateToClaimDetail
 import org.pointyware.painteddogs.aid.navigation.navigateToOfferDetail
 import org.pointyware.painteddogs.aid.navigation.navigateToOfferDraft
@@ -23,6 +23,7 @@ import org.pointyware.painteddogs.aid.navigation.navigateToSupportDetail
 import org.pointyware.painteddogs.chat.navigation.ChatHistoryDestination
 import org.pointyware.painteddogs.chat.navigation.ChatRootDestination
 import org.pointyware.painteddogs.chat.navigation.chatRouting
+import org.pointyware.painteddogs.chat.navigation.navigateToChatRoot
 import org.pointyware.painteddogs.chat.navigation.navigateToChatSession
 import org.pointyware.painteddogs.chat.navigation.navigateToNewChat
 import org.pointyware.painteddogs.core.navigation.navTypeMap
@@ -53,22 +54,10 @@ fun PaintedDogsApp(
             topBar = { PaintedDogsTopBar(navController) },
             bottomBar = { PaintedDogsBottomBar(
                 onNavigateToChat = {
-                    navController.navigate(ChatRootDestination) {
-                        launchSingleTop = true
-                        popUpTo(navController.graph.findStartDestination().id) {
-                            saveState = true
-                        }
-                        restoreState = true
-                    }
+                    navController.navigateToChatRoot()
                 },
                 onNavigateToAid = {
-                    navController.navigate(AidRootDestination) {
-                        launchSingleTop = true
-                        popUpTo(navController.graph.findStartDestination().id) {
-                            saveState = true
-                        }
-                        restoreState = true
-                    }
+                    navController.navigateToAidRoot()
                 }
             ) }
         ) { paddingValues ->
