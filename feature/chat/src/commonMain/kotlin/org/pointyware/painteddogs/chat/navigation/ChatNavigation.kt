@@ -10,10 +10,3 @@ fun NavController.navigateToNewChat() {
         launchSingleTop = true
     }
 }
-
-/**
- * Navigates to an existing chat session indicated by the [chatId].
- */
-fun NavController.navigateToChatSession(chatId: String) {
-    navigate(ChatDestination.Session(chatId))
-}

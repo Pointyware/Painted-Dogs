@@ -17,12 +17,6 @@ sealed interface ChatDestination: Destination {
     @Serializable
     data object New: ChatDestination
 
-    /**
-     * Screen for an individual chat session.
-     * @param id The unique ID of the specific chat.
-     */
-    @Serializable
-    data class Session(val id: String): ChatDestination
 }
 
 /**

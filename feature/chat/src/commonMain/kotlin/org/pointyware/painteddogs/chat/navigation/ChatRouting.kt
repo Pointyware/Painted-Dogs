@@ -6,14 +6,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import androidx.navigation.toRoute
 import org.koin.mp.KoinPlatform.getKoin
 import org.pointyware.painteddogs.chat.ChatHistoryScreen
 import org.pointyware.painteddogs.chat.ChatHistoryScreenState
-import org.pointyware.painteddogs.chat.ChatScreen
 import org.pointyware.painteddogs.chat.NewChatScreen
 import org.pointyware.painteddogs.chat.viewmodels.ChatHistoryViewModel
-import org.pointyware.painteddogs.chat.viewmodels.ChatViewModel
 import org.pointyware.painteddogs.chat.viewmodels.NewChatViewModel
 import kotlin.uuid.ExperimentalUuidApi
 
@@ -57,22 +54,6 @@ fun NavGraphBuilder.newChatDestination(
     }
 }
 
-fun NavGraphBuilder.chatSessionDestination(
-
-) {
-    composable<ChatDestination.Session> {
-        val route = it.toRoute<ChatDestination.Session>()
-        val koin = remember { getKoin() }
-        val messagesViewModel = remember { ChatViewModel(koin.get()) }
-
-        LaunchedEffect(route.id) {
-            messagesViewModel.loadMessages(route.id)
-        }
-        ChatScreen(
-            viewModel = messagesViewModel,
-        )
-    }
-}
 @OptIn(ExperimentalUuidApi::class)
 fun NavGraphBuilder.chatRouting(
     onNavigateToNewChat: () -> Unit,
