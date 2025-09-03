@@ -4,9 +4,7 @@ import kotlinx.serialization.Serializable
 import org.pointyware.painteddogs.core.navigation.Destination
 
 @Serializable
-sealed interface ChatDestination: Destination {
-
-}
+sealed interface ChatDestination: Destination
 
 /**
  *
