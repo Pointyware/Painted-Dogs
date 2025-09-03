@@ -11,11 +11,8 @@ import androidx.navigation.toRoute
 import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.entities.ResourceOffer
 import org.pointyware.painteddogs.aid.entities.ResourceRequest
-import org.pointyware.painteddogs.aid.ui.OfferScreen
-import org.pointyware.painteddogs.aid.ui.OfferScreenState
 import org.pointyware.painteddogs.aid.ui.RequestScreen
 import org.pointyware.painteddogs.aid.ui.RequestScreenState
-import org.pointyware.painteddogs.aid.viewmodels.OfferViewModel
 import org.pointyware.painteddogs.aid.viewmodels.RequestViewModel
 import org.pointyware.painteddogs.core.ui.composeKoinViewModel
 import kotlin.uuid.ExperimentalUuidApi
@@ -37,33 +34,9 @@ fun NavGraphBuilder.aidRouting(
         onClaimOffer = onClaimOffer
     )
 
-    composable<DraftOfferDestination> { navEntry ->
-        val route = navEntry.toRoute<DraftOfferDestination>()
-        val viewModel: OfferViewModel = composeKoinViewModel()
-        val state by viewModel.state.collectAsState()
-        val error by viewModel.error.collectAsState()
-        LaunchedEffect(Unit) {
-            viewModel.onSetResourceCategory(route.resource)
-            viewModel.onOfferCreated.collect {
-                onNavigateToOffer(it)
-            }
-        }
-        OfferScreen(
-            state = state.let {
-                OfferScreenState(
-                    description = it.description,
-                    category = it.category,
-                    scope = it.scope,
-                )
-            },
-            onSelectTemporalScope = viewModel::onSelectTemporalScope,
-            onChangeDescription = viewModel::onChangeDescription,
-            onSelectResourceCategory = viewModel::onSetResourceCategory,
-            onSubmit = viewModel::onSubmit,
-            throwable = error,
-            onClearError = viewModel::onClearError,
-        )
-    }
+    offerDraftDestination(
+        onNavigateToOffer = onNavigateToOffer
+    )
 
     composable<DraftRequestDestination> {
         val viewModel: RequestViewModel = composeKoinViewModel()
