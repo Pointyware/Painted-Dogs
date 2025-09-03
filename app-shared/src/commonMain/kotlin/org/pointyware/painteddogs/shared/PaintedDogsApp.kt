@@ -107,8 +107,8 @@ fun PaintedDogsApp(
                         onClaimOffer = {
                             navController.navigateToClaimDetail(it.id.toString())
                         },
-                        onNavigateToRequest = {
-                            navController.navigateToRequestDetail(it.id.toString())
+                        onNavigateToRequest = { requestId ->
+                            navController.navigateToRequestDetail(requestId)
                         },
                         onNavigateToOffer = {
                             navController.navigateToOfferDetail(it.id.toString())

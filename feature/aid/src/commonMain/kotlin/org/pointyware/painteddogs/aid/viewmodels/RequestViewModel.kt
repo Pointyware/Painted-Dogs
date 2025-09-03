@@ -1,22 +1,27 @@
 package org.pointyware.painteddogs.aid.viewmodels
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.update
-import org.pointyware.painteddogs.aid.entities.ResourceRequest
+import kotlinx.coroutines.launch
+import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.entities.TemporalScope
 import org.pointyware.painteddogs.aid.interactors.CreateRequestUseCase
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
+@OptIn(ExperimentalUuidApi::class)
 class RequestViewModel(
     private val createRequestUseCase: CreateRequestUseCase
 ): ViewModel() {
 
-    private val _onRequestCreated = Channel<ResourceRequest>()
-    val onRequestCreated: Flow<ResourceRequest> = _onRequestCreated.consumeAsFlow()
+    private val _onRequestCreated = Channel<Uuid>()
+    val onRequestCreated: Flow<Uuid> = _onRequestCreated.consumeAsFlow()
     private val _state = MutableStateFlow(RequestUiState.Default)
     val state: StateFlow<RequestUiState> get() = _state
     private val _error = MutableStateFlow<Throwable?>(null)
@@ -39,7 +44,14 @@ class RequestViewModel(
     }
 
     fun onSubmit() {
-
+        val state = state.value
+        viewModelScope.launch {
+            createRequestUseCase.invoke(
+                description = state.description,
+                category = state.category,
+                scope = state.temporalScope
+            )
+        }
     }
 
     fun onClearError() {
@@ -50,11 +62,13 @@ class RequestViewModel(
 data class RequestUiState(
     val temporalScope: TemporalScope,
     val description: String,
+    val category: Resource,
 ) {
     companion object {
         val Default = RequestUiState(
             temporalScope = TemporalScope.Indefinite,
-            description = ""
+            description = "",
+            category = Resource.Food
         )
     }
 }

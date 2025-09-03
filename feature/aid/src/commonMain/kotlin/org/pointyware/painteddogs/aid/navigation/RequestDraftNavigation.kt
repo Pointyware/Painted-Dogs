@@ -9,11 +9,12 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
 import org.pointyware.painteddogs.aid.entities.Resource
-import org.pointyware.painteddogs.aid.entities.ResourceRequest
 import org.pointyware.painteddogs.aid.ui.RequestScreen
 import org.pointyware.painteddogs.aid.ui.RequestScreenState
 import org.pointyware.painteddogs.aid.viewmodels.RequestViewModel
 import org.pointyware.painteddogs.core.ui.composeKoinViewModel
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 
 /**
@@ -35,8 +36,9 @@ fun NavController.navigateToRequestDraft(resource: Resource) {
     }
 }
 
+@OptIn(ExperimentalUuidApi::class)
 fun NavGraphBuilder.requestDraftDestination(
-    onNavigateToRequest: (ResourceRequest)->Unit,
+    onNavigateToRequest: (Uuid)->Unit,
 ) {
 
     composable<DraftRequestDestination> {

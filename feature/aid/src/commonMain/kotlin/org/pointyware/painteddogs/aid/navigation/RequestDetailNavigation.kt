@@ -7,22 +7,31 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 
 /**
  * Detail screen of a [org.pointyware.painteddogs.aid.entities.ResourceRequest]
- * indicated by the given [requestId].
+ * indicated by the given [requestUuid].
  */
 @Serializable
-data class RequestDetailDestination(val requestId: String): AidDestination
+data class RequestDetailDestination(val requestUuid: String): AidDestination {
+    @OptIn(ExperimentalUuidApi::class)
+    val uuid: Uuid get() = Uuid.parse(requestUuid)
+}
 
 /**
  * Navigates to the [RequestDetailDestination].
  */
-fun NavController.navigateToRequestDetail(requestId: String) {
-    navigate(RequestDetailDestination(requestId)) {
+fun NavController.navigateToRequestDetail(requestUuid: String) {
+    navigate(RequestDetailDestination(requestUuid)) {
         popUpTo(graph.findStartDestination().id)
     }
+}
+@OptIn(ExperimentalUuidApi::class)
+fun NavController.navigateToRequestDetail(requestUuid: Uuid) {
+    navigateToRequestDetail(requestUuid.toString())
 }
 
 fun NavGraphBuilder.requestDetailDestination() {
