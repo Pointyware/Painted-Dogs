@@ -1,9 +1,6 @@
 package org.pointyware.painteddogs.aid.navigation
 
 import androidx.compose.material3.Text
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navDeepLink
@@ -11,10 +8,6 @@ import androidx.navigation.toRoute
 import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.entities.ResourceOffer
 import org.pointyware.painteddogs.aid.entities.ResourceRequest
-import org.pointyware.painteddogs.aid.ui.RequestScreen
-import org.pointyware.painteddogs.aid.ui.RequestScreenState
-import org.pointyware.painteddogs.aid.viewmodels.RequestViewModel
-import org.pointyware.painteddogs.core.ui.composeKoinViewModel
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
@@ -38,25 +31,9 @@ fun NavGraphBuilder.aidRouting(
         onNavigateToOffer = onNavigateToOffer
     )
 
-    composable<DraftRequestDestination> {
-        val viewModel: RequestViewModel = composeKoinViewModel()
-        val state by viewModel.state.collectAsState()
-        LaunchedEffect(Unit) {
-            viewModel.onRequestCreated.collect {
-                onNavigateToRequest(it)
-            }
-        }
-        RequestScreen(
-            state = state.let {
-                RequestScreenState(
-                    temporalScope = it.temporalScope,
-                    description = it.description,
-                )
-            },
-            onScopeSelected = viewModel::onTemporalScopeSelected,
-            onSubmit = viewModel::onSubmit,
-        )
-    }
+    requestDraftDestination(
+        onNavigateToRequest = onNavigateToRequest
+    )
 
     composable<SupportDetailDestination> {
         val idString = it.toRoute<SupportDetailDestination>().requestId
