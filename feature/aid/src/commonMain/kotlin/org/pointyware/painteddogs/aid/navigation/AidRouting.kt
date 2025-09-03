@@ -1,15 +1,10 @@
 package org.pointyware.painteddogs.aid.navigation
 
-import androidx.compose.material3.Text
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
-import androidx.navigation.navDeepLink
-import androidx.navigation.toRoute
 import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.entities.ResourceOffer
 import org.pointyware.painteddogs.aid.entities.ResourceRequest
 import kotlin.uuid.ExperimentalUuidApi
-import kotlin.uuid.Uuid
 
 /**
  * Routing logic for Mutual Aid screens.
@@ -35,42 +30,8 @@ fun NavGraphBuilder.aidRouting(
         onNavigateToRequest = onNavigateToRequest
     )
 
-    composable<SupportDetailDestination> {
-        val idString = it.toRoute<SupportDetailDestination>().requestId
-        val hex = Uuid.parse(idString)
-        Text(text = "Support Detail: ${hex.toHexString()}")
-    }
-    composable<ClaimDetailDestination> {
-        val idString = it.toRoute<ClaimDetailDestination>().offerId
-        val hex = Uuid.parse(idString)
-        Text(text = "Claim Detail: ${hex.toHexString()}")
-    }
-    composable<RequestDetailDestination>(
-        deepLinks = listOf(
-            navDeepLink<RequestDetailDestination>(
-                basePath = "pdogs://"
-            ) {
-                uriPattern = "pdogs://request/{requestId}"
-                action = "android.intent.action.VIEW"
-            }
-        ),
-    ) {
-        val idString = it.toRoute<RequestDetailDestination>().requestId
-        val hex = Uuid.parse(idString)
-        Text(text = "Request: ${hex.toHexString()}")
-    }
-    composable<OfferDetailDestination>(
-        deepLinks = listOf(
-            navDeepLink<OfferDetailDestination>(
-                basePath = "pdogs://"
-            ) {
-                uriPattern = "pdogs://offer/{offerId}"
-                action = "android.intent.action.VIEW"
-            }
-        ),
-    )  {
-        val idString = it.toRoute<OfferDetailDestination>().offerId
-        val hex = Uuid.parse(idString)
-        Text(text = "Offer: ${hex.toHexString()}")
-    }
+    supportDetailDestination()
+    claimDetailDestination()
+    requestDetailDestination()
+    offerDetailDestination()
 }
