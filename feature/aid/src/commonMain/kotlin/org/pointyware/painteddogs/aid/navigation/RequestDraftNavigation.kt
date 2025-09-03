@@ -42,6 +42,7 @@ fun NavGraphBuilder.requestDraftDestination(
     composable<DraftRequestDestination> {
         val viewModel: RequestViewModel = composeKoinViewModel()
         val state by viewModel.state.collectAsState()
+        val error by viewModel.error.collectAsState()
         LaunchedEffect(Unit) {
             viewModel.onRequestCreated.collect {
                 onNavigateToRequest(it)
@@ -54,8 +55,11 @@ fun NavGraphBuilder.requestDraftDestination(
                     description = it.description,
                 )
             },
+            throwable = error,
             onScopeSelected = viewModel::onTemporalScopeSelected,
+            onChangeDescription = viewModel::onDescriptionChanged,
             onSubmit = viewModel::onSubmit,
+            onClearError = viewModel::onClearError,
         )
     }
 }

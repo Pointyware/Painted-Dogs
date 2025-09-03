@@ -19,6 +19,8 @@ class RequestViewModel(
     val onRequestCreated: Flow<ResourceRequest> = _onRequestCreated.consumeAsFlow()
     private val _state = MutableStateFlow(RequestUiState.Default)
     val state: StateFlow<RequestUiState> get() = _state
+    private val _error = MutableStateFlow<Throwable?>(null)
+    val error: StateFlow<Throwable?> get() = _error
 
     fun onTemporalScopeSelected(value: TemporalScope) {
         _state.update {
@@ -28,8 +30,20 @@ class RequestViewModel(
         }
     }
 
+    fun onDescriptionChanged(value: String) {
+        _state.update {
+            it.copy(
+                description = value
+            )
+        }
+    }
+
     fun onSubmit() {
 
+    }
+
+    fun onClearError() {
+        _error.value = null
     }
 }
 
