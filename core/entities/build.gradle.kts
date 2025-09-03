@@ -58,7 +58,7 @@ kotlin {
 }
 
 android {
-    namespace = "org.pointyware.painteddogs.core.entities"
+    namespace = "org.pointyware.painteddogs.entities"
     compileSdk = 36
     defaultConfig {
         minSdk = 24

@@ -83,7 +83,7 @@ kotlin {
 }
 
 android {
-    namespace = "org.pointyware.painteddogs.core.ui"
+    namespace = "org.pointyware.painteddogs.ui"
     compileSdk = 36
     defaultConfig {
         minSdk = 24
@@ -91,7 +91,7 @@ android {
 }
 
 compose.resources {
-    packageOfResClass = "org.pointyware.painteddogs.core.ui"
+    packageOfResClass = "org.pointyware.painteddogs.ui"
     publicResClass = true
     generateResClass = auto
 }

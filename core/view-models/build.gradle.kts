@@ -55,7 +55,7 @@ kotlin {
 }
 
 android {
-    namespace = "org.pointyware.painteddogs.core.viewmodels"
+    namespace = "org.pointyware.painteddogs.viewmodels"
     compileSdk = 36
     defaultConfig {
         minSdk = 24

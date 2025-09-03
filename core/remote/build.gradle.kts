@@ -72,7 +72,7 @@ kotlin {
 }
 
 android {
-    namespace = "org.pointyware.painteddogs.core.remote"
+    namespace = "org.pointyware.painteddogs.remote"
     compileSdk = 36
     defaultConfig {
         minSdk = 24
