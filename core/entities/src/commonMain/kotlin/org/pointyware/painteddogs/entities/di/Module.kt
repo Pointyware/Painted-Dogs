@@ -1,4 +1,4 @@
-package org.pointyware.painteddogs.core.entities.di
+package org.pointyware.painteddogs.entities.di
 
 import org.koin.dsl.module
 
