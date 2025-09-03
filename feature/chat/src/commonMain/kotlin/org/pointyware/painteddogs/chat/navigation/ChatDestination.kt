@@ -11,12 +11,6 @@ sealed interface ChatDestination: Destination {
     @Serializable
     data object History: ChatDestination
 
-    /**
-     * Screen for creating a new chat session.
-     */
-    @Serializable
-    data object New: ChatDestination
-
 }
 
 /**
