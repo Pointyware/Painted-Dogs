@@ -8,13 +8,13 @@ import org.pointyware.painteddogs.aid.data.fake.FakeAidRepository
 import org.pointyware.painteddogs.aid.interactors.CreateOfferUseCase
 import org.pointyware.painteddogs.aid.interactors.CreateRequestUseCase
 import org.pointyware.painteddogs.aid.viewmodels.MutualAidViewModel
-import org.pointyware.painteddogs.aid.viewmodels.OfferViewModel
+import org.pointyware.painteddogs.aid.viewmodels.OfferDraftViewModel
 import org.pointyware.painteddogs.core.data.di.dataQualifier
 import kotlin.coroutines.CoroutineContext
 
 fun aidModule() = module {
     factoryOf(::MutualAidViewModel)
-    factoryOf(::OfferViewModel)
+    factoryOf(::OfferDraftViewModel)
     factoryOf(::CreateOfferUseCase)
     factoryOf(::CreateRequestUseCase)
 

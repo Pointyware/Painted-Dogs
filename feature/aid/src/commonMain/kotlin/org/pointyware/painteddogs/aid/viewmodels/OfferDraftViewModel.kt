@@ -17,14 +17,19 @@ import org.pointyware.painteddogs.aid.interactors.CreateOfferUseCase
 import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class)
-class OfferViewModel(
+class OfferDraftViewModel(
     private val createOfferUseCase: CreateOfferUseCase
 ): ViewModel() {
 
     private val _onOfferCreated = Channel<ResourceOffer>()
+
+    /**
+     * This [Flow] delivers a value each time [onSubmit] receive a
+     * success result from [CreateOfferUseCase].
+     */
     val onOfferCreated: Flow<ResourceOffer> = _onOfferCreated.consumeAsFlow()
-    private val _state = MutableStateFlow(OfferUiState.Default)
-    val state: StateFlow<OfferUiState> = _state.asStateFlow()
+    private val _state = MutableStateFlow(OfferDraftUiState.Default)
+    val state: StateFlow<OfferDraftUiState> = _state.asStateFlow()
     private val _error = MutableStateFlow<Throwable?>(null)
     val error: StateFlow<Throwable?> = _error.asStateFlow()
 
@@ -67,54 +72,16 @@ class OfferViewModel(
     }
 }
 
-sealed interface DetailUiState {
-
-    val description: String
-    val category: Resource
-
-    data class FoodDetailUiState(
-        override val description: String
-    ): DetailUiState {
-        override val category: Resource
-            get() = Resource.Food
-    }
-
-    data class HousingDetailUiState(
-        override val description: String
-
-    ): DetailUiState {
-        override val category: Resource
-            get() = Resource.Housing
-    }
-
-    data class FundsDetailUiState(
-        override val description: String
-    ): DetailUiState {
-        override val category: Resource
-            get() = Resource.Funds
-    }
-
-    data class SkillsDetailUiState(
-        override val description: String
-    ): DetailUiState {
-        override val category: Resource
-            get() = Resource.Skills
-    }
-
-    data class ProtectionDetailUiState(
-        override val description: String
-    ): DetailUiState {
-        override val category: Resource
-            get() = Resource.Protection
-    }
-}
-data class OfferUiState(
+/**
+ * Ui State for a draft of a new [ResourceOffer].
+ */
+data class OfferDraftUiState(
     val description: String,
     val category: Resource,
     val scope: TemporalScope,
 ) {
-    companion object {
-        val Default = OfferUiState(
+    companion object Companion {
+        val Default = OfferDraftUiState(
             description = "",
             category = Resource.Food,
             scope = TemporalScope.Indefinite

@@ -12,7 +12,7 @@ import kotlinx.serialization.Serializable
 import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.ui.OfferScreen
 import org.pointyware.painteddogs.aid.ui.OfferScreenState
-import org.pointyware.painteddogs.aid.viewmodels.OfferViewModel
+import org.pointyware.painteddogs.aid.viewmodels.OfferDraftViewModel
 import org.pointyware.painteddogs.core.ui.composeKoinViewModel
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
@@ -44,7 +44,7 @@ fun NavGraphBuilder.offerDraftDestination(
 
     composable<DraftOfferDestination> { navEntry ->
         val route = navEntry.toRoute<DraftOfferDestination>()
-        val viewModel: OfferViewModel = composeKoinViewModel()
+        val viewModel: OfferDraftViewModel = composeKoinViewModel()
         val state by viewModel.state.collectAsState()
         val error by viewModel.error.collectAsState()
         LaunchedEffect(Unit) {
