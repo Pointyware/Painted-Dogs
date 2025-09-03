@@ -9,13 +9,12 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import org.jetbrains.compose.resources.stringResource
-import org.pointyware.painteddogs.chat.navigation.ChatDestination
 import org.pointyware.painteddogs.shared.Res
 import org.pointyware.painteddogs.shared.label_aid
 import org.pointyware.painteddogs.shared.label_chat
 
 /**
- * A [NavigationBar] containing a buttons for the [ChatDestination.History]
+ * A [NavigationBar] containing a buttons for the [org.pointyware.painteddogs.chat.navigation.ChatHistoryDestination]
  * and [org.pointyware.painteddogs.aid.navigation.ExchangeBoardDestination].
  */
 @Composable

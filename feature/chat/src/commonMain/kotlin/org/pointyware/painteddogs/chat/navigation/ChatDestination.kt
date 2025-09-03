@@ -5,11 +5,6 @@ import org.pointyware.painteddogs.core.navigation.Destination
 
 @Serializable
 sealed interface ChatDestination: Destination {
-    /**
-     * Screen listing a user's chat history.
-     */
-    @Serializable
-    data object History: ChatDestination
 
 }
 

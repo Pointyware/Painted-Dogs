@@ -20,7 +20,7 @@ import org.pointyware.painteddogs.aid.navigation.navigateToOfferDetail
 import org.pointyware.painteddogs.aid.navigation.navigateToOfferDraft
 import org.pointyware.painteddogs.aid.navigation.navigateToRequestDetail
 import org.pointyware.painteddogs.aid.navigation.navigateToSupportDetail
-import org.pointyware.painteddogs.chat.navigation.ChatDestination
+import org.pointyware.painteddogs.chat.navigation.ChatHistoryDestination
 import org.pointyware.painteddogs.chat.navigation.ChatRootDestination
 import org.pointyware.painteddogs.chat.navigation.chatRouting
 import org.pointyware.painteddogs.chat.navigation.navigateToChatSession
@@ -101,7 +101,7 @@ fun PaintedDogsApp(
                 typeMap = navTypeMap()
             ) {
                 navigation<ChatRootDestination>(
-                    startDestination = ChatDestination.History
+                    startDestination = ChatHistoryDestination
                 ) {
                     chatRouting(
                         onNavigateToNewChat = navController::navigateToNewChat,
