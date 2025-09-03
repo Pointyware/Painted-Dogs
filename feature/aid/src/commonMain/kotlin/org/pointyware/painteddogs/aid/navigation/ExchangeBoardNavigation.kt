@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
+import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.entities.ResourceOffer
 import org.pointyware.painteddogs.aid.entities.ResourceRequest
 import org.pointyware.painteddogs.aid.ui.ExchangeBoardScreen
@@ -37,6 +38,7 @@ fun NavController.navigateToExchangeBoard() {
 fun NavGraphBuilder.exchangeBoardDestination(
     onSupportRequest: (ResourceRequest)->Unit,
     onClaimOffer: (ResourceOffer)->Unit,
+    onCreateOffer: (Resource)->Unit
 ) {
     composable<ExchangeBoardDestination> {
         val viewModel: MutualAidViewModel = composeKoinViewModel()

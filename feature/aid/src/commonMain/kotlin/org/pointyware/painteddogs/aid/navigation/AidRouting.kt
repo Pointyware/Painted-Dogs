@@ -19,7 +19,8 @@ fun NavGraphBuilder.aidRouting(
 ) {
     exchangeBoardDestination(
         onSupportRequest = onSupportRequest,
-        onClaimOffer = onClaimOffer
+        onClaimOffer = onClaimOffer,
+        onCreateOffer = onCreateOffer
     )
 
     offerDraftDestination(
