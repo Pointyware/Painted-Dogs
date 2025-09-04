@@ -46,7 +46,6 @@ fun RequestScreen(
             onScopeSelected = onScopeSelected,
             modifier = Modifier.fillMaxWidth()
         )
-
         TextField(
             modifier = Modifier,
             value = state.description,
@@ -57,14 +56,7 @@ fun RequestScreen(
                 )
             }
         )
-
-        ErrorDialog(
-            throwable = throwable,
-            onDismissRequest = onClearError
-        )
-
         Spacer(modifier = Modifier.weight(1f))
-
         Button(
             onClick = onSubmit
         ) {
@@ -72,5 +64,10 @@ fun RequestScreen(
                 text = stringResource(UiRes.string.label_submit)
             )
         }
+
+        ErrorDialog(
+            throwable = throwable,
+            onDismissRequest = onClearError
+        )
     }
 }

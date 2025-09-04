@@ -1,6 +1,7 @@
 package org.pointyware.painteddogs.aid.ui
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -44,7 +45,6 @@ fun OfferScreen(
             modifier = Modifier,
             onResourceSelected = onSelectResourceCategory
         )
-
         TextField(
             modifier = Modifier,
             value = state.description,
@@ -55,12 +55,9 @@ fun OfferScreen(
                 )
             }
         )
-
-        ErrorDialog(
-            throwable = throwable,
-            onDismissRequest = onClearError
+        Spacer(
+            modifier = Modifier.weight(1f)
         )
-
         Button(
             onClick = onSubmit
         ) {
@@ -68,5 +65,10 @@ fun OfferScreen(
                 text = stringResource(UiRes.string.label_submit)
             )
         }
+
+        ErrorDialog(
+            throwable = throwable,
+            onDismissRequest = onClearError
+        )
     }
 }
