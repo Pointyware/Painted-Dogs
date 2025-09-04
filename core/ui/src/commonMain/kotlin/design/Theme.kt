@@ -5,11 +5,8 @@ package org.pointyware.painteddogs.core.ui.design
  */
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.Button
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 
@@ -44,16 +41,3 @@ fun dynamicColors(isDark: Boolean) = if (isDark) dynamicDarkColors() else dynami
 expect fun dynamicLightColors(): ColorScheme
 @Composable
 expect fun dynamicDarkColors(): ColorScheme
-
-//@Preview  // TODO: Move to android source sets
-@Composable
-fun PaintedDogsThemePreview() {
-    PaintedDogsTheme {
-        Surface {
-            Text("ooh, a button")
-            Button(onClick = { println("Click") }) {
-                Text("Click me!")
-            }
-        }
-    }
-}
