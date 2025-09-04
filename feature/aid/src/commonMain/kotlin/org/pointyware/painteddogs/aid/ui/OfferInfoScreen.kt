@@ -11,11 +11,16 @@ import org.pointyware.painteddogs.aid.Res
 import org.pointyware.painteddogs.aid.label_loading
 import org.pointyware.painteddogs.aid.label_offer
 import org.pointyware.painteddogs.aid.viewmodels.OfferInfoUiState
+import org.pointyware.painteddogs.core.ui.design.LocalDateFormat
+import org.pointyware.painteddogs.core.ui.org.pointyware.painteddogs.ui.ErrorDialog
+import kotlin.time.ExperimentalTime
 
+@OptIn(ExperimentalTime::class)
 @Composable
 fun OfferInfoScreen(
     state: OfferInfoUiState?,
-    error: Throwable?
+    error: Throwable?,
+    onClearError: ()->Unit,
 ) {
     Column(
         modifier = Modifier.fillMaxSize()
@@ -29,22 +34,23 @@ fun OfferInfoScreen(
                 text = state.offer.description,
                 style = MaterialTheme.typography.bodySmall
             )
-            Text(
-                text = "TODO: Scope",
-                style = MaterialTheme.typography.bodySmall
+            TemporalImage(
+                value = state.offer.scope
             )
             Text(
-                text = "TODO: TimePosted",
+                text = LocalDateFormat.current.format(state.offer.timePosted),
                 style = MaterialTheme.typography.bodySmall
             )
-            Text(
-                text = "TODO: Category",
-                style = MaterialTheme.typography.bodySmall
-            )
+            ResourceImage(state.offer.category)
         }
         Text(
             text = stringResource(Res.string.label_loading),
             style = MaterialTheme.typography.bodySmall
+        )
+
+        ErrorDialog(
+            throwable = error,
+            onDismissRequest = onClearError,
         )
     }
 }

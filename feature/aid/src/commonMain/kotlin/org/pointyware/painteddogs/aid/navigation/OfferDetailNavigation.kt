@@ -58,7 +58,8 @@ fun NavGraphBuilder.offerDetailDestination() {
         val error by viewModel.error.collectAsState()
         OfferInfoScreen(
             state = state,
-            error = error
+            error = error,
+            onClearError = viewModel::onClearError
         )
     }
 }
