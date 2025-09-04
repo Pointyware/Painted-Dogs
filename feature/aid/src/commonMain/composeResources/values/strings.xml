@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
     <!--  General  -->
+    <string name="label_loading">Food</string>
     <string name="label_submit">Submit</string>
     <string name="label_provide">Provide</string>
     <string name="label_claim">Claim</string>
