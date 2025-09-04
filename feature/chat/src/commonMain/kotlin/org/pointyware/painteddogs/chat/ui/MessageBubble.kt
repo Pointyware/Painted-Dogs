@@ -18,7 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import org.pointyware.painteddogs.core.ui.design.GeometryTokens
-import org.pointyware.painteddogs.core.ui.design.LocalGeometry
+import org.pointyware.painteddogs.core.ui.design.paddingMedium
 
 data class MessageBubbleState(
     val content: String,
@@ -46,7 +46,7 @@ fun MessageBubble(
         ) {
             Column(
                 modifier = Modifier
-                    .padding(LocalGeometry.current.paddingMedium)
+                    .paddingMedium()
             ) {
                 Text(
                     text = state.content,

@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -16,7 +15,7 @@ import org.pointyware.painteddogs.aid.Res
 import org.pointyware.painteddogs.aid.entities.TemporalScope
 import org.pointyware.painteddogs.aid.label_description
 import org.pointyware.painteddogs.core.ui.design.GeometryTokens
-import org.pointyware.painteddogs.core.ui.design.LocalGeometry
+import org.pointyware.painteddogs.core.ui.design.paddingSmall
 import org.pointyware.painteddogs.core.ui.org.pointyware.painteddogs.ui.ErrorDialog
 import org.pointyware.painteddogs.ui.label_submit
 import org.pointyware.painteddogs.ui.Res as UiRes
@@ -37,7 +36,7 @@ fun RequestScreen(
 ) {
     Column(
         modifier = Modifier
-            .padding(LocalGeometry.current.paddingSmall)
+            .paddingSmall()
             .fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(GeometryTokens.dpMedium),
     ) {

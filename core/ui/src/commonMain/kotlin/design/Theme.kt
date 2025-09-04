@@ -5,10 +5,12 @@ package org.pointyware.painteddogs.core.ui.design
  */
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.Modifier
 
 /**
  * Extends the Material3 Theme with an [XPDateFormatter].
@@ -41,3 +43,18 @@ fun dynamicColors(isDark: Boolean) = if (isDark) dynamicDarkColors() else dynami
 expect fun dynamicLightColors(): ColorScheme
 @Composable
 expect fun dynamicDarkColors(): ColorScheme
+
+@Composable
+fun Modifier.paddingSmall(): Modifier {
+    return this.padding(LocalGeometry.current.paddingSmall)
+}
+
+@Composable
+fun Modifier.paddingMedium(): Modifier {
+    return this.padding(LocalGeometry.current.paddingMedium)
+}
+
+@Composable
+fun Modifier.paddingLarge(): Modifier {
+    return this.padding(LocalGeometry.current.paddingLarge)
+}

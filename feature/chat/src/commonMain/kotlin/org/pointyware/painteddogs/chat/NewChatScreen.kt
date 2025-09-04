@@ -32,6 +32,7 @@ import org.pointyware.painteddogs.chat.ui.ContactRow
 import org.pointyware.painteddogs.chat.viewmodels.ContactsUiState
 import org.pointyware.painteddogs.chat.viewmodels.NewChatViewModel
 import org.pointyware.painteddogs.core.ui.design.LocalGeometry
+import org.pointyware.painteddogs.core.ui.design.paddingSmall
 
 @Composable
 fun NewChatScreen(
@@ -49,7 +50,7 @@ fun NewChatScreen(
     Box {
         Column(
             modifier = Modifier
-                .padding(geometry.paddingSmall),
+                .paddingSmall(),
             verticalArrangement = Arrangement.spacedBy(geometry.marginMedium)
         ) {
             TextField(

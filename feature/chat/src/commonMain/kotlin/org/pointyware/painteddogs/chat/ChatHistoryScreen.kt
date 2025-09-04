@@ -24,6 +24,7 @@ import org.pointyware.painteddogs.chat.ui.ChatRowViewState
 import org.pointyware.painteddogs.chat.ui.ParticipantImage
 import org.pointyware.painteddogs.chat.ui.ParticipantViewState
 import org.pointyware.painteddogs.core.ui.design.LocalGeometry
+import org.pointyware.painteddogs.core.ui.design.paddingSmall
 
 data class ChatHistoryScreenState(
     val chats: List<ChatPreview>
@@ -69,7 +70,7 @@ fun ChatHistoryScreen(
         FloatingActionButton(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
-                .padding(LocalGeometry.current.paddingSmall)
+                .paddingSmall()
                 .safeContentPadding(),
             onClick = onCreateNewChat
         ) {

@@ -40,6 +40,7 @@ import org.pointyware.painteddogs.aid.entities.ResourceOffer
 import org.pointyware.painteddogs.aid.entities.ResourceRequest
 import org.pointyware.painteddogs.core.ui.design.GeometryTokens
 import org.pointyware.painteddogs.core.ui.design.LocalGeometry
+import org.pointyware.painteddogs.core.ui.design.paddingSmall
 import kotlin.time.ExperimentalTime
 
 data class ExchangeBoardScreenState(
@@ -51,7 +52,7 @@ data class ExchangeBoardScreenState(
 @Composable
 fun Modifier.cardStyle(): Modifier {
     return this
-        .padding(LocalGeometry.current.paddingSmall)
+        .paddingSmall()
         .shadow(
             elevation = 8.dp,
             shape = MaterialTheme.shapes.large
