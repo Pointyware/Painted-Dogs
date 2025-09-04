@@ -15,8 +15,9 @@ import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.entities.TemporalScope
 import org.pointyware.painteddogs.aid.label_description
 import org.pointyware.painteddogs.aid.label_submit
-import org.pointyware.painteddogs.aid.label_unknown_error
 import org.pointyware.painteddogs.core.ui.design.LocalGeometry
+import org.pointyware.painteddogs.ui.label_unknown_error
+import org.pointyware.painteddogs.ui.Res as UiRes
 
 data class OfferScreenState(
     val description: String,
@@ -67,7 +68,7 @@ fun OfferScreen(
                     modifier  = Modifier.padding(LocalGeometry.current.paddingMedium)
                 ) {
                     Text(
-                        text = it.message ?: stringResource(Res.string.label_unknown_error)
+                        text = it.message ?: stringResource(UiRes.string.label_unknown_error)
                     )
                 }
             }

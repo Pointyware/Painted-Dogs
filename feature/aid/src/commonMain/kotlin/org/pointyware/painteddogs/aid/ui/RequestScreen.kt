@@ -18,9 +18,10 @@ import org.pointyware.painteddogs.aid.Res
 import org.pointyware.painteddogs.aid.entities.TemporalScope
 import org.pointyware.painteddogs.aid.label_description
 import org.pointyware.painteddogs.aid.label_submit
-import org.pointyware.painteddogs.aid.label_unknown_error
 import org.pointyware.painteddogs.core.ui.design.GeometryTokens
 import org.pointyware.painteddogs.core.ui.design.LocalGeometry
+import org.pointyware.painteddogs.ui.label_unknown_error
+import org.pointyware.painteddogs.ui.Res as UiRes
 
 data class RequestScreenState(
     val temporalScope: TemporalScope,
@@ -67,7 +68,7 @@ fun RequestScreen(
                     modifier  = Modifier.padding(LocalGeometry.current.paddingMedium)
                 ) {
                     Text(
-                        text = it.message ?: stringResource(Res.string.label_unknown_error)
+                        text = it.message ?: stringResource(UiRes.string.label_unknown_error)
                     )
                 }
             }
