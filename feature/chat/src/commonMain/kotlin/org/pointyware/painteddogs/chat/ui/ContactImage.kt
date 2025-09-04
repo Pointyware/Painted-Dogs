@@ -9,8 +9,8 @@ import org.pointyware.painteddogs.chat.Res
 import org.pointyware.painteddogs.chat.acc_no_profile_picture
 import org.pointyware.painteddogs.chat.entities.Contact
 import org.pointyware.painteddogs.chat.outline_person_24
-import org.pointyware.painteddogs.core.ui.outline_question_mark_24
-import org.pointyware.painteddogs.core.ui.Res as UiRes
+import org.pointyware.painteddogs.ui.outline_question_mark_24
+import org.pointyware.painteddogs.ui.Res as UiRes
 
 @Composable
 fun ContactImage(
