@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
+    <!--  General Strings  -->
+    <string name="label_submit">Submit</string>
+
     <string name="acc_toggle_selected">Selected</string>
     <string name="acc_toggle_unselected">Unselected</string>
 
