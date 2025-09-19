@@ -5,6 +5,9 @@ import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.entities.ResourceRequest
 import org.pointyware.painteddogs.aid.entities.TemporalScope
 
+/**
+ * Creates a new [ResourceRequest], delegating to the given [aidRepository].
+ */
 class CreateRequestUseCase(
     private val aidRepository: AidRepository
 ) {
