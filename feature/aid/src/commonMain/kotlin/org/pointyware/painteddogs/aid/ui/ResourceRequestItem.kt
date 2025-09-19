@@ -44,8 +44,8 @@ data class ResourceRequestItemState(
 @Composable
 fun ResourceRequestItem(
     state: ResourceRequestItemState,
-    onProvideResource: ()->Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onProvideResource: (()->Unit)? = null,
 ) {
     Surface(
         modifier = modifier,
@@ -83,12 +83,14 @@ fun ResourceRequestItem(
                 TemporalImage(
                     value = state.request.scope
                 )
-                Button(
-                    onClick = onProvideResource
-                ) {
-                    Text(
-                        text = stringResource(Res.string.label_provide)
-                    )
+                onProvideResource?.let {
+                    Button(
+                        onClick = onProvideResource
+                    ) {
+                        Text(
+                            text = stringResource(Res.string.label_provide)
+                        )
+                    }
                 }
             }
         }
