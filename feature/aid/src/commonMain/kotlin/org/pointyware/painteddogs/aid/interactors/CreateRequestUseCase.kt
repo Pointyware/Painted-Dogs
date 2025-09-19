@@ -9,7 +9,7 @@ class CreateRequestUseCase(
     private val aidRepository: AidRepository
 ) {
 
-    suspend fun invoke(description: String, category: Resource, scope: TemporalScope): Result<ResourceRequest> {
+    suspend operator fun invoke(description: String, category: Resource, scope: TemporalScope): Result<ResourceRequest> {
         return aidRepository.createRequest(description, category, scope)
     }
 }

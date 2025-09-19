@@ -25,6 +25,10 @@ class RequestDraftViewModel(
     private val createRequestUseCase: CreateRequestUseCase
 ): ViewModel() {
 
+    /**
+     * Use this channel to send updates about newly created
+     * [org.pointyware.painteddogs.aid.entities.ResourceRequest] objects.
+     */
     private val requestCreationChannel = Channel<Uuid>()
 
     /**
@@ -72,7 +76,7 @@ class RequestDraftViewModel(
         requestCreationJob?.cancel()
         requestCreationJob = viewModelScope.launch {
             val state = state.value
-            createRequestUseCase.invoke(
+            createRequestUseCase(
                 description = state.description,
                 category = state.category,
                 scope = state.temporalScope
@@ -95,9 +99,9 @@ class RequestDraftViewModel(
 /**
  *
  *
- * @param temporalScope
- * @param description
- * @param category
+ * @param temporalScope Proposed scope of the resource request
+ * @param description Proposed description of the resource request
+ * @param category Proposed category of the resource request
  */
 data class RequestDraftUiState(
     val temporalScope: TemporalScope,
