@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
 import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.ui.RequestScreen
 import org.pointyware.painteddogs.aid.ui.RequestScreenState
-import org.pointyware.painteddogs.aid.viewmodels.RequestViewModel
+import org.pointyware.painteddogs.aid.viewmodels.RequestDraftViewModel
 import org.pointyware.painteddogs.core.ui.composeKoinViewModel
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
@@ -42,11 +42,11 @@ fun NavGraphBuilder.requestDraftDestination(
 ) {
 
     composable<DraftRequestDestination> {
-        val viewModel: RequestViewModel = composeKoinViewModel()
+        val viewModel: RequestDraftViewModel = composeKoinViewModel()
         val state by viewModel.state.collectAsState()
         val error by viewModel.error.collectAsState()
         LaunchedEffect(Unit) {
-            viewModel.onRequestCreated.collect {
+            viewModel.requestCreationFlow.collect {
                 onNavigateToRequest(it)
             }
         }
