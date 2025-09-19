@@ -61,6 +61,10 @@ class FakeAidRepository(
         Result.success(newRequest)
     }
 
+    override suspend fun getRequest(uuid: Uuid): Result<ResourceRequest> {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun getOffer(id: Uuid): Result<ResourceOffer> {
         TODO("Not yet implemented")
     }

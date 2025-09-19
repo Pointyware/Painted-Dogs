@@ -17,6 +17,7 @@ interface AidRepository {
         scope: TemporalScope
     ): Result<ResourceRequest>
 
+    suspend fun getRequest(uuid: Uuid): Result<ResourceRequest>
     suspend fun getOffer(id: Uuid): Result<ResourceOffer>
 }
 
@@ -31,6 +32,10 @@ class AidRepositoryImpl: AidRepository {
         category: Resource,
         scope: TemporalScope
     ): Result<ResourceRequest> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getRequest(uuid: Uuid): Result<ResourceRequest> {
         TODO("Not yet implemented")
     }
 
