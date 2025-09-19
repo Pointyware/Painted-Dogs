@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 import org.pointyware.painteddogs.aid.entities.Resource
 import org.pointyware.painteddogs.aid.entities.TemporalScope
 import org.pointyware.painteddogs.aid.interactors.CreateRequestUseCase
+import org.pointyware.painteddogs.aid.interactors.RequestDraft
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
@@ -52,7 +53,7 @@ class RequestDraftViewModel(
     fun onTemporalScopeSelected(value: TemporalScope) {
         _state.update {
             it.copy(
-                temporalScope = value
+                model = it.model.copy(scope = value)
             )
         }
     }
@@ -63,7 +64,7 @@ class RequestDraftViewModel(
     fun onDescriptionChanged(value: String) {
         _state.update {
             it.copy(
-                description = value
+                model = it.model.copy(description = value)
             )
         }
     }
@@ -77,9 +78,7 @@ class RequestDraftViewModel(
         requestCreationJob = viewModelScope.launch {
             val state = state.value
             createRequestUseCase(
-                description = state.description,
-                category = state.category,
-                scope = state.temporalScope
+                draft = state.model
             )
                 .onSuccess { resourceRequest ->
                     requestCreationChannel.send(resourceRequest.id)
@@ -99,20 +98,18 @@ class RequestDraftViewModel(
 /**
  *
  *
- * @param temporalScope Proposed scope of the resource request
- * @param description Proposed description of the resource request
- * @param category Proposed category of the resource request
+ * @param model Proposed [RequestDraft] of the resource request.
  */
 data class RequestDraftUiState(
-    val temporalScope: TemporalScope,
-    val description: String,
-    val category: Resource,
+    val model: RequestDraft,
 ) {
     companion object Companion {
         val Default = RequestDraftUiState(
-            temporalScope = TemporalScope.Indefinite,
-            description = "",
-            category = Resource.Food
+            model = RequestDraft(
+                scope = TemporalScope.Indefinite,
+                description = "",
+                category = Resource.Food
+            )
         )
     }
 }
