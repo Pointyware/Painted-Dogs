@@ -8,24 +8,24 @@ package org.pointyware.painteddogs.core.ui.org.pointyware.painteddogs.ui
  *
  * See bridging function: [toUiState]
  */
-sealed interface LoadingUiState {
-    data object Loading: LoadingUiState
+sealed interface LoadingUiState<T> {
+    class Loading<T>: LoadingUiState<T>
 
     data class Success<T>(
         val data: T
-    ): LoadingUiState
+    ): LoadingUiState<T>
 
-    data class Failure(
+    data class Failure<T>(
         val throwable: Throwable
-    ): LoadingUiState
+    ): LoadingUiState<T>
 
 }
 
 /**
  *
  */
-fun <T: Any> Result<T>?.toUiState(): LoadingUiState = when {
-    this == null -> LoadingUiState.Loading
+fun <T: Any> Result<T>?.toUiState(): LoadingUiState<T> = when {
+    this == null -> LoadingUiState.Loading()
     this.isSuccess -> LoadingUiState.Success(this.getOrThrow())
     else -> LoadingUiState.Failure(this.exceptionOrNull()!!)
 }
