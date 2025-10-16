@@ -70,7 +70,11 @@ sealed class Measurement {
 }
 
 /**
- *
+ * Consider alternative naming:
+ * Measurement of Volume `Measurement<Volume.Oz>, Measurement<Volume.Gallon>`
+ * Measurement of Mass `Measurement<Mass.Oz>, Measurement<Mass.Pound>`
+ * Measurement of Energy `Measurement<Energy.Calorie>`
+ * Measurement of Count `Measurement<Count>`
  */
 sealed interface Quantity<M:Measurement> {
     val value: Double
