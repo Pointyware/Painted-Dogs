@@ -101,7 +101,7 @@ fun PaintedDogsApp(
                     startDestination = ExchangeBoardDestination
                 ) {
                     aidRouting(
-                        onSupportRequest = navController::navigateToSupportDetail,
+                        navigateToRequestDetail = navController::navigateToSupportDetail,
                         onClaimOffer = navController::navigateToClaimDetail,
                         onNavigateToRequest =  navController::navigateToRequestDetail,
                         onNavigateToOffer = navController::navigateToOfferDetail,
