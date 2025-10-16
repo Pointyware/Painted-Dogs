@@ -1,14 +1,49 @@
 package org.pointyware.painteddogs.entities
 
+/*
+Real Unit
+* Length
+    * Inches
+    * Centimeters
+* Area
+    * Inches^2
+    * Centimeters^2
+* Volume
+    * Liters
+    * Cups
+    * Teaspoon
+    * Tablespoon
+    * Oz (liquid)
+* Mass
+    * Grams
+    * Kilograms
+    * Milligrams
+    * Pounds
+    * Oz (dry)
+* Time
+    * Seconds
+    * Minutes
+    * Hours
+    * Days
+* Temperature
+    * Fahrenheit
+    * Celsius
+* Count
+    * Counts
+    * Cans
+    * Loaves
+    * etc.
+ */
+
 /**
  *
  */
-sealed class Measurement {
+sealed class RealUnit {
 
     /**
-     * The base [Measurement] used for conversions.
+     * The base [RealUnit] used for conversions.
      */
-    abstract val commonBase: Measurement
+    abstract val commonBase: RealUnit
 
     /**
      * The number of the given units per measurement base.
@@ -24,8 +59,8 @@ sealed class Measurement {
      */
     abstract class Length(
         val unitsPerMeter: Double
-    ): Measurement() {
-        override val commonBase: Measurement
+    ): RealUnit() {
+        override val commonBase: RealUnit
             get() = Meters
         override val unitsPerBase: Double
             get() = unitsPerMeter
@@ -42,8 +77,8 @@ sealed class Measurement {
      */
     abstract class Mass(
         val unitsPerGram: Double
-    ): Measurement() {
-        override val commonBase: Measurement
+    ): RealUnit() {
+        override val commonBase: RealUnit
             get() = Grams
         override val unitsPerBase: Double
             get() = unitsPerGram
@@ -58,8 +93,8 @@ sealed class Measurement {
      */
     abstract class Force(
         val unitsPerNewton: Double
-    ): Measurement() {
-        override val commonBase: Measurement
+    ): RealUnit() {
+        override val commonBase: RealUnit
             get() = Newtons
         override val unitsPerBase: Double
             get() = unitsPerNewton
@@ -69,29 +104,3 @@ sealed class Measurement {
     }
 }
 
-/**
- * Consider alternative naming:
- * Measurement of Volume `Measurement<Volume.Oz>, Measurement<Volume.Gallon>`
- * Measurement of Mass `Measurement<Mass.Oz>, Measurement<Mass.Pound>`
- * Measurement of Energy `Measurement<Energy.Calorie>`
- * Measurement of Count `Measurement<Count>`
- */
-sealed interface Quantity<M:Measurement> {
-    val value: Double
-    val measurement: M
-}
-
-/**
- *
- */
-private data class SimpleQuantity<M:Measurement>(
-    override val value: Double,
-    override val measurement: M
-): Quantity<M>
-
-fun Double.meters(): Quantity<Measurement.Length> {
-    return SimpleQuantity(
-        this,
-        Measurement.Length.Meters
-    )
-}
