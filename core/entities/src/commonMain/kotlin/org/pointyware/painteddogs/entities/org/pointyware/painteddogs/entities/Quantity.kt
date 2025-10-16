@@ -26,3 +26,10 @@ fun Double.meters(): Quantity<RealUnit.Length> {
         RealUnit.Length.Meters
     )
 }
+
+fun Double.pounds(): Quantity<RealUnit.Mass.Pounds> {
+    return SimpleQuantity(
+        this,
+        RealUnit.Mass.Pounds
+    )
+}
