@@ -38,6 +38,10 @@ data class ResourceRequestItemState(
         }
 }
 
+fun ResourceRequest.toItemState(): ResourceRequestItemState {
+    return ResourceRequestItemState(this)
+}
+
 /**
  *
  */
