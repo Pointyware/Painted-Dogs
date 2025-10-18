@@ -1,8 +1,12 @@
 package org.pointyware.painteddogs.core.entities
 
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
+
 /**
- * TODO: describe purpose/intent of Business
+ * Represents a business entity that can be boycotted, promoted, etc.
  */
+@OptIn(ExperimentalUuidApi::class)
 interface Business {
     val id: Uuid
     val name: String
