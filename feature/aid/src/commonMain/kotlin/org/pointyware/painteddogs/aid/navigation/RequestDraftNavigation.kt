@@ -53,8 +53,8 @@ fun NavGraphBuilder.requestDraftDestination(
         RequestScreen(
             state = state.let {
                 RequestScreenState(
-                    temporalScope = it.temporalScope,
-                    description = it.description,
+                    temporalScope = it.model.scope,
+                    description = it.model.description,
                 )
             },
             throwable = error,
