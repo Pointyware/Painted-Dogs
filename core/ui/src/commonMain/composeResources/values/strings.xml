@@ -8,4 +8,18 @@
 
     <string name="acc_unknown_error">Error Message Not Available</string>
     <string name="label_unknown_error">Unknown Error Message</string>
+
+    <!--  Unit Strings  -->
+    <string name="label_unit_length_centimeters">Centimeters</string>
+    <string name="label_unit_length_meters">Meters</string>
+    <string name="label_unit_length_feet">Feet</string>
+    <string name="label_unit_length_inches">Inches</string>
+
+    <string name="label_unit_mass_grams">Grams</string>
+    <string name="label_unit_mass_kilograms">Kilograms</string>
+    <string name="label_unit_mass_pounds">Pounds</string>
+
+    <string name="label_unit_force_pounds">Pounds</string>
+    <string name="label_unit_force_newtons">Newtons</string>
+
 </resources>
