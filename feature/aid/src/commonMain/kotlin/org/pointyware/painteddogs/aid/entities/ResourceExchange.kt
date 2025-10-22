@@ -1,5 +1,7 @@
 package org.pointyware.painteddogs.aid.entities
 
+import org.pointyware.painteddogs.entities.Quantity
+import org.pointyware.painteddogs.entities.RealUnit
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
 import kotlin.uuid.ExperimentalUuidApi
@@ -15,4 +17,5 @@ interface ResourceExchange {
     val scope: TemporalScope
     val description: String
     val timePosted: Instant
+    val quantity: Quantity<RealUnit>
 }
