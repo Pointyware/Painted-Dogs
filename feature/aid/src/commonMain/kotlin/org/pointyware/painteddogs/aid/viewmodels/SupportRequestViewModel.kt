@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.pointyware.painteddogs.aid.entities.ResourceRequest
 import org.pointyware.painteddogs.aid.interactors.LoadResourceRequestUseCase
+import org.pointyware.painteddogs.core.ui.org.pointyware.painteddogs.ui.LoadingUiState
 import org.pointyware.painteddogs.entities.Quantity
 import org.pointyware.painteddogs.entities.RealUnit
 import kotlin.uuid.ExperimentalUuidApi
@@ -22,8 +23,8 @@ class SupportRequestViewModel(
     private val loadRequestUseCase: LoadResourceRequestUseCase
 ): ViewModel() {
 
-    private val mutableState = MutableStateFlow<Any?>(null)
-    val state: StateFlow<Any?> get() = mutableState.asStateFlow()
+    private val mutableState = MutableStateFlow<LoadingUiState<SupportRequestUiState>>(LoadingUiState.Loading())
+    val state: StateFlow<LoadingUiState<SupportRequestUiState>> get() = mutableState.asStateFlow()
 
     private val mutableError = MutableStateFlow<Throwable?>(null)
     val error: StateFlow<Throwable?> = mutableError.asStateFlow()
@@ -33,7 +34,12 @@ class SupportRequestViewModel(
             loadRequestUseCase.invoke(Uuid.parse(requestId))
                 .onSuccess { request ->
                     mutableState.update {
-                        // TODO: bind resulting state
+                        LoadingUiState.Success(
+                            SupportRequestUiState(
+                                request = request,
+                                quantity = request.quantity
+                            )
+                        )
                     }
                 }
                 .onFailure { throwable ->
@@ -46,6 +52,5 @@ class SupportRequestViewModel(
 
 data class SupportRequestUiState(
     val request: ResourceRequest,
-
-    val quantity: Quantity<RealUnit>,
+    val quantity: Quantity<out RealUnit>,
 )
