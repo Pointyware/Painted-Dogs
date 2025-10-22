@@ -20,6 +20,8 @@ private data class SimpleQuantity<M:RealUnit>(
     override val measurement: M
 ): Quantity<M>
 
+fun <M: RealUnit> Double.quantity(unit: M): Quantity<M> = SimpleQuantity(this, unit)
+
 fun Double.meters(): Quantity<RealUnit.Length> {
     return SimpleQuantity(
         this,
