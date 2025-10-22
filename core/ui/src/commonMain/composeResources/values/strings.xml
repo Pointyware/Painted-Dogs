@@ -2,7 +2,9 @@
 <resources>
     <!--  General Strings  -->
     <string name="label_submit">Submit</string>
-
+    <!--  Dropdown -->
+    <string name="acc_dropdown">Open Dropdown Menu</string>
+    <!--  Toggle  -->
     <string name="acc_toggle_selected">Selected</string>
     <string name="acc_toggle_unselected">Unselected</string>
 
@@ -12,6 +14,7 @@
     <!--  Unit Strings  -->
     <string name="label_unit_length_centimeters">Centimeters</string>
     <string name="label_unit_length_meters">Meters</string>
+    <string name="label_unit_length_kilometers">Kilometers</string>
     <string name="label_unit_length_feet">Feet</string>
     <string name="label_unit_length_inches">Inches</string>
 
@@ -21,5 +24,7 @@
 
     <string name="label_unit_force_pounds">Pounds</string>
     <string name="label_unit_force_newtons">Newtons</string>
+
+    <string name="label_unit_unknown">Unknown</string>
 
 </resources>
