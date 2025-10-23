@@ -25,6 +25,18 @@
     <string name="label_unit_force_pounds">Pounds</string>
     <string name="label_unit_force_newtons">Newtons</string>
 
+    <string name="label_unit_volume_milliliters">Milliliters</string>
+    <string name="label_unit_volume_liters">Liters</string>
+    <string name="label_unit_volume_teaspoons">Teaspoons</string>
+    <string name="label_unit_volume_tablespoons">Tablespoons</string>
+    <string name="label_unit_volume_oz">Ounces</string>
+    <string name="label_unit_volume_cups">Cups</string>
+    <string name="label_unit_volume_pints">Pints</string>
+    <string name="label_unit_volume_quarts">Quarts</string>
+    <string name="label_unit_volume_gallons">Gallons</string>
+
+    <string name="label_unit_count_cans">Cans</string>
+
     <string name="label_unit_unknown">Unknown</string>
 
 </resources>
