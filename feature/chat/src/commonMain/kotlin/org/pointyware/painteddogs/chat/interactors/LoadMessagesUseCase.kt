@@ -5,7 +5,6 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import org.pointyware.painteddogs.chat.data.AuthRepository
 import org.pointyware.painteddogs.chat.data.ChatRepository
-import org.pointyware.painteddogs.chat.entities.Contact
 import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class)
@@ -18,20 +17,24 @@ class LoadMessagesUseCase(
         return chatRepository.getChat(chatId).mapCatching { header ->
             val messages = chatRepository.getChatMessages(chatId).getOrThrow()
 
-            val currentUser = authRepository.currentUser
-            var lastDateTime: LocalDateTime? = null
-            var lastAuthor: Contact? = null
-
+            if (messages.isEmpty()) return@mapCatching emptyList()
             val elements = mutableListOf<ChatLogItem>()
+
+            val currentUser = authRepository.currentUser
+
+            val systemTimeZone = TimeZone.currentSystemDefault()
+            var lastMessage = messages.first()
+            var lastDateTime: LocalDateTime? = lastMessage.timeSent.toLocalDateTime(systemTimeZone)
+
             messages.forEach { message ->
-                val newDateTime = message.timeSent.toLocalDateTime(TimeZone.currentSystemDefault())
+                val newDateTime = message.timeSent.toLocalDateTime(systemTimeZone)
                 val newAuthor = message.sender
 
                 if (newDateTime.year != lastDateTime?.year || newDateTime.month != lastDateTime.month || newDateTime.day != lastDateTime.day) {
-                    elements.add(ChatLogItem.TimeDivider(message.timeSent))
+                    elements.add(ChatLogItem.TimeDivider(lastMessage.timeSent))
                 }
-                if (newAuthor != lastAuthor && newAuthor != currentUser) {
-                    elements.add(ChatLogItem.Author(message.sender))
+                if (newAuthor != lastMessage.sender && newAuthor != currentUser) {
+                    elements.add(ChatLogItem.Author(lastMessage.sender))
                 }
                 elements.add(ChatLogItem.Message(
                     content = message.content,
@@ -40,7 +43,7 @@ class LoadMessagesUseCase(
                 ))
 
                 lastDateTime = newDateTime
-                lastAuthor = newAuthor
+                lastMessage = message
             }
             elements.toList()
         }

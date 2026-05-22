@@ -1,8 +1,12 @@
 package org.pointyware.painteddogs.core.entities
 
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
+
 /**
- * TODO: describe purpose/intent of Group
+ * Represents an organizational group of users focused around some purpose.
  */
+@OptIn(ExperimentalUuidApi::class)
 interface Group {
     val id: Uuid
     val name: String

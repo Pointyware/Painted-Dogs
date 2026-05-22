@@ -40,13 +40,12 @@ kotlin {
                 implementation(projects.core.navigation)
                 implementation(projects.core.ui)
 
-                implementation(projects.feature.profiles)
-                implementation(projects.feature.funds)
-                implementation(projects.feature.payments)
-                implementation(projects.feature.login)
+                implementation(projects.feature.aid)
                 implementation(projects.feature.chat)
-                implementation(projects.feature.events)
-                implementation(projects.feature.groups)
+                implementation(projects.feature.funds)
+                implementation(projects.feature.login)
+                implementation(projects.feature.payments)
+                implementation(projects.feature.profiles)
 
                 // UI
                 implementation(compose.ui)

@@ -76,7 +76,7 @@ kotlin {
 
 
 android {
-    namespace = "org.pointyware.painteddogs.core.ads.client"
+    namespace = "org.pointyware.painteddogs.ads.client"
     compileSdk = 36
     defaultConfig {
         minSdk = 24

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,43 +23,39 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.window.Dialog
-import androidx.navigation.NavController
 import org.jetbrains.compose.resources.stringResource
 import org.pointyware.painteddogs.chat.ui.ContactRow
 import org.pointyware.painteddogs.chat.viewmodels.ContactsUiState
 import org.pointyware.painteddogs.chat.viewmodels.NewChatViewModel
 import org.pointyware.painteddogs.core.ui.design.LocalGeometry
+import org.pointyware.painteddogs.core.ui.design.paddingSmall
 
 @Composable
 fun NewChatScreen(
     viewModel: NewChatViewModel,
-    navController: NavController
+    onNavigateToChatSession: (String)->Unit,
 ) {
     val state by viewModel.editorState.collectAsState()
     val geometry = LocalGeometry.current
 
     LaunchedEffect(viewModel) {
-        viewModel.navEvent.collect { destination ->
-            navController.navigate(destination)
+        viewModel.chatCreated.collect { chatId ->
+            onNavigateToChatSession(chatId)
         }
     }
     Box {
         Column(
             modifier = Modifier
-                .padding(geometry.paddingSmall),
+                .paddingSmall(),
             verticalArrangement = Arrangement.spacedBy(geometry.marginMedium)
         ) {
-            var title by remember { mutableStateOf(state.title) }
             TextField(
-                value = title,
-                onValueChange = { title = it },
+                value = state.title,
+                onValueChange = { viewModel.onSetTitle(it) },
                 label = { Text(stringResource(Res.string.label_chat_title)) }
             )
             HorizontalDivider()
@@ -76,7 +73,8 @@ fun NewChatScreen(
             }
 
             Button(
-                onClick = viewModel::onCreateChat
+                onClick = viewModel::onCreateChat,
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
                     text = "Create Chat"

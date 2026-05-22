@@ -57,7 +57,7 @@ kotlin {
 }
 
 android {
-    namespace = "org.pointyware.painteddogs.core.data"
+    namespace = "org.pointyware.painteddogs.data"
     compileSdk = 36
     defaultConfig {
         minSdk = 24

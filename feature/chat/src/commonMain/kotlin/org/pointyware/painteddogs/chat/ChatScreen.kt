@@ -5,14 +5,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 import org.pointyware.painteddogs.chat.ui.ChatView
 import org.pointyware.painteddogs.chat.viewmodels.ChatViewModel
 
 @Composable
 fun ChatScreen(
     viewModel: ChatViewModel,
-    navController: NavController
 ) {
     val chatMessages by viewModel.messages.collectAsState()
     val error by viewModel.error.collectAsState()

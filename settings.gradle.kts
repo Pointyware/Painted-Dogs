@@ -32,16 +32,11 @@ include(
 
 include(
     ":feature",
+    ":feature:aid",
     ":feature:chat",
-    ":feature:collections",
-    ":feature:collections:core",
-    ":feature:collections:crowdfunding",
     ":feature:funds",
-    ":feature:events",
-    ":feature:groups",
     ":feature:login",
     ":feature:payments",
-    ":feature:payments:core",
     ":feature:profiles"
 )
 

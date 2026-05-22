@@ -3,11 +3,13 @@ package org.pointyware.painteddogs.feature.funds
 import kotlinx.datetime.DateTimePeriod
 import org.pointyware.painteddogs.core.entities.CurrencyAmount
 import org.pointyware.painteddogs.core.entities.Fund
-import org.pointyware.painteddogs.core.entities.Uuid
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 /**
  *  Represents a single transaction associated with a collection (e.g., a donation).
- */ 
+ */
+@OptIn(ExperimentalUuidApi::class)
 interface Transaction {
     /**
      * Unique identifier for the transaction.

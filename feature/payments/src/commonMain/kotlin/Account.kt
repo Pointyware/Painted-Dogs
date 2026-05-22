@@ -1,10 +1,12 @@
 package org.pointyware.painteddogs.feature.payments
 
-import org.pointyware.painteddogs.core.entities.Uuid
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 /**
  *  Represents a basic payment account within the :payments:core module.
  */
+@OptIn(ExperimentalUuidApi::class)
 interface Account {
     val id: Uuid
     val accountType: AccountType

@@ -14,8 +14,6 @@ import org.pointyware.painteddogs.chat.entities.Contact
 import org.pointyware.painteddogs.chat.interactors.AddParticipantUseCase
 import org.pointyware.painteddogs.chat.interactors.CreateChatUseCase
 import org.pointyware.painteddogs.chat.interactors.LoadContactListUseCase
-import org.pointyware.painteddogs.chat.navigation.ChatDestination
-import org.pointyware.painteddogs.core.navigation.Destination
 
 /**
  *
@@ -28,8 +26,8 @@ class NewChatViewModel(
 
     private val _contactState = MutableStateFlow<ContactsUiState>(ContactsUiState.Closed)
     val contactState: StateFlow<ContactsUiState> = _contactState.asStateFlow()
-    private val _navEvent = Channel<Destination>()
-    val navEvent: Flow<Destination> = _navEvent.consumeAsFlow()
+    private val _chatCreated = Channel<String>()
+    val chatCreated: Flow<String> = _chatCreated.consumeAsFlow()
     private val _editorState = MutableStateFlow(ChatCreatorUiState("", emptyList()))
     val editorState: StateFlow<ChatCreatorUiState> = _editorState.asStateFlow()
     private val _error = MutableStateFlow<Throwable?>(null)
@@ -69,7 +67,7 @@ class NewChatViewModel(
         viewModelScope.launch {
             createChatUseCase.invoke(state.title, state.participants)
                 .onSuccess { chatId ->
-                    _navEvent.send(ChatDestination.Session(chatId))
+                    _chatCreated.send(chatId)
                 }
                 .onFailure {
                     _error.value = it

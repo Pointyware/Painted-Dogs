@@ -68,7 +68,7 @@ kotlin {
 }
 
 android {
-    namespace = "org.pointyware.painteddogs.core.navigation"
+    namespace = "org.pointyware.painteddogs.navigation"
     compileSdk = 36
     defaultConfig {
         minSdk = 24

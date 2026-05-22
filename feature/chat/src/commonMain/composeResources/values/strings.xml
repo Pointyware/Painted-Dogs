@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
+    <!--  Chat General  -->
+    <string name="acc_no_profile_picture">No Profile Picture</string>
+
     <!--  Chat History  -->
     <string name="acc_profile_image_prefix">Profile Image for </string>
     <string name="acc_new_chat">New Chat</string>

@@ -25,7 +25,8 @@ kotlin {
                 implementation(compose.ui)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
-                implementation(compose.components.uiToolingPreview) // fleet support
+                implementation(compose.components.resources)
+                implementation(libs.compose.viewModels)
 
                 implementation(libs.kotlinx.dateTime)
                 implementation(libs.kotlinx.coroutines)
@@ -82,9 +83,15 @@ kotlin {
 }
 
 android {
-    namespace = "org.pointyware.painteddogs.core.ui"
+    namespace = "org.pointyware.painteddogs.ui"
     compileSdk = 36
     defaultConfig {
         minSdk = 24
     }
+}
+
+compose.resources {
+    packageOfResClass = "org.pointyware.painteddogs.ui"
+    publicResClass = true
+    generateResClass = auto
 }

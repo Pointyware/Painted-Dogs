@@ -1,5 +1,6 @@
 package org.pointyware.painteddogs.chat.ui
 
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,8 +15,15 @@ fun LazyItemScope.ContactRow(
     value: Contact,
     modifier: Modifier = Modifier
 ) {
-    Text(
-        modifier = modifier,
-        text = value.username
-    )
+    Row(
+        modifier = modifier
+    ) {
+        ContactImage(
+            value = value,
+        )
+        Text(
+            modifier = Modifier.weight(1f),
+            text = value.username
+        )
+    }
 }

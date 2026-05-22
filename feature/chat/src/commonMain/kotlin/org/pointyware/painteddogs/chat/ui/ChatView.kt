@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -30,6 +29,7 @@ import org.pointyware.painteddogs.chat.viewmodels.ChatUiState
 import org.pointyware.painteddogs.core.ui.design.GeometryTokens
 import org.pointyware.painteddogs.core.ui.design.LocalDateFormat
 import org.pointyware.painteddogs.core.ui.design.LocalGeometry
+import org.pointyware.painteddogs.core.ui.design.paddingSmall
 import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class)
@@ -100,7 +100,7 @@ fun ChatView(
                     horizontalArrangement = Arrangement.spacedBy(GeometryTokens.dpMedium),
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .padding(LocalGeometry.current.paddingSmall)
+                        .paddingSmall()
                 ) {
                     var message by remember { mutableStateOf("") }
                     TextField(

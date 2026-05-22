@@ -55,7 +55,7 @@ kotlin {
 }
 
 android {
-    namespace = "org.pointyware.painteddogs.core.interactors"
+    namespace = "org.pointyware.painteddogs.interactors"
     compileSdk = 36
     defaultConfig {
         minSdk = 24

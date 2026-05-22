@@ -1,3 +1,8 @@
 <resources>
+    <!--  App  -->
     <string name="app_name">Painted Dogs</string>
+
+    <!--  Navigation  -->
+    <string name="label_aid">Aid</string>
+    <string name="label_chat">Chat</string>
 </resources>

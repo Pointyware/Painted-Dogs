@@ -35,14 +35,10 @@ dependencies {
     dokka(projects.core.analytics)
 
     dokka(projects.feature)
-    dokka(projects.feature.collections)
-    dokka(projects.feature.collections.core)
-    dokka(projects.feature.collections.crowdfunding)
+    dokka(projects.feature.aid)
     dokka(projects.feature.chat)
-    dokka(projects.feature.events)
-    dokka(projects.feature.payments)
-    dokka(projects.feature.payments.core)
+    dokka(projects.feature.funds)
     dokka(projects.feature.login)
+    dokka(projects.feature.payments)
     dokka(projects.feature.profiles)
-    dokka(projects.feature.groups)
 }

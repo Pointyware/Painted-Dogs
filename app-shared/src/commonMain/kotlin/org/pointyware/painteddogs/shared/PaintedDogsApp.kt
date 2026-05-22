@@ -4,37 +4,35 @@ import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material.icons.filled.AddCircle
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FabPosition
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import org.jetbrains.compose.resources.stringResource
-import org.pointyware.painteddogs.chat.navigation.ChatDestination
+import org.pointyware.painteddogs.aid.navigation.AidRootDestination
+import org.pointyware.painteddogs.aid.navigation.ExchangeBoardDestination
+import org.pointyware.painteddogs.aid.navigation.aidRouting
+import org.pointyware.painteddogs.aid.navigation.navigateToAidRoot
+import org.pointyware.painteddogs.aid.navigation.navigateToClaimDetail
+import org.pointyware.painteddogs.aid.navigation.navigateToOfferDetail
+import org.pointyware.painteddogs.aid.navigation.navigateToOfferDraft
+import org.pointyware.painteddogs.aid.navigation.navigateToRequestDetail
+import org.pointyware.painteddogs.aid.navigation.navigateToSupportDetail
+import org.pointyware.painteddogs.chat.navigation.ChatHistoryDestination
+import org.pointyware.painteddogs.chat.navigation.ChatRootDestination
 import org.pointyware.painteddogs.chat.navigation.chatRouting
+import org.pointyware.painteddogs.chat.navigation.navigateToChatRoot
+import org.pointyware.painteddogs.chat.navigation.navigateToChatSession
+import org.pointyware.painteddogs.chat.navigation.navigateToNewChat
 import org.pointyware.painteddogs.core.navigation.navTypeMap
-import org.pointyware.painteddogs.core.ui.design.GeometryTokens
 import org.pointyware.painteddogs.core.ui.design.PaintedDogsTheme
-import org.pointyware.painteddogs.feature.funds.navigation.Funds
 import org.pointyware.painteddogs.feature.funds.navigation.fundsRouting
-import org.pointyware.painteddogs.feature.profiles.navigation.ProfileDestination
 import org.pointyware.painteddogs.feature.profiles.navigation.profileRouting
-import org.pointyware.painteddogs.shared.di.AppDependencies
 import org.pointyware.painteddogs.shared.home.homeRouting
+import org.pointyware.painteddogs.shared.ui.PaintedDogsBottomBar
+import org.pointyware.painteddogs.shared.ui.PaintedDogsTopBar
 import kotlin.uuid.ExperimentalUuidApi
 
 /**
@@ -43,100 +41,32 @@ import kotlin.uuid.ExperimentalUuidApi
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalUuidApi::class)
 @Composable
 fun PaintedDogsApp(
-    dependencies: AppDependencies,
+    useDynamicColors: Boolean,
     isDarkTheme: Boolean,
-    modifier: Modifier = Modifier,
 ) {
     val navController = rememberNavController()
 
     PaintedDogsTheme(
+        useDynamicColors = useDynamicColors,
         isDark = isDarkTheme
     ) {
-        val currentLocation = navController.currentBackStackEntryAsState()
         Scaffold(
-            modifier = modifier,
-            topBar = {
-                CenterAlignedTopAppBar(
-                    modifier = Modifier.shadow(elevation = GeometryTokens.dpMedium),
-//                    colors = TopAppBarColors(
-//                        containerColor =
-//                        navigationIconContentColor =
-//                        titleContentColor =
-//                        actionIconContentColor =
-//                        scrolledContainerColor =
-//                    ),
-                    navigationIcon = {
-                        val stack = navController.currentBackStack.collectAsState()
-                        if (stack.value.isNotEmpty()) {
-                            IconButton(onClick = { navController.popBackStack() }) {
-                                Icon(Icons.AutoMirrored.Default.ArrowBack, contentDescription = "Profile")
-                            }
-                        }
-                    },
-                    title = {
-                        val location = currentLocation.value
-                        val titleRes = Res.string.app_name
-//                        when(location) {
-//                            Home -> Res.string.app_name
-//                            FundInfo -> Res.string.app_name
-//                            else -> null
-//                        }
-                        Text(titleRes?.let { stringResource(it) } ?: "Generated: $location")
-                    },
-                    actions = {
-                        IconButton(onClick = { navController.navigate(ProfileDestination.User) }) {
-                            Icon(Icons.Default.AccountBox, contentDescription = "Profile")
-                        }
-                        IconButton(onClick = { navController.navigate(Funds.Search) }) {
-                            Icon(Icons.Default.Search, contentDescription = "Search")
-                        }
-                    },
-                )
-            },
-            floatingActionButton = {
-                when (currentLocation.value) {
-                    Funds -> {
-                        IconButton(onClick = {
-                            navController.navigate(Funds.Create)
-                        }) {
-                            Icon(Icons.Default.AddCircle, contentDescription = "Create Fund")
-                        }
-                    }
+            topBar = { PaintedDogsTopBar(navController) },
+            bottomBar = { PaintedDogsBottomBar(
+                onNavigateToChat = {
+                    navController.navigateToChatRoot()
+                },
+                onNavigateToAid = {
+                    navController.navigateToAidRoot()
                 }
-            },
-            floatingActionButtonPosition = FabPosition.End,
-//            bottomBar = {
-//                NavigationBar(
-////                    containerColor =
-////                    contentColor =
-//                ) {
-//                    IconButton(
-//                        modifier = Modifier.weight(1f),
-//                        onClick = { navController.navigateTo(route("funds")) }
-//                    ) {
-//                        Icon(Icons.Default.Build, contentDescription = "Create Fund")
-//                    }
-//                    IconButton(
-//                        modifier = Modifier.weight(1f),
-//                        onClick = { navController.navigateTo(route("rides")) }
-//                    ) {
-//                        Icon(Icons.Default.Call, contentDescription = "Rides")
-//                    }
-//                    IconButton(
-//                        modifier = Modifier.weight(1f),
-//                        onClick = { navController.navigateTo(route("social")) }
-//                    ) {
-//                        Icon(Icons.Default.Person, contentDescription = "Social")
-//                    }
-//                }
-//            }
+            ) }
         ) { paddingValues ->
             NavHost(
                 navController = navController,
                 modifier = Modifier
                     .padding(paddingValues)
                     .fillMaxSize(),
-                startDestination = ChatDestination.History,
+                startDestination = ChatRootDestination,
                 enterTransition = {
                     // Animation used for the entering new Screen
                     EnterTransition.None
@@ -159,7 +89,25 @@ fun PaintedDogsApp(
                 },
                 typeMap = navTypeMap()
             ) {
-                chatRouting(navController)
+                navigation<ChatRootDestination>(
+                    startDestination = ChatHistoryDestination
+                ) {
+                    chatRouting(
+                        onNavigateToNewChat = navController::navigateToNewChat,
+                        onNavigateToChatSession = navController::navigateToChatSession,
+                    )
+                }
+                navigation<AidRootDestination>(
+                    startDestination = ExchangeBoardDestination
+                ) {
+                    aidRouting(
+                        navigateToRequestDetail = navController::navigateToSupportDetail,
+                        onClaimOffer = navController::navigateToClaimDetail,
+                        onNavigateToRequest =  navController::navigateToRequestDetail,
+                        onNavigateToOffer = navController::navigateToOfferDetail,
+                        onCreateOffer = navController::navigateToOfferDraft
+                    )
+                }
 
                 homeRouting(navController)
 
